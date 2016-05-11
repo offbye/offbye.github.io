@@ -3,16 +3,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>offbye</title>
+  <title>tags | offbye</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="关注移动架构，Android，HTML5，iOS技术前沿">
 <meta property="og:type" content="website">
-<meta property="og:title" content="offbye">
-<meta property="og:url" content="http://offbye.com/index.html">
+<meta property="og:title" content="tags">
+<meta property="og:url" content="http://offbye.com/tags/index.html">
 <meta property="og:site_name" content="offbye">
 <meta property="og:description" content="关注移动架构，Android，HTML5，iOS技术前沿">
+<meta property="og:updated_time" content="2016-05-11T15:10:00.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="offbye">
+<meta name="twitter:title" content="tags">
 <meta name="twitter:description" content="关注移动架构，Android，HTML5，iOS技术前沿">
   
     <link rel="alternative" href="/atom.xml" title="offbye" type="application/atom+xml">
@@ -30,13 +31,8 @@
   
   <link rel="stylesheet" href="/css/style.css">
   
-      <style> .article { opacity: 0;} </style>
-  
   <link href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  
-    
-    
   
   
       <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
@@ -47,7 +43,7 @@
       var yiliaConfig = {
           fancybox: true,
           animate: true,
-          isHome: true,
+          isHome: false,
           isPost: false,
           isArchive: false,
           isTag: false,
@@ -257,13 +253,11 @@
     </div>
     <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
 </nav>
-      <div class="body-wrap">
-  
-    <article id="post-iOS-Sandbox-swift" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="page-undefined" class="article article-type-page" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/05/11/iOS-Sandbox-swift/" class="article-date">
-      <time datetime="2016-05-11T10:25:25.000Z" itemprop="datePublished">2016-05-11</time>
+      <a href="/tags/index.html" class="article-date">
+      <time datetime="2016-05-11T15:10:00.000Z" itemprop="datePublished">2016-05-11</time>
 </a>
     </div>
   
@@ -275,135 +269,153 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/11/iOS-Sandbox-swift/">iOS App沙盒模型文件目录详解Swift版</a>
+    <h1 class="article-title" itemprop="name">
+      tags
     </h1>
   
 
       </header>
       
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p>本文会比较全面的介绍iOS App沙盒模型的文件夹及其使用场景，以及通过Swift取得这些文件夹的方法</p>
-<ul>
-<li>iOS 中的沙盒机制介绍</li>
-</ul>
-<p>iOS 中的沙盒机制（SandBox）是一种安全体系。<br>每个 iOS 应用程序都有一个单独的文件系统（存储空间），而且只能在对应的文件系统中进行操作，此区域被称为沙盒。所有的非代码文件都要保存在此，例如属性文件 plist、文本文件、图像、图标、媒体资源等。</p>
-<ul>
-<li>iPhone沙箱模型的四个文件夹介绍和功能</li>
-</ul>
-<p>1、Documents 目录：您应该将所有de应用程序数据文件写入到这个目录下。这个目录用于存储用户数据或其它应该定期备份的信息。用户自己保存的文件在documents文件里</p>
-<p>2、AppName.app 目录：这是应用程序的程序包目录，包含应用程序的本身。由于应用程序必须经过签名，所以您在运行时不能对这个目录中的内容进行修改，否则可能会使应用程序无法启动。</p>
-<p>3、Library 目录：这个目录下有两个子目录：Caches 和 Preferences<br>Preferences 目录：包含应用程序的偏好设置文件。您不应该直接创建偏好设置文件，而是应该使用NSUserDefaults类来取得和设置应用程序的偏好.<br>Caches 目录：用于存放应用程序专用的支持文件，保存应用程序再次启动过程中需要的信息。</p>
-<p>4、tmp 目录：这个目录用于存放临时文件，保存应用程序再次启动过程中不需要的信息。</p>
-<p>补充1：对于上述描述可以这样举例理解，一个记事本应用，用户写的东西需要保存起来，这些东西是用户自行生成的，则需要放在 Documents 目录里。一个新闻应用，如果需要从服务器下载东西展示给用户看，下载的东西就放在 Library/Caches 目录里。苹果审核对这个要求很严格，主要原因是 iCloud 的同步问题。<br>补充2：如果想知道真机或者模拟器 App 沙盒路径，可通过在项目中执行下述代码打印获取：</p>
-<ul>
-<li>获取这些目录路径的方法<br>1，获取Home目录路径的函数：<br>let homeDir = NSHomeDirectory()<br>2，获取Documents目录路径的方法：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let paths =  NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.NSDocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)</span><br><span class="line"></span><br><span class="line">let   documentPath = paths[0]</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>3，获取Caches目录路径的方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let paths =  NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.CachesDirectory,NSSearchPathDomainMask.UserDomainMask, true)</span><br><span class="line"></span><br><span class="line">let   cachePath = paths[0]</span><br></pre></td></tr></table></figure></p>
-<p>4，获取tmp目录路径的方法：<br>let tmpDir = NSTemporaryDirectory();<br>5，获取应用程序程序包中资源文件路径的方法：<br>程序包（NSBundle）<br>iOS 应用都是通过 bundle 进行封装的，可以狭隘地将 bundle 理解为上述沙盒中的 AppName.app 文件。在 Finder 中，会把 bundle 当做一个文件显示从而防止用户误操作导致程序文件损坏，但其实内部是一个目录，包含了图像、媒体资源、编译好的代码、nib 文件等，这个目录称为 main bundle。<br>Cocoa 提供了 NSBundle 类封装了 bundle 操作。</p>
-<p>通过NSBundle可以获取各种资源文件，注意在Build Phases - Copy Bundle Rresources下面需要有这个资源文件，有些类型的文件不会自动加在这里<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let path = NSBundle.mainBundle().pathForResource(&quot;20160504182134006&quot;, ofType: &quot;pcm&quot;)</span><br></pre></td></tr></table></figure></p>
-<p>代码中的mainBundle类方法用于返回一个代表应用程序包的对象。</p>
-<ul>
-<li>NSFileManager文件管理介绍<br>使用 FileManager 可以对沙盒中的目录、文件进行操作。</li>
-</ul>
-<p>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var fm: NSFileManager = NSFileManager.defaultManager()</span><br><span class="line">if !fm.fileExistsAtPath(self.dataFilePath()) &#123;</span><br><span class="line">    //下面是对该文件进行制定路径的保存</span><br><span class="line">    fm.createDirectoryAtPath(self.dataFilePath(), withIntermediateDirectories: true, attributes: nil, error: nil)</span><br><span class="line">        //取得一个目录下得所有文件名</span><br><span class="line">    var files: [AnyObject] = fm.subpathsAtPath(self.dataFilePath())</span><br><span class="line">        //读取某个文件</span><br><span class="line">    var data: NSData = fm.contentsAtPath(self.dataFilePath())</span><br><span class="line">        //或者</span><br><span class="line">    var data: NSData = NSData.dataWithContentOfPath(self.dataFilePath())</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS-Sandbox-swift/">iOS,Sandbox,swift</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/05/11/hello-world/" class="article-date">
-      <time datetime="2016-05-11T06:49:59.000Z" itemprop="datePublished">2016-05-11</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
+      <div class="article-info article-info-post">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/11/hello-world/">Hello World</a>
-    </h1>
-  
 
-      </header>
+        
+        <div class="clearfix"></div>
+      </div>
       
     
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+              <style>
+    .article-meta { display: none; }
+    #container .article .article-title { padding-right: 0; }
+    .article-header {
+        padding: 0;
+        padding-top: 26px;
+        border-left: none;
+        text-align: center;
+    }
+    .article-header:hover { border-left: none; }
+    .article-title { font-size: 1.6em }
+    .article-entry hr { margin: 0;}
+    .article-meta,
+    #container .article-info-post.article-info { display: none;}
+    #container .article .article-title { padding: 0; }
+</style>
 
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
 
+    <!-- Tag Cloud Page -->
+    <hr>
+<br>
+
+
+<p class="count"></p>
+
+<div class="tags">
+    <a href="/tags/iOS-Sandbox-swift/" style="font-size: 16px; color: #808080">iOS,Sandbox,swift</a>
+</div>
+<style>
+    .category-list li{
+        display: inline-block;
+        margin: 0 1em .5em 0;
+        padding: 4px;
+        border: 1px solid lightgray;
+        font-size: 1.2rem;
+    }
+    .category-list a { color: gray; }
+    .category-list-item:hover a {
+        color: gray;
+        text-decoration: none;
+    }
+    .category-list-count {
+        margin-left: 2px;
+        font-size: .9rem;
+    }
+    .article-entry ul li:before{ display: none; }
+    .article-inner { text-align: center; }
+    .tags {
+        max-width: 42em;
+        margin: 2em auto;
+        margin-top: 0em;
+    }
+    .tags a {
+        margin-right: 1em;
+        line-height: 65px;
+        border-bottom: 1px solid gray;
+        white-space: nowrap;
+        transition: border-bottom .5s;
+    }
+    .tags a:hover {
+        border-bottom: 3px dotted gray;
+        text-decoration: none;
+    }
+    #count > span {
+        margin: auto .2em;
+        font-weight: bold;
+    }
+</style>
+
+<!-- Count tags and categories -->
+<p id="count">
+         <span><script>document.write($(".category-list-item").length)</script></span>Categories,
+         <span><script>document.write($(".tags > a").length)</script></span>Tags
+</p>
+<script>
+    $('#count').appendTo('.count');
+</script>
+
+          
+        
       
-      
-      <div class="clearfix"></div>
     </div>
     
   </div>
+  
+    
+
+
   
 </article>
 
 
 
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"tags　| offbye　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
 
 
 
 
 
 
-  
-  
+
+    
+
+
+
+
+
+    <script>
+        
+    </script>
 </div>
       <footer id="footer">
     <div class="outer">
