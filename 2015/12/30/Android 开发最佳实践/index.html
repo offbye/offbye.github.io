@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  
+  <title>Android 开发最佳实践 | offbye</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Android 开发最佳实践">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android 开发最佳实践">
+<meta property="og:url" content="http://offbye.com/2015/12/30/Android 开发最佳实践/index.html">
+<meta property="og:site_name" content="offbye">
+<meta property="og:description" content="Android 开发最佳实践">
+<meta property="og:updated_time" content="2016-05-12T16:40:16.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android 开发最佳实践">
+<meta name="twitter:description" content="Android 开发最佳实践">
+  
+    <link rel="alternative" href="/atom.xml" title="offbye" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+      <link href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css" rel="stylesheet">
+  
+  
+  
+      <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+      <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+  
+  <script src="//cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.9/clipboard.min.js"></script>
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false,
+          fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+          scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.0.9/scrollreveal.min.js"
+      }
+  </script>
+
+  
+      <script>
+          yiliaConfig.rootUrl = "/";
+      </script>
+  
+
+  
+  
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">offbye</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">关注移动架构，Android，HTML5，iOS技术前沿</p>
+        
+                
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:offbye@gmail.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/offbye" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="http://blog.csdn.net/offbye" title="CSDN"></a>
+                            
+                                <a class="fa StackOverflow" target="_blank" href="#offbye" title="StackOverflow"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sandbox/">Sandbox</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/YAML/">YAML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/swift/">swift</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注移动端</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">offbye</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">offbye</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">关注移动架构，Android，HTML5，iOS技术前沿</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:offbye@gmail.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/offbye" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="http://blog.csdn.net/offbye" title="CSDN"></a>
+                            
+                                <a class="fa StackOverflow" target="_blank" href="#offbye" title="StackOverflow"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-Android 开发最佳实践" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/12/30/Android 开发最佳实践/" class="article-date">
+      <time datetime="2015-12-30T06:33:00.000Z" itemprop="datePublished">2015-12-30</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Android 开发最佳实践
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Android/">Android</a><a class="article-category-link" href="/categories/Android/RxAndroid/">RxAndroid</a>
+    </div>
+
+
+        
+
+        
+        <div style="display:block; clear:both;">
+          <span>CSDN原文:<a href="http://blog.csdn.net/offbye/article/details/50434483" target="_blank" title="Android 开发最佳实践">http://blog.csdn.net/offbye/article/details/50434483</a> </span>
+          <span style="float:right;margin-right:1em"> CSDN阅读数:649</span>
+        </div>
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>这篇文章包含了很多新框架的介绍，例如Volley,Retrofit,EventBus,RxJava 等的。<br>原文: <a href="https://github.com/futurice/android-best-practices" target="_blank" rel="external">Best practices in Android development</a><br><a href="http://www.futurice.com/" target="_blank" rel="external">Futurice</a>公司Android开发者总结的经验。<br>遵循以下准则，避免重复发明轮子。若您对开发iOS或Windows Phone 有兴趣，<br>请看<a href="https://github.com/futurice/ios-good-practices" target="_blank" rel="external"><strong>iOS Good Practices</strong></a> 和 <a href="https://github.com/futurice/win-client-dev-good-practices" target="_blank" rel="external"><strong>Windows client Good Practices</strong></a> 这两篇文章。</p>
+<p>##摘要</p>
+<ul>
+<li>使用 Gradle 和它推荐的工程结构</li>
+<li>把密码和敏感数据放在gradle.properties</li>
+<li>不要自己写 HTTP 客户端,使用Volley或OkHttp库</li>
+<li>使用Jackson库解析JSON数据</li>
+<li>避免使用Guava同时使用一些类库来避免<em>65k method limit</em>（一个Android程序中最多能执行65536个方法）</li>
+<li>使用 Fragments来呈现UI视图</li>
+<li>使用 Activities 只是为了管理 Fragments</li>
+<li>Layout 布局是 XMLs代码，组织好它们</li>
+<li>在layoutout XMLs布局时，使用styles文件来避免使用重复的属性</li>
+<li>使用多个style文件来避免单一的一个大style文件</li>
+<li>保持你的colors.xml 简短DRY(不要重复自己)，只是定义调色板</li>
+<li>总是使用dimens.xml DRY(不要重复自己)，定义通用常数</li>
+<li>不要做一个深层次的ViewGroup</li>
+<li>在使用WebViews时避免在客户端做处理，当心内存泄露</li>
+<li>使用Robolectric单元测试，Robotium 做UI测试</li>
+<li>使用Genymotion 作为你的模拟器</li>
+<li>总是使用ProGuard 和 DexGuard混淆来项目</li>
+</ul>
+<p>###Android SDK<br>将你的<a href="https://developer.android.com/sdk/installing/index.html?pkg=tools" target="_blank" rel="external">Android SDK</a>放在你的home目录或其他应用程序无关的位置。<br>当安装有些包含SDK的IDE的时候，可能会将SDK放在IDE同一目录下，当你需要升级（或重新安装）IDE或更换的IDE时，会非常麻烦。<br>此外，若果你的IDE是在普通用户，不是在root下运行，还要避免吧SDK放到一下需要sudo权限的系统级别目录下。</p>
+<p>###构建系统<br>你的默认编译环境应该是<a href="http://tools.android.com/tech-docs/new-build-system" target="_blank" rel="external">Gradle</a>.<br>Ant 有很多限制，也很冗余。使用Gradle，完成以下工作很方便：</p>
+<ul>
+<li>构建APP不同版本的变种</li>
+<li>制作简单类似脚本的任务</li>
+<li>管理和下载依赖</li>
+<li>自定义秘钥</li>
+<li>更多</li>
+</ul>
+<p>同时，Android Gradle插件作为新标准的构建系统正在被Google积极的开发。</p>
+<p>###工程结构<br>有两种流行的结构：老的Ant &amp; Eclipse ADT 工程结构，和新的Gradle &amp; Android Studio 工程结构，<br>你应该选择新的工程结构，如果你的工程还在使用老的结构，考虑放弃吧，将工程移植到新的结构。<br>老的结构:<br>    old-structure├─ assets├─ libs├─ res├─ src│└─ com/futurice/project├─AndroidManifest.xml├─ build.gradle├─ project.properties└─ proguard-rules.pro<br>新的结构<br>    new-structure├─ library-foobar├─ app│├─ libs│├─ src││├─ androidTest│││└─ java│││└─ com/futurice/project││└─ main││├─ java│││└─ com/futurice/project││├─ res││└─AndroidManifest.xml│├─ build.gradle│└─ proguard-rules.pro├─ build.gradle└─ settings.gradle<br>主要的区别在于，新的结构明确的分开了’source sets’ (<code>main</code>,<code>androidTest</code>)，Gradle的一个理念。<br>你可以做到，例如，添加源组‘paid’和‘free’在src中，这将成为您的应用程序的付费和免费的两种模式的源代码。<br>你的项目引用第三方项目库时（例如，library-foobar），拥有一个顶级包名<code>app</code>从第三方库项目区分你的应用程序是非常有用的。<br>然后<code>settings.gradle</code>不断引用这些库项目，其中<code>app/build.gradle</code>可以引用。</p>
+<p>###Gradle 配置<br><strong>常用结构</strong> 参考<a href="http://tools.android.com/tech-docs/new-build-system/user-guide" target="_blank" rel="external">Google’s guide on Gradle for Android</a><br><strong>小任务</strong> 除了(shell, Python, Perl, etc)这些脚本语言，你也可以使用Gradle 制作任务。<br>更多信息请参考<a href="http://www.gradle.org/docs/current/userguide/userguide_single.html#N10CBF" target="_blank" rel="external">Gradle’s documentation</a>。<br><strong>密码</strong> 在做版本release时你app的 <code>build.gradle</code>你需要定义 <code>signingConfigs</code>.此时你应该避免以下内容：<br><em>不要做这个</em> . 这会出现在版本控制中。<br>    signingConfigs {    release {        storeFile file(“myapp.keystore”)        storePassword “password123”        keyAlias “thekey”        keyPassword “password789”}}<br>而是，建立一个不加入版本控制系统的<code>gradle.properties</code>文件。<br>    KEYSTORE_PASSWORD=password123<br>    KEY_PASSWORD=password789<br>那个文件是gradle自动引入的，你可以在<code>buld.gradle</code>文件中使用，例如：<br>    signingConfigs {    release {try{            storeFile file(“myapp.keystore”)            storePassword KEYSTORE_PASSWORD<br>                keyAlias “thekey”            keyPassword KEY_PASSWORD<br>            }catch(ex){thrownewInvalidUserDataException(“You should define KEYSTORE_PASSWORD and KEY_PASSWORD in gradle.properties.”)}}}<br><strong>使用 Maven 依赖方案代替使用导入jar包方案</strong> 如果在你的项目中你明确使用率<br>jar文件，那么它们可能成为永久的版本，如<code>2.1.1</code>.下载jar包更新他们是很繁琐的，<br>这个问题Maven很好的解决了，这在Android Gradle构建中也是推荐的方法。你可<br>以指定版本的一个范围，如<code>2.1.+</code>,然后Maven会自动升级到制定的最新版本，例如：<br>    dependencies {    compile ‘com.netflix.rxjava:rxjava-core:0.19.+’    compile ‘com.netflix.rxjava:rxjava-android:0.19.+’    compile ‘com.fasterxml.jackson.core:jackson-databind:2.4.+’    compile ‘com.fasterxml.jackson.core:jackson-core:2.4.+’    compile ‘com.fasterxml.jackson.core:jackson-annotations:2.4.+’    compile ‘com.squareup.okhttp:okhttp:2.0.+’    compile ‘com.squareup.okhttp:okhttp-urlconnection:2.0.+’}</p>
+<p>###IDEs and text editors</p>
+<p>###IDE集成开发环境和文本编辑器<br><strong>无论使用什么编辑器，一定要构建一个良好的工程结构</strong> 编辑器每个人都有自己的<br>选择，让你的编辑器根据工程结构和构建系统运作，那是你自己的责任。<br>当下首推<a href="https://developer.android.com/sdk/installing/studio.html" target="_blank" rel="external">Android Studio</a>,因为他是由谷歌开发，最接近Gradle，默认使用最新的工程结构，已经到beta阶段<br>（目前已经有release 1.0了），它就是为Android开发定制的。<br>你也可以使用<a href="https://developer.android.com/sdk/installing/index.html?pkg=adt" target="_blank" rel="external">Eclipse ADT</a> ，但是你需要对它进行配置，因为它使用了旧的工程结构<br>和Ant作为构建系统。你甚至可以使用纯文版编辑器如Vim，Sublime Text，或者Emacs。如果那样的话，你需要使用Gardle和<code>adb</code>命令行。如果使用Eclipse集成Gradle<br>不适合你，你只是使用命令行构建工程，或迁移到Android Studio中来吧。<br>无论你使用何种开发工具，只要确保Gradle和新的项目结构保持官方的方式构建应用程序，避免你的编辑器配置文件加入到版本控制。例如，避免加入Ant <code>build.xml</code>文件。<br>特别如果你改变Ant的配置，不要忘记保持<code>build.gradle</code>是最新和起作用的。同时，善待其他开发者，不要强制改变他们的开发工具和偏好。</p>
+<p>###类库<br><strong><a href="http://wiki.fasterxml.com/JacksonHome" target="_blank" rel="external">Jackson</a></strong> 是一个将java对象转换成JSON与JSON转化java类的类库。<a href="https://code.google.com/p/google-gson/" target="_blank" rel="external">Gson</a><br>是解决这个问题的流行方案，然而我们发现Jackson更高效,因为它支持替代的方法处理JSON:流、内存树模型,和传统JSON-POJO数据绑定。不过，请记住，<br>Jsonkson库比起GSON更大，所以根据你的情况选择，你可能选择GSON来避免APP 65k个方法限制。其它选择: <a href="https://code.google.com/p/json-smart/" target="_blank" rel="external">Json-smart</a>and <a href="https://github.com/RichardHightower/boon/wiki/Boon-JSON-in-five-minutes" target="_blank" rel="external">Boon JSON</a><br><strong>网络请求，缓存，图片</strong> 执行请求后端服务器，有几种交互的解决方案，你应该考虑实现你自己的网络客户端。使用 <a href="https://android.googlesource.com/platform/frameworks/volley" target="_blank" rel="external">Volley</a><br>或<a href="http://square.github.io/retrofit/" target="_blank" rel="external">Retrofit</a>。Volley 同时提供图片缓存类。若果你选择使用Retrofit,那么考虑使用<a href="http://square.github.io/picasso/" target="_blank" rel="external">Picasso</a><br>来加载图片和缓存，同时使用<a href="http://square.github.io/okhttp/" target="_blank" rel="external">OkHttp</a>作为高效的网络请求。Retrofit，Picasso和OkHttp都是有同一家公司开发（注：<br>是由<a href="https://github.com/square" target="_blank" rel="external">Square</a> 公司开发），所以它们能很好的在一起运行。<a href="http://stackoverflow.com/questions/24375043/how-to-implement-android-volley-with-okhttp-2-0/24951835#24951835" target="_blank" rel="external">OkHttp 同样可以和Volley在一起使用 Volley</a>.<br><strong>RxJava</strong> 是函数式反应性的一个类库，换句话说，能处理异步的事件。<br>这是一个强大的和有前途的模式，同时也可能会造成混淆，因为它是如此的不同。<br>我们建议在使用这个库架构整个应用程序之前要谨慎考虑。<br>有一些项目是使用RxJava完成的，如果你需要帮助可以跟这些人取得联系：<br>Timo Tuominen, Olli Salonen, Andre Medeiros, Mark Voit, Antti Lammi, Vera Izrailit, Juha Ristolainen.<br>我们也写了一些博客：<br><a href="http://blog.futurice.com/tech-pick-of-the-week-rx-for-net-and-rxjava-for-android" target="_blank" rel="external">[1]</a>, <a href="http://blog.futurice.com/top-7-tips-for-rxjava-on-android" target="_blank" rel="external">[2]</a>,<br><a href="https://gist.github.com/staltz/868e7e9bc2a7b8c1f754" target="_blank" rel="external">[3]</a>,<br><a href="http://blog.futurice.com/android-development-has-its-own-swift" target="_blank" rel="external">[4]</a>.<br>如若你之前有使用过Rx的经历，开始从API响应应用它。<br>另外，从简单的UI事件处理开始运用，如单击事件或在搜索栏输入事件。<br>若对你的Rx技术有信心，同时想要将它应用到你的整体架构中，那么请在复杂的部分写好Javadocs文档。<br>请记住其他不熟悉RxJava的开发人员，可能会非常难理解整个项目。<br>尽你的的全力帮助他们理解你的代码和Rx。<br><strong><a href="https://github.com/evant/gradle-retrolambda" target="_blank" rel="external">Retrolambda</a></strong> 是一个在Android和预JDK8平台上的使用Lambda表达式语法的Java类库。<br>它有助于保持你代码的紧凑性和可读性，特别当你使用如RxJava函数风格编程时。<br>使用它时先安装JDK8，在Android Studio工程结构对话框中把它设置成为SDK路径，同时设置<code>JAVA8_HOME</code>和<code>JAVA7_HOME</code>环境变量，<br>然后在工程根目录下配置 build.gradle：<br>    dependencies {    classpath ‘me.tatarka:gradle-retrolambda:2.4.+’}<br>同时在每个module 的build.gradle中添加<br>    apply plugin:’retrolambda’android {    compileOptions {    sourceCompatibility JavaVersion.VERSION_1_8<br>        targetCompatibility JavaVersion.VERSION_1_8}retrolambda {    jdk System.getenv(“JAVA8_HOME”)    oldJdk System.getenv(“JAVA7_HOME”)    javaVersion JavaVersion.VERSION_1_7}<br>Android Studio 提供Java8 lambdas表带是代码提示支持。如果你对lambdas不熟悉，只需参照以下开始学习吧：</p>
+<ul>
+<li>任何只包含一个接口的方法都是”lambda friendly”同时代码可以被折叠成更紧凑的语法</li>
+<li>如果对参数或类似有疑问，就写一个普通的匿名内部类，然后让Android Status为你生成一个lambda。</li>
+</ul>
+<p><strong>当心dex方法数限制，同时避免使用过多的类库</strong> Android apps，当打包成一个dex文件时，有一个65535个应用方法强硬限制<a href="https://medium.com/@rotxed/dex-skys-the-limit-no-65k-methods-is-28e6cb40cf71" target="_blank" rel="external">[1]</a> <a href="http://blog.persistent.info/2014/05/per-package-method-counts-for-androids.html" target="_blank" rel="external">[2]</a> <a href="http://jakewharton.com/play-services-is-a-monolith/" target="_blank" rel="external">[3]</a>。<br>当你突破65k限制之后你会看到一个致命错误。因此，使用一个正常范围的类库文件，同时使用<a href="https://github.com/mihaip/dex-method-counts" target="_blank" rel="external">dex-method-counts</a><br>工具来决定哪些类库可以再65k限制之下使用，特别的避免使用Guava类库，因为它包含超过13k个方法。</p>
+<p>###Activities and Fragments<br><a href="http://developer.android.com/guide/components/fragments.html" target="_blank" rel="external">Fragments</a>应该作为你实现UI界面默认选择。你可以重复使用Fragments用户接口来<br>组合成你的应用。我们强烈推荐使用Fragments而不是activity来呈现UI界面，理由如下：</p>
+<ul>
+<li><p><strong>提供多窗格布局解决方案</strong> Fragments 的引入主要将手机应用延伸到平板电脑，所以在平板电脑上你可能有A、B两个窗格，但是在手机应用上A、B可能分别充满<br>整个屏幕。如果你的应用在最初就使用了fragments，那么以后将你的应用适配到其他不同尺寸屏幕就会非常简单。</p>
+</li>
+<li><p><strong>屏幕间数据通信</strong> 从一个Activity发送复杂数据(例如Java对象)到另外一个Activity，Android的API并没有提供合适的方法。不过使用Fragment，你可以使用<br>一个activity实例作为这个activity子fragments的通信通道。即使这样比Activity与Activity间的通信好，你也想考虑使用Event Bus架构，使用如<br><a href="https://square.github.io/otto/" target="_blank" rel="external">Otto</a> 或者 <a href="https://github.com/greenrobot/EventBus" target="_blank" rel="external">greenrobot EventBus</a>作为更简洁的实现。<br>如果你希望避免添加另外一个类库，RxJava同样可以实现一个Event Bus。</p>
+</li>
+</ul>
+<ul>
+<li><p><strong>Fragments 一般通用的不只有UI</strong> 你可以有一个没有界面的fragment作为Activity提供后台工作。<br>进一步你可以使用这个特性来创建一个<a href="http://stackoverflow.com/questions/12363790/how-many-activities-vs-fragments/12528434#12528434" target="_blank" rel="external">fragment 包含改变其它fragment的逻辑</a><br>而不是把这个逻辑放在activity中。</p>
+</li>
+<li><p><strong>甚至ActionBar 都可以使用内部fragment来管理</strong> 你可以选择使用一个没有UI界面的fragment来专门管理ActionBar,或者你可以选择使用在每个Fragment中<br>添加它自己的action 来作为父Activity的ActionBar.<a href="http://www.grokkingandroid.com/adding-action-items-from-within-fragments/" target="_blank" rel="external">参考</a>.</p>
+</li>
+</ul>
+<p>很不幸，我们不建议广泛的使用嵌套的<a href="https://developer.android.com/about/versions/android-4.2.html#NestedFragments" target="_blank" rel="external">fragments</a>，因为<br>有时会引起<a href="http://delyan.me/android-s-matryoshka-problem/" target="_blank" rel="external">matryoshka bugs</a>。我们只有当它有意义(例如，在水平滑动的ViewPager在<br>像屏幕一样fragment中)或者他的确是一个明智的选择的时候才广泛的使用fragment。<br>在一个架构级别，你的APP应该有一个顶级的activity来包含绝大部分业务相关的fragment。你也可能还有一些辅助的activity ，这些辅助的activity与主activity<br>通信很简单限制在这两种方法<br><a href="http://developer.android.com/reference/android/content/Intent.html#setData(android.net.Uri" target="_blank" rel="external"><code>Intent.setData()</code></a>) 或 <a href="http://developer.android.com/reference/android/content/Intent.html#setAction(java.lang.String" target="_blank" rel="external"><code>Intent.setAction()</code></a>)或类似的方法。</p>
+<p>###Java 包结构<br>Android 应用程序在架构上大致是Java中的<a href="http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller" target="_blank" rel="external">Model-View-Controller</a>结构。<br>在Android 中 Fragment和Activity通常上是控制器类(<a href="http://www.informit.com/articles/article.aspx?p=2126865" target="_blank" rel="external">http://www.informit.com/articles/article.aspx?p=2126865</a>).<br>换句话说，他们是用户接口的部分，同样也是Views视图的部分。<br>正是因为如此，才很难严格的将fragments (或者 activities) 严格的划分成 控制器controlloers还是视图 views。<br>最还是将它们放在自己单独的 <code>fragments</code> 包中。只要你遵循之前提到的建议，Activities 则可以放在顶级目录下。<br>若果你规划有2到3个以上的activity，那么还是同样新建一个<code>activities</code>包吧。<br>然而，这种架构可以看做是另一种形式的MVC，<br>包含要被解析API响应的JSON数据，来填充的POJO的<code>models</code>包中。<br>和一个<code>views</code>包来包含你的自定义视图、通知、导航视图，widgets等等。<br>适配器Adapter是在数据和视图之间。然而他们通常需要通过<code>getView()</code>方法来导出一些视图，<br>所以你可以将<code>adapters</code>包放在<code>views</code>包里面。<br>一些控制器角色的类是应用程序级别的，同时是接近系统的。<br>这些类放在<code>managers</code>包下面。<br>一些繁杂的数据处理类，比如说”DateUtils”,放在<code>utils</code>包下面。<br>与后端交互负责网络处理类，放在<code>network</code>包下面。<br>总而言之，以最接近用户而不是最接近后端去安排他们。<br>    com.futurice.project├─ network├─ models├─ managers├─ utils├─ fragments└─ views<br>       ├─ adapters<br>       ├─ actionbar<br>       ├─ widgets<br>       └─ notifications</p>
+<p>###资源文件 Resources</p>
+<ul>
+<li><strong>命名</strong> 遵循前缀表明类型的习惯，形如<code>type_foo_bar.xml</code>。例如：<code>fragment_contact_details.xml</code>,<code>view_primary_button.xml</code>,<code>activity_main.xml</code>.</li>
+</ul>
+<p><strong>组织布局文件</strong> 若果你不确定如何排版一个布局文件，遵循一下规则可能会有帮助。</p>
+<ul>
+<li>每一个属性一行，缩进4个空格</li>
+<li><code>android:id</code> 总是作为第一个属性</li>
+<li><code>android:layout_****</code> 属性在上边</li>
+<li><code>style</code> 属性在底部</li>
+<li>关闭标签<code>/&gt;</code>单独起一行，有助于调整和添加新的属性</li>
+<li><p>考虑使用<a href="http://tools.android.com/tips/layout-designtime-attributes" target="_blank" rel="external">Designtime attributes 设计时布局属性</a>，Android Studio已经提供支持，而不是硬编码<code>android:text</code><br>(译者注：墙内也可以参考stormzhang的这篇博客<a href="http://stormzhang.com/devtools/2015/01/11/android-studio-tips1/" target="_blank" rel="external">链接</a>)。</p>
+<p>  &lt;?xml version=”1.0” encoding=”utf-8”?&gt;<a href="LinearLayoutxmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;xmlns:tools=&quot;http://schemas.android.com/tools&quot;android:layout_width=&quot;match_parent&quot;android:layout_height=&quot;match_parent&quot;android:orientation=&quot;vertical&quot;" target="_blank" rel="external">LinearLayoutxmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;xmlns:tools=&quot;http://schemas.android.com/tools&quot;android:layout_width=&quot;match_parent&quot;android:layout_height=&quot;match_parent&quot;android:orientation=&quot;vertical&quot;</a><a href="&#x6d;&#x61;&#x69;&#108;&#116;&#x6f;&#x3a;&#x54;&#101;&#x78;&#x74;&#x56;&#105;&#x65;&#119;&#97;&#110;&#100;&#x72;&#111;&#x69;&#100;&#58;&#105;&#x64;&#x3d;&#34;&#x40;&#x2b;&#x69;&#x64;&#47;&#110;&#x61;&#x6d;&#x65;&#34;&#97;&#x6e;&#100;&#114;&#x6f;&#105;&#100;&#x3a;&#x6c;&#97;&#x79;&#x6f;&#117;&#116;&#x5f;&#x77;&#x69;&#x64;&#116;&#x68;&#x3d;&#34;&#x6d;&#97;&#116;&#99;&#x68;&#95;&#112;&#x61;&#x72;&#x65;&#x6e;&#116;&#x22;&#97;&#110;&#x64;&#114;&#x6f;&#x69;&#x64;&#x3a;&#108;&#97;&#x79;&#111;&#117;&#x74;&#x5f;&#x68;&#101;&#x69;&#x67;&#104;&#x74;&#x3d;&#34;&#119;&#114;&#97;&#x70;&#95;&#99;&#x6f;&#x6e;&#116;&#101;&#x6e;&#116;&#34;&#x61;&#x6e;&#x64;&#x72;&#x6f;&#x69;&#x64;&#58;&#x6c;&#97;&#x79;&#111;&#117;&#x74;&#x5f;&#x61;&#108;&#x69;&#x67;&#x6e;&#x50;&#97;&#x72;&#x65;&#x6e;&#116;&#x52;&#x69;&#103;&#104;&#116;&#x3d;&#x22;&#116;&#x72;&#117;&#x65;&#x22;&#x61;&#x6e;&#100;&#x72;&#x6f;&#105;&#100;&#58;&#x74;&#x65;&#x78;&#116;&#x3d;&#x22;&#x40;&#x73;&#116;&#x72;&#105;&#110;&#x67;&#47;&#110;&#97;&#109;&#x65;&#34;&#115;&#x74;&#x79;&#108;&#101;&#61;&#34;&#x40;&#115;&#x74;&#121;&#108;&#101;&#x2f;&#70;&#97;&#110;&#99;&#121;&#84;&#101;&#120;&#116;&#34;&#x2f;">&#x54;&#101;&#x78;&#x74;&#x56;&#105;&#x65;&#119;&#97;&#110;&#100;&#x72;&#111;&#x69;&#100;&#58;&#105;&#x64;&#x3d;&#34;&#x40;&#x2b;&#x69;&#x64;&#47;&#110;&#x61;&#x6d;&#x65;&#34;&#97;&#x6e;&#100;&#114;&#x6f;&#105;&#100;&#x3a;&#x6c;&#97;&#x79;&#x6f;&#117;&#116;&#x5f;&#x77;&#x69;&#x64;&#116;&#x68;&#x3d;&#34;&#x6d;&#97;&#116;&#99;&#x68;&#95;&#112;&#x61;&#x72;&#x65;&#x6e;&#116;&#x22;&#97;&#110;&#x64;&#114;&#x6f;&#x69;&#x64;&#x3a;&#108;&#97;&#x79;&#111;&#117;&#x74;&#x5f;&#x68;&#101;&#x69;&#x67;&#104;&#x74;&#x3d;&#34;&#119;&#114;&#97;&#x70;&#95;&#99;&#x6f;&#x6e;&#116;&#101;&#x6e;&#116;&#34;&#x61;&#x6e;&#x64;&#x72;&#x6f;&#x69;&#x64;&#58;&#x6c;&#97;&#x79;&#111;&#117;&#x74;&#x5f;&#x61;&#108;&#x69;&#x67;&#x6e;&#x50;&#97;&#x72;&#x65;&#x6e;&#116;&#x52;&#x69;&#103;&#104;&#116;&#x3d;&#x22;&#116;&#x72;&#117;&#x65;&#x22;&#x61;&#x6e;&#100;&#x72;&#x6f;&#105;&#100;&#58;&#x74;&#x65;&#x78;&#116;&#x3d;&#x22;&#x40;&#x73;&#116;&#x72;&#105;&#110;&#x67;&#47;&#110;&#97;&#109;&#x65;&#34;&#115;&#x74;&#x79;&#108;&#101;&#61;&#34;&#x40;&#115;&#x74;&#121;&#108;&#101;&#x2f;&#70;&#97;&#110;&#99;&#121;&#84;&#101;&#120;&#116;&#34;&#x2f;</a><a href="&#109;&#x61;&#x69;&#108;&#x74;&#111;&#x3a;&#x69;&#x6e;&#x63;&#x6c;&#117;&#100;&#x65;&#x6c;&#x61;&#x79;&#x6f;&#117;&#116;&#61;&#34;&#x40;&#108;&#97;&#x79;&#111;&#117;&#x74;&#x2f;&#114;&#101;&#x75;&#115;&#97;&#x62;&#x6c;&#x65;&#x5f;&#x70;&#x61;&#x72;&#116;&#x22;&#x2f;">&#x69;&#x6e;&#x63;&#x6c;&#117;&#100;&#x65;&#x6c;&#x61;&#x79;&#x6f;&#117;&#116;&#61;&#34;&#x40;&#108;&#97;&#x79;&#111;&#117;&#x74;&#x2f;&#114;&#101;&#x75;&#115;&#97;&#x62;&#x6c;&#x65;&#x5f;&#x70;&#x61;&#x72;&#116;&#x22;&#x2f;</a><br>作为一个经验法则,<code>android:layout_****</code>属性应该在 layout XML 中定义,同时其它属性<code>android:****</code> 应放在 styler XML中。此规则也有例外，不过大体工作<br>的很好。这个思想整体是保持layout属性(positioning, margin, sizing) 和content属性在布局文件中，同时将所有的外观细节属性（colors, padding, font）放<br>在style文件中。<br>例外有以下这些:</p>
+</li>
+<li><code>android:id</code> 明显应该在layout文件中</li>
+<li>layout文件中<code>android:orientation</code>对于一个<code>LinearLayout</code>布局通常更有意义</li>
+<li><code>android:text</code> 由于是定义内容，应该放在layout文件中</li>
+<li>有时候将<code>android:layout_width</code> 和 <code>android:layout_height</code>属性放到一个style中作为一个通用的风格中更有意义，但是默认情况下这些应该放到layout文件中。</li>
+</ul>
+<p><strong>使用styles</strong> 几乎每个项目都需要适当的使用style文件，因为对于一个视图来说有一个重复的外观是很常见的。<br>在应用中对于大多数文本内容，最起码你应该有一个通用的style文件，例如：<br>    <stylename="contenttext"><itemname="android:textsize">@dimen/font_normal<itemname="android:textcolor">@color/basic_black<br>应用到TextView 中:<br>    <a href="&#109;&#97;&#x69;&#x6c;&#x74;&#111;&#x3a;&#84;&#101;&#120;&#116;&#86;&#105;&#x65;&#x77;&#97;&#x6e;&#x64;&#x72;&#x6f;&#105;&#x64;&#x3a;&#108;&#x61;&#x79;&#x6f;&#117;&#116;&#95;&#119;&#105;&#100;&#x74;&#x68;&#61;&#x22;&#x77;&#x72;&#x61;&#112;&#x5f;&#99;&#111;&#x6e;&#116;&#101;&#x6e;&#116;&#34;&#97;&#x6e;&#x64;&#114;&#111;&#105;&#100;&#x3a;&#108;&#x61;&#121;&#111;&#117;&#116;&#x5f;&#x68;&#x65;&#x69;&#103;&#x68;&#x74;&#x3d;&#34;&#x77;&#x72;&#x61;&#x70;&#95;&#x63;&#x6f;&#110;&#116;&#101;&#x6e;&#x74;&#34;&#97;&#x6e;&#x64;&#x72;&#x6f;&#105;&#100;&#x3a;&#x74;&#x65;&#x78;&#116;&#61;&#34;&#x40;&#115;&#116;&#x72;&#105;&#110;&#103;&#x2f;&#112;&#114;&#x69;&#99;&#101;&#34;&#115;&#116;&#x79;&#x6c;&#101;&#61;&#x22;&#64;&#115;&#116;&#121;&#x6c;&#101;&#x2f;&#x43;&#111;&#110;&#x74;&#101;&#110;&#x74;&#x54;&#x65;&#x78;&#116;&#x22;&#x2f;">&#84;&#101;&#120;&#116;&#86;&#105;&#x65;&#x77;&#97;&#x6e;&#x64;&#x72;&#x6f;&#105;&#x64;&#x3a;&#108;&#x61;&#x79;&#x6f;&#117;&#116;&#95;&#119;&#105;&#100;&#x74;&#x68;&#61;&#x22;&#x77;&#x72;&#x61;&#112;&#x5f;&#99;&#111;&#x6e;&#116;&#101;&#x6e;&#116;&#34;&#97;&#x6e;&#x64;&#114;&#111;&#105;&#100;&#x3a;&#108;&#x61;&#121;&#111;&#117;&#116;&#x5f;&#x68;&#x65;&#x69;&#103;&#x68;&#x74;&#x3d;&#34;&#x77;&#x72;&#x61;&#x70;&#95;&#x63;&#x6f;&#110;&#116;&#101;&#x6e;&#x74;&#34;&#97;&#x6e;&#x64;&#x72;&#x6f;&#105;&#100;&#x3a;&#x74;&#x65;&#x78;&#116;&#61;&#34;&#x40;&#115;&#116;&#x72;&#105;&#110;&#103;&#x2f;&#112;&#114;&#x69;&#99;&#101;&#34;&#115;&#116;&#x79;&#x6c;&#101;&#61;&#x22;&#64;&#115;&#116;&#121;&#x6c;&#101;&#x2f;&#x43;&#111;&#110;&#x74;&#101;&#110;&#x74;&#x54;&#x65;&#x78;&#116;&#x22;&#x2f;</a><br>你或许需要为按钮控件做同样的事情，不要停止在那里。将一组相关的和重复<code>android:****</code>的属性放到一个通用的style中。<br><strong>将一个大的style文件分割成多个文件</strong> 你可以有多个<code>styles.xml</code> 文件。Android SDK支持其它文件，<code>styles</code>这个文件名称并没有作用，起作用的是在文件<br>里xml的<code>&lt;style&gt;</code>标签。因此你可以有多个style文件<code>styles.xml</code>,<code>style_home.xml</code>,<code>style_item_details.xml</code>,<code>styles_forms.xml</code>。<br>不用于资源文件路径需要为系统构建起的有意义，在<code>res/values</code>目录下的文件可以任意命名。<br><strong><code>colors.xml</code>是一个调色板</strong> 在你的<code>colors.xml</code>文件中应该只是映射颜色的名称一个RGBA值，而没有其它的。不要使用它为不同的按钮来定义RGBA值。<br><em>不要这样做</em><br>    <resources><colorname="button_foreground">#FFFFFF<colorname="button_background">#2A91BD<colorname="comment_background_inactive">#5F5F5F<colorname="comment_background_active">#939393<colorname="comment_foreground">#FFFFFF<colorname="comment_foreground_important">#FF9D2F    …<br>        <colorname="comment_shadow">#323232<br>使用这种格式，你会非常容易的开始重复定义RGBA值，这使如果需要改变基本色变的很复杂。同时，这些定义是跟一些环境关联起来的，如<code>button</code>或者<code>comment</code>,<br>应该放到一个按钮风格中，而不是在<code>color.xml</code>文件中。<br>相反，这样做:<br>    <resources><!-- grayscale --><colorname="white">#FFFFFF<colorname="gray_light">#DBDBDB<colorname="gray">#939393<colorname="gray_dark">#5F5F5F<colorname="black">#323232<!-- basic colors --><colorname="green">#27D34D<colorname="blue">#2A91BD<colorname="orange">#FF9D2F<colorname="red">#FF432F</colorname="red"></colorname="orange"></colorname="blue"></colorname="green"></colorname="black"></colorname="gray_dark"></colorname="gray"></colorname="gray_light"></colorname="white"></resources><br>向应用设计者那里要这个调色板，名称不需要跟”green”, “blue”, 等等相同。<br>“brand_primary”, “brand_secondary”, “brand_negative” 这样的名字也是完全可以接受的。<br>像这样规范的颜色很容易修改或重构，会使应用一共使用了多少种不同的颜色变得非常清晰。<br>通常一个具有审美价值的UI来说，减少使用颜色的种类是非常重要的。<br><strong>像对待colors.xml一样对待dimens.xml文件</strong> 与定义颜色调色板一样，你同时也应该定义一个空隙间隔和字体大小的“调色板”。<br>一个好的例子，如下所示：<br>    <resources><!-- font sizes --><dimenname="font_larger">22sp<dimenname="font_large">18sp<dimenname="font_normal">15sp<dimenname="font_small">12sp<!-- typical spacing between two views --><dimenname="spacing_huge">40dp<dimenname="spacing_large">24dp<dimenname="spacing_normal">14dp<dimenname="spacing_small">10dp<dimenname="spacing_tiny">4dp<!-- typical sizes of views --><dimenname="button_height_tall">60dp<dimenname="button_height_normal">40dp<dimenname="button_height_short">32dp</dimenname="button_height_short"></dimenname="button_height_normal"></dimenname="button_height_tall"></dimenname="spacing_tiny"></dimenname="spacing_small"></dimenname="spacing_normal"></dimenname="spacing_large"></dimenname="spacing_huge"></dimenname="font_small"></dimenname="font_normal"></dimenname="font_large"></dimenname="font_larger"></resources><br>布局时在写 margins 和 paddings 时，你应该使用<code>spacing_****</code>尺寸格式来布局，而不是像对待String字符串一样直接写值。<br>这样写会非常有感觉，会使组织和改变风格或布局是非常容易。<br><strong>避免深层次的视图结构</strong> 有时候为了摆放一个视图，你可能尝试添加另一个LinearLayout。你可能使用这种方法解决：<br>    <linearlayoutandroid:layout_width="match_parent"android:layout_height="match_parent"android:orientation="vertical">&lt;RelativeLayout        …</linearlayoutandroid:layout_width="match_parent"android:layout_height="match_parent"android:orientation="vertical"></colorname="comment_shadow"></colorname="comment_foreground_important"></colorname="comment_foreground"></colorname="comment_background_active"></colorname="comment_background_inactive"></colorname="button_background"></colorname="button_foreground"></resources></itemname="android:textcolor"></itemname="android:textsize"></stylename="contenttext"></p>
+<pre><code>&gt;&lt;LinearLayout            ...
+    &gt;&lt;LinearLayout                ...
+        &gt;&lt;LinearLayout                    ...
+            &gt;&lt;/LinearLayout&gt;&lt;/LinearLayout&gt;&lt;/LinearLayout&gt;&lt;/RelativeLayout&gt;&lt;/LinearLayout&gt;
+</code></pre><p>即使你没有非常明确的在一个layout布局文件中这样使用，如果你在Java文件中从一个view inflate（这个inflate翻译不过去，大家理解就行） 到其他views当中，也是可能会发生的。<br>可能会导致一系列的问题。你可能会遇到性能问题，因为处理起需要处理一个复杂的UI树结构。<br>还可能会导致以下更严重的问题<a href="http://stackoverflow.com/questions/2762924/java-lang-stackoverflow-error-suspected-too-many-views" target="_blank" rel="external">StackOverflowError</a>.<br>因此尽量保持你的视图tree：学习如何使用<a href="https://developer.android.com/guide/topics/ui/layout/relative.html" target="_blank" rel="external">RelativeLayout</a>,<br>如何 <a href="http://developer.android.com/training/improving-layouts/optimizing-layout.html" target="_blank" rel="external">optimize 你的布局</a> 和如何使用<br><a href="http://stackoverflow.com/questions/8834898/what-is-the-purpose-of-androids-merge-tag-in-xml-layouts" target="_blank" rel="external"><code>&lt;merge&gt;</code> 标签</a>.<br><strong>小心关于WebViews的问题.</strong> 如果你必须显示一个web视图，<br>比如说对于一个新闻文章，避免做客户端处理HTML的工作，<br>最好让后端工程师协助，然他反会一个 “<em>纯</em>“ HTML。<br><a href="http://stackoverflow.com/questions/3130654/memory-leak-in-webview" target="_blank" rel="external">WebViews 也能导致内存泄露</a><br>当保持引他们的Activity，而不是被绑定到ApplicationContext中的时候。<br>当使用简单的文字或按钮时，避免使用WebView，这时使用TextView或Buttons更好。</p>
+<p>###测试框架<br>Android SDK的测试框架还处于初级阶段，特别是关于UI测试方面。Android Gradle<br>目前实现了一个叫<a href="http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Testing" target="_blank" rel="external"><code>connectedAndroidTest</code></a>的测试，<br>它<a href="http://developer.android.com/reference/android/test/package-summary.html" target="_blank" rel="external">使用一个JUnit 为Android提供的扩展插件 extension of JUnit with helpers for Android</a>.可以跑你生成的JUnit测试，<br><strong>只当做单元测试时使用 <a href="http://robolectric.org/" target="_blank" rel="external">Robolectric</a> ，views 不用</strong><br>它是一个最求提供”不连接设备的”为了加速开发的测试，<br>非常时候做 models 和 view models 的单元测试。<br>然而，使用Robolectric测试时不精确的，也不完全对UI测试。<br>当你对有关动画的UI元素、对话框等，测试时会有问题，<br>这主要是因为你是在 “在黑暗中工作”（在没有可控的界面情况下测试）<br><strong><a href="https://code.google.com/p/robotium/" target="_blank" rel="external">Robotium</a> 使写UI测试非常简单。 </strong>对于UI测试你不需 Robotium 跑与设备连接的测试。<br>但它可能会对你有益，是因为它有许多来帮助类的获得和分析视图，控制屏幕。<br>测试用例看起来像这样简单：<br>    solo.sendKey(Solo.MENU);solo.clickOnText(“More”);// searches for the first occurence of “More” and clicks on itsolo.clickOnText(“Preferences”);solo.clickOnText(“Edit File Extensions”);Assert.assertTrue(solo.searchText(“rtf”));</p>
+<p>###模拟器<br>如果你全职开发Android App,那么买一个<a href="http://www.genymotion.com/" target="_blank" rel="external">Genymotion emulator</a>license吧。<br>Genymotion 模拟器运行更快的秒帧的速度，比起典型的AVD模拟器。他有演示你APP的工具，高质量的模拟网络连接，GPS位置，等等。它同时还有理想的连接测试。<br>你若涉及适配使用很多不同的设备，买一个Genymotion 版权是比你买很多真设备便宜多的。<br>注意：Genymotion模拟器没有装载所有的Google服务，如Google Play Store和Maps。你也可能需<br>要测试Samsung指定的API，若这样的话你还是需要购买一个真实的Samsung设备。</p>
+<p>###混淆配置<br><a href="http://proguard.sourceforge.net/" target="_blank" rel="external">ProGuard</a> 是一个在Android项目中广泛使用的压缩和混淆打包的源码的工具。<br>你是否使用ProGuard取决你项目的配置，当你构建一个release版本的apk时，通常你应该配置gradle文件。<br>    buildTypes {    debug {        minifyEnabled false}    release {        signingConfig signingConfigs.release<br>            minifyEnabled true        proguardFiles ‘proguard-rules.pro’}}<br>为了决定哪些代码应该被保留，哪些代码应该被混淆，你不得不指定一个或多个实体类在你的代码中。<br>这些实体应该是指定的类包含main方法，applets，midlets，activities，等等。<br>Android framework 使用一个默认的配置文件，可以在<code>SDK_HOME/tools/proguard/proguard-android.txt</code><br>目录下找到。自定义的工程指定的 project-specific 混淆规则，如在<code>my-project/app/proguard-rules.pro</code>中定义，<br>会被添加到默认的配置中。<br>关于 ProGuard 一个普遍的问题，是看应用程序是否崩溃并报<code>ClassNotFoundException</code> 或者 <code>NoSuchFieldException</code> 或类似的异常，<br>即使编译是没有警告并运行成功。<br>这意味着以下两种可能：</p>
+<ol>
+<li>ProGuard 已经移除了类，枚举，方法，成员变量或注解，考虑是否是必要的。</li>
+<li>ProGuard 混淆了类，枚举，成员变量的名称，但是这些名字又被拿原始名称使用了，比如通过Java的反射。</li>
+</ol>
+<p>检查<code>app/build/outputs/proguard/release/usage.txt</code>文件看有问题的对象是否被移除了。<br>检查 <code>app/build/outputs/proguard/release/mapping.txt</code> 文件看有问题的对象是否被混淆了。<br>In order to prevent ProGuard from <em>stripping away</em> needed classes or class members, add a <code>keep</code> options to your proguard config:<br>以防 ProGuard <em>剥离</em> 需要的类和类成员，添加一个 <code>keep</code>选项在你的 proguard 配置文件中：<br>    -keep class com.futurice.project.MyClass{<em>;}<br>防止 ProGuard </em>混淆<em> 一些类和成员，添加 <code>keepnames</code>:<br>    -keepnames class com.futurice.project.MyClass{</em>;}<br>查看<a href="https://github.com/futurice/android-best-practices/blob/master/templates/rx-architecture/app/proguard-rules.pro" target="_blank" rel="external">this template’s ProGuard config</a> 中的一些例子。<br>更多例子请参考<a href="http://proguard.sourceforge.net/#manual/examples.html" target="_blank" rel="external">Proguard</a>。<br><strong>在构建项目之初，发布一个版本</strong> 来检查ProGuard规则是否正确的保持了重要的部分。<br>同时无论何时你添加了新的类库，做一个发布版本，同时apk在设备上跑起来测试一下。<br>不要等到你的app要发布 “1.0”版本了才做版本发布，那时候你可能会碰到好多意想不到的异常，需要一些时间去修复他们。<br><strong>Tips</strong>每次发布新版本都要写 <code>mapping.txt</code>。每发布一个版本，如果用户遇到一个bug，同时提交了一个混淆过的堆栈跟踪。<br>通过保留<code>mapping.txt</code>文件，来确定你可以调试的问题。<br><strong>DexGuard</strong> 若果你需要核心工具来优化，和专门混淆的发布代码，考虑使用<a href="http://www.saikoa.com/dexguard" target="_blank" rel="external">DexGuard</a>,<br>一个商业软件，ProGuard 也是有他们团队开发的。<br>它会很容易将Dex文件分割，来解决65K个方法限制问题。</p>
+<p>###致谢<br>感谢Antti Lammi, Joni Karppinen, Peter Tackage, Timo Tuominen, Vera Izrailit, Vihtori Mäntylä, Mark Voit, Andre Medeiros, Paul Houghton 这些人和Futurice 开发者分享他们的Android开发经验。</p>
+<p>###License<br><a href="http://colobu.com/www.futurice.com" target="_blank" rel="external">Futurice Oy</a><br>Creative Commons Attribution 4.0 International (CC BY 4.0)</p>
+<p>###Translation<br>Translated to Chinese by <a href="https://github.com/andyiac" target="_blank" rel="external">andyiac</a><br>原文: <a href="https://github.com/futurice/android-best-practices" target="_blank" rel="external">Best practices in Android development</a><br><a href="http://www.futurice.com/" target="_blank" rel="external">Futurice</a>公司Android开发者总结的经验。<br>遵循以下准则，避免重复发明轮子。若您对开发iOS或Windows Phone 有兴趣，<br>请看<a href="https://github.com/futurice/ios-good-practices" target="_blank" rel="external"><strong>iOS Good Practices</strong></a> 和 <a href="https://github.com/futurice/win-client-dev-good-practices" target="_blank" rel="external"><strong>Windows client Good Practices</strong></a> 这两篇文章。<br><a href="">点赞</a></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2015/12/30/Android 开发最佳实践/">Android 开发最佳实践</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">offbye</a></p>
+        <p><span>发布时间:</span>2015-12-30, 14:33:00</p>
+        <p><span>最后更新:</span>2016-05-13, 00:40:16</p>
+
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2015/12/30/Android 开发最佳实践/" title="Android 开发最佳实践">http://offbye.com/2015/12/30/Android 开发最佳实践/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://offbye.com/2015/12/30/Android 开发最佳实践/　　作者: offbye" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+        
+        <p><span>CSDN原文:</span> <a href="http://blog.csdn.net/offbye/article/details/50434483" target="_blank" title="Android 开发最佳实践">http://blog.csdn.net/offbye/article/details/50434483</a> </p>
+        <p><span>CSDN PV:</span>649</p>
+        
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2016/01/11/饿了么移动APP的架构演进/">
+                    饿了么移动APP的架构演进
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2015/12/29/RxAndroid和RxJava的资料分享/">
+                    RxAndroid和RxJava的资料分享
+                </a>
+            </div>
+        
+    </nav>
+
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"Android 开发最佳实践　| offbye　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="2015/12/30/Android 开发最佳实践/" data-title="Android 开发最佳实践" data-url="http://offbye.com/2015/12/30/Android 开发最佳实践/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"offbye"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+    <!-- 多说公共JS代码 end -->
+</div>
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2016/01/11/饿了么移动APP的架构演进/" title="上一篇: 饿了么移动APP的架构演进">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2015/12/29/RxAndroid和RxJava的资料分享/" title="下一篇: RxAndroid和RxJava的资料分享">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/05/12/YAML文件语法简介/">YAML文件语法简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/11/iOS-Sandbox-swift/">iOS App沙盒模型文件目录详解Swift版</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/11/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/06/iOS App沙盒模型文件目录详解Swift版/">iOS App沙盒模型文件目录详解Swift版</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/05/Swift iOS实现把PCM语音转成MP3格式/">Swift iOS实现把PCM语音转成MP3格式</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/04/RESTFUL API 安全设计/">RESTFUL API 安全设计</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/04/关于 Token，你应该知道的十件事/">关于 Token，你应该知道的十件事</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/04/程序员的成长和代码行数的关系/">程序员的成长和代码行数的关系</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/04/从JavaAndroid到Swift iOS开发：语言与框架对比/">从JavaAndroid到Swift iOS开发：语言与框架对比</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/26/Android开发常用开源框架推荐/">Android开发常用开源框架推荐</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/22/Swift Modules for React Native/">Swift Modules for React Native</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/15/Android官方MVP架构示例项目解析/">Android官方MVP架构示例项目解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/15/使用swift开发Cordova插件/">使用swift开发Cordova插件</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/14/Swift语言中的@available 和 #available/">Swift语言中的@available 和</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/31/Android volley 使用OkHttp3.0/">Android volley 使用OkHttp3.0</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/28/What's new in Swift 2.2/">What's new in Swift 2.2</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/16/java8新特性介绍/">java8新特性介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/15/Swift异常处理：throw和rethrow/">Swift异常处理：throw和rethrow</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/14/Swift iOS- 手势检测详解/">Swift iOS- 手势检测详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/11/Swift化零为整：Reduce 详解/">Swift化零为整：Reduce 详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/11/Swift2.1关键字 @noescape介绍/">Swift2.1关键字 @noescape介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/11/理解Swift中map 和 flatMap对集合的作用/">理解Swift中map 和 flatMap对集合的作用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/09/移动端专用数据库Realm介绍/">移动端专用数据库Realm介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/09/安装Xcode插件包管理器Alcatraz报错解决办法/">安装Xcode插件包管理器Alcatraz报错解决办法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/09/Android最佳实践 —— 详细谈谈如何减小APK体积/">Android最佳实践 —— 详细谈谈如何减小APK体积</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/05/iOS开发如何通过UMeng的错误分析解决crash问题/">iOS开发如何通过UMeng的错误分析解决crash问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/04/常见移动设备的 CSS3 Media Query 整理（iPhoneiPadGalaxy）/">常见移动设备的 CSS3 Media Query 整理（iPhoneiPadGalaxy）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/04/我在MDCC 2015的演讲PPT《HTML5移动应用多端开发架构实践》分享/">我在MDCC 2015的演讲PPT《HTML5移动应用多端开发架构实践》分享</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/01/深入理解iOS开发中的BitCode功能/">深入理解iOS开发中的BitCode功能</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/01/iOS swift动画和特效专题/">iOS swift动画和特效专题</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/29/Swift iOS项目archive操作会报错误built without full bitcode解决方法/">Swift iOS项目archive操作会报错误built without full bitcode解决方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/26/GCD 和延时调用/">GCD 和延时调用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/26/Swift - 多线程实现方式（3） - Grand Central Dispatch（GCD）/">Swift - 多线程实现方式（3） - Grand Central Dispatch（GCD）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/25/iOS 9开发小技巧：LayoutGuide，Storyboard Reference/">iOS 9开发小技巧：LayoutGuide，Storyboard Reference</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/25/Storyboard的爱与恨/">Storyboard的爱与恨</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/25/Swift iOS tableView static cell动态计算高度/">Swift iOS tableView static cell动态计算高度</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/24/5 个顶级 Android 开源库/">5 个顶级 Android 开源库</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/19/Swift高阶函数介绍（闭包、Map、Filter、Reduce）/">Swift高阶函数介绍（闭包、Map、Filter、Reduce）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/18/iOS Swift判断代码运行在模拟器上/">iOS Swift判断代码运行在模拟器上</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/17/iOS 开发 UI 搭建心得（一）—— 驾驭 StoryBoard  代码示例：httpsgithub.comjohnluiSwift-On-iOSblobmasterDifferen/">iOS 开发 UI 搭建心得（一）—— 驾驭 StoryBoard  代码示例：httpsgithub.comjohnluiSwift-On-iOSblobmasterDifferen</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/16/使用命令行统计代码行数/">使用命令行统计代码行数</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/03/HTTP 2.0的那些事/">HTTP 2.0的那些事</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/02/浅谈 RxAndroid + Retrofit + Databinding/">浅谈 RxAndroid + Retrofit + Databinding</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/28/2016这些Android技术会很火/">2016这些Android技术会很火</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/27/使用CodePush实时更新 React Native 和 Cordova 应用/">使用CodePush实时更新 React Native 和 Cordova 应用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/20/理解Swift中Optional类型－有和无的哲学/">理解Swift中Optional类型－有和无的哲学</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/19/其实你不知道MultiDex到底有多坑/">其实你不知道MultiDex到底有多坑</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/19/Android MultiDex分包变形记/">Android MultiDex分包变形记</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/14/Swift iOS项目最佳实践汇总/">Swift iOS项目最佳实践汇总</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/11/饿了么移动APP的架构演进/">饿了么移动APP的架构演进</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/30/Android 开发最佳实践/">Android 开发最佳实践</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/29/RxAndroid和RxJava的资料分享/">RxAndroid和RxJava的资料分享</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/28/技术人如何才能不焦虑/">技术人如何才能不焦虑</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/26/云栖社区12篇实战经验所组成的“近战”系列分享/">云栖社区12篇实战经验所组成的“近战”系列分享</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/26/程序员晋升攻略/">程序员晋升攻略</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/25/Xcode7.2版本carthage包管理器兼容问题解决/">Xcode7.2版本carthage包管理器兼容问题解决</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/14/2015年Android开发新技术盘点/">2015年Android开发新技术盘点</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/10/Android中Touch事件分析--解决HorizontalScrollView滑动和按钮事件触发问题/">Android中Touch事件分析--解决HorizontalScrollView滑动和按钮事件触发问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/03/Android动态加载黑科技 动态创建Activity模式/">Android动态加载黑科技 动态创建Activity模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/01/Android注解支持Support Annotations详解/">Android注解支持Support Annotations详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/27/Android Studio 2.0 Instant Run即时运行功能实现分析/">Android Studio 2.0 Instant Run即时运行功能实现分析</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/25/Android应用性能剖析全攻略/">Android应用性能剖析全攻略</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/24/自动生成Android不同分辨率下的图片/">自动生成Android不同分辨率下的图片</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/24/Android Studio 2.0 Preview发布,附下载地址，支持即时运行和GPU Profiler/">Android Studio 2.0 Preview发布,附下载地址，支持即时运行和GPU Profiler</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/17/React Native Android端10个最常见问题/">React Native Android端10个最常见问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/13/使用Javascript ES6进行开发的思考/">使用Javascript ES6进行开发的思考</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/13/安装包立减1M--微信Android资源混淆打包工具/">安装包立减1M--微信Android资源混淆打包工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/11/Ionic 2.0 Alpha版本发布了/">Ionic 2.0 Alpha版本发布了</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/10/美团Android资源混淆保护实践/">美团Android资源混淆保护实践</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/10/Android开发中的armeabi和armeabi-v7a介绍/">Android开发中的armeabi和armeabi-v7a介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/06/在CordovaActivity中添加原生View组件/">在CordovaActivity中添加原生View组件</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/05/技术贴：开源飞控那些事/">技术贴：开源飞控那些事</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/03/Android常用开源框架Proguard混淆解决方案/">Android常用开源框架Proguard混淆解决方案</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/03/美团Android DEX自动拆包及动态加载简介/">美团Android DEX自动拆包及动态加载简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/02/Google基于Dart的新移动开发框架Flutter介绍/">Google基于Dart的新移动开发框架Flutter介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/29/通过SharedPreferences实现进程间数据共享的问题详解/">通过SharedPreferences实现进程间数据共享的问题详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/26/Android修改TitleBar标题栏详解/">Android修改TitleBar标题栏详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/23/异步JavaScript的进化/">异步JavaScript的进化</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/21/Android Service创建USB HOST通信/">Android Service创建USB HOST通信</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/21/Android 热敏打印机打印二维码/">Android 热敏打印机打印二维码</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/13/基于webpack搭建前端工程解决方案探索/">基于webpack搭建前端工程解决方案探索</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/11/理解Flux架构/">理解Flux架构</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/09/Mac Yosemite系统 brew 报错的解决办法/">Mac Yosemite系统 brew 报错的解决办法</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/30/微信公众平台接入经验分享，纯干货/">微信公众平台接入经验分享，纯干货</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/28/使用Kotlin进行Android开发/">使用Kotlin进行Android开发</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/23/Umeng推送消息的坑，Android Service的androidexported详解/">Umeng推送消息的坑，Android Service的androidexported详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/22/自动生成Android屏幕适配的dimens.xml/">自动生成Android屏幕适配的dimens.xml</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/21/iOS9系统开始对企业发布App进行严格限制/">iOS9系统开始对企业发布App进行严格限制</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/16/sed 简明教程/">sed 简明教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/15/Gradle, 基于DSL的新一代Java构建工具/">Gradle, 基于DSL的新一代Java构建工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/15/Gradle常用命令和原理说明/">Gradle常用命令和原理说明</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/09/大势所趋！十大令人振奋的移动端APP设计趋势/">大势所趋！十大令人振奋的移动端APP设计趋势</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/02/Android微信智能心跳方案/">Android微信智能心跳方案</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/01/深入浅出学Spring Data JPA/">深入浅出学Spring Data JPA</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/29/在Mac上制作树莓派SD镜像/">在Mac上制作树莓派SD镜像</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/26/Git从远程的分支获取最新的版本到本地/">Git从远程的分支获取最新的版本到本地</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/25/Spring Data JPA 常用注解 @Query、@NamedQuery/">Spring Data JPA 常用注解 @Query、@NamedQuery</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/24/树莓派做 wifi 热点/">树莓派做 wifi 热点</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/23/树莓派把一个python脚本作为服务运行，配置开机自动启动/">树莓派把一个python脚本作为服务运行，配置开机自动启动</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/22/INSTALLING OPERATING SYSTEM IMAGES ON MAC OS/">INSTALLING OPERATING SYSTEM IMAGES ON MAC OS</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/18/基于Volley，Gson封装支持JWT无状态安全验证和数据防篡改的GsonRequest网络请求类/">基于Volley，Gson封装支持JWT无状态安全验证和数据防篡改的GsonRequest网络请求类</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/28/Python高效率编程的8条箴言/">Python高效率编程的8条箴言</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/28/如何使用Android Studio提高App质量/">如何使用Android Studio提高App质量</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/27/树莓派遥控船项目计划/">树莓派遥控船项目计划</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/24/树莓派的PWM脉宽调制功能介绍/">树莓派的PWM脉宽调制功能介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/23/python字符串连接/">python字符串连接</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/23/Android Studio上方便使用butterknife注解框架的偷懒插件Android Butterknife Zelezny/">Android Studio上方便使用butterknife注解框架的偷懒插件Android Butterknife Zelezny</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/23/Python的Lambda函数与排序/">Python的Lambda函数与排序</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/22/TypeScript 1.5正式发布，此版本是Visual Studio 2015更新的一部分，支持大量ES6新特性/">TypeScript 1.5正式发布，此版本是Visual Studio 2015更新的一部分，支持大量ES6新特性</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/20/iWeb峰会（HTML5峰会）2015年7月19日上海站会后感想/">iWeb峰会（HTML5峰会）2015年7月19日上海站会后感想</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/16/说说React,Flux,Reray和GraghQL/">说说React,Flux,Reray和GraghQL</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/16/ReactEurope Conf 参会感想/">ReactEurope Conf 参会感想</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/15/Android Studio Gradle项目中添加JNI so文件/">Android Studio Gradle项目中添加JNI so文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/15/mac os使用lsusb命令和连接未知的Android设备/">mac os使用lsusb命令和连接未知的Android设备</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/15/HTML5 HybridApp开发上手指引/">HTML5 HybridApp开发上手指引</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/15/Facebook的Web开发三板斧：React.js、Relay和GraphQL/">Facebook的Web开发三板斧：React.js、Relay和GraphQL</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/15/Flux再进化：Introducing Relay and GraphQL（译）/">Flux再进化：Introducing Relay and GraphQL（译）</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/14/为什么要造轮子？/">为什么要造轮子？</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/10/那些争议最大的编程观点/">那些争议最大的编程观点</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/10/Angular vs. React - the tie breaker/">Angular vs. React - the tie breaker</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/09/android：ToolBar详解（手把手教程）/">android：ToolBar详解（手把手教程）</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/08/Android Support Library更新到v22.1之AppCompat新特性/">Android Support Library更新到v22.1之AppCompat新特性</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/08/用Material Design设计App谷歌官方文档翻译/">用Material Design设计App谷歌官方文档翻译</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/07/Pure Android/">Pure Android</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/07/Material Design in Action — 哔哩哔哩动画 Android 客户端/">Material Design in Action — 哔哩哔哩动画 Android 客户端</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/07/Android Studio 批量打包，apk重命名/">Android Studio 批量打包，apk重命名</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/06/Android Studio Android studio 多渠道打包超简洁版/">Android Studio Android studio 多渠道打包超简洁版</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/06/Eclipse Android项目导入Android Studio时常见的编译错误及解决办法/">Eclipse Android项目导入Android Studio时常见的编译错误及解决办法</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/01/HTML5本地存储——IndexedDB（一：基本使用）/">HTML5本地存储——IndexedDB（一：基本使用）</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/15/SASS基础——十个常见的Mixins/">SASS基础——十个常见的Mixins</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/15/python 中的mixin特性/">python 中的mixin特性</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/10/Mac上通过Linux命令行批量查找和替换文本/">Mac上通过Linux命令行批量查找和替换文本</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/09/产品经理经常犯的十大顶级错误/">产品经理经常犯的十大顶级错误</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/09/ES6新特性概览/">ES6新特性概览</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/09/ES6 JavaScript Promise的感性认知/">ES6 JavaScript Promise的感性认知</a></li><li class="post-list-item"><a class="post-list-link" href="/2009/12/07/Centos 5.3上Asterisk安装及配置/">Centos 5.3上Asterisk安装及配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2009/12/07/rsh服务配置文档/">rsh服务配置文档</a></li><li class="post-list-item"><a class="post-list-link" href="/2009/12/07/centos 5.3中用yum安装MPlayer/">centos 5.3中用yum安装MPlayer</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2015-2016 offbye
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >本站到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.1.22/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 9;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

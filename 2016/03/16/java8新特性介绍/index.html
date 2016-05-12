@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  
+  <title>java8新特性介绍 | offbye</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="java8新特性介绍">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java8新特性介绍">
+<meta property="og:url" content="http://offbye.com/2016/03/16/java8新特性介绍/index.html">
+<meta property="og:site_name" content="offbye">
+<meta property="og:description" content="java8新特性介绍">
+<meta property="og:image" content="https://code.csdn.net/assets/CODE_ico.png">
+<meta property="og:image" content="https://code.csdn.net/assets/ico_fork.svg">
+<meta property="og:image" content="https://code.csdn.net/assets/CODE_ico.png">
+<meta property="og:image" content="https://code.csdn.net/assets/ico_fork.svg">
+<meta property="og:image" content="https://code.csdn.net/assets/CODE_ico.png">
+<meta property="og:image" content="https://code.csdn.net/assets/ico_fork.svg">
+<meta property="og:image" content="https://code.csdn.net/assets/CODE_ico.png">
+<meta property="og:image" content="https://code.csdn.net/assets/ico_fork.svg">
+<meta property="og:image" content="https://code.csdn.net/assets/CODE_ico.png">
+<meta property="og:image" content="https://code.csdn.net/assets/ico_fork.svg">
+<meta property="og:image" content="https://code.csdn.net/assets/CODE_ico.png">
+<meta property="og:image" content="https://code.csdn.net/assets/ico_fork.svg">
+<meta property="og:image" content="https://code.csdn.net/assets/CODE_ico.png">
+<meta property="og:image" content="https://code.csdn.net/assets/ico_fork.svg">
+<meta property="og:image" content="https://code.csdn.net/assets/CODE_ico.png">
+<meta property="og:image" content="https://code.csdn.net/assets/ico_fork.svg">
+<meta property="og:image" content="https://code.csdn.net/assets/CODE_ico.png">
+<meta property="og:image" content="https://code.csdn.net/assets/ico_fork.svg">
+<meta property="og:image" content="https://code.csdn.net/assets/CODE_ico.png">
+<meta property="og:image" content="https://code.csdn.net/assets/ico_fork.svg">
+<meta property="og:image" content="https://code.csdn.net/assets/CODE_ico.png">
+<meta property="og:image" content="https://code.csdn.net/assets/ico_fork.svg">
+<meta property="og:image" content="https://code.csdn.net/assets/CODE_ico.png">
+<meta property="og:image" content="https://code.csdn.net/assets/ico_fork.svg">
+<meta property="og:image" content="https://code.csdn.net/assets/CODE_ico.png">
+<meta property="og:image" content="https://code.csdn.net/assets/ico_fork.svg">
+<meta property="og:image" content="https://code.csdn.net/assets/CODE_ico.png">
+<meta property="og:image" content="https://code.csdn.net/assets/ico_fork.svg">
+<meta property="og:image" content="https://code.csdn.net/assets/CODE_ico.png">
+<meta property="og:image" content="https://code.csdn.net/assets/ico_fork.svg">
+<meta property="og:image" content="https://code.csdn.net/assets/CODE_ico.png">
+<meta property="og:image" content="https://code.csdn.net/assets/ico_fork.svg">
+<meta property="og:image" content="https://code.csdn.net/assets/CODE_ico.png">
+<meta property="og:image" content="https://code.csdn.net/assets/ico_fork.svg">
+<meta property="og:image" content="https://code.csdn.net/assets/CODE_ico.png">
+<meta property="og:image" content="https://code.csdn.net/assets/ico_fork.svg">
+<meta property="og:image" content="https://code.csdn.net/assets/CODE_ico.png">
+<meta property="og:image" content="https://code.csdn.net/assets/ico_fork.svg">
+<meta property="og:image" content="https://code.csdn.net/assets/CODE_ico.png">
+<meta property="og:image" content="https://code.csdn.net/assets/ico_fork.svg">
+<meta property="og:image" content="https://code.csdn.net/assets/CODE_ico.png">
+<meta property="og:image" content="https://code.csdn.net/assets/ico_fork.svg">
+<meta property="og:image" content="https://code.csdn.net/assets/CODE_ico.png">
+<meta property="og:image" content="https://code.csdn.net/assets/ico_fork.svg">
+<meta property="og:image" content="https://code.csdn.net/assets/CODE_ico.png">
+<meta property="og:image" content="https://code.csdn.net/assets/ico_fork.svg">
+<meta property="og:image" content="https://code.csdn.net/assets/CODE_ico.png">
+<meta property="og:image" content="https://code.csdn.net/assets/ico_fork.svg">
+<meta property="og:image" content="https://code.csdn.net/assets/CODE_ico.png">
+<meta property="og:image" content="https://code.csdn.net/assets/ico_fork.svg">
+<meta property="og:image" content="https://code.csdn.net/assets/CODE_ico.png">
+<meta property="og:image" content="https://code.csdn.net/assets/ico_fork.svg">
+<meta property="og:image" content="https://code.csdn.net/assets/CODE_ico.png">
+<meta property="og:image" content="https://code.csdn.net/assets/ico_fork.svg">
+<meta property="og:image" content="https://code.csdn.net/assets/CODE_ico.png">
+<meta property="og:image" content="https://code.csdn.net/assets/ico_fork.svg">
+<meta property="og:image" content="https://code.csdn.net/assets/CODE_ico.png">
+<meta property="og:image" content="https://code.csdn.net/assets/ico_fork.svg">
+<meta property="og:image" content="https://code.csdn.net/assets/CODE_ico.png">
+<meta property="og:image" content="https://code.csdn.net/assets/ico_fork.svg">
+<meta property="og:image" content="https://code.csdn.net/assets/CODE_ico.png">
+<meta property="og:image" content="https://code.csdn.net/assets/ico_fork.svg">
+<meta property="og:image" content="https://code.csdn.net/assets/CODE_ico.png">
+<meta property="og:image" content="https://code.csdn.net/assets/ico_fork.svg">
+<meta property="og:image" content="https://code.csdn.net/assets/CODE_ico.png">
+<meta property="og:image" content="https://code.csdn.net/assets/ico_fork.svg">
+<meta property="og:image" content="https://code.csdn.net/assets/CODE_ico.png">
+<meta property="og:image" content="https://code.csdn.net/assets/ico_fork.svg">
+<meta property="og:image" content="https://code.csdn.net/assets/CODE_ico.png">
+<meta property="og:image" content="https://code.csdn.net/assets/ico_fork.svg">
+<meta property="og:image" content="https://code.csdn.net/assets/CODE_ico.png">
+<meta property="og:image" content="https://code.csdn.net/assets/ico_fork.svg">
+<meta property="og:image" content="https://code.csdn.net/assets/CODE_ico.png">
+<meta property="og:image" content="https://code.csdn.net/assets/ico_fork.svg">
+<meta property="og:image" content="https://code.csdn.net/assets/CODE_ico.png">
+<meta property="og:image" content="https://code.csdn.net/assets/ico_fork.svg">
+<meta property="og:image" content="https://code.csdn.net/assets/CODE_ico.png">
+<meta property="og:image" content="https://code.csdn.net/assets/ico_fork.svg">
+<meta property="og:image" content="https://code.csdn.net/assets/CODE_ico.png">
+<meta property="og:image" content="https://code.csdn.net/assets/ico_fork.svg">
+<meta property="og:image" content="https://code.csdn.net/assets/CODE_ico.png">
+<meta property="og:image" content="https://code.csdn.net/assets/ico_fork.svg">
+<meta property="og:image" content="https://code.csdn.net/assets/CODE_ico.png">
+<meta property="og:image" content="https://code.csdn.net/assets/ico_fork.svg">
+<meta property="og:image" content="https://code.csdn.net/assets/CODE_ico.png">
+<meta property="og:image" content="https://code.csdn.net/assets/ico_fork.svg">
+<meta property="og:image" content="https://code.csdn.net/assets/CODE_ico.png">
+<meta property="og:image" content="https://code.csdn.net/assets/ico_fork.svg">
+<meta property="og:image" content="https://code.csdn.net/assets/CODE_ico.png">
+<meta property="og:image" content="https://code.csdn.net/assets/ico_fork.svg">
+<meta property="og:image" content="https://code.csdn.net/assets/CODE_ico.png">
+<meta property="og:image" content="https://code.csdn.net/assets/ico_fork.svg">
+<meta property="og:image" content="https://code.csdn.net/assets/CODE_ico.png">
+<meta property="og:image" content="https://code.csdn.net/assets/ico_fork.svg">
+<meta property="og:image" content="https://code.csdn.net/assets/CODE_ico.png">
+<meta property="og:image" content="https://code.csdn.net/assets/ico_fork.svg">
+<meta property="og:image" content="https://code.csdn.net/assets/CODE_ico.png">
+<meta property="og:image" content="https://code.csdn.net/assets/ico_fork.svg">
+<meta property="og:image" content="https://code.csdn.net/assets/CODE_ico.png">
+<meta property="og:image" content="https://code.csdn.net/assets/ico_fork.svg">
+<meta property="og:image" content="https://code.csdn.net/assets/CODE_ico.png">
+<meta property="og:image" content="https://code.csdn.net/assets/ico_fork.svg">
+<meta property="og:image" content="https://code.csdn.net/assets/CODE_ico.png">
+<meta property="og:image" content="https://code.csdn.net/assets/ico_fork.svg">
+<meta property="og:image" content="https://code.csdn.net/assets/CODE_ico.png">
+<meta property="og:image" content="https://code.csdn.net/assets/ico_fork.svg">
+<meta property="og:image" content="https://code.csdn.net/assets/CODE_ico.png">
+<meta property="og:image" content="https://code.csdn.net/assets/ico_fork.svg">
+<meta property="og:image" content="https://code.csdn.net/assets/CODE_ico.png">
+<meta property="og:image" content="https://code.csdn.net/assets/ico_fork.svg">
+<meta property="og:updated_time" content="2016-05-12T16:40:03.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="java8新特性介绍">
+<meta name="twitter:description" content="java8新特性介绍">
+<meta name="twitter:image" content="https://code.csdn.net/assets/CODE_ico.png">
+  
+    <link rel="alternative" href="/atom.xml" title="offbye" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+      <link href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css" rel="stylesheet">
+  
+  
+  
+      <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+      <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+  
+  <script src="//cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.9/clipboard.min.js"></script>
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false,
+          fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+          scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.0.9/scrollreveal.min.js"
+      }
+  </script>
+
+  
+      <script>
+          yiliaConfig.rootUrl = "/";
+      </script>
+  
+
+  
+  
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">offbye</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">关注移动架构，Android，HTML5，iOS技术前沿</p>
+        
+                
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:offbye@gmail.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/offbye" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="http://blog.csdn.net/offbye" title="CSDN"></a>
+                            
+                                <a class="fa StackOverflow" target="_blank" href="#offbye" title="StackOverflow"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sandbox/">Sandbox</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/YAML/">YAML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/swift/">swift</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注移动端</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">offbye</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">offbye</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">关注移动架构，Android，HTML5，iOS技术前沿</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:offbye@gmail.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/offbye" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="http://blog.csdn.net/offbye" title="CSDN"></a>
+                            
+                                <a class="fa StackOverflow" target="_blank" href="#offbye" title="StackOverflow"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-java8新特性介绍" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/16/java8新特性介绍/" class="article-date">
+      <time datetime="2016-03-16T10:30:00.000Z" itemprop="datePublished">2016-03-16</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      java8新特性介绍
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+
+        
+        <div style="display:block; clear:both;">
+          <span>CSDN原文:<a href="http://blog.csdn.net/offbye/article/details/50907361" target="_blank" title="java8新特性介绍">http://blog.csdn.net/offbye/article/details/50907361</a> </span>
+          <span style="float:right;margin-right:1em"> CSDN阅读数:961</span>
+        </div>
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>个人感觉Swift比Java 8的新特性还要强大一些，2016年秋季Android N就要支持Java 8了，期待中</p>
+<p>欢迎阅读我的java8新特性介绍教程。本教程将一步一步的引领你浏览所有新的语言特性。伴随着一些简单且简短的代码示例，你将学习如何使用默认接口方法，lambda表示式，方法引用和可重复的annotation。 在阅读完本篇文章，你将对新加入的和更新的API有着更详细的了解。这些API包括流、功能接口、扩展的map以及新的Date API。</p>
+<p>##<a href=""></a>接口的默认方法<br>Java8允许开发者通过使用关键字 default  向接口中加入非抽象方法。这一新的特性被称之为扩展方法。下面是我们的第一个例子：<strong>[java]</strong> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="view plain" target="_blank" rel="external">view plain</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="copy" target="_blank" rel="external">copy</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="print" target="_blank" rel="external">print</a><a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="?" target="_blank" rel="external">?</a><a href="https://code.csdn.net/snippets/265470" title="在CODE上查看代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片"></a><a href="https://code.csdn.net/snippets/265470/fork" title="派生到我的代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片"></a>1. interface Formula {  </p>
+<ol>
+<li>double calculate(int a);  </li>
+<li></li>
+<li>default double sqrt(int a) {  </li>
+<li>return Math.sqrt(a);  </li>
+<li>}  </li>
+<li>}  </li>
+</ol>
+<p>在抽象方法calculator之外，接口Formula还定义了一个默认方法sqrt。实现类只需要实现抽象方法calculate。默认方法sqrt可以在定义之外使用。如：<strong>[java]</strong> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="view plain" target="_blank" rel="external">view plain</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="copy" target="_blank" rel="external">copy</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="print" target="_blank" rel="external">print</a><a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="?" target="_blank" rel="external">?</a><a href="https://code.csdn.net/snippets/265470" title="在CODE上查看代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片"></a><a href="https://code.csdn.net/snippets/265470/fork" title="派生到我的代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片"></a>1. Formula formula = new Formula() {  </p>
+<ol>
+<li>@Override  </li>
+<li>public double calculate(int a) {  </li>
+<li>return sqrt(a * 100);  </li>
+<li>}  </li>
+<li>};  </li>
+<li></li>
+<li>formula.calculate(100);     // 100.0  </li>
+<li>formula.sqrt(16);           // 4.0  </li>
+</ol>
+<p>formula被实现为一个匿名类。代码有点啰嗦：六行代码里就就只有一句简单的计算：sqrt(a<em>100)。我们将在下面部分看到一种用java8实现的更加简洁的办法。##<a href=""></a>Lambda表达式<br>让我们使用一个简单的例子来展示在java8以前是如何对字符串列表进行排序的：<em>*[java]</em></em> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="view plain" target="_blank" rel="external">view plain</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="copy" target="_blank" rel="external">copy</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="print" target="_blank" rel="external">print</a><a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="?" target="_blank" rel="external">?</a><a href="https://code.csdn.net/snippets/265470" title="在CODE上查看代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片"></a><a href="https://code.csdn.net/snippets/265470/fork" title="派生到我的代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片"></a>1. List<string> names = Arrays.asList(“peter”, “anna”, “mike”, “xenia”);  </string></p>
+<ol>
+<li></li>
+<li>Collections.sort(names, new Comparator<string>() {  </string></li>
+<li>@Override  </li>
+<li>public int compare(String a, String b) {  </li>
+<li>return b.compareTo(a);  </li>
+<li>}  </li>
+<li>});  </li>
+</ol>
+<p>这个静态工具方法Collections.sort接受一个列表和一个用于元素比较的比较器。你会发现自己会经常创建匿名类并把它们传递给排序方法。为了不用整天创建这些匿名类，java8带来了一个非常简短的语法–lambda表达式：<strong>[java]</strong> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="view plain" target="_blank" rel="external">view plain</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="copy" target="_blank" rel="external">copy</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="print" target="_blank" rel="external">print</a><a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="?" target="_blank" rel="external">?</a><a href="https://code.csdn.net/snippets/265470" title="在CODE上查看代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片"></a><a href="https://code.csdn.net/snippets/265470/fork" title="派生到我的代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片"></a>1. Collections.sort(names, (String a, String b) -&gt; {  </p>
+<ol>
+<li>return b.compareTo(a);  </li>
+<li>});  </li>
+</ol>
+<p>现在的代码已经变得简短和便于阅读。但是，实际上，它可以变得更加简短：<strong>[java]</strong> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="view plain" target="_blank" rel="external">view plain</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="copy" target="_blank" rel="external">copy</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="print" target="_blank" rel="external">print</a><a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="?" target="_blank" rel="external">?</a><a href="https://code.csdn.net/snippets/265470" title="在CODE上查看代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片"></a><a href="https://code.csdn.net/snippets/265470/fork" title="派生到我的代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片"></a>1. Collections.sort(names, (String a, String b) -&gt; b.compareTo(a));  </p>
+<p>对于这种一行代码体的表达式，你可以直接省略掉大括号{}和return关键字。它就变成下面这种更加简短的写法：<strong>[java]</strong> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="view plain" target="_blank" rel="external">view plain</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="copy" target="_blank" rel="external">copy</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="print" target="_blank" rel="external">print</a><a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="?" target="_blank" rel="external">?</a><a href="https://code.csdn.net/snippets/265470" title="在CODE上查看代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片"></a><a href="https://code.csdn.net/snippets/265470/fork" title="派生到我的代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片"></a>1. Collections.sort(names, (a, b) -&gt; b.compareTo(a));  </p>
+<p>java编译器能够探测到这些参数的类型，这样使得的你可以直接跳过它们。下面我们来解答为什么lambda表示式可以这样随意的使用。##<a href=""></a>功能性接口<br>lambda表达式是如何和java系统的类型进行对应的？每个lambda表达式都对应一个指定的类型，这个指定的类型是由接口确定的。该接口被称之为功能性接口，它必须且恰好只包含一个抽象方法声明。被指定接口类型所对应的lambda表达式刚好和这个接口的抽象方法想匹配。因为默认方法不是抽象的，因此你可以在你的功能性接口中添加多个默认方法。<br>我们可以将任意的接口用作lambda表示式，只要该接口仅仅包含一个抽象方法。为了确保你定义的接口达到要求，你可以在接口上添加@FunctionInterface注解。编译器可以检测到该注解并判断你的接口是否满足条件，如果 你定义的接口包含多个抽象方法时，编译器便会报错。<br>示例：<strong>[java]</strong> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="view plain" target="_blank" rel="external">view plain</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="copy" target="_blank" rel="external">copy</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="print" target="_blank" rel="external">print</a><a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="?" target="_blank" rel="external">?</a><a href="https://code.csdn.net/snippets/265470" title="在CODE上查看代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片"></a><a href="https://code.csdn.net/snippets/265470/fork" title="派生到我的代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片"></a>1. @FunctionalInterface  </p>
+<ol>
+<li>interface Converter<f, t=""> {  </f,></li>
+<li>T convert(F from);  </li>
+<li>}  </li>
+</ol>
+<p><strong>[java]</strong> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="view plain" target="_blank" rel="external">view plain</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="copy" target="_blank" rel="external">copy</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="print" target="_blank" rel="external">print</a><a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="?" target="_blank" rel="external">?</a><a href="https://code.csdn.net/snippets/265470" title="在CODE上查看代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片"></a><a href="https://code.csdn.net/snippets/265470/fork" title="派生到我的代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片"></a>1. Converter<string, integer=""> converter = (from) -&gt; Integer.valueOf(from);  </string,></p>
+<ol>
+<li>Integer converted = converter.convert(“123”);  </li>
+<li>System.out.println(converted);    // 123  </li>
+</ol>
+<p>如果FunctionInterface注解被添加，你定义的接口将总会被检测。##<a href=""></a>方法和构造函数引用<br>前部分的示例在使用静态方法引用的情况下可以被进一步的简化：<strong>[java]</strong> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="view plain" target="_blank" rel="external">view plain</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="copy" target="_blank" rel="external">copy</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="print" target="_blank" rel="external">print</a><a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="?" target="_blank" rel="external">?</a><a href="https://code.csdn.net/snippets/265470" title="在CODE上查看代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片"></a><a href="https://code.csdn.net/snippets/265470/fork" title="派生到我的代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片"></a>1. Converter<string, integer=""> converter = Integer::valueOf;  </string,></p>
+<ol>
+<li>Integer converted = converter.convert(“123”);  </li>
+<li>System.out.println(converted);   // 123  </li>
+</ol>
+<p>java8可以让你通过关键字::来传递方法和构造函数的引用。上面的示例展示了如何引用一个静态方法。我们同样也可以引用对象方法。<strong>[java]</strong> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="view plain" target="_blank" rel="external">view plain</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="copy" target="_blank" rel="external">copy</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="print" target="_blank" rel="external">print</a><a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="?" target="_blank" rel="external">?</a><a href="https://code.csdn.net/snippets/265470" title="在CODE上查看代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片"></a><a href="https://code.csdn.net/snippets/265470/fork" title="派生到我的代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片"></a>1. class Something {  </p>
+<ol>
+<li>String startsWith(String s) {  </li>
+<li>return String.valueOf(s.charAt(0));  </li>
+<li>}  </li>
+<li>}  </li>
+</ol>
+<p><strong>[java]</strong> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="view plain" target="_blank" rel="external">view plain</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="copy" target="_blank" rel="external">copy</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="print" target="_blank" rel="external">print</a><a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="?" target="_blank" rel="external">?</a><a href="https://code.csdn.net/snippets/265470" title="在CODE上查看代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片"></a><a href="https://code.csdn.net/snippets/265470/fork" title="派生到我的代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片"></a>1. Something something = new Something();  </p>
+<ol>
+<li>Converter<string, string=""> converter = something::startsWith;  </string,></li>
+<li>String converted = converter.convert(“Java”);  </li>
+<li>System.out.println(converted);    // “J”  </li>
+</ol>
+<p>现在我们将看到关键字::如何为构造函数工作。首先我们定义一个拥有不同构造函数的bean类：<strong>[java]</strong> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="view plain" target="_blank" rel="external">view plain</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="copy" target="_blank" rel="external">copy</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="print" target="_blank" rel="external">print</a><a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="?" target="_blank" rel="external">?</a><a href="https://code.csdn.net/snippets/265470" title="在CODE上查看代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片"></a><a href="https://code.csdn.net/snippets/265470/fork" title="派生到我的代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片"></a>1. class Person {  </p>
+<ol>
+<li>String firstName;  </li>
+<li>String lastName;  </li>
+<li></li>
+<li>Person() {}  </li>
+<li></li>
+<li>Person(String firstName, String lastName) {  </li>
+<li>this.firstName = firstName;  </li>
+<li>this.lastName = lastName;  </li>
+<li>}  </li>
+<li>}  </li>
+</ol>
+<p>接下来我们定义一个用来创建类person的工厂接口：<strong>[java]</strong> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="view plain" target="_blank" rel="external">view plain</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="copy" target="_blank" rel="external">copy</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="print" target="_blank" rel="external">print</a><a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="?" target="_blank" rel="external">?</a><a href="https://code.csdn.net/snippets/265470" title="在CODE上查看代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片"></a><a href="https://code.csdn.net/snippets/265470/fork" title="派生到我的代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片"></a>1. <pre code_snippet_id="265470" snippet_file_name="blog_20140330_13_2612710" name="code" class="java">interface PersonFactory<p extends="" person=""> {  </p>
+<ol>
+<li>P create(String firstName, String lastName);  </li>
+<li>}  </li>
+</ol>
+<p>不使用通常的手动实现工厂类，我们通过使用构造函数将所有的工作联合在一起：<strong>[java]</strong> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="view plain" target="_blank" rel="external">view plain</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="copy" target="_blank" rel="external">copy</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="print" target="_blank" rel="external">print</a><a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="?" target="_blank" rel="external">?</a><a href="https://code.csdn.net/snippets/265470" title="在CODE上查看代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片"></a><a href="https://code.csdn.net/snippets/265470/fork" title="派生到我的代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片"></a>1. PersonFactory<person> personFactory = Person::new;  </person></p>
+<ol>
+<li>Person person = personFactory.create(“Peter”, “Parker”);  </li>
+</ol>
+<p>我们通过Person::new创建一个指向Person构造函数的引用。java编译器自动的选择正确的构造函数来匹配PersonFactory.create的函数签名。##<a href=""></a>Lambda范围<br>在lambda表达式里访问外部变量和匿名类的方式是十分相似的。你可以在lambda中访问外部的final变量，访问实例字段和静态变量的方法也是如此。###<a href=""></a>访问本地变量<br>我们可以访问在lambda表示式之外的本地final变量：<strong>[java]</strong> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="view plain" target="_blank" rel="external">view plain</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="copy" target="_blank" rel="external">copy</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="print" target="_blank" rel="external">print</a><a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="?" target="_blank" rel="external">?</a><a href="https://code.csdn.net/snippets/265470" title="在CODE上查看代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片"></a><a href="https://code.csdn.net/snippets/265470/fork" title="派生到我的代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片"></a>1. final int num = 1;  </p>
+<ol>
+<li>Converter<integer, string=""> stringConverter =  </integer,></li>
+<li>(from) -&gt; String.valueOf(from + num);  </li>
+<li></li>
+<li>stringConverter.convert(2);     // 3  </li>
+</ol>
+<p>但是和匿名变量不同的是变量num不必强制的被声明为final。下面的代码依然是合法的：<strong>[java]</strong> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="view plain" target="_blank" rel="external">view plain</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="copy" target="_blank" rel="external">copy</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="print" target="_blank" rel="external">print</a><a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="?" target="_blank" rel="external">?</a><a href="https://code.csdn.net/snippets/265470" title="在CODE上查看代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片"></a><a href="https://code.csdn.net/snippets/265470/fork" title="派生到我的代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片"></a>1. int num = 1;  </p>
+<ol>
+<li>Converter<integer, string=""> stringConverter =  </integer,></li>
+<li>(from) -&gt; String.valueOf(from + num);  </li>
+<li></li>
+<li>stringConverter.convert(2);     // 3  </li>
+</ol>
+<p>但是实际上，变量num在编译期是被隐式的转换为fianl类型的。下面的代码是不能被成功的编译的：<strong>[java]</strong> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="view plain" target="_blank" rel="external">view plain</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="copy" target="_blank" rel="external">copy</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="print" target="_blank" rel="external">print</a><a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="?" target="_blank" rel="external">?</a><a href="https://code.csdn.net/snippets/265470" title="在CODE上查看代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片"></a><a href="https://code.csdn.net/snippets/265470/fork" title="派生到我的代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片"></a>1. int num = 1;  </p>
+<ol>
+<li>Converter<integer, string=""> stringConverter =  </integer,></li>
+<li>(from) -&gt; String.valueOf(from + num);  </li>
+<li>num = 3;  </li>
+</ol>
+<p>在lambda表达式内部向变量num写入值同样是不允许的。###<a href=""></a>访问对象字段和静态变量<br>和访问本地变量相反，我们在lambda表达式里即可以读取也可以写入对象字段和静态变量。这一准则同样适用于匿名类。<br><strong>[java]</strong> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="view plain" target="_blank" rel="external">view plain</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="copy" target="_blank" rel="external">copy</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="print" target="_blank" rel="external">print</a><a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="?" target="_blank" rel="external">?</a><a href="https://code.csdn.net/snippets/265470" title="在CODE上查看代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片"></a><a href="https://code.csdn.net/snippets/265470/fork" title="派生到我的代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片"></a>1. class Lambda4 {  </p>
+<ol>
+<li>static int outerStaticNum;  </li>
+<li>int outerNum;  </li>
+<li></li>
+<li>void testScopes() {  </li>
+<li>Converter<integer, string=""> stringConverter1 = (from) -&gt; {  </integer,></li>
+<li>outerNum = 23;  </li>
+<li>return String.valueOf(from);  </li>
+<li>};  </li>
+<li></li>
+<li>Converter<integer, string=""> stringConverter2 = (from) -&gt; {  </integer,></li>
+<li>outerStaticNum = 72;  </li>
+<li>return String.valueOf(from);  </li>
+<li>};  </li>
+<li>}  </li>
+<li>}  </li>
+</ol>
+<p>###<a href=""></a>访问接口默认方法<br>还记得第一部分的formula示例么？接口formula定义了一个默认方法sqrt，这个方法可以被formula的实例和匿名实例所访问。但是这个方法不能被lambda表达式所访问。<br>默认方法不能被lambda表示式内部的代码访问。下面的代码不能通过编译。<strong>[java]</strong> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="view plain" target="_blank" rel="external">view plain</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="copy" target="_blank" rel="external">copy</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="print" target="_blank" rel="external">print</a><a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="?" target="_blank" rel="external">?</a><a href="https://code.csdn.net/snippets/265470" title="在CODE上查看代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片"></a><a href="https://code.csdn.net/snippets/265470/fork" title="派生到我的代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片"></a>1. Formula formula = (a) -&gt; sqrt( a * 100);  </p>
+<p>##<a href=""></a>内建的功能性接口<br>JDK1.8包括了许多功能性接口。它们中的一些是老版本中被熟知的接口，例如Comparator和Runnable。这些已存在的接口已经通过@FunctionalInterface注解扩展为支持Lambda表达式。<br>同时Java8的API也包含了很多新的功能性接口简化你的开发。一些新的接口是来自非常出名的Google Guava库。即使你已经对这库十分熟悉了，你也应当留意下这些接口是如何被扩展的。###<a href=""></a>断言接口（Predicates）<br>Predicates是只拥有一个参数的Boolean型功能的接口。这个接口拥有多个默认方法用于构成predicates复杂的逻辑术语。<strong>[java]</strong> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="view plain" target="_blank" rel="external">view plain</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="copy" target="_blank" rel="external">copy</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="print" target="_blank" rel="external">print</a><a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="?" target="_blank" rel="external">?</a><a href="https://code.csdn.net/snippets/265470" title="在CODE上查看代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片"></a><a href="https://code.csdn.net/snippets/265470/fork" title="派生到我的代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片"></a>1. Predicate<string> predicate = (s) -&gt; s.length() &gt; 0;  </string></p>
+<ol>
+<li></li>
+<li>predicate.test(“foo”);              // true  </li>
+<li>predicate.negate().test(“foo”);     // false  </li>
+<li></li>
+<li>Predicate<boolean> nonNull = Objects::nonNull;  </boolean></li>
+<li>Predicate<boolean> isNull = Objects::isNull;  </boolean></li>
+<li></li>
+<li>Predicate<string> isEmpty = String::isEmpty;  </string></li>
+<li>Predicate<string> isNotEmpty = isEmpty.negate();  </string></li>
+</ol>
+<p>###<a href=""></a>功能接口（Functions）<br>Functions接受一个参数并产生一个结果。默认方法能够用于将多个函数链接在一起。<strong>[java]</strong> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="view plain" target="_blank" rel="external">view plain</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="copy" target="_blank" rel="external">copy</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="print" target="_blank" rel="external">print</a><a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="?" target="_blank" rel="external">?</a><a href="https://code.csdn.net/snippets/265470" title="在CODE上查看代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片"></a><a href="https://code.csdn.net/snippets/265470/fork" title="派生到我的代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片"></a>1. Function<string, integer=""> toInteger = Integer::valueOf;  </string,></p>
+<ol>
+<li>Function<string, string=""> backToString = toInteger.andThen(String::valueOf);  </string,></li>
+<li></li>
+<li>backToString.apply(“123”);     // “123”  </li>
+</ol>
+<p>###<a href=""></a>供应接口（Suppliers）<br>Suppliers对于给定的泛型类型产生一个实例。不同于Functions，Suppliers不需要任何参数。<strong>[java]</strong> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="view plain" target="_blank" rel="external">view plain</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="copy" target="_blank" rel="external">copy</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="print" target="_blank" rel="external">print</a><a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="?" target="_blank" rel="external">?</a><a href="https://code.csdn.net/snippets/265470" title="在CODE上查看代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片"></a><a href="https://code.csdn.net/snippets/265470/fork" title="派生到我的代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片"></a>1. Supplier<person> personSupplier = Person::new;  </person></p>
+<ol>
+<li>personSupplier.get();   // new Person  </li>
+</ol>
+<p>###<a href=""></a>消费接口（Consumers）<br>Consumers代表在只有一个输入参数时操作被如何执行。<strong>[java]</strong> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="view plain" target="_blank" rel="external">view plain</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="copy" target="_blank" rel="external">copy</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="print" target="_blank" rel="external">print</a><a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="?" target="_blank" rel="external">?</a><a href="https://code.csdn.net/snippets/265470" title="在CODE上查看代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片"></a><a href="https://code.csdn.net/snippets/265470/fork" title="派生到我的代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片"></a>1. Consumer<person> greeter = (p) -&gt; System.out.println(“Hello, “ + p.firstName);  </person></p>
+<ol>
+<li>greeter.accept(new Person(“Luke”, “Skywalker”));  </li>
+</ol>
+<p>###<a href=""></a>比较接口（Comparators）<br>Comparators在老版本中就已经被熟知。Java8向该接口中添加了多种默认方法。<strong>[java]</strong> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="view plain" target="_blank" rel="external">view plain</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="copy" target="_blank" rel="external">copy</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="print" target="_blank" rel="external">print</a><a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="?" target="_blank" rel="external">?</a><a href="https://code.csdn.net/snippets/265470" title="在CODE上查看代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片"></a><a href="https://code.csdn.net/snippets/265470/fork" title="派生到我的代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片"></a>1. Comparator<person> comparator = (p1, p2) -&gt; p1.firstName.compareTo(p2.firstName);  </person></p>
+<ol>
+<li></li>
+<li>Person p1 = new Person(“John”, “Doe”);  </li>
+<li>Person p2 = new Person(“Alice”, “Wonderland”);  </li>
+<li></li>
+<li>comparator.compare(p1, p2);             // &gt; 0  </li>
+<li>comparator.reversed().compare(p1, p2);  // &lt; 0  </li>
+</ol>
+<p>###<a href=""></a>选项接口（Optionals）<br>Optionals并不是功能性接口，反而它是一种特殊的工具用来阻止NullPointerException。我们首先快速的浏览Optionals是如何工作的，因为它在下一章节是十分重要的概念。<br>Optional是一种可以包含null和non-null值的简单容器。考虑到方法可以返回non-null结果，偶尔也可能任何都不返回。在Java8中，你可以返回Optional而不是返回null。<strong>[java]</strong> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="view plain" target="_blank" rel="external">view plain</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="copy" target="_blank" rel="external">copy</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="print" target="_blank" rel="external">print</a><a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="?" target="_blank" rel="external">?</a><a href="https://code.csdn.net/snippets/265470" title="在CODE上查看代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片"></a><a href="https://code.csdn.net/snippets/265470/fork" title="派生到我的代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片"></a>1. Optional<string> optional = Optional.of(“bam”);  </string></p>
+<ol>
+<li></li>
+<li>optional.isPresent();           // true  </li>
+<li>optional.get();                 // “bam”  </li>
+<li>optional.orElse(“fallback”);    // “bam”  </li>
+<li></li>
+<li>optional.ifPresent((s) -&gt; System.out.println(s.charAt(0)));     // “b”  </li>
+</ol>
+<p>###<a href=""></a>流接口（Streams）<br>java.util.Stream代表着一串你可以在其上进行多种操作的元素。流操作既可以是连续的也可以是中断的。中断操作返回操作结果。而连续操作返回流本身，这样你就可以在该行上继续操作。流是创建在数据源上的，例如：java.util.Collection、list集合和set集合。流操作既可以顺序执行也可以并行执行。我们首先了解下顺序的流是如何工作的。我们首先创建一个字符串链表。<strong>[java]</strong> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="view plain" target="_blank" rel="external">view plain</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="copy" target="_blank" rel="external">copy</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="print" target="_blank" rel="external">print</a><a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="?" target="_blank" rel="external">?</a><a href="https://code.csdn.net/snippets/265470" title="在CODE上查看代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片"></a><a href="https://code.csdn.net/snippets/265470/fork" title="派生到我的代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片"></a>1. List<string> stringCollection = new ArrayList&lt;&gt;();  </string></p>
+<ol>
+<li>stringCollection.add(“ddd2”);  </li>
+<li>stringCollection.add(“aaa2”);  </li>
+<li>stringCollection.add(“bbb1”);  </li>
+<li>stringCollection.add(“aaa1”);  </li>
+<li>stringCollection.add(“bbb3”);  </li>
+<li>stringCollection.add(“ccc”);  </li>
+<li>stringCollection.add(“bbb2”);  </li>
+<li>stringCollection.add(“ddd1”);  </li>
+</ol>
+<p>Java8的Collections类已经被扩展了，你可以简单的调用Collection.stream()或者Collection.parallelSteam()来创建流。下面部分将介绍大部分流操作。###<a href=""></a>Filter<br>Filter接受一个predicate来过滤流中的所有元素。这个操作是连续的，它可以让我们在结果上继续调用另外一个流操作forEach。ForEach接受一个consumer，它被用来对过滤流中的每个元素执行操作。ForEach是一个中断操作，因此我们不能在ForEach后调用其他流操作。<strong>[java]</strong> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="view plain" target="_blank" rel="external">view plain</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="copy" target="_blank" rel="external">copy</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="print" target="_blank" rel="external">print</a><a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="?" target="_blank" rel="external">?</a><a href="https://code.csdn.net/snippets/265470" title="在CODE上查看代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片"></a><a href="https://code.csdn.net/snippets/265470/fork" title="派生到我的代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片"></a>1. stringCollection  </p>
+<ol>
+<li>.stream()  </li>
+<li>.filter((s) -&gt; s.startsWith(“a”))  </li>
+<li>.forEach(System.out::println);  </li>
+<li></li>
+<li>// “aaa2”, “aaa1”  </li>
+</ol>
+<p>###<a href=""></a>Sorted<br>Sorted是一个连续操作，它返回流的已排序版本。如果你没有显示的指定Comparator，那么流中元素的排序规则为默认的。<strong>[java]</strong> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="view plain" target="_blank" rel="external">view plain</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="copy" target="_blank" rel="external">copy</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="print" target="_blank" rel="external">print</a><a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="?" target="_blank" rel="external">?</a><a href="https://code.csdn.net/snippets/265470" title="在CODE上查看代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片"></a><a href="https://code.csdn.net/snippets/265470/fork" title="派生到我的代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片"></a>1. stringCollection  </p>
+<ol>
+<li>.stream()  </li>
+<li>.sorted()  </li>
+<li>.filter((s) -&gt; s.startsWith(“a”))  </li>
+<li>.forEach(System.out::println);  </li>
+<li></li>
+<li>// “aaa1”, “aaa2”  </li>
+</ol>
+<p>需要注意的是sorted只创建了流的排序结果，它并没有改变集合中元素的排序位置。stringCollection中元素排序是没有改变的。<strong>[java]</strong> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="view plain" target="_blank" rel="external">view plain</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="copy" target="_blank" rel="external">copy</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="print" target="_blank" rel="external">print</a><a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="?" target="_blank" rel="external">?</a><a href="https://code.csdn.net/snippets/265470" title="在CODE上查看代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片"></a><a href="https://code.csdn.net/snippets/265470/fork" title="派生到我的代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片"></a>1. System.out.println(stringCollection);  </p>
+<ol>
+<li>// ddd2, aaa2, bbb1, aaa1, bbb3, ccc, bbb2, ddd1  </li>
+</ol>
+<p>###<a href=""></a>Map<br>连续性操作map通过指定的Function将流中的每个元素转变为另外的对象。下面的示例将每个字符串转换为大写的字符串。此外，你也可以使用map将每个元素的类型改变为其它类型。转换后流的泛型类型依赖于你传入的Function的泛型类型。<strong>[java]</strong> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="view plain" target="_blank" rel="external">view plain</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="copy" target="_blank" rel="external">copy</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="print" target="_blank" rel="external">print</a><a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="?" target="_blank" rel="external">?</a><a href="https://code.csdn.net/snippets/265470" title="在CODE上查看代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片"></a><a href="https://code.csdn.net/snippets/265470/fork" title="派生到我的代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片"></a>1. stringCollection  </p>
+<ol>
+<li>.stream()  </li>
+<li>.map(String::toUpperCase)  </li>
+<li>.sorted((a, b) -&gt; b.compareTo(a))  </li>
+<li>.forEach(System.out::println);  </li>
+<li></li>
+<li>// “DDD2”, “DDD1”, “CCC”, “BBB3”, “BBB2”, “AAA2”, “AAA1”  </li>
+</ol>
+<p>###<a href=""></a>Match<br>各种匹配操作可以用来检测是否某种predicate和流中元素相匹配。所有的这些操作是中断的并返回一个boolean结果。<strong>[java]</strong> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="view plain" target="_blank" rel="external">view plain</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="copy" target="_blank" rel="external">copy</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="print" target="_blank" rel="external">print</a><a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="?" target="_blank" rel="external">?</a><a href="https://code.csdn.net/snippets/265470" title="在CODE上查看代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片"></a><a href="https://code.csdn.net/snippets/265470/fork" title="派生到我的代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片"></a>1. boolean anyStartsWithA =   </p>
+<ol>
+<li>stringCollection  </li>
+<li>.stream()  </li>
+<li>.anyMatch((s) -&gt; s.startsWith(“a”));  </li>
+<li></li>
+<li>System.out.println(anyStartsWithA);      // true  </li>
+<li></li>
+<li>boolean allStartsWithA =   </li>
+<li>stringCollection  </li>
+<li>.stream()  </li>
+<li>.allMatch((s) -&gt; s.startsWith(“a”));  </li>
+<li></li>
+<li>System.out.println(allStartsWithA);      // false  </li>
+<li></li>
+<li>boolean noneStartsWithZ =   </li>
+<li>stringCollection  </li>
+<li>.stream()  </li>
+<li>.noneMatch((s) -&gt; s.startsWith(“z”));  </li>
+<li></li>
+<li>System.out.println(noneStartsWithZ);      // true  </li>
+</ol>
+<p>###<a href=""></a>Count<br>Count是中断型操作，它返回流中的元素数量。<strong>[java]</strong> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="view plain" target="_blank" rel="external">view plain</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="copy" target="_blank" rel="external">copy</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="print" target="_blank" rel="external">print</a><a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="?" target="_blank" rel="external">?</a><a href="https://code.csdn.net/snippets/265470" title="在CODE上查看代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片"></a><a href="https://code.csdn.net/snippets/265470/fork" title="派生到我的代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片"></a>1. long startsWithB =   </p>
+<ol>
+<li>stringCollection  </li>
+<li>.stream()  </li>
+<li>.filter((s) -&gt; s.startsWith(“b”))  </li>
+<li>.count();  </li>
+<li></li>
+<li>System.out.println(startsWithB);    // 3  </li>
+</ol>
+<p>###<a href=""></a>Reduce<br>这个中断性操作使用指定的function对流中元素实施消减策略。此操作的返回值是一个包括所有被消减元素的Optional。<strong>[java]</strong> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="view plain" target="_blank" rel="external">view plain</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="copy" target="_blank" rel="external">copy</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="print" target="_blank" rel="external">print</a><a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="?" target="_blank" rel="external">?</a><a href="https://code.csdn.net/snippets/265470" title="在CODE上查看代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片"></a><a href="https://code.csdn.net/snippets/265470/fork" title="派生到我的代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片"></a>1. Optional<string> reduced =  </string></p>
+<ol>
+<li>stringCollection  </li>
+<li>.stream()  </li>
+<li>.sorted()  </li>
+<li>.reduce((s1, s2) -&gt; s1 + “#” + s2);  </li>
+<li></li>
+<li>reduced.ifPresent(System.out::println);  </li>
+<li>// “aaa1#aaa2#bbb1#bbb2#bbb3#ccc#ddd1#ddd2”  </li>
+</ol>
+<p>##<a href=""></a>Parallel Streams<br>在前面部分我们提到流可以是顺序的也可以是并行的。顺序流的操作是在单线程上执行的，而并行流的操作是在多线程上并发执行的。<br>随后的例子我们展示了并行流可以多么容易的提高性能。<br>首先，我们创建一个包含唯一元素的大容器：<strong>[java]</strong> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="view plain" target="_blank" rel="external">view plain</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="copy" target="_blank" rel="external">copy</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="print" target="_blank" rel="external">print</a><a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="?" target="_blank" rel="external">?</a><a href="https://code.csdn.net/snippets/265470" title="在CODE上查看代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片"></a><a href="https://code.csdn.net/snippets/265470/fork" title="派生到我的代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片"></a>1. int max = 1000000;  </p>
+<ol>
+<li>List<string> values = new ArrayList&lt;&gt;(max);  </string></li>
+<li>for (int i = 0; i &lt; max; i++) {  </li>
+<li>UUID uuid = UUID.randomUUID();  </li>
+<li>values.add(uuid.toString());  </li>
+<li>}  </li>
+</ol>
+<p>现在我们开始测试排序这些元素需要多长时间。<br>Sequential Sort<strong>[java]</strong> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="view plain" target="_blank" rel="external">view plain</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="copy" target="_blank" rel="external">copy</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="print" target="_blank" rel="external">print</a><a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="?" target="_blank" rel="external">?</a><a href="https://code.csdn.net/snippets/265470" title="在CODE上查看代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片"></a><a href="https://code.csdn.net/snippets/265470/fork" title="派生到我的代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片"></a>1. long t0 = System.nanoTime();  </p>
+<ol>
+<li></li>
+<li>long count = values.stream().sorted().count();  </li>
+<li>System.out.println(count);  </li>
+<li></li>
+<li>long t1 = System.nanoTime();  </li>
+<li></li>
+<li>long millis = TimeUnit.NANOSECONDS.toMillis(t1 - t0);  </li>
+<li>System.out.println(String.format(“sequential sort took: %d ms”, millis));  </li>
+<li></li>
+<li>// sequential sort took: 899 ms  </li>
+</ol>
+<p>Parallel Sort<strong>[java]</strong> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="view plain" target="_blank" rel="external">view plain</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="copy" target="_blank" rel="external">copy</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="print" target="_blank" rel="external">print</a><a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="?" target="_blank" rel="external">?</a><a href="https://code.csdn.net/snippets/265470" title="在CODE上查看代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片"></a><a href="https://code.csdn.net/snippets/265470/fork" title="派生到我的代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片"></a>1. long t0 = System.nanoTime();  </p>
+<ol>
+<li></li>
+<li>long count = values.parallelStream().sorted().count();  </li>
+<li>System.out.println(count);  </li>
+<li></li>
+<li>long t1 = System.nanoTime();  </li>
+<li></li>
+<li>long millis = TimeUnit.NANOSECONDS.toMillis(t1 - t0);  </li>
+<li>System.out.println(String.format(“parallel sort took: %d ms”, millis));  </li>
+<li></li>
+<li>// parallel sort took: 472 ms  </li>
+</ol>
+<p>你会观察到这两种模式的代码基本上市一致的，但是并行排序所花费的时间大约是顺序排序的一半。##<a href=""></a>Map<br>我们已经提到maps不支持流。然而现在maps包括了许多新的非常有用的方法用于执行通用任务。<strong>[java]</strong> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="view plain" target="_blank" rel="external">view plain</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="copy" target="_blank" rel="external">copy</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="print" target="_blank" rel="external">print</a><a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="?" target="_blank" rel="external">?</a><a href="https://code.csdn.net/snippets/265470" title="在CODE上查看代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片"></a><a href="https://code.csdn.net/snippets/265470/fork" title="派生到我的代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片"></a>1. Map<integer, string=""> map = new HashMap&lt;&gt;();  </integer,></p>
+<ol>
+<li></li>
+<li>for (int i = 0; i &lt; 10; i++) {  </li>
+<li>map.putIfAbsent(i, “val” + i);  </li>
+<li>}  </li>
+<li></li>
+<li>map.forEach((id, val) -&gt; System.out.println(val));  </li>
+</ol>
+<p><strong>[java]</strong> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="view plain" target="_blank" rel="external">view plain</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="copy" target="_blank" rel="external">copy</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="print" target="_blank" rel="external">print</a><a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="?" target="_blank" rel="external">?</a><a href="https://code.csdn.net/snippets/265470" title="在CODE上查看代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片"></a><a href="https://code.csdn.net/snippets/265470/fork" title="派生到我的代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片"></a>1. </p></pre>上述的代码应该很清晰了：putIfAbsent使得我们不用写是否为null值的检测语句；forEach使用consumer来对map中的每个元素进行操作。<div></div><div>下面的例子向我们展示使用功能性函数在map里执行代码：</div><div><pre code_snippet_id="265470" snippet_file_name="blog_20140330_37_9422552" name="code" class="java">map.computeIfPresent(3, (num, val) -&gt; val + num);  </pre></div></p>
+<ol>
+<li>map.get(3);             // val33  </li>
+<li></li>
+<li>map.computeIfPresent(9, (num, val) -&gt; null);  </li>
+<li>map.containsKey(9);     // false  </li>
+<li></li>
+<li>map.computeIfAbsent(23, num -&gt; “val” + num);  </li>
+<li>map.containsKey(23);    // true  </li>
+<li></li>
+<li>map.computeIfAbsent(3, num -&gt; “bam”);  </li>
+<li>map.get(3);             // val33  </li>
+</ol>
+<p>接下来，我们将学习如何删除给定键所对应的元素。删除操作还需要满足给定的值需要和map中的值想等：<strong>[java]</strong> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="view plain" target="_blank" rel="external">view plain</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="copy" target="_blank" rel="external">copy</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="print" target="_blank" rel="external">print</a><a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="?" target="_blank" rel="external">?</a><a href="https://code.csdn.net/snippets/265470" title="在CODE上查看代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片"></a><a href="https://code.csdn.net/snippets/265470/fork" title="派生到我的代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片"></a>1. map.remove(3, “val3”);  </p>
+<ol>
+<li>map.get(3);             // val33  </li>
+<li></li>
+<li>map.remove(3, “val33”);  </li>
+<li>map.get(3);             // null  </li>
+</ol>
+<p>其他一些帮助性方法：<strong>[java]</strong> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="view plain" target="_blank" rel="external">view plain</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="copy" target="_blank" rel="external">copy</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="print" target="_blank" rel="external">print</a><a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="?" target="_blank" rel="external">?</a><a href="https://code.csdn.net/snippets/265470" title="在CODE上查看代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片"></a><a href="https://code.csdn.net/snippets/265470/fork" title="派生到我的代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片"></a>1. map.getOrDefault(42, “not found”);  // not found  </p>
+<p>合并map中的实体是十分容易的：<strong>[java]</strong> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="view plain" target="_blank" rel="external">view plain</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="copy" target="_blank" rel="external">copy</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="print" target="_blank" rel="external">print</a><a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="?" target="_blank" rel="external">?</a><a href="https://code.csdn.net/snippets/265470" title="在CODE上查看代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片"></a><a href="https://code.csdn.net/snippets/265470/fork" title="派生到我的代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片"></a>1. map.merge(9, “val9”, (value, newValue) -&gt; value.concat(newValue));  </p>
+<ol>
+<li>map.get(9);             // val9  </li>
+<li></li>
+<li>map.merge(9, “concat”, (value, newValue) -&gt; value.concat(newValue));  </li>
+<li>map.get(9);             // val9concat  </li>
+</ol>
+<p>如果map不存在指定的键，那么它将把该键值对key/value加入map中。反而，如果存在，它将调用function来进行合并操作。##<a href=""></a>Date API<br>Java8在包java.time下面包括了一款新的date和time的API。新的Date API和Joda-Time库是相兼容的，但是它们不是一样的。下面的示例覆盖了新API中的重要部分。###<a href=""></a>Clock<br>Clock提供了访问当前日期和时间的方法。Clock是时区敏感的并且它可以被用来替代System.currentTimeMillis进行获取当前毫秒数。同时，时间轴上的时间点是可以用类Instant来表示的。Instants可以被用来创建遗留的java.util.Date对象。<strong>[java]</strong> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="view plain" target="_blank" rel="external">view plain</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="copy" target="_blank" rel="external">copy</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="print" target="_blank" rel="external">print</a><a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="?" target="_blank" rel="external">?</a><a href="https://code.csdn.net/snippets/265470" title="在CODE上查看代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片"></a><a href="https://code.csdn.net/snippets/265470/fork" title="派生到我的代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片"></a>1. Clock clock = Clock.systemDefaultZone();  </p>
+<ol>
+<li>long millis = clock.millis();  </li>
+<li></li>
+<li>Instant instant = clock.instant();  </li>
+<li>Date legacyDate = Date.from(instant);   // legacy java.util.Date  </li>
+</ol>
+<p>###<a href=""></a>TimeZones<br>TimeZones被用来表示ZoneId。它们可以通过静态工厂方法访问。TImeZones定义了时差，它在instants和本地日期时间转换上十分重要。<strong>[java]</strong> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="view plain" target="_blank" rel="external">view plain</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="copy" target="_blank" rel="external">copy</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="print" target="_blank" rel="external">print</a><a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="?" target="_blank" rel="external">?</a><a href="https://code.csdn.net/snippets/265470" title="在CODE上查看代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片"></a><a href="https://code.csdn.net/snippets/265470/fork" title="派生到我的代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片"></a>1. System.out.println(ZoneId.getAvailableZoneIds());  </p>
+<ol>
+<li>// prints all available timezone ids  </li>
+<li></li>
+<li>ZoneId zone1 = ZoneId.of(“Europe/Berlin”);  </li>
+<li>ZoneId zone2 = ZoneId.of(“Brazil/East”);  </li>
+<li>System.out.println(zone1.getRules());  </li>
+<li>System.out.println(zone2.getRules());  </li>
+<li></li>
+<li>// ZoneRules[currentStandardOffset=+01:00]  </li>
+<li>// ZoneRules[currentStandardOffset=-03:00]  </li>
+</ol>
+<p>###<a href=""></a>LocalTime<br>本地时间代表了一个和时区无关的时间，e.g. 10pm or 17:30:15. 下面的示例创建了前部分展示的两个时区的本地时间。然后，我们将比较这两个时间并计算出这两个时间在小时和分钟数上的差异。<strong>[java]</strong> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="view plain" target="_blank" rel="external">view plain</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="copy" target="_blank" rel="external">copy</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="print" target="_blank" rel="external">print</a><a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="?" target="_blank" rel="external">?</a><a href="https://code.csdn.net/snippets/265470" title="在CODE上查看代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片"></a><a href="https://code.csdn.net/snippets/265470/fork" title="派生到我的代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片"></a>1. LocalTime now1 = LocalTime.now(zone1);  </p>
+<ol>
+<li>LocalTime now2 = LocalTime.now(zone2);  </li>
+<li></li>
+<li>System.out.println(now1.isBefore(now2));  // false  </li>
+<li></li>
+<li>long hoursBetween = ChronoUnit.HOURS.between(now1, now2);  </li>
+<li>long minutesBetween = ChronoUnit.MINUTES.between(now1, now2);  </li>
+<li></li>
+<li>System.out.println(hoursBetween);       // -3  </li>
+<li>System.out.println(minutesBetween);     // -239  </li>
+</ol>
+<p>LocalTime包含了多个工厂方法用来简化创建过程，其中也包括通过字符串来创建时间：<strong>[java]</strong> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="view plain" target="_blank" rel="external">view plain</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="copy" target="_blank" rel="external">copy</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="print" target="_blank" rel="external">print</a><a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="?" target="_blank" rel="external">?</a><a href="https://code.csdn.net/snippets/265470" title="在CODE上查看代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片"></a><a href="https://code.csdn.net/snippets/265470/fork" title="派生到我的代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片"></a>1. LocalTime late = LocalTime.of(23, 59, 59);  </p>
+<ol>
+<li>System.out.println(late);       // 23:59:59  </li>
+<li></li>
+<li>DateTimeFormatter germanFormatter =  </li>
+<li>DateTimeFormatter  </li>
+<li>.ofLocalizedTime(FormatStyle.SHORT)  </li>
+<li>.withLocale(Locale.GERMAN);  </li>
+<li></li>
+<li>LocalTime leetTime = LocalTime.parse(“13:37”, germanFormatter);  </li>
+<li>System.out.println(leetTime);   // 13:37  </li>
+</ol>
+<p>###<a href=""></a>LocalDate<br>LocalDate代表了一个可区分日期，e.g. 2014-03-11。 它是不变的同时工作原理类似于LocalTime。下面的例子描绘了通过加减年，月，日来计算出一个新的日期。需要注意的是这每个操作都返回一个新的实例。<strong>[java]</strong> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="view plain" target="_blank" rel="external">view plain</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="copy" target="_blank" rel="external">copy</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="print" target="_blank" rel="external">print</a><a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="?" target="_blank" rel="external">?</a><a href="https://code.csdn.net/snippets/265470" title="在CODE上查看代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片"></a><a href="https://code.csdn.net/snippets/265470/fork" title="派生到我的代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片"></a>1. LocalDate today = LocalDate.now();  </p>
+<ol>
+<li>LocalDate tomorrow = today.plus(1, ChronoUnit.DAYS);  </li>
+<li>LocalDate yesterday = tomorrow.minusDays(2);  </li>
+<li></li>
+<li>LocalDate independenceDay = LocalDate.of(2014, Month.JULY, 4);  </li>
+<li>DayOfWeek dayOfWeek = independenceDay.getDayOfWeek();  </li>
+<li>System.out.println(dayOfWeek);    // FRIDAY  </li>
+</ol>
+<p>从字符串解析出LocalDate和解析LocalTime一样简单：<strong>[java]</strong> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="view plain" target="_blank" rel="external">view plain</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="copy" target="_blank" rel="external">copy</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="print" target="_blank" rel="external">print</a><a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="?" target="_blank" rel="external">?</a><a href="https://code.csdn.net/snippets/265470" title="在CODE上查看代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片"></a><a href="https://code.csdn.net/snippets/265470/fork" title="派生到我的代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片"></a>1. DateTimeFormatter germanFormatter =  </p>
+<ol>
+<li>DateTimeFormatter  </li>
+<li>.ofLocalizedDate(FormatStyle.MEDIUM)  </li>
+<li>.withLocale(Locale.GERMAN);  </li>
+<li></li>
+<li>LocalDate xmas = LocalDate.parse(“24.12.2014”, germanFormatter);  </li>
+<li>System.out.println(xmas);   // 2014-12-24  </li>
+</ol>
+<p>###<a href=""></a>LocalDateTime<br>LocalDateTime代表日期和时间。它将我们前部分看到的时间和日期组合进一个实例。LocalDateTime是不可变的并且它的工作原理和LocalTime和LocalDate十分相似。我们可以从date-time中获取某些字段值：<strong>[java]</strong> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="view plain" target="_blank" rel="external">view plain</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="copy" target="_blank" rel="external">copy</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="print" target="_blank" rel="external">print</a><a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="?" target="_blank" rel="external">?</a><a href="https://code.csdn.net/snippets/265470" title="在CODE上查看代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片"></a><a href="https://code.csdn.net/snippets/265470/fork" title="派生到我的代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片"></a>1. LocalDateTime sylvester = LocalDateTime.of(2014, Month.DECEMBER, 31, 23, 59, 59);  </p>
+<ol>
+<li></li>
+<li>DayOfWeek dayOfWeek = sylvester.getDayOfWeek();  </li>
+<li>System.out.println(dayOfWeek);      // WEDNESDAY  </li>
+<li></li>
+<li>Month month = sylvester.getMonth();  </li>
+<li>System.out.println(month);          // DECEMBER  </li>
+<li></li>
+<li>long minuteOfDay = sylvester.getLong(ChronoField.MINUTE_OF_DAY);  </li>
+<li>System.out.println(minuteOfDay);    // 1439  </li>
+</ol>
+<p>在一些额外的时区信息帮助下，它可以被转换为instant。Instants可以被容易的转换为遗留的java.util.Date类型。<strong>[java]</strong> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="view plain" target="_blank" rel="external">view plain</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="copy" target="_blank" rel="external">copy</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="print" target="_blank" rel="external">print</a><a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="?" target="_blank" rel="external">?</a><a href="https://code.csdn.net/snippets/265470" title="在CODE上查看代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片"></a><a href="https://code.csdn.net/snippets/265470/fork" title="派生到我的代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片"></a>1. Instant instant = sylvester  </p>
+<ol>
+<li>.atZone(ZoneId.systemDefault())  </li>
+<li>.toInstant();  </li>
+<li></li>
+<li>Date legacyDate = Date.from(instant);  </li>
+<li>System.out.println(legacyDate);     // Wed Dec 31 23:59:59 CET 2014  </li>
+</ol>
+<p>格式date-time的过程和格式date和time基本上是一样的。在使用系统自带的定义格式时，我们也可以定义我们自己的格式：<strong>[java]</strong> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="view plain" target="_blank" rel="external">view plain</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="copy" target="_blank" rel="external">copy</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="print" target="_blank" rel="external">print</a><a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="?" target="_blank" rel="external">?</a><a href="https://code.csdn.net/snippets/265470" title="在CODE上查看代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片"></a><a href="https://code.csdn.net/snippets/265470/fork" title="派生到我的代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片"></a>1. DateTimeFormatter formatter =  </p>
+<ol>
+<li>DateTimeFormatter  </li>
+<li>.ofPattern(“MMM dd, yyyy - HH:mm”);  </li>
+<li></li>
+<li>LocalDateTime parsed = LocalDateTime.parse(“Nov 03, 2014 - 07:13”, formatter);  </li>
+<li>String string = formatter.format(parsed);  </li>
+<li>System.out.println(string);     // Nov 03, 2014 - 07:13  </li>
+</ol>
+<p>和java.text.NumberFormat不一样的是DateTimeFormatter是不可变的并且是类型安全的。<br>如果想了解详细的格式语法，可以阅读<a href="http://download.java.net/jdk8/docs/api/java/time/format/DateTimeFormatter.html" target="_blank" rel="external">这里</a>。##<a href=""></a>Annotations<br>Java8中的Annotations是可重复。现在我们深入的学习一个例子来理解它。<br>首先，我们定义一个包装注解，它包含了一个实际注解的数组。<strong>[java]</strong> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="view plain" target="_blank" rel="external">view plain</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="copy" target="_blank" rel="external">copy</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="print" target="_blank" rel="external">print</a><a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="?" target="_blank" rel="external">?</a><a href="https://code.csdn.net/snippets/265470" title="在CODE上查看代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片"></a><a href="https://code.csdn.net/snippets/265470/fork" title="派生到我的代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片"></a>1. @interface Hints {  </p>
+<ol>
+<li>Hint[] value();  </li>
+<li>}  </li>
+<li></li>
+<li>@Repeatable(Hints.class)  </li>
+<li>@interface Hint {  </li>
+<li>String value();  </li>
+<li>}  </li>
+</ol>
+<p>Java8可以使同一个注解类型同时使用多次，只要我们在注解声明时使用@Repeatable。<br>情景1：使用容器注解<strong>[java]</strong> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="view plain" target="_blank" rel="external">view plain</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="copy" target="_blank" rel="external">copy</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="print" target="_blank" rel="external">print</a><a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="?" target="_blank" rel="external">?</a><a href="https://code.csdn.net/snippets/265470" title="在CODE上查看代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片"></a><a href="https://code.csdn.net/snippets/265470/fork" title="派生到我的代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片"></a>1. @Hints({@Hint(“hint1”), @Hint(“hint2”)})  </p>
+<ol>
+<li>class Person {}  </li>
+</ol>
+<p>情景2：使用可重复注解<strong>[java]</strong> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="view plain" target="_blank" rel="external">view plain</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="copy" target="_blank" rel="external">copy</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="print" target="_blank" rel="external">print</a><a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="?" target="_blank" rel="external">?</a><a href="https://code.csdn.net/snippets/265470" title="在CODE上查看代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片"></a><a href="https://code.csdn.net/snippets/265470/fork" title="派生到我的代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片"></a>1. @Hint(“hint1”)  </p>
+<ol>
+<li>@Hint(“hint2”)  </li>
+<li>class Person {}  </li>
+</ol>
+<p>在第二种情景下，java编译器隐式的在该注解使用中加入@Hints。这种后期处理在通过反射获取注解是十分重要的。<strong>[java]</strong> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="view plain" target="_blank" rel="external">view plain</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="copy" target="_blank" rel="external">copy</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="print" target="_blank" rel="external">print</a><a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="?" target="_blank" rel="external">?</a><a href="https://code.csdn.net/snippets/265470" title="在CODE上查看代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片"></a><a href="https://code.csdn.net/snippets/265470/fork" title="派生到我的代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片"></a>1. Hint hint = Person.class.getAnnotation(Hint.class);  </p>
+<ol>
+<li>System.out.println(hint);                   // null  </li>
+<li></li>
+<li>Hints hints1 = Person.class.getAnnotation(Hints.class);  </li>
+<li>System.out.println(hints1.value().length);  // 2  </li>
+<li></li>
+<li>Hint[] hints2 = Person.class.getAnnotationsByType(Hint.class);  </li>
+<li>System.out.println(hints2.length);          // 2  </li>
+</ol>
+<p>虽然我们从来没有在类Person上声明@Hints注解，但该信息还是可以通过getAnnotation(Hint.class)获得。　此外，getAnnotationsByType是一种更加便利的方法，它可以保证我们访问所有使用的@Hint注解。<br>此外，Java8中注解的使用范围扩展到两种新的类型：<strong>[java]</strong> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="view plain" target="_blank" rel="external">view plain</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="copy" target="_blank" rel="external">copy</a> <a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="print" target="_blank" rel="external">print</a><a href="http://blog.csdn.net/jessenpan/article/details/22580339#" title="?" target="_blank" rel="external">?</a><a href="https://code.csdn.net/snippets/265470" title="在CODE上查看代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片"></a><a href="https://code.csdn.net/snippets/265470/fork" title="派生到我的代码片" target="_blank" rel="external"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片"></a>1. @Target({ElementType.TYPE_PARAMETER, ElementType.TYPE_USE})  </p>
+<ol>
+<li>@interface MyAnnotation {}  </li>
+</ol>
+<p>总结我的Java8语言特性教程到此就结束了。此外还有很多新的内容需要阐述。去不去了解JDK8中的这些非常棒的特性取决于你，这些特性包括有Arrays.parallelSort，StampedLock，CompletableFuture  —即使列举名字也有很多了。我已经在网站上把这些特性都列举出来了，你可以去哪里看看。<br><a href="http://winterbe.com/projects/java8-explorer/" target="_blank" rel="external">Java SE 8 API Explorer</a><br>原文地址: <a href="http://winterbe.com/posts/2014/03/16/java-8-tutorial/" target="_blank" rel="external">http://winterbe.com/posts/2014/03/16/java-8-tutorial/</a></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2016/03/16/java8新特性介绍/">java8新特性介绍</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">offbye</a></p>
+        <p><span>发布时间:</span>2016-03-16, 18:30:00</p>
+        <p><span>最后更新:</span>2016-05-13, 00:40:03</p>
+
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2016/03/16/java8新特性介绍/" title="java8新特性介绍">http://offbye.com/2016/03/16/java8新特性介绍/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://offbye.com/2016/03/16/java8新特性介绍/　　作者: offbye" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+        
+        <p><span>CSDN原文:</span> <a href="http://blog.csdn.net/offbye/article/details/50907361" target="_blank" title="java8新特性介绍">http://blog.csdn.net/offbye/article/details/50907361</a> </p>
+        <p><span>CSDN PV:</span>961</p>
+        
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2016/03/28/What's new in Swift 2.2/">
+                    What&#39;s new in Swift 2.2
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/03/15/Swift异常处理：throw和rethrow/">
+                    Swift异常处理：throw和rethrow
+                </a>
+            </div>
+        
+    </nav>
+
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"java8新特性介绍　| offbye　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="2016/03/16/java8新特性介绍/" data-title="java8新特性介绍" data-url="http://offbye.com/2016/03/16/java8新特性介绍/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"offbye"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+    <!-- 多说公共JS代码 end -->
+</div>
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2016/03/28/What's new in Swift 2.2/" title="上一篇: What&#39;s new in Swift 2.2">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/03/15/Swift异常处理：throw和rethrow/" title="下一篇: Swift异常处理：throw和rethrow">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/05/12/YAML文件语法简介/">YAML文件语法简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/11/iOS-Sandbox-swift/">iOS App沙盒模型文件目录详解Swift版</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/11/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/06/iOS App沙盒模型文件目录详解Swift版/">iOS App沙盒模型文件目录详解Swift版</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/05/Swift iOS实现把PCM语音转成MP3格式/">Swift iOS实现把PCM语音转成MP3格式</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/04/RESTFUL API 安全设计/">RESTFUL API 安全设计</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/04/关于 Token，你应该知道的十件事/">关于 Token，你应该知道的十件事</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/04/程序员的成长和代码行数的关系/">程序员的成长和代码行数的关系</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/04/从JavaAndroid到Swift iOS开发：语言与框架对比/">从JavaAndroid到Swift iOS开发：语言与框架对比</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/26/Android开发常用开源框架推荐/">Android开发常用开源框架推荐</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/22/Swift Modules for React Native/">Swift Modules for React Native</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/15/Android官方MVP架构示例项目解析/">Android官方MVP架构示例项目解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/15/使用swift开发Cordova插件/">使用swift开发Cordova插件</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/14/Swift语言中的@available 和 #available/">Swift语言中的@available 和</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/31/Android volley 使用OkHttp3.0/">Android volley 使用OkHttp3.0</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/28/What's new in Swift 2.2/">What's new in Swift 2.2</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/16/java8新特性介绍/">java8新特性介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/15/Swift异常处理：throw和rethrow/">Swift异常处理：throw和rethrow</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/14/Swift iOS- 手势检测详解/">Swift iOS- 手势检测详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/11/Swift化零为整：Reduce 详解/">Swift化零为整：Reduce 详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/11/Swift2.1关键字 @noescape介绍/">Swift2.1关键字 @noescape介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/11/理解Swift中map 和 flatMap对集合的作用/">理解Swift中map 和 flatMap对集合的作用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/09/移动端专用数据库Realm介绍/">移动端专用数据库Realm介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/09/安装Xcode插件包管理器Alcatraz报错解决办法/">安装Xcode插件包管理器Alcatraz报错解决办法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/09/Android最佳实践 —— 详细谈谈如何减小APK体积/">Android最佳实践 —— 详细谈谈如何减小APK体积</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/05/iOS开发如何通过UMeng的错误分析解决crash问题/">iOS开发如何通过UMeng的错误分析解决crash问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/04/常见移动设备的 CSS3 Media Query 整理（iPhoneiPadGalaxy）/">常见移动设备的 CSS3 Media Query 整理（iPhoneiPadGalaxy）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/04/我在MDCC 2015的演讲PPT《HTML5移动应用多端开发架构实践》分享/">我在MDCC 2015的演讲PPT《HTML5移动应用多端开发架构实践》分享</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/01/深入理解iOS开发中的BitCode功能/">深入理解iOS开发中的BitCode功能</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/01/iOS swift动画和特效专题/">iOS swift动画和特效专题</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/29/Swift iOS项目archive操作会报错误built without full bitcode解决方法/">Swift iOS项目archive操作会报错误built without full bitcode解决方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/26/GCD 和延时调用/">GCD 和延时调用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/26/Swift - 多线程实现方式（3） - Grand Central Dispatch（GCD）/">Swift - 多线程实现方式（3） - Grand Central Dispatch（GCD）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/25/iOS 9开发小技巧：LayoutGuide，Storyboard Reference/">iOS 9开发小技巧：LayoutGuide，Storyboard Reference</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/25/Storyboard的爱与恨/">Storyboard的爱与恨</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/25/Swift iOS tableView static cell动态计算高度/">Swift iOS tableView static cell动态计算高度</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/24/5 个顶级 Android 开源库/">5 个顶级 Android 开源库</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/19/Swift高阶函数介绍（闭包、Map、Filter、Reduce）/">Swift高阶函数介绍（闭包、Map、Filter、Reduce）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/18/iOS Swift判断代码运行在模拟器上/">iOS Swift判断代码运行在模拟器上</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/17/iOS 开发 UI 搭建心得（一）—— 驾驭 StoryBoard  代码示例：httpsgithub.comjohnluiSwift-On-iOSblobmasterDifferen/">iOS 开发 UI 搭建心得（一）—— 驾驭 StoryBoard  代码示例：httpsgithub.comjohnluiSwift-On-iOSblobmasterDifferen</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/16/使用命令行统计代码行数/">使用命令行统计代码行数</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/03/HTTP 2.0的那些事/">HTTP 2.0的那些事</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/02/浅谈 RxAndroid + Retrofit + Databinding/">浅谈 RxAndroid + Retrofit + Databinding</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/28/2016这些Android技术会很火/">2016这些Android技术会很火</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/27/使用CodePush实时更新 React Native 和 Cordova 应用/">使用CodePush实时更新 React Native 和 Cordova 应用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/20/理解Swift中Optional类型－有和无的哲学/">理解Swift中Optional类型－有和无的哲学</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/19/其实你不知道MultiDex到底有多坑/">其实你不知道MultiDex到底有多坑</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/19/Android MultiDex分包变形记/">Android MultiDex分包变形记</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/14/Swift iOS项目最佳实践汇总/">Swift iOS项目最佳实践汇总</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/11/饿了么移动APP的架构演进/">饿了么移动APP的架构演进</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/30/Android 开发最佳实践/">Android 开发最佳实践</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/29/RxAndroid和RxJava的资料分享/">RxAndroid和RxJava的资料分享</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/28/技术人如何才能不焦虑/">技术人如何才能不焦虑</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/26/云栖社区12篇实战经验所组成的“近战”系列分享/">云栖社区12篇实战经验所组成的“近战”系列分享</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/26/程序员晋升攻略/">程序员晋升攻略</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/25/Xcode7.2版本carthage包管理器兼容问题解决/">Xcode7.2版本carthage包管理器兼容问题解决</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/14/2015年Android开发新技术盘点/">2015年Android开发新技术盘点</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/10/Android中Touch事件分析--解决HorizontalScrollView滑动和按钮事件触发问题/">Android中Touch事件分析--解决HorizontalScrollView滑动和按钮事件触发问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/03/Android动态加载黑科技 动态创建Activity模式/">Android动态加载黑科技 动态创建Activity模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/01/Android注解支持Support Annotations详解/">Android注解支持Support Annotations详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/27/Android Studio 2.0 Instant Run即时运行功能实现分析/">Android Studio 2.0 Instant Run即时运行功能实现分析</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/25/Android应用性能剖析全攻略/">Android应用性能剖析全攻略</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/24/自动生成Android不同分辨率下的图片/">自动生成Android不同分辨率下的图片</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/24/Android Studio 2.0 Preview发布,附下载地址，支持即时运行和GPU Profiler/">Android Studio 2.0 Preview发布,附下载地址，支持即时运行和GPU Profiler</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/17/React Native Android端10个最常见问题/">React Native Android端10个最常见问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/13/使用Javascript ES6进行开发的思考/">使用Javascript ES6进行开发的思考</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/13/安装包立减1M--微信Android资源混淆打包工具/">安装包立减1M--微信Android资源混淆打包工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/11/Ionic 2.0 Alpha版本发布了/">Ionic 2.0 Alpha版本发布了</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/10/美团Android资源混淆保护实践/">美团Android资源混淆保护实践</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/10/Android开发中的armeabi和armeabi-v7a介绍/">Android开发中的armeabi和armeabi-v7a介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/06/在CordovaActivity中添加原生View组件/">在CordovaActivity中添加原生View组件</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/05/技术贴：开源飞控那些事/">技术贴：开源飞控那些事</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/03/Android常用开源框架Proguard混淆解决方案/">Android常用开源框架Proguard混淆解决方案</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/03/美团Android DEX自动拆包及动态加载简介/">美团Android DEX自动拆包及动态加载简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/02/Google基于Dart的新移动开发框架Flutter介绍/">Google基于Dart的新移动开发框架Flutter介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/29/通过SharedPreferences实现进程间数据共享的问题详解/">通过SharedPreferences实现进程间数据共享的问题详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/26/Android修改TitleBar标题栏详解/">Android修改TitleBar标题栏详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/23/异步JavaScript的进化/">异步JavaScript的进化</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/21/Android Service创建USB HOST通信/">Android Service创建USB HOST通信</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/21/Android 热敏打印机打印二维码/">Android 热敏打印机打印二维码</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/13/基于webpack搭建前端工程解决方案探索/">基于webpack搭建前端工程解决方案探索</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/11/理解Flux架构/">理解Flux架构</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/09/Mac Yosemite系统 brew 报错的解决办法/">Mac Yosemite系统 brew 报错的解决办法</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/30/微信公众平台接入经验分享，纯干货/">微信公众平台接入经验分享，纯干货</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/28/使用Kotlin进行Android开发/">使用Kotlin进行Android开发</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/23/Umeng推送消息的坑，Android Service的androidexported详解/">Umeng推送消息的坑，Android Service的androidexported详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/22/自动生成Android屏幕适配的dimens.xml/">自动生成Android屏幕适配的dimens.xml</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/21/iOS9系统开始对企业发布App进行严格限制/">iOS9系统开始对企业发布App进行严格限制</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/16/sed 简明教程/">sed 简明教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/15/Gradle, 基于DSL的新一代Java构建工具/">Gradle, 基于DSL的新一代Java构建工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/15/Gradle常用命令和原理说明/">Gradle常用命令和原理说明</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/09/大势所趋！十大令人振奋的移动端APP设计趋势/">大势所趋！十大令人振奋的移动端APP设计趋势</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/02/Android微信智能心跳方案/">Android微信智能心跳方案</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/01/深入浅出学Spring Data JPA/">深入浅出学Spring Data JPA</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/29/在Mac上制作树莓派SD镜像/">在Mac上制作树莓派SD镜像</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/26/Git从远程的分支获取最新的版本到本地/">Git从远程的分支获取最新的版本到本地</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/25/Spring Data JPA 常用注解 @Query、@NamedQuery/">Spring Data JPA 常用注解 @Query、@NamedQuery</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/24/树莓派做 wifi 热点/">树莓派做 wifi 热点</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/23/树莓派把一个python脚本作为服务运行，配置开机自动启动/">树莓派把一个python脚本作为服务运行，配置开机自动启动</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/22/INSTALLING OPERATING SYSTEM IMAGES ON MAC OS/">INSTALLING OPERATING SYSTEM IMAGES ON MAC OS</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/18/基于Volley，Gson封装支持JWT无状态安全验证和数据防篡改的GsonRequest网络请求类/">基于Volley，Gson封装支持JWT无状态安全验证和数据防篡改的GsonRequest网络请求类</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/28/Python高效率编程的8条箴言/">Python高效率编程的8条箴言</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/28/如何使用Android Studio提高App质量/">如何使用Android Studio提高App质量</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/27/树莓派遥控船项目计划/">树莓派遥控船项目计划</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/24/树莓派的PWM脉宽调制功能介绍/">树莓派的PWM脉宽调制功能介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/23/python字符串连接/">python字符串连接</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/23/Android Studio上方便使用butterknife注解框架的偷懒插件Android Butterknife Zelezny/">Android Studio上方便使用butterknife注解框架的偷懒插件Android Butterknife Zelezny</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/23/Python的Lambda函数与排序/">Python的Lambda函数与排序</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/22/TypeScript 1.5正式发布，此版本是Visual Studio 2015更新的一部分，支持大量ES6新特性/">TypeScript 1.5正式发布，此版本是Visual Studio 2015更新的一部分，支持大量ES6新特性</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/20/iWeb峰会（HTML5峰会）2015年7月19日上海站会后感想/">iWeb峰会（HTML5峰会）2015年7月19日上海站会后感想</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/16/说说React,Flux,Reray和GraghQL/">说说React,Flux,Reray和GraghQL</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/16/ReactEurope Conf 参会感想/">ReactEurope Conf 参会感想</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/15/Android Studio Gradle项目中添加JNI so文件/">Android Studio Gradle项目中添加JNI so文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/15/mac os使用lsusb命令和连接未知的Android设备/">mac os使用lsusb命令和连接未知的Android设备</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/15/HTML5 HybridApp开发上手指引/">HTML5 HybridApp开发上手指引</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/15/Facebook的Web开发三板斧：React.js、Relay和GraphQL/">Facebook的Web开发三板斧：React.js、Relay和GraphQL</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/15/Flux再进化：Introducing Relay and GraphQL（译）/">Flux再进化：Introducing Relay and GraphQL（译）</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/14/为什么要造轮子？/">为什么要造轮子？</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/10/那些争议最大的编程观点/">那些争议最大的编程观点</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/10/Angular vs. React - the tie breaker/">Angular vs. React - the tie breaker</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/09/android：ToolBar详解（手把手教程）/">android：ToolBar详解（手把手教程）</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/08/Android Support Library更新到v22.1之AppCompat新特性/">Android Support Library更新到v22.1之AppCompat新特性</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/08/用Material Design设计App谷歌官方文档翻译/">用Material Design设计App谷歌官方文档翻译</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/07/Pure Android/">Pure Android</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/07/Material Design in Action — 哔哩哔哩动画 Android 客户端/">Material Design in Action — 哔哩哔哩动画 Android 客户端</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/07/Android Studio 批量打包，apk重命名/">Android Studio 批量打包，apk重命名</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/06/Android Studio Android studio 多渠道打包超简洁版/">Android Studio Android studio 多渠道打包超简洁版</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/06/Eclipse Android项目导入Android Studio时常见的编译错误及解决办法/">Eclipse Android项目导入Android Studio时常见的编译错误及解决办法</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/01/HTML5本地存储——IndexedDB（一：基本使用）/">HTML5本地存储——IndexedDB（一：基本使用）</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/15/SASS基础——十个常见的Mixins/">SASS基础——十个常见的Mixins</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/15/python 中的mixin特性/">python 中的mixin特性</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/10/Mac上通过Linux命令行批量查找和替换文本/">Mac上通过Linux命令行批量查找和替换文本</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/09/产品经理经常犯的十大顶级错误/">产品经理经常犯的十大顶级错误</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/09/ES6新特性概览/">ES6新特性概览</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/09/ES6 JavaScript Promise的感性认知/">ES6 JavaScript Promise的感性认知</a></li><li class="post-list-item"><a class="post-list-link" href="/2009/12/07/Centos 5.3上Asterisk安装及配置/">Centos 5.3上Asterisk安装及配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2009/12/07/rsh服务配置文档/">rsh服务配置文档</a></li><li class="post-list-item"><a class="post-list-link" href="/2009/12/07/centos 5.3中用yum安装MPlayer/">centos 5.3中用yum安装MPlayer</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2015-2016 offbye
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >本站到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.1.22/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 9;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  
+  <title>Android应用性能剖析全攻略 | offbye</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Android应用性能剖析全攻略">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android应用性能剖析全攻略">
+<meta property="og:url" content="http://offbye.com/2015/11/25/Android应用性能剖析全攻略/index.html">
+<meta property="og:site_name" content="offbye">
+<meta property="og:description" content="Android应用性能剖析全攻略">
+<meta property="og:image" content="http://7u2scv.com1.z0.glb.clouddn.com/tcup.jpg">
+<meta property="og:image" content="http://7u2scv.com1.z0.glb.clouddn.com/tcperf/gpu-options.png">
+<meta property="og:image" content="http://7u2scv.com1.z0.glb.clouddn.com/tcperf/gpu-monitor.png">
+<meta property="og:image" content="http://7u2scv.com1.z0.glb.clouddn.com/tcperf/gfxinfo.png">
+<meta property="og:image" content="http://7u2scv.com1.z0.glb.clouddn.com/tcperf/gpu-onscreen.png">
+<meta property="og:image" content="http://7u2scv.com1.z0.glb.clouddn.com/tcperf/device-monitor.png">
+<meta property="og:image" content="http://7u2scv.com1.z0.glb.clouddn.com/tcperf/traceview-start.png">
+<meta property="og:image" content="http://7u2scv.com1.z0.glb.clouddn.com/tcperf/traceview-stop.png">
+<meta property="og:image" content="http://7u2scv.com1.z0.glb.clouddn.com/tcperf/traceview.png">
+<meta property="og:updated_time" content="2016-05-12T16:39:29.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android应用性能剖析全攻略">
+<meta name="twitter:description" content="Android应用性能剖析全攻略">
+<meta name="twitter:image" content="http://7u2scv.com1.z0.glb.clouddn.com/tcup.jpg">
+  
+    <link rel="alternative" href="/atom.xml" title="offbye" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+      <link href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css" rel="stylesheet">
+  
+  
+  
+      <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+      <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+  
+  <script src="//cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.9/clipboard.min.js"></script>
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false,
+          fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+          scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.0.9/scrollreveal.min.js"
+      }
+  </script>
+
+  
+      <script>
+          yiliaConfig.rootUrl = "/";
+      </script>
+  
+
+  
+  
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">offbye</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">关注移动架构，Android，HTML5，iOS技术前沿</p>
+        
+                
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:offbye@gmail.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/offbye" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="http://blog.csdn.net/offbye" title="CSDN"></a>
+                            
+                                <a class="fa StackOverflow" target="_blank" href="#offbye" title="StackOverflow"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sandbox/">Sandbox</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/YAML/">YAML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/swift/">swift</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注移动端</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">offbye</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">offbye</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">关注移动架构，Android，HTML5，iOS技术前沿</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:offbye@gmail.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/offbye" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="http://blog.csdn.net/offbye" title="CSDN"></a>
+                            
+                                <a class="fa StackOverflow" target="_blank" href="#offbye" title="StackOverflow"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-Android应用性能剖析全攻略" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/11/25/Android应用性能剖析全攻略/" class="article-date">
+      <time datetime="2015-11-25T09:16:00.000Z" itemprop="datePublished">2015-11-25</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Android应用性能剖析全攻略
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Android/">Android</a><a class="article-category-link" href="/categories/Android/性能/">性能</a>
+    </div>
+
+
+        
+
+        
+        <div style="display:block; clear:both;">
+          <span>CSDN原文:<a href="http://blog.csdn.net/offbye/article/details/50039647" target="_blank" title="Android应用性能剖析全攻略">http://blog.csdn.net/offbye/article/details/50039647</a> </span>
+          <span style="float:right;margin-right:1em"> CSDN阅读数:813</span>
+        </div>
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p> 性能是软件质量的一个重要方面，好的软件必须要在性能上达到一定的标准。对于Android应用程序来讲，更是如此，移动互联网的红海竞争，如果应用的性能差，肯定会缺少竞争力的，这里就来聊一聊应用开发中如何提升性能，以及在开发过程中如何处理性能问题。<br><a href="http://toughcoder.net/blog/2015/09/11/android-performance-profiling-made-easy/" target="_blank" rel="external"><img src="http://7u2scv.com1.z0.glb.clouddn.com/tcup.jpg" alt=""></a></p>
+<p>##性能的定义<br>对于Android应用程序来讲分为三个方面，一方面是软件整体表现上的性能，也就是能多快给用户想要的结果，比如新闻阅读类应用，这个性能就是当用户点一条新闻时，多快能把新闻内容展示给用户，这个通常取决于业务逻辑，网络，以及后台服务器的性能。<br>另外一方面就是UI性能，也就是所谓的流畅度，这个在移动应用上面有着更严重的影响，因为触摸和手势的原因，如果应用程序不流畅，会严重影响体验，相比如PC桌面软件会更严重。这个是我们通常所谓的性能，大多数情况下，以及网络上绝大多数文章都是针对于此。对于安卓应用来说要想达到流畅，或者说做动画时，列表滑动时不卡顿，那么帧率（FPS Frame per Second）要达到60这个也是我们在做性能优化时的一个衡量的标杆。<br>还有一方面就是更少的资源占用，包括内存，CPU，电池，磁盘，网络流量，服务器资源等等。这个也很重要，特别是内存，CPU和电池，前二个对于所有软件来说都是衡量性能的一个重要指标，电池则是移动应用特有的，特别是智能手机上面。<br>总之，性能是一个很大很大的话题，也是一个无止境的任务，适可而止，见好就收。虽我们都有着一颗工程师的心，都想把东西做到极致，但试问天下，又有谁真的能把所有的东西都做到最优呢？具体把性能做到什么程度，要看需要强烈与否。比如一个应用在生命初期，可能没有人关注性能。但假如已到百万，千万级别的时候，才考虑性能也是作死的节奏。即使是超级App，性能优化也要适可而止，</p>
+<p>##如何提升UI流畅度</p>
+<p>###造成UI不流畅的原因<br>要想让UI流畅，首先要了解一下造成不流畅的原因都有哪些：</p>
+<ul>
+<li>主线程做了费时操作，或者本不该在主线程中做的轻微逻辑，这不但会严重影响帧率，甚至还会触发ANR(Application Not Responding)</li>
+<li><p>布局过于复杂或者View层次太多<br>这个情况也是经常出现。无论是页面确实复杂，或者为了实现某些特殊的视觉效果（比如边框或者3D效果），结果就是一个非常复杂，层次深，View个数多的布局，最终结果就是渲染性能差。特别是对于列表的Cell，影响更加严重，都会造成滑动时的卡顿。</p>
+</li>
+<li><p>局部更新造成了整体布局的重绘<br>这里指的是，一个View层次中的某一个View需要刷新，但是却会触发整体页面的刷新，从而造成浪费。</p>
+</li>
+<li><p>整体布局的重绘被触发了多次<br>这通常出现在需要动画的场景，比如以改变View的布局（大小）的方式来实现动画，或者频繁的改变View的层次，比如频繁的addView和removeView。这都会不断的触发measure/onMeasure，layout/onLayout和View的重绘。</p>
+</li>
+<li><p>敏感方法里面做了太多不相干的事情<br>通常是View的一些关键的方法中onDraw, onMeasure, onLayout，特别是onDraw里面只应该做绘制相关的，连创建对象这种级别的事情都最好别做。当然，这个出现的情况比较少，毕竟需要直接自定义一个原始View的情况并不多见。</p>
+</li>
+<li><p>频繁的GC发生<br>无论是在主线程，还是worker线程，如果频繁的大量的创建对象，就会触发频繁的GC，GC会对所有的线程产生影响，对UI线程也是有影响。</p>
+</li>
+</ul>
+<p>90%的情况前四种情况是主因，把前四种情况解决了就无大碍了。而前四个中，前二个又是重灾区，通常情况处理了前二个就能解决不流畅的问题。<br>知道了原因，就可以对症下药了：</p>
+<p>###设计和编码时要考虑性能<br>性能是设计和编码时必须要考虑的一个因素，跟程序的正确性，robustness和可维护性同样重要。而不是应用已经上线了很久后才开始考虑性能问题。但是我们活在现实生活中，实际的情况往往都是当应用已经上线了并且稳定了之后才开始做，而且情况往往都是代码都还不是你写的。设计和编码时不考虑性能的原因一般有：</p>
+<ul>
+<li>开发人员水平不足，意识不到性能问题，或者不知道如何写出高性能的代码</li>
+<li>需求太多，或者需求经常变动，没时间考虑别的</li>
+</ul>
+<p>总之，无论如何，在设计和编码时不考虑性能是很令人烦恼的事情，但亡羊补牢，虽有些无奈但还是有益的。</p>
+<p>###简单设计做更少的事情<br>这似乎是废话，少做事情，或者不做事情效率自然高，性能肯定能上去。页面布局尽可能简单，功能尽可能简单，能做一遍的事情不要做二遍，没必要的准备工作不做，等等。但是现实情况往往是应用越做越复杂，越做越功能越多，页面越来越复杂，这是多种元素决定的，或许是竞争的需要，或者是产品这么定义的，或者是老板就喜欢这样。<br>但无论怎么样，对于开发人员来讲，当实现功能时要本着简单的原则，这说来容易，但是当代码出来时却千差万别，明明很简单的逻辑，有人却能代码写的巨复杂，一坨一坨的。虽然可能说你看得懂他的设计图，看得懂他的流程图看得懂他的类图等等，但是你却不一定看得他的懂代码。<br>这里扯一点题外话，写代码绝对是衡量一个程序员的重要指标，虽然不能做为全部，但是至少应该占50%。所以如果面试时看不到应聘者近一二个月的代码，或者不让其当场写代码的话，面试可以认定是失败的。尽管他可能是BAT出身，尽管他可能做过（维护）过顶级App，但是很可能他写出的代码都跟翔一样，一坨一坨的，完全看不懂写的是啥玩意儿。孤认为，面试时最好花一天或者一个下午时间，让应聘者在近似真实的环境中写代码，或者是一个小功能，或者是一个小项目，或是修改一个bug，最好还是坐在他旁边，与其一起工作，就好像平日里你跟同事一起工作一样，这非常有效果，也很能看出一个人的水平，而且你聘他来后也是要这样子工作的。光在那里Bla bla的问答，连他说的是真是假都难以分辨，而且世上事永远都是说起来容易做起来难，我们都见过很多人Blabla就会说，就会吹，不会做事情，或者干起事情跟小孩子一样，也有很多人实干型的，会做事，能把事情做好，但就是说不出，或者非常不愿意在别人面前blabla。然并卵。。。。蛋扯远了</p>
+<p>###远离主线程（UI线程）<br>这似乎才是正题。<br>对于应用程序来说主线程是很重要的，因为主线程通常的作用是用于刷新用户界面（UI），与用户进行交互，是与用户接触最近的，因此也通常被称作UI线程。Android和iOS都是如此。想像一下，应用要想达到60FPS，也就是说一帧的绘制要在16ms内完成，你的布局又那么的复杂，一层套一层，每个View都要一遍遍的measure, layout, draw，就知道主线程有多么忙碌了，还能忍心再做其他事情吗？<br>那么，让应用流畅就变得很简单，在主线程中做最少的事情，但不能更少，它只做二件事情：</p>
+<ul>
+<li><p>UI(<a href="http://developer.android.com/reference/android/view/View.html" target="_blank" rel="external">View</a>)相关的事情<br>这个是平台框架的限制，必须遵守。</p>
+</li>
+<li><p>必须在主线程中做的事情<br>比如启动其他线程，必要的初始化等等。比如像AsyncTask是一定要在主线程中初始化的，否则会有Crash，具体可以看<a href="http://blog.csdn.net/hitlion2008/article/details/8194510" target="_blank" rel="external">这篇文章</a>的分析。</p>
+</li>
+</ul>
+<p>其他，所有事情，都应该放到其他线程中去。如果在设计和编码的时候能考虑到这二点，那么你的应用流畅至少不会卡。使用其他线程异步操作时一定要注意生命周期和上下文，也即当执行任务时生命周期是否还是活动的，或者所依赖的上下文是否已经变化了，不在了。</p>
+<p>###布局的优化</p>
+<p>####减少View的层次和数目，减化复杂布局<br>View的层次越少，数目越少，肯定渲染越快，这个常见的技巧有：</p>
+<ul>
+<li>删除没有用的View</li>
+<li>除去无必要的嵌套，比如当内部仅有一个View时，外面就没有必要再加一个ViewGroup了</li>
+<li>多使用<a href="http://developer.android.com/reference/android/widget/RelativeLayout.html" target="_blank" rel="external">RelativeLayout</a>。它能够随意的排版View，三维上的方位都可以搞定，所以对象像列表的Cell之类的，一个RelativeLayout基本上就可以搞定。</li>
+<li><a href="http://toughcoder.net/blog/2015/05/20/android-layout-trick-drawable-of-textview/" target="_blank" rel="external">用TextView的drawable属性来组合图片+文字</a></li>
+<li>用merge来减少层次</li>
+<li>对于某些情况才用到的View，就使用<a href="http://blog.csdn.net/hitlion2008/article/details/6737537" target="_blank" rel="external">ViewStub</a>，然后在需要显示的时候再inflate。也就是所谓的延时和按需渲染</li>
+<li>尽量不要用背景图片，特别整个Activity大小的背景，费内存，占资源</li>
+<li>尽可能用矢量图形，比如颜色，drawable，shape，icon font等等</li>
+</ul>
+<p>减少View的层次和数目能显著提高帧率。曾经有一个列表，列表不复杂，左边一个TextView，右边有三个也是TextView，但是在添加的时候在外面又包了一层TextView，布局就变成了：<br>    1<br>    2<br>    3</p>
+<pre><code>&lt;LinearLayout....&gt;&lt;TextView/&gt;&lt;/LinearLayout&gt;
+</code></pre><p>虽然可能这不起眼的多加了一个LinearLayout，但是别忘记了，这是在List中，一屏会显示10多行，每一行多3个View，加起来就是30多个View啊！一次多绘制30多个View是什么概念？<br>对于布局的优化可以多看看lint的输出Warning，它对于无用的View，没必要的嵌套，以及优化建议都能准确的给出提示。</p>
+<p>####当局部更新时不要触发整体重绘<br>比如一个坨复杂布局中，仅需要更新一个图标时，就直接更新它所属的ImageView就好；再如，有CheckBox选中状态的列表，点击时，就只更新具体的列表的具体的CheckBox就可以了，而不是改变数据，然后notifyDataSetChanged。<br>这里需要，首先，不要故意的去触发整体刷新（除非非常的有必要，比如多个View都需要刷新数据时）；另外，就是要小心防止触发整体刷新的坑，因为某些原因，即使小心的更新局部也会造成整体的刷新。</p>
+<p>####避免频繁的触发整体的重绘<br>千万不要直接改变View的大小的方式来做动画，或者在做动画的同时改变View的布局，更不要添加或者移除View，这都会直接触发整体的重绘。</p>
+<p>####避免在onDraw的时候做额外的事情<br>如果是自定义的View就要注意这个事情，在onDraw的时候不要去new对象或者做其他不相干的事情，即使这些操作在UI线程中作也毫不费时的。</p>
+<p>####列表类的优化<br>对于列表（List和Grid）优化除了上面提到的，还要注意使用组件传回来的convertView以及ViewHolder。convertView可以复用View对象，避免inflate过多的View。ViewHolder模式主要是减少findViewById的调用。</p>
+<p>####把界面设计的尽可能简单<br>大道至简，简约是最优秀的用户体验，没有之一，所以产品汪们，不要把页面搞的太复杂，会导致不好用：用户不会用，和渲染性能差。</p>
+<p>####写布局时要考虑到渲染性能<br>这是非常重要的，再牛B的方法和技巧，如果你不鸟，或者不用都木有卵用，如果你心系性能，必然会有所思，有所为，然后渲染性能就所升。</p>
+<p>###及时反馈给用户<br>这实际上不是真正的流畅，而是给用户感觉流畅，避免用户认为应用假死。比如当做一些费时操作的时候，是放在了工作线程中，但是主线程也却没事情做，应用流畅不卡顿，但在用户看来却是无意义的，这时可以用一些动画，进度等等及时反馈给用户程序当前的状态。<br>另外，当做费时操作的时候也要及时终止并反馈，程序可能会有异常情况或者错误情况，都是需要处理的，比如从网络加载数据，可能会有无网络，或者网络异常，或者服务器返回异常，那么要尽早失败。比如是不是可以在任务启动前先判断网络状态，而不是照常发请求，网络返回异常了，那么正常情况时的结果处理就不要做了，等等。<br>说到这里，不得不讲一下代码的编写原则：先检查异常情况，尽早退出，而不是层层if，举个例子：<br>    1<br>    2<br>    3<br>    4<br>    5<br>    6<br>    7<br>    8<br>    9<br>    10<br>    11<br>    12<br>    13<br>    14<br>    15<br>    16<br>    17<br>    18<br>    19<br>    20<br>    21<br>    22</p>
+<pre><code>DatafetchNewsDetail(Stringurl){if(urlisinvalid){returnempty;}if(nonetworks){returnempty;}if(someotherbadconditions){returnempty;}sendrequset;if(responsecodenot200){return;}if(noresponse){return;}if(parseresponsefailed){return;}returnparsedata;}
+</code></pre><p>而不是这样：<br>    1<br>    2<br>    3<br>    4<br>    5<br>    6<br>    7<br>    8<br>    9<br>    10</p>
+<pre><code>// Ugly code, DO NOT do thisDatafetchNewsDetail(Stringurl){if(urlvalid){if(hasnetworks){if(responsecode200){if....}}}}
+</code></pre><p>##流畅度剖析工具</p>
+<p>###流畅度定性体验<br>那么如何测试或者衡量我们应用是否流畅呢？ 首先就是自己体验，快速滑动，看看是否能感觉到卡顿，或者页面闪烁。<br><img src="http://7u2scv.com1.z0.glb.clouddn.com/tcperf/gpu-options.png" alt=""></p>
+<p>###借助开发者工具来感受<br>开发者工具有很多选项可以帮助开发者来测量，比如调试过度绘制，显示GPU更新等。通过这些可以看出不必要的UI刷新。<br>比如开发者选项里有一个”硬件加速渲染“，里面有一个“调试GPU过度绘制”，这个会在屏幕上以颜色来区分overdraw（过度绘制，也就是进行了不必要的绘制）的严重重度：</p>
+<ul>
+<li>蓝色 1 倍overdraw</li>
+<li>绿色 2 倍overdraw</li>
+<li>红色 3 倍overdraw</li>
+<li>紫色 4 倍overdraw</li>
+</ul>
+<p>总之，颜色越深，证明做了过多的不必要的绘制(overdraw).什么又叫过度绘制呢(overdraw)比如一个列表，如果每个Item都有背景色，那么List本身实际上是不需要背景色的，比如子View占满了父View，那么父View不用画背景，等等。对于不可见的元素，就不要运行绘制，这是减少overdraw的方法。<br><img src="http://7u2scv.com1.z0.glb.clouddn.com/tcperf/gpu-monitor.png" alt=""><br>在开发者选项面有一个是“监控”，里面有几个：</p>
+<ul>
+<li>启用严格模式</li>
+<li>显示CPU使用情况</li>
+<li>GPU呈现模式分析</li>
+<li>启用OpenGL跟踪</li>
+</ul>
+<p>特别是第3个“GPU使用情况”，它是系统在GPU渲染时加入一些分析，以呈现UI渲染的性能，它有三个选项：</p>
+<ul>
+<li>关闭</li>
+<li>在屏幕上显示为条形</li>
+<li>在adb shell dumpsys gfxinfo中</li>
+</ul>
+<p>其实，它的数据是一样的，只不过一个是在命令行把raw data输出，一个是在手机屏幕以图表方式展示。后面会详细介绍这个。</p>
+<p>###adb shell dumpsys gfxinfo<br>这个能收集GPU渲染时的一些数据，从而反映应用UI渲染的性能信息。<br>从这个命令的输出能看出二个信息一个帧的数量，另一个就是每一帧绘制的情况。 应用比较卡，表现出来就是丢帧，也就是有些帧太慢了，赶不上火车了，不得不丢掉，从而页面会卡顿。正常来讲，即使是简单的布局，用这个命令抓也至少能抓到20+帧的数据，如果少了，或者很少，只有几帧，就就证明你在主线程中干了太多其他的事情，也就是说主线程被block了。这时就要好好看看源码，主线程中都干了啥，哪里可能会耗时，把非UI操作都放到工作线程中去。<br><img src="http://7u2scv.com1.z0.glb.clouddn.com/tcperf/gfxinfo.png" alt=""><br>对于每一帧的数据，体现着绘制这一帧所花的时间：</p>
+<ul>
+<li>Draw是创建列表所需要的时间，表示运行绘图方法用了多长时间，比如View.onDraw()所花的时间；</li>
+<li>Prepare在5.0版本加入了这一列数据的显示</li>
+<li>Process是Android 2D引擎渲染显示列表(DisplayList)所需要的时间。页面上的View越多，层次越深，就会有越多的绘制命令需要执行，这个值会越大。</li>
+<li>Execute是把一帧数据送到屏幕上排版显示的时间，这个值通常会比较小，且在应用层无法直接控制，换句话说，这个时间是无法优化的。</li>
+</ul>
+<p>为了流畅，每一帧的绘制时间应该少于16ms，因为应用要想流畅要达到60FPS，算下来就是一帧不能超过16ms，但这个并不是死规定，不是说某一帧超过，应用就会卡，就会慢，而是说几十帧的平均值或者90%的帧应该在16ms以内。<br>这个方法是针对每个ViewRootImpl的统计数据。ViewRootImpl对象就是一个View的根元素，通常情况下一个Activity仅有一个ViewRootImpl对象。需要注意的是Dialog也会有一个ViewRootImpl，所以当有Dialog时，你会看到二个ViewRootImpl的统计数据。<br>还有需要注意的是，如果使用了SurfaceView（比如GLSurfaceView)，因为它不是使用常规View的渲染方法来渲染的，它有自己的线程和渲染方式，所以这个方法是抓不到SurfaceView的渲染性能的。<br><img src="http://7u2scv.com1.z0.glb.clouddn.com/tcperf/gpu-onscreen.png" alt=""><br>在屏幕显示，则会在屏幕上面以柱状图的方式实时显示UI每一帧渲染的性能，可以看到一条绿色的线，这个就是16ms。柱状图中几种颜色所代码的意义分别是</p>
+<p>###traceview<br>这是一个十分强大的功能，能得到某一时间段内，进程内的时序执行情况，具体到能体现出所有线程的所有方法执行所花的CPU时间和实际时间，并且还能看出包含子调用和不包含的情况。</p>
+<p>####启用方法<br>在Android Studio中点击Android Device Monitor或者直接运行monitor (位于SDK/tools/），选择某一进程，然后点击，开始录制，再点击结束，就会出现。<br><img src="http://7u2scv.com1.z0.glb.clouddn.com/tcperf/device-monitor.png" alt=""><br><img src="http://7u2scv.com1.z0.glb.clouddn.com/tcperf/traceview-start.png" alt=""><br><img src="http://7u2scv.com1.z0.glb.clouddn.com/tcperf/traceview-stop.png" alt=""></p>
+<p>####如何分析<br>颜色越深代码花的时间越多。<br><img src="http://7u2scv.com1.z0.glb.clouddn.com/tcperf/traceview.png" alt=""><br>主要指标有：</p>
+<ul>
+<li>CPU time 某个方法占用的CPU时间</li>
+<li>Real time 某个方法运行的真实时间</li>
+<li>CPU time/call - 某方法CPU时间与调用次数比</li>
+</ul>
+<p>还有二个前缀：</p>
+<ul>
+<li>Incl - 这是Inclusive简写，意思就是包含方法里面的子调用</li>
+<li>Excl - 这个是Exclusive的简写，意思方法本身，不包含子调用</li>
+</ul>
+<p>通过这个可以分析出哪些方法比较耗时。</p>
+<p>###systrace<br><a href="http://developer.android.com/tools/help/systrace.html" target="_blank" rel="external">systrace</a>可以查看出进程的执行情况，不单单是你的应用进程，也能看到系统进程的执行情况，能够以时间线的形式来展示进程中各线程的执行情况。</p>
+<p>####如何使用<br>根据系统版本的不同使用方法略有不同：</p>
+<ul>
+<li>Android 4.3及以上系统</li>
+</ul>
+<ol>
+<li>确保打开了ADB调试模式</li>
+<li><p>执行以下命令</p>
+<p> $ cd android-sdk/platform-tools/systrace<br> $ python systrace.py –time=10 -o mynewtrace.html sched gfx view wm</p>
+</li>
+</ol>
+<p>输出的mynewtrace.html文件就是带有trace的结果，用浏览器打开查看即可。</p>
+<ul>
+<li>Android 4.2及以下系统</li>
+</ul>
+<ol>
+<li>打开ADB调试模式</li>
+<li>开发者选项中-&gt;监控-&gt;启用跟踪中选择想要查看的类型</li>
+<li><p>执行命令</p>
+<p>   $ python systrace.py –cpu-freq –cpu-load –time=10 -o mytracefile.html</p>
+</li>
+</ol>
+<p>更多的systrace命令的使用方法可以参考<a href="http://developer.android.com/tools/help/systrace.html" target="_blank" rel="external">官方文档</a>。</p>
+<p>####如何分析结果<br>systrace命令得到的结果是一个HTML文件，用浏览器打开即可.<br>基本操作：w 放大；s 缩小; a 向左移动；s 向右移动<br>从中可以看出帧绘制的信息，通常每一帧应该小于16.6ms，为绿色。对于有问题的，比如delay或者绘制时间长的，会以黄色和红色标注出来，并且在顶部会有Alert。点击帧F和Alert可以看到具体的详细信息，以及系统自动分析出来的可能的原因。  </p>
+<p>###hierarchyview<br>这个工具很明显就是用来调试布局的，它能以可视化的方式展示View的层次结构，顺带显示每一层View的渲染速度。运行方法是找到SDK/tools/运行hierarchyviewer.<br>注意：默认情况下只有调试的ROM（build with eng)才能抓到View的层次信息（否则，应用的页面就很容易被破解了），对于可控制源码的可以用<a href="https://github.com/romainguy/ViewServer" target="_blank" rel="external">开源库</a>来解决这个问题。</p>
+<p>###代码层次剖析打点<br>这个要对代码熟悉后可以进行，对于怀疑执行较慢的代码加上时间打点（System.currentTimeMillis())来确定其执行所花的时间。也就是说在编码的时候要有意识，对于持有怀疑态度的方法，要时不时的打时间点，以看其是否能放在主线程中。</p>
+<p>###打开StrictMode<br>这是一个开发者工具，能够帮助开发者检测到不经意间做的一些违反平台开发原则的事情，比如在主线程中做了IO操作或者主线程中操作网络等等。时至今日它能检测的远不止这些，还能检测主线程中的比较慢的方法调用，还有检测Dialog的泄露(Dialog未关闭，Activity就退出了），Activity的泄露以及未正确关闭的对象(Cursor, Binder)等。总之，它能帮助你减少因为代码写法不规范而造成的问题。详细的如何使用可以<a href="http://developer.android.com/reference/android/os/StrictMode.html" target="_blank" rel="external">参考文档</a>。</p>
+<p>##如何提升程序性能<br>这个比较难，比如读取大文件必然耗时，从服务器上取数据肯定慢（比从本地读），但是聪明的人类还是有方法做的更好的：</p>
+<p>####把业务逻辑弄简单点<br>这个就不废话了，代码搬运工们没有太多的话语权。但是对于能控制的部分要做好，比如尽早失败，不重复等等。</p>
+<p>####多用缓存<br>缓存绝对是计算机技术一个非常重要的东西，发明这东西的人肯定是个天才。缓存无处不在，缓存的目的就是提高性能，加快访问速度，衡量缓存好坏就看命中率。CPU有三层缓存来提升运算性能。软件中缓存也是提升性能的一个非常重要的手段。<br>比如对于不太常变化的数据，从网络成功获取后就要缓存在本地；再如，对于经常访问的本地数据也要在内存中有缓存；用到的图片比较多的应用，要做内存和本地二级缓存，以减少图片的加载时间（比如<a href="https://github.com/nostra13/Android-Universal-Image-Loader" target="_blank" rel="external">UIL</a>的做法）；<br>常见的缓存工具有内存级的<a href="http://developer.android.com/reference/android/util/LruCache.html" target="_blank" rel="external">LruCache</a>以及磁盘级的<a href="https://developer.android.com/samples/DisplayingBitmaps/src/com.example.android.displayingbitmaps/util/DiskLruCache.html" target="_blank" rel="external">DiskLruCache</a>，教程可以参考<a href="http://blog.csdn.net/guolin_blog/article/details/28863651" target="_blank" rel="external">这里</a>。</p>
+<p>####延迟加载和按需加载<br>这个就容易理解一些，比如三层页面才用到的数据，你没必要一启动在第一级页面就加载它（当然，也可能有这样的情况，比如数据有依赖时）。<br>按需要加载就是，第一个页应该只加它需要的数据，而不是一个请求，把应用所有数据都拉下来。</p>
+<p>####尽早发出异步请求<br>对于像异步从网络获取数据，或者异步IO加载数据的，或者做一些费时的异步初始化等，可以尽早的把请求发送出去，在等待结果的同时再做其他事情，这样能保证结果最快的呈现出来。</p>
+<p>####使用工具（开源库）<br>这个就是，世上总有人比你聪明，他们的方法更巧妙，更高效，为什么不用呢？比如图片加载，比如网络库，比如JSON解析等等，那么多优秀的人做的优秀的东西不用太浪费了。要感谢那些优秀的开发者，总能找到合适的库，不但好用，而且开源，既然完成任务，又能学习，还有比这更好的事情么？<br>可以到<a href="https://github.com/wasabeef/awesome-android-ui" target="_blank" rel="external">这里</a>和<a href="http://alamkanak.github.io/android-libraries-and-resources/" target="_blank" rel="external">这里</a>来找需要的开源库。</p>
+<p>##如何占用更少资源<br>对于资源的使用首页的原则就是，尽量少用或者不用，听上去是废话，其实不然，有一些具体的可实践的准则可供参考。其实这里面的话题每一个都可以扩展成一整篇文章来探讨，这里仅列出一些要点，不作细致讨论。</p>
+<p>###内存</p>
+<p>####尽可能的少创建对象<br>主要的原则就是尽可能的复用，比如像对话框，或者Toast之类的都是可以复用的。再如尽可能的把创建对象放在循环外面等等。</p>
+<p>####尽量缩短对象的生命周期<br>比如能在一个调用链中传递的对象就没有必要非声明为成员变量。在方法尾部使用的对象就别在一进入方法时就创建。用户事件触发的逻辑就没有必要一进入页面时就创建。当onResume后才会使用到的对象就没有必要在onCreate里创建等等。</p>
+<p>####避免内存泄露<br>所谓内存泄露就是内存在不再使用之后仍没有得到释放，一般情况下它是无害的，无非也就多用点内存，现在设备内存越来越大，空着不用也浪费，但是内存总有用尽的时候。对于Android，更是如此，每个应用（进程）有固定的内存配额（HeapSize），它是由系统ROM决定的，所以一旦有泄露，程序必定会因OOM（Out Of Memory Error)而崩溃（其实崩溃了也是好事，一是你会重视，二是进程退出了，重新启动后内存泄露会得到一定的缓解），特别是现在应用中的图片和视频等多媒体元素越来越多，这些东西本来就吃内存，再来点泄露，那么发生OOM的机率大大增加。<br>Android中最容易泄露的对象就是Activity，Activity对象由系统创建，生命周都是由系统来控制，我们只能发送请求， 不能强行干预。正常情况下的Activity对象在onDestroy（）之后是要被回收的，所以如果在onDestroy以后仍有其他生命周期更长的对象持有对Activity对象的引用的话，就会导致Activity的泄露。<br>而Android中很多系统API都是需要Context（少量的是需要Activity，比如Dialog），而Activity又是Context的一个实现，因此啊，很多人在很多时候都简单的把Activity对象直接传了过去，很多系统API的生命周期要比应用程序长的得多，这就是导致Activity对象泄露的原因。避免这种泄露很简单，就是尽可能传ApplicationContext，也就是说不要直接传Activity对象，而是传activity.getApplicationContext()。因为ApplicationContext一个应用只有一个，也就是说一个手机里只有一个，而且系统本身就会缓存它，所以长一点持有它也没关系。当然要视情况而定，比如像Dialog虽然是Context，但必须传Activity。</p>
+<p>####缓存对象，以避免复创建<br>比如像Dialog对象，可以缓存起来以避免每次都创建新的。<br>对于大量的缓存对象可以使用<a href="http://developer.android.com/reference/android/support/v4/util/LruCache.html" target="_blank" rel="external">LruCache</a>来管理。</p>
+<p>####对于缓存，尽量用WeakReference<br>特别是像Activity和Fragment以及Service等有固定生命周期，且生命周期又是由系统来控制的对象，最好加持有WeakReference。</p>
+<p>####监听onTrimMemory和onLowMemory，以采取措施<br>当系统内存吃紧的时候会向Activity发送通知，此时可以做一些措施，比如释放不用的资源，释放不用的对象，清空缓存等以缓解压力。</p>
+<p>####内存使用监测工具和分析方法<br>可以时不时的用监测工具来监测一下应用所消耗的内存，有这些方式：</p>
+<ul>
+<li>adb shell dumpsys meminfo</li>
+<li>Android Device Monitor - (其实就是早期的DDMS的进化版本)监测用的GUI工具，选择进程，然后update heap，就能实时看到heap使用情况</li>
+<li>AndroidStudio 已经集成了内存监测工具，可以实时看到内存的使用情况。</li>
+<li>MAT - Memory Analysis Tool它是Java的标准内存分析工具，安卓的dex不直接支持，但无妨，可先用monitor dump出prof文件，再用SDK中的工具hprof-conv进行转换后MAT就认识了。详细的可以参考<a href="http://androidperformance.com/2015/04/11/AndroidMemory-Usage-Of-MAT/" target="_blank" rel="external">这篇文章</a>。</li>
+<li>更多的Java内存使用建议可以参考<a href="http://androidperformance.com/2015/07/20/Android-Performance-Memory-Java/" target="_blank" rel="external">这篇文章</a>.</li>
+<li>学会查看GC输出的信息<br>Logcat日志中的GC信息也能非常直观看出内存的使用情况，而且看出性能上的原因，特别是UI卡顿，或者动画丢帧等情况。因为GC或者说频繁的GC发生，是会影响到应用性能，特别是会影响UI线程。GC的日志通常能看出触发GC的原因，释放掉了多少内存以及花了多少时间，具体的还跟虚拟机的版本不一样而不同，下面分别来详细的讲述：</li>
+<li>Dalvik<br>Dalvik虚拟机GC的日志格式如下：<blockquote>
+<p>dalvikvm: <reason> <freed>, <free memory="">, <time></time></free></freed></reason></p>
+</blockquote>
+</li>
+<li>reason – 触发GC的原因</li>
+<li>freed – 此次GC释放了多少内存</li>
+<li>free memory – 还有多少空闲的内存空间</li>
+<li>time – 此次GC花费多少时间</li>
+</ul>
+<p>其中reason又有几个：</p>
+<ul>
+<li>GC_CONCURRENT</li>
+<li>GC_MALLOC</li>
+<li>GC_EXPLICT</li>
+<li>GC_BEFORE_OOM</li>
+</ul>
+<ul>
+<li>ART<br>ART虚拟机的GC格式比Dalvik要详细一些：<blockquote>
+<p>I/art: <gc_reason><amount_freed>,<los_space_status>,<heap_stats>,<pause_time>,<total_time></total_time></pause_time></heap_stats></los_space_status></amount_freed></gc_reason></p>
+</blockquote>
+</li>
+</ul>
+<p>更多内容可以参考<a href="http://mp.weixin.qq.com/s?__biz=MzI1MTA1MzM2Nw==&amp;mid=400021278&amp;idx=1&amp;sn=0e971807eb0e9dcc1a81853189a092f3&amp;scene=0#rd" target="_blank" rel="external">这篇文章</a>。</p>
+<p>准确的来讲MAT是分析工具而非监测工具，也就是当发现有内存泄露的时候抓一段heap的使用情况用MAT来分析。其他几个都可以用来监测，也就是说看一下内存是否有问题，表现都是当操作时内存使用会有所增加，但当操作停止后内存应该迅速回落到操作前的水平。重复操作，内存使用不应该一直增加。如果长时间内存没回落或者内存一直增长，那么就很可能存在内存没有释放掉，就要抓heap然后用MAT分析，看是哪里出了问题。</p>
+<p>###CPU</p>
+<p>####减少忙等待<br>也就是说使用注册Listener（通俗的就是callback）方式来处理异步事件，而不是忙等待：<br>    1<br>    2<br>    3<br>    4</p>
+<pre><code>// DO NOT do thiswhile(somethingNotReady){sleep(100);}
+</code></pre><p>####合理使用线程<br>理性的仅在有必要的费时操作启动worker线程来完成。不要盲目的创建线程。线程多了，不一定性能就上去了，反尔会带来同步的无尽烦恼和不可捉摸的诡异偶现Bug，而且频繁的<a href="https://en.wikipedia.org/wiki/Context_switch" target="_blank" rel="external">Context Switch</a>也会带额外的损耗。<br>对于频繁执行的异步任务，最好使用<a href="http://developer.android.com/reference/java/util/concurrent/ThreadPoolExecutor.html" target="_blank" rel="external">线程池</a>，一方面可以复用资源，另一方面也方便控制。<br>对于长时间执行的任务，或者有Server用途的长时间工作线程，要使用<a href="http://developer.android.com/reference/android/os/Looper.html" target="_blank" rel="external">Looper</a>和消息队列<a href="http://developer.android.com/reference/android/os/Handler.html" target="_blank" rel="external">Handler</a>，详细的可以参考<a href="http://blog.csdn.net/hitlion2008/article/details/8194510" target="_blank" rel="external">这篇文章</a>。<br>仅当需要与UI有交互的情况下才考虑使用<a href="http://developer.android.com/reference/android/os/AsyncTask.html" target="_blank" rel="external">AsyncTask</a>，具体看<a href="http://blog.csdn.net/hitlion2008/article/details/7983449" target="_blank" rel="external">这篇文章</a>。</p>
+<p>####严格控制Service的生命周期，做到按需启动，及时停止<br>安卓的Service绝对要为手机的卡顿负一部分责任，系统放任Service，Service的控制权都在开发者手中，所以Service被滥用的特别严重。打开手机的设置，看看正在运行的应用程序，可以发现几乎所有的应用都有至少一个到二个左右的Service进程在运行。所以说安卓能不耗电么，能不卡么，能不耗流量么，跟水果手机咋比啊。<br>为了体现专业性，使用Service就要小心，当有需求的时候再启动（startService or bindService），当不用了就stopSelf or stopService。</p>
+<p>####监测工具<br>在Android Studio中有工具可以监测CPU的使用情况</p>
+<p>###磁盘</p>
+<p>####没必要存的东西就不要存<br>比如直接作用到UI层面的一些信息，显示完就不再使用了，这种数据是没有必要缓存到磁盘上的，至多在内存中缓存就可以了。</p>
+<p>####不是长期使用的就用临时文件，且是用标准API创建的临时文件<br>在同一个启动Session中，不同阶段都要使用的数据，可以用临时文件来存取，比如启动时，或者加载完时创建一个临时文件来存储，后面再使用。创建临时文件要用标准的File#createTempFile方法，而不是创建一个普通文件当作临时用。因为常常会忘记删除掉，即使有删除动作，但假如有异常出现，也会走不到删除。久而久之磁盘上的垃圾文件会越来越多。</p>
+<p>####如果不再需要就及时的删除文件<br>这个可以讲其实国内的甚至国外的绝大多数软件做的都不好，特别是机身存储和SD扩展卡上面的内容，因为这些区域是开放给所有App的，而且容量一般都很大，所以大家都很高兴的写，没有人去删除。这也是为什么市场上面的清理软件如此的受欢迎。作为良心开发者，还是自己擦自己的屁股吧！</p>
+<p>####定期整理数据库，删除旧数据<br>数据库也跟磁盘一样，长期使用后会有过期的数据，也是需要清理的。<br>另外，由于数据库不断的增删改，会导致数据库文件产生断层（文件大小不必要的大于实际内容），或者碎片，这时就需要<a href="https://sqlite.org/lang_vacuum.html" target="_blank" rel="external">execute(“vacuum”)</a>来重新生成数据库文件。当然这个比较有风险，而且耗时比较长，所以，只有当达到一定时间时才有必要这样做。</p>
+<p>####给APK瘦身<br>虽然，安卓应用程序发布较PC软件非常之容易，各大应用市场傻瓜式的一键式搞定，但是，用户仍然需要下载和安装，这期间APK的大小直接影响应用的成功安装率，小的APK文件，下载快，耗流量少，安装快，占用ROM也少，低端机型的ROM没那么大。所以APK的瘦身也是势在必行的一个优化指标。<br>一般来说有这么几个方面，可以去下功夫：</p>
+<ul>
+<li><p>删除无用资源<br>不再使用的图片，布局，库不但增加目标文件大小，而且会延长编译和打包的时间。不用了就删除，后面用的时候再还原。如果代码太多，或者不够熟悉搞不清该不该删除，可以参考<a href="http://developer.android.com/tools/debugging/improving-w-lint.html" target="_blank" rel="external">lint</a>的warning信息。</p>
+</li>
+<li><p>删除无用代码<br>这个比资源还严重，其实不用的代码对包增大没太大的作用，但是没有代码会严重影响项目的清析度和可维护性。比如新人来了，看一坨代码，最后发现半坨都是没用的代码，心中必有万个马在奔腾。不用了就删除，以后用到时可再还原，版本控制就是专门干这事的。</p>
+</li>
+<li><p>集中使用xhdpi（或者xxhdpi），对于确实适配有问题的资源再添加其他支持(hdpi)，一般情况下足够了</p>
+</li>
+<li>对于PNG图片，可以使用<a href="http://www.p-edge.nl/eng/products/pngshrink" target="_blank" rel="external">pngshrink</a>或者<a href="https://pngquant.org/" target="_blank" rel="external">pngquant</a>来进行一下无损压缩，之后再放入工程。视觉给的图都能达到50%~70%的压缩率。</li>
+<li>使用混淆器<br>一方面防小白反编译你的项目，虽然可能也没啥有技术含量的代码，但让人家那么容易就获得了你的全部源码，也还是挺闹心的（虽然，可能你的代码也都是Github+Google来的，哈哈哈）；另外一方面就是混淆，特别是Android中最流行的<a href="http://developer.android.com/tools/help/proguard.html" target="_blank" rel="external">ProGuard</a>，能显著的减少目标dex的大小。</li>
+</ul>
+<p>###网络流量<br>对于这点，其实优先级没那么高，现在Wifi覆盖越来越广，移动流量资费也越来越便宜，套餐越来越实惠，所以这些问题不必太纠结。</p>
+<p>####对于更新时间比较长的要缓存到本地存储，以避免重复请求<br>这个其实也是提升响应速度的一个方式，对于更新周期比较长，且时效性要求不高的数据可以缓存在本地。客户端每隔一定时间更新一次。</p>
+<p>####服务端主动推送更新通知<br>就是对于数据，客户端拿到后就缓存着，当数据有更新时服务端推送通知给客户端，然后客户端再来获取。这样即可以保证数据的更新到达，又可以减少不必要的网络请求。</p>
+<p>####差分获取更新数据<br>当已经拿到了数据后，想要更新时，可以让服务端返回数据的差异，而不是返回整个数据，客户端拿到数据后再做融合。</p>
+<p>####无论是请求还是服务器返回，没有用的参数不要带上</p>
+<p>####使用压缩技术请求加上”Accept-Encoding”=gzip, deflate<br>无论是上传文件还是下载文件尽可能压缩一下，即使不为了省流量，也能提升些响应速度。当然这个需要服务端配合，如果无法控制服务端就没有办法了。</p>
+<p>####对于要下载，事先判断网络类型，并给予提示，让用户来选择<br>相对于上面几点，这点倒是要注意，比如更新，或者下载插件，要判断网络类型，如果是移动网络，给出提示，让用户自己来判断。</p>
+<p>##参考资料</p>
+<ul>
+<li><a href="http://blog.chengyunfeng.com/?p=458" target="_blank" rel="external">Android 性能分析案例</a></li>
+<li><a href="http://coderrobin.com/2015/05/04/android%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/" target="_blank" rel="external">android性能优化笔记</a></li>
+<li><a href="http://blog.venmo.com/hf2t3h4x98p5e13z82pl8j66ngcmry/performance-tuning-on-android" target="_blank" rel="external">Performance Tuning On Android</a></li>
+<li><a href="http://android-performance.com/android/2014/04/24/android-strict-mode.html" target="_blank" rel="external">StrictMode 详解</a></li>
+<li><a href="http://droidyue.com/blog/2015/09/26/android-tuning-tool-strictmode/" target="_blank" rel="external">Android性能调优利器StrictMode</a></li>
+<li><a href="http://stackvoid.com/performance-tuning-on-android/" target="_blank" rel="external">Android App 性能优化实践</a></li>
+<li><a href="https://developer.android.com/tools/debugging/debugging-memory.html" target="_blank" rel="external">Investigating Your RAM Usage</a></li>
+<li><a href="http://blog.csdn.net/yanbober/article/details/48394201" target="_blank" rel="external">Android应用开发性能优化完全分析</a></li>
+<li><a href="http://www.cnblogs.com/coding-way/p/4294225.html" target="_blank" rel="external">HierarchyView的实现原理和Android设备无法使用HierarchyView的解决方法</a></li>
+</ul>
+<p>原文 <a href="http://toughcoder.net/blog/2015/09/11/android-performance-profiling-made-easy/" target="_blank" rel="external">http://toughcoder.net/blog/2015/09/11/android-performance-profiling-made-easy/</a></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2015/11/25/Android应用性能剖析全攻略/">Android应用性能剖析全攻略</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">offbye</a></p>
+        <p><span>发布时间:</span>2015-11-25, 17:16:00</p>
+        <p><span>最后更新:</span>2016-05-13, 00:39:29</p>
+
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2015/11/25/Android应用性能剖析全攻略/" title="Android应用性能剖析全攻略">http://offbye.com/2015/11/25/Android应用性能剖析全攻略/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://offbye.com/2015/11/25/Android应用性能剖析全攻略/　　作者: offbye" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+        
+        <p><span>CSDN原文:</span> <a href="http://blog.csdn.net/offbye/article/details/50039647" target="_blank" title="Android应用性能剖析全攻略">http://blog.csdn.net/offbye/article/details/50039647</a> </p>
+        <p><span>CSDN PV:</span>813</p>
+        
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2015/11/27/Android Studio 2.0 Instant Run即时运行功能实现分析/">
+                    Android Studio 2.0 Instant Run即时运行功能实现分析
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2015/11/24/自动生成Android不同分辨率下的图片/">
+                    自动生成Android不同分辨率下的图片
+                </a>
+            </div>
+        
+    </nav>
+
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"Android应用性能剖析全攻略　| offbye　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="2015/11/25/Android应用性能剖析全攻略/" data-title="Android应用性能剖析全攻略" data-url="http://offbye.com/2015/11/25/Android应用性能剖析全攻略/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"offbye"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+    <!-- 多说公共JS代码 end -->
+</div>
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2015/11/27/Android Studio 2.0 Instant Run即时运行功能实现分析/" title="上一篇: Android Studio 2.0 Instant Run即时运行功能实现分析">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2015/11/24/自动生成Android不同分辨率下的图片/" title="下一篇: 自动生成Android不同分辨率下的图片">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/05/12/YAML文件语法简介/">YAML文件语法简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/11/iOS-Sandbox-swift/">iOS App沙盒模型文件目录详解Swift版</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/11/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/06/iOS App沙盒模型文件目录详解Swift版/">iOS App沙盒模型文件目录详解Swift版</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/05/Swift iOS实现把PCM语音转成MP3格式/">Swift iOS实现把PCM语音转成MP3格式</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/04/RESTFUL API 安全设计/">RESTFUL API 安全设计</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/04/关于 Token，你应该知道的十件事/">关于 Token，你应该知道的十件事</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/04/程序员的成长和代码行数的关系/">程序员的成长和代码行数的关系</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/04/从JavaAndroid到Swift iOS开发：语言与框架对比/">从JavaAndroid到Swift iOS开发：语言与框架对比</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/26/Android开发常用开源框架推荐/">Android开发常用开源框架推荐</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/22/Swift Modules for React Native/">Swift Modules for React Native</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/15/Android官方MVP架构示例项目解析/">Android官方MVP架构示例项目解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/15/使用swift开发Cordova插件/">使用swift开发Cordova插件</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/14/Swift语言中的@available 和 #available/">Swift语言中的@available 和</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/31/Android volley 使用OkHttp3.0/">Android volley 使用OkHttp3.0</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/28/What's new in Swift 2.2/">What's new in Swift 2.2</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/16/java8新特性介绍/">java8新特性介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/15/Swift异常处理：throw和rethrow/">Swift异常处理：throw和rethrow</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/14/Swift iOS- 手势检测详解/">Swift iOS- 手势检测详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/11/Swift化零为整：Reduce 详解/">Swift化零为整：Reduce 详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/11/Swift2.1关键字 @noescape介绍/">Swift2.1关键字 @noescape介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/11/理解Swift中map 和 flatMap对集合的作用/">理解Swift中map 和 flatMap对集合的作用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/09/移动端专用数据库Realm介绍/">移动端专用数据库Realm介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/09/安装Xcode插件包管理器Alcatraz报错解决办法/">安装Xcode插件包管理器Alcatraz报错解决办法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/09/Android最佳实践 —— 详细谈谈如何减小APK体积/">Android最佳实践 —— 详细谈谈如何减小APK体积</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/05/iOS开发如何通过UMeng的错误分析解决crash问题/">iOS开发如何通过UMeng的错误分析解决crash问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/04/常见移动设备的 CSS3 Media Query 整理（iPhoneiPadGalaxy）/">常见移动设备的 CSS3 Media Query 整理（iPhoneiPadGalaxy）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/04/我在MDCC 2015的演讲PPT《HTML5移动应用多端开发架构实践》分享/">我在MDCC 2015的演讲PPT《HTML5移动应用多端开发架构实践》分享</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/01/深入理解iOS开发中的BitCode功能/">深入理解iOS开发中的BitCode功能</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/01/iOS swift动画和特效专题/">iOS swift动画和特效专题</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/29/Swift iOS项目archive操作会报错误built without full bitcode解决方法/">Swift iOS项目archive操作会报错误built without full bitcode解决方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/26/GCD 和延时调用/">GCD 和延时调用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/26/Swift - 多线程实现方式（3） - Grand Central Dispatch（GCD）/">Swift - 多线程实现方式（3） - Grand Central Dispatch（GCD）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/25/iOS 9开发小技巧：LayoutGuide，Storyboard Reference/">iOS 9开发小技巧：LayoutGuide，Storyboard Reference</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/25/Storyboard的爱与恨/">Storyboard的爱与恨</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/25/Swift iOS tableView static cell动态计算高度/">Swift iOS tableView static cell动态计算高度</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/24/5 个顶级 Android 开源库/">5 个顶级 Android 开源库</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/19/Swift高阶函数介绍（闭包、Map、Filter、Reduce）/">Swift高阶函数介绍（闭包、Map、Filter、Reduce）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/18/iOS Swift判断代码运行在模拟器上/">iOS Swift判断代码运行在模拟器上</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/17/iOS 开发 UI 搭建心得（一）—— 驾驭 StoryBoard  代码示例：httpsgithub.comjohnluiSwift-On-iOSblobmasterDifferen/">iOS 开发 UI 搭建心得（一）—— 驾驭 StoryBoard  代码示例：httpsgithub.comjohnluiSwift-On-iOSblobmasterDifferen</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/16/使用命令行统计代码行数/">使用命令行统计代码行数</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/03/HTTP 2.0的那些事/">HTTP 2.0的那些事</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/02/浅谈 RxAndroid + Retrofit + Databinding/">浅谈 RxAndroid + Retrofit + Databinding</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/28/2016这些Android技术会很火/">2016这些Android技术会很火</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/27/使用CodePush实时更新 React Native 和 Cordova 应用/">使用CodePush实时更新 React Native 和 Cordova 应用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/20/理解Swift中Optional类型－有和无的哲学/">理解Swift中Optional类型－有和无的哲学</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/19/其实你不知道MultiDex到底有多坑/">其实你不知道MultiDex到底有多坑</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/19/Android MultiDex分包变形记/">Android MultiDex分包变形记</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/14/Swift iOS项目最佳实践汇总/">Swift iOS项目最佳实践汇总</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/11/饿了么移动APP的架构演进/">饿了么移动APP的架构演进</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/30/Android 开发最佳实践/">Android 开发最佳实践</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/29/RxAndroid和RxJava的资料分享/">RxAndroid和RxJava的资料分享</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/28/技术人如何才能不焦虑/">技术人如何才能不焦虑</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/26/云栖社区12篇实战经验所组成的“近战”系列分享/">云栖社区12篇实战经验所组成的“近战”系列分享</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/26/程序员晋升攻略/">程序员晋升攻略</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/25/Xcode7.2版本carthage包管理器兼容问题解决/">Xcode7.2版本carthage包管理器兼容问题解决</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/14/2015年Android开发新技术盘点/">2015年Android开发新技术盘点</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/10/Android中Touch事件分析--解决HorizontalScrollView滑动和按钮事件触发问题/">Android中Touch事件分析--解决HorizontalScrollView滑动和按钮事件触发问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/03/Android动态加载黑科技 动态创建Activity模式/">Android动态加载黑科技 动态创建Activity模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/01/Android注解支持Support Annotations详解/">Android注解支持Support Annotations详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/27/Android Studio 2.0 Instant Run即时运行功能实现分析/">Android Studio 2.0 Instant Run即时运行功能实现分析</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/25/Android应用性能剖析全攻略/">Android应用性能剖析全攻略</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/24/自动生成Android不同分辨率下的图片/">自动生成Android不同分辨率下的图片</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/24/Android Studio 2.0 Preview发布,附下载地址，支持即时运行和GPU Profiler/">Android Studio 2.0 Preview发布,附下载地址，支持即时运行和GPU Profiler</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/17/React Native Android端10个最常见问题/">React Native Android端10个最常见问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/13/使用Javascript ES6进行开发的思考/">使用Javascript ES6进行开发的思考</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/13/安装包立减1M--微信Android资源混淆打包工具/">安装包立减1M--微信Android资源混淆打包工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/11/Ionic 2.0 Alpha版本发布了/">Ionic 2.0 Alpha版本发布了</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/10/美团Android资源混淆保护实践/">美团Android资源混淆保护实践</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/10/Android开发中的armeabi和armeabi-v7a介绍/">Android开发中的armeabi和armeabi-v7a介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/06/在CordovaActivity中添加原生View组件/">在CordovaActivity中添加原生View组件</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/05/技术贴：开源飞控那些事/">技术贴：开源飞控那些事</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/03/Android常用开源框架Proguard混淆解决方案/">Android常用开源框架Proguard混淆解决方案</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/03/美团Android DEX自动拆包及动态加载简介/">美团Android DEX自动拆包及动态加载简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/02/Google基于Dart的新移动开发框架Flutter介绍/">Google基于Dart的新移动开发框架Flutter介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/29/通过SharedPreferences实现进程间数据共享的问题详解/">通过SharedPreferences实现进程间数据共享的问题详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/26/Android修改TitleBar标题栏详解/">Android修改TitleBar标题栏详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/23/异步JavaScript的进化/">异步JavaScript的进化</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/21/Android Service创建USB HOST通信/">Android Service创建USB HOST通信</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/21/Android 热敏打印机打印二维码/">Android 热敏打印机打印二维码</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/13/基于webpack搭建前端工程解决方案探索/">基于webpack搭建前端工程解决方案探索</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/11/理解Flux架构/">理解Flux架构</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/09/Mac Yosemite系统 brew 报错的解决办法/">Mac Yosemite系统 brew 报错的解决办法</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/30/微信公众平台接入经验分享，纯干货/">微信公众平台接入经验分享，纯干货</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/28/使用Kotlin进行Android开发/">使用Kotlin进行Android开发</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/23/Umeng推送消息的坑，Android Service的androidexported详解/">Umeng推送消息的坑，Android Service的androidexported详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/22/自动生成Android屏幕适配的dimens.xml/">自动生成Android屏幕适配的dimens.xml</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/21/iOS9系统开始对企业发布App进行严格限制/">iOS9系统开始对企业发布App进行严格限制</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/16/sed 简明教程/">sed 简明教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/15/Gradle, 基于DSL的新一代Java构建工具/">Gradle, 基于DSL的新一代Java构建工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/15/Gradle常用命令和原理说明/">Gradle常用命令和原理说明</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/09/大势所趋！十大令人振奋的移动端APP设计趋势/">大势所趋！十大令人振奋的移动端APP设计趋势</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/02/Android微信智能心跳方案/">Android微信智能心跳方案</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/01/深入浅出学Spring Data JPA/">深入浅出学Spring Data JPA</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/29/在Mac上制作树莓派SD镜像/">在Mac上制作树莓派SD镜像</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/26/Git从远程的分支获取最新的版本到本地/">Git从远程的分支获取最新的版本到本地</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/25/Spring Data JPA 常用注解 @Query、@NamedQuery/">Spring Data JPA 常用注解 @Query、@NamedQuery</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/24/树莓派做 wifi 热点/">树莓派做 wifi 热点</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/23/树莓派把一个python脚本作为服务运行，配置开机自动启动/">树莓派把一个python脚本作为服务运行，配置开机自动启动</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/22/INSTALLING OPERATING SYSTEM IMAGES ON MAC OS/">INSTALLING OPERATING SYSTEM IMAGES ON MAC OS</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/18/基于Volley，Gson封装支持JWT无状态安全验证和数据防篡改的GsonRequest网络请求类/">基于Volley，Gson封装支持JWT无状态安全验证和数据防篡改的GsonRequest网络请求类</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/28/Python高效率编程的8条箴言/">Python高效率编程的8条箴言</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/28/如何使用Android Studio提高App质量/">如何使用Android Studio提高App质量</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/27/树莓派遥控船项目计划/">树莓派遥控船项目计划</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/24/树莓派的PWM脉宽调制功能介绍/">树莓派的PWM脉宽调制功能介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/23/python字符串连接/">python字符串连接</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/23/Android Studio上方便使用butterknife注解框架的偷懒插件Android Butterknife Zelezny/">Android Studio上方便使用butterknife注解框架的偷懒插件Android Butterknife Zelezny</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/23/Python的Lambda函数与排序/">Python的Lambda函数与排序</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/22/TypeScript 1.5正式发布，此版本是Visual Studio 2015更新的一部分，支持大量ES6新特性/">TypeScript 1.5正式发布，此版本是Visual Studio 2015更新的一部分，支持大量ES6新特性</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/20/iWeb峰会（HTML5峰会）2015年7月19日上海站会后感想/">iWeb峰会（HTML5峰会）2015年7月19日上海站会后感想</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/16/说说React,Flux,Reray和GraghQL/">说说React,Flux,Reray和GraghQL</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/16/ReactEurope Conf 参会感想/">ReactEurope Conf 参会感想</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/15/Android Studio Gradle项目中添加JNI so文件/">Android Studio Gradle项目中添加JNI so文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/15/mac os使用lsusb命令和连接未知的Android设备/">mac os使用lsusb命令和连接未知的Android设备</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/15/HTML5 HybridApp开发上手指引/">HTML5 HybridApp开发上手指引</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/15/Facebook的Web开发三板斧：React.js、Relay和GraphQL/">Facebook的Web开发三板斧：React.js、Relay和GraphQL</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/15/Flux再进化：Introducing Relay and GraphQL（译）/">Flux再进化：Introducing Relay and GraphQL（译）</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/14/为什么要造轮子？/">为什么要造轮子？</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/10/那些争议最大的编程观点/">那些争议最大的编程观点</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/10/Angular vs. React - the tie breaker/">Angular vs. React - the tie breaker</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/09/android：ToolBar详解（手把手教程）/">android：ToolBar详解（手把手教程）</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/08/Android Support Library更新到v22.1之AppCompat新特性/">Android Support Library更新到v22.1之AppCompat新特性</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/08/用Material Design设计App谷歌官方文档翻译/">用Material Design设计App谷歌官方文档翻译</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/07/Pure Android/">Pure Android</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/07/Material Design in Action — 哔哩哔哩动画 Android 客户端/">Material Design in Action — 哔哩哔哩动画 Android 客户端</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/07/Android Studio 批量打包，apk重命名/">Android Studio 批量打包，apk重命名</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/06/Android Studio Android studio 多渠道打包超简洁版/">Android Studio Android studio 多渠道打包超简洁版</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/06/Eclipse Android项目导入Android Studio时常见的编译错误及解决办法/">Eclipse Android项目导入Android Studio时常见的编译错误及解决办法</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/01/HTML5本地存储——IndexedDB（一：基本使用）/">HTML5本地存储——IndexedDB（一：基本使用）</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/15/SASS基础——十个常见的Mixins/">SASS基础——十个常见的Mixins</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/15/python 中的mixin特性/">python 中的mixin特性</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/10/Mac上通过Linux命令行批量查找和替换文本/">Mac上通过Linux命令行批量查找和替换文本</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/09/产品经理经常犯的十大顶级错误/">产品经理经常犯的十大顶级错误</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/09/ES6新特性概览/">ES6新特性概览</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/09/ES6 JavaScript Promise的感性认知/">ES6 JavaScript Promise的感性认知</a></li><li class="post-list-item"><a class="post-list-link" href="/2009/12/07/Centos 5.3上Asterisk安装及配置/">Centos 5.3上Asterisk安装及配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2009/12/07/rsh服务配置文档/">rsh服务配置文档</a></li><li class="post-list-item"><a class="post-list-link" href="/2009/12/07/centos 5.3中用yum安装MPlayer/">centos 5.3中用yum安装MPlayer</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2015-2016 offbye
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >本站到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.1.22/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 9;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

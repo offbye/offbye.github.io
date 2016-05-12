@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  
+  <title>Storyboard的爱与恨 | offbye</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Storyboard的爱与恨">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Storyboard的爱与恨">
+<meta property="og:url" content="http://offbye.com/2016/02/25/Storyboard的爱与恨/index.html">
+<meta property="og:site_name" content="offbye">
+<meta property="og:description" content="Storyboard的爱与恨">
+<meta property="og:image" content="http://cc.cocimg.com/api/uploads/20160224/1456284915722067.png">
+<meta property="og:image" content="http://cc.cocimg.com/api/uploads/20160224/1456284955364097.png">
+<meta property="og:image" content="http://cc.cocimg.com/api/uploads/20160224/1456284979459075.png">
+<meta property="og:image" content="http://cc.cocimg.com/api/uploads/20160224/1456285168598907.png">
+<meta property="og:image" content="http://cc.cocimg.com/api/uploads/20160224/1456285225845088.png">
+<meta property="og:image" content="http://cc.cocimg.com/api/uploads/20160224/1456285259294768.png">
+<meta property="og:image" content="http://cc.cocimg.com/api/uploads/20160224/1456285370637300.png">
+<meta property="og:image" content="http://cc.cocimg.com/api/uploads/20160224/1456285408336343.png">
+<meta property="og:image" content="http://cc.cocimg.com/api/uploads/20160224/1456281137433775.gif">
+<meta property="og:image" content="http://cc.cocimg.com/api/uploads/20160224/1456281217784489.gif">
+<meta property="og:image" content="http://cc.cocimg.com/api/uploads/20160224/1456281261411270.png">
+<meta property="og:image" content="http://cc.cocimg.com/api/uploads/20160224/1456281330792796.gif">
+<meta property="og:image" content="http://cc.cocimg.com/api/uploads/20160224/1456281374553319.gif">
+<meta property="og:image" content="http://cc.cocimg.com/api/uploads/20160224/1456281543179496.gif">
+<meta property="og:updated_time" content="2016-05-12T16:40:10.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Storyboard的爱与恨">
+<meta name="twitter:description" content="Storyboard的爱与恨">
+<meta name="twitter:image" content="http://cc.cocimg.com/api/uploads/20160224/1456284915722067.png">
+  
+    <link rel="alternative" href="/atom.xml" title="offbye" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+      <link href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css" rel="stylesheet">
+  
+  
+  
+      <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+      <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+  
+  <script src="//cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.9/clipboard.min.js"></script>
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false,
+          fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+          scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.0.9/scrollreveal.min.js"
+      }
+  </script>
+
+  
+      <script>
+          yiliaConfig.rootUrl = "/";
+      </script>
+  
+
+  
+  
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">offbye</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">关注移动架构，Android，HTML5，iOS技术前沿</p>
+        
+                
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:offbye@gmail.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/offbye" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="http://blog.csdn.net/offbye" title="CSDN"></a>
+                            
+                                <a class="fa StackOverflow" target="_blank" href="#offbye" title="StackOverflow"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sandbox/">Sandbox</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/YAML/">YAML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/swift/">swift</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注移动端</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">offbye</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">offbye</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">关注移动架构，Android，HTML5，iOS技术前沿</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:offbye@gmail.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/offbye" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="http://blog.csdn.net/offbye" title="CSDN"></a>
+                            
+                                <a class="fa StackOverflow" target="_blank" href="#offbye" title="StackOverflow"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-Storyboard的爱与恨" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/02/25/Storyboard的爱与恨/" class="article-date">
+      <time datetime="2016-02-25T02:17:00.000Z" itemprop="datePublished">2016-02-25</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Storyboard的爱与恨
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+
+        
+        <div style="display:block; clear:both;">
+          <span>CSDN原文:<a href="http://blog.csdn.net/offbye/article/details/50735606" target="_blank" title="Storyboard的爱与恨">http://blog.csdn.net/offbye/article/details/50735606</a> </span>
+          <span style="float:right;margin-right:1em"> CSDN阅读数:350</span>
+        </div>
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>作为Android，iOS，H5的混合移动团队，我感觉storyboard对我们价值巨大，用了swift和storyboard后，iOS App同样功能swift代码只有android java代码的30%，多版本开发效率明显提升。<br>原文 <a href="http://www.cocoachina.com/ios/20160225/15415.html" target="_blank" rel="external">http://www.cocoachina.com/ios/20160225/15415.html</a><br>本文为投稿文章，作者：<a href="http://shengpan.net/storyboard2/" target="_blank" rel="external">潘晟</a></p>
+<hr>
+<p>尽管现在已经是Apple将Storyboard整合进Xcode中的第四个年头，大家对于Storyboard的评价仍然褒贬不一。有<a href="http://onevcat.com/2013/12/code-vs-xib-vs-storyboard/" target="_blank" rel="external">早期就选择转向Storyboard</a>用于UI开发的国内业界领头人物，也有<a href="http://martinnormark.com/the-story-of-no-storyboard-in-ios-development/" target="_blank" rel="external">创建项目就立马删除Storyboard</a>的大牛。我经历过纯代码布局，同时也在多个多人合作项目中使用Storyboard开发界面。在初期绕过各种坑后，Storyboard将会是快速构建UI界面的好帮手，特别是在现如今设备分辨率与尺寸日益增加的情况下，它可以帮助工程师们节约大量的界面代码书写时间。Storyboard存在的一大意义在于为UI提供了可视化开发方式，另一方面提供了一种更好的MVC的View层实现方式，让你的ViewController代码更简洁。当然，Storyboard的不足仍然不可忽视，错误的难以定位经常让刚上手的开发者们手足无措，相比于代码更不容易阅读的XML源文件所导致多人合作中的冲突不易解决等问题仍然有待完善。本文从各个方面介绍一下Storyboard，分享一下Storyboard的一些使用心得。<br><strong>历史</strong><br>1986年Jean-Marie Hullot发明了IB(Interface Build–Storyboard的前身),并且和Macintosh的工具箱无缝融合，这一工具被Denison Bollay发现了。第二年， Denison Bollay带着Hullot和他的IB到NeXT,将IB演示给Steve Jobs看。老乔立意识到了IB的价值，并将其纳入到了NeXTSTEP中。之后Steve 带着NeXT的技术结晶(当然也包括IB)重新回归Apple，并将之整合到了Apple的体系中。2008年第一代iPhone SDK发布的时候，IB就已经捆绑在其中。到了Xcode4,Apple更是直接将其集成进IDE里。随后随着不断地改进，更新，演变，最终变成了我们今天所看到的Storyboard。从某种角度来说，Storyboard也是老乔留给我们的众多礼物之一。<br><strong>故事板能做什么</strong><br>故事板主要为我们提供了以下的功能：(这些功能都是可视化的)</p>
+<ul>
+<li><p>Auto Layout</p>
+</li>
+<li><p>Size Classes</p>
+</li>
+<li><p>Secnce的跳转</p>
+</li>
+<li><p>代码可视化</p>
+</li>
+</ul>
+<p><strong>Auto Layout</strong><br>自动布局颠覆了之前直接操作Frame的布局方式，从思考View应该在哪个位置,变成了考虑在特定条件下，View的所处的位置需要满足哪些条件。通过这些条件来确定View的Frame。自动布局在实际应用中大体上可以将分为三组:<br>View与Super View的约束<br><img src="http://cc.cocimg.com/api/uploads/20160224/1456284915722067.png" alt="QQ截图20160224113505.png" title="1456284915722067.png"><br>View自身的约束</p>
+<p><img src="http://cc.cocimg.com/api/uploads/20160224/1456284955364097.png" alt="QQ截图20160224113548.png" title="1456284955364097.png"></p>
+<p>View与Other View的约束<br><img src="http://cc.cocimg.com/api/uploads/20160224/1456284979459075.png" alt="QQ截图20160224113613.png" title="1456284979459075.png"><br>假如我们需要在代码中使用自动布局可以使用 Visual Format Language或者NSLayoutConstraint的简单工厂方法来生成约束，然后添加到View上。我们来看一个例子：</p>
+<p>123456789101112131415161718192021222324252627282930<code>//用代码来实现上图中View与Super View的约束``    ``UIView *superView = self.view;``    ``UIView *subView = [[UIView alloc] init];``    ``NSLayoutConstraint *leadingConstraint = [NSLayoutConstraint constraintWithItem:superView``                                                           ``attribute:NSLayoutAttributeLeading``                                                           ``relatedBy:NSLayoutRelationEqual``                                                              ``toItem:subView``                                                           ``attribute:NSLayoutAttributeLeading``                                                          ``multiplier:1``                                                            ``constant:15];``    ``NSLayoutConstraint *TrailingConstraint = [NSLayoutConstraint constraintWithItem:superView``                                                                         ``attribute:NSLayoutAttributeTrailing``                                                                         ``relatedBy:NSLayoutRelationEqual``                                                                            ``toItem:subView``                                                                         ``attribute:NSLayoutAttributeTrailing``                                                                        ``multiplier:1``                                                                          ``constant:15];</code> <code>``//topConstraint init...``//bottomConstraint init...``    ``[superView addConstraint:leadingConstraint];``    ``[superView addConstraint:TrailingConstraint];``    ``[superView addConstraint:topConstraint];``    ``[superView addConstraint:bottomConstraint];`` </code> <code>``// 如果是iOS8+ 则使用下面的方式来激活Constraint``    ``// leadingConstraint.active = YES;``    ``// leadingConstraint.active = YES;``    ``// leadingConstraint.active = YES;``    ``// leadingConstraint.active = YES;</code>是不是一大团乱糟糟的代码?Visual Format Language用起来更加令人崩溃。好在业界已经有比较好的代码自动布局的第三方解决方案。但是仍然会有大堆的简单界面布局代码残留在你的代码中。<br>为了让你的生活更轻松(也为了让代码更清爽)，Storyboard就包含了非常优雅的可视化自动布局解决方案。以上一切，在Storyboard中都被浓缩成了两个按钮（下图红圈中的椭圆按钮）。<br><img src="http://cc.cocimg.com/api/uploads/20160224/1456285168598907.png" alt="1111.png" title="1456285168598907.png"></p>
+<ul>
+<li>红框1:为被选中View和离他最近的View(可能是SuperView,也可能是另一个同层级的View,看哪个离它更近)添加Leading、Training、Top、Bottom四个属性约束。</li>
+</ul>
+<ul>
+<li><p>红框2:为View添加自身宽和高约束</p>
+</li>
+<li><p>红色椭圆左侧按钮:当选中多个View时，为多个View添加约束</p>
+</li>
+</ul>
+<p>只需要点击几下鼠标，Storyboard就可以帮你轻松完成视图布局。<br><strong>Auto Layout Debug</strong><br>使用代码来对Auto Layout布局的另一个缺点在于debug的困难。当添加了多余的约束，往往只能在运行时才能发现错误。同时，要寻找出是哪一行代码添加了错误的约束也比较费力(往往连控制台都没有错误输出)。<br>而Storyboard却为此提供了非常友好的静态检查。主要针对View的约束、布局提供警告和Error,甚至是解决方案。<br><img src="http://cc.cocimg.com/api/uploads/20160224/1456285225845088.png" alt="-----2016-02-19-16-30-51.png" title="1456285225845088.png"><br>上图的例子是：我们为Label添加了多余的约束，Storyboard用红色标记出冲突的约束，并给出修改建议:删除其中一个约束以保证约束的正确性。是不是很友好？ ：）<br><strong>Size Classes</strong><br>Apple 与iOS 8推出了Size Classes的概念。意在解决因设备尺寸造成的适配问题。Size Classes通过将界面的宽度和高度抽象为正常和紧凑两种概念，通过合理的组合，可以将现有设备(以及未来将要出现的设备)划分到不同的Size中。因此，无论是代码还是界面布局，只需要针对Size进行，而不用再拘泥于分辨是iPhone还是iPad,是横屏还是竖屏的问题了。Size Classes的推出是具有前瞻性的，无论是Apple Watch还是iOS 9推出的的iPad 分屏模式，都可以用Size Classes完美解决适配的问题。<br>Size Classes和现有设备的对照表如下：<br><img src="http://cc.cocimg.com/api/uploads/20160224/1456285259294768.png" alt="QQ截图20160224114047.png" title="1456285259294768.png"><br>在之前，我们要对横屏竖屏的界面进行区分，代码一般是这样的：<br>12345678<code>if</code> <code>(IPAD_PORTRAIT)  ``{``    ``//TODO:modify something portrait``}``else</code>  <code>{``    ``//TODO:modify something landscape``}</code>在Size Classes时代，Apple引入了一个新的类UITraitCollection来封装水平和垂直方向的Size信息。现在我们通过代码来改变界面是这样的：<br>123456789101112131415<code>- (void)willTransitionToTraitCollection:(UITraitCollection *)newCollection ``              ``withTransitionCoordinator:(id )coordinator``{``    ``[``super</code> <code>willTransitionToTraitCollection:newCollection ``                 ``withTransitionCoordinator:coordinator];``    ``[coordinator animateAlongsideTransition:^(id  context) ``    ``{``        ``if</code> <code>(newCollection.verticalSizeClass == UIUserInterfaceSizeClassCompact) {``            ``//To Do: modify something for compact vertical size``        ``} ``else</code> <code>{``            ``//To Do: modify something for other vertical size``        ``}``        ``[self.view setNeedsLayout];``    ``} completion:nil];``}</code>在TODO中做相对应Size的事。<br>可以想见的是，仍然会有非常多的布局代码占据着你的源文件。但在Storyboard中，一切变得异常简单。<br>使用Size Classes，我们只需要选择相对应的size，在那个Size下进行布局。运行时，就会根据设备的尺寸，自动地展示相对应Size的布局。比如iPhone竖屏就展示width Compact height RegularSize下的信息。当手机横屏，系统会自动添加一个过渡动画(虽然有点生硬),并转到width Regular height Compact的Size。这一切不需要一行代码。<br>能不能再给力点?<br>Sure.有这么一种情景:iPhone横屏下，拥有一个avatarView,竖屏下拥有一个相同的avatar View。这种情况下我们只需要在一个Size中完成这个View,然后在Storyboard的attributed inspector中做一些勾选，将其”install”进相对应的Size中，就可以达到复用的目的。如果有差异，则在对应的Size中定制即可。（如下图）<br><img src="http://cc.cocimg.com/api/uploads/20160224/1456285370637300.png" alt="QQ截图20160224114232.png" title="1456285370637300.png"><br>能不能再给力点儿？<br>Of Course！除了View,约束也可以不同Size配置不同。最厉害的是，图片文件也可以根据Size来区分。我们只需要对.xcassets文件勾选Size Classes,就可以为不同Size配置不同图片.这意味着，在同一个安装包下，通过Size Classes，我们甚至可以为横屏iPhone和竖屏iPhone做出完全不同的App!<br><img src="http://cc.cocimg.com/api/uploads/20160224/1456285408336343.png" alt="QQ截图20160224114320.png" title="1456285408336343.png"><br>Scene的转场<strong>
+</strong><br>如我们所料，Storyboard也可以通过可视化的操作来实现Scene的转场。<br>故事板的转场有两种，可以分为手动触发和自动触发。自动触发完全由Storyboard实现，而手动触发则需要配合代码。前者简单易用，后者适用于配合业务逻辑，进行不同转场的触发。自动触发的转场非常简单，我们只需选择一个UIControl(比如UIButton),按住Control+左键，拖线至目标Scene,选择Action类型，即可在触发UIControl的某些事件的时候，自动执行转场。<br><img src="http://cc.cocimg.com/api/uploads/20160224/1456281137433775.gif" alt="ooooo-1.gif" title="1456281137433775.gif"><br>例如利用UIButton转场，实际上是在触发TouchUpInside事件时执行。这一简单的操作实际上相当于如下代码:</p>
+<p>1234567891011121314<code>- (void)viewDidLoad``{``    ``[self.button addTarget:self``                    ``action:@selector(showPSViewControllerB)``          ``forControlEvents:UIControlEventTouchUpInside];`` </code> <code>}</code> <code>- (void)showPSViewControllerB``{``    ``PSViewControllerB *viewController = [[PSViewControllerB alloc]init];``    ``//配置..传值...``    ``[self.navigationController pushViewController:viewController animated:YES];``}</code>Storyboard将Scene转场变成了可视化的操作又引入了一个新的问题，需要如何传递参数给目标ViewController？<br>解决方法就是，我们需要在Storyboard中给Segue一个Identifier，然后在源ViewController中重写如下方法即可:</p>
+<p>12345678<code>- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender``{``    ``if</code> <code>([segue.identifier isEqualToString:[PSViewControllerB description]])``    ``{``        ``PSViewControllerB *vc = segue.destinationViewController;``        ``//配置..传值..``    ``}``}</code>手动触发则需要代码配合。不同的是，拖线的对象从UIControl变成了UIViewController(不要忘了在Storyboard中填写Segue Identifier)。<br><img src="http://cc.cocimg.com/api/uploads/20160224/1456281217784489.gif" alt="aaa.gif" title="1456281217784489.gif"><br>然后在代码中需要转场的地方，加上performSegueWithIdentifier:sender:即可。例子如下：</p>
+<p>123456<code>//self:PSViewControllerA``    ``if</code> <code>(isBizSuccess){``        ``[self performSegueWithIdentifier:[PSViewControllerB description] sender:parameter];``    ``} ``else</code> <code>{``        ``[self showTips:@``&quot;some failure reason&quot;``];``    ``}</code>你可以利用performSegueWithIdentifier:sender:来进行任何形式的转场。Segue为我们的转场提供了不同的Action，囊括了常见的UINavigationViewController的push，或者所有ViewController都可以执行的Modelly Presentation。<br>事实上，在iOS 8以后，我们就可以利用Storyboard结合代码实现自定义的转场，无论是在哪一种上下文环境中。<br>采用Storyboard进行Scene转场的好处在于，一个ViewController的所有转场代码，都集中到了prepareForSegue:sender: 方法中，debug或者添加新功能时，可以很容易顺藤摸瓜。但缺点同样明显。每次转场的修改/删除需要同时修改Storyboard和代码文件。同时，随着项目的进行，越来越多的Scene和业务逻辑，导致Storyboard中Segue的数量剧增，难以维护。<br>巨量的Segue(仅仅是部分截图)<br><img src="http://cc.cocimg.com/api/uploads/20160224/1456281261411270.png" alt="-----2016-02-22-17-04-05.png" title="1456281261411270.png"><br><strong>多Storyboard协作</strong><br>解决如上问题的方法就是，尽量将项目的界面分割在多个Storyboard文件中。一个最佳实践是，按照项目功能模块来区分故事板，例如Login.Storyboard,Chat.Storyboard,Person.Storyboard等。尽量把每个Storyboard的Scene数量控制在20个以内。<br>同时，Scene间的转场我们依然可以采用Segue,并且使用起来和单个Storyboard无异。这要多亏Apple在iOS 9新推出的<a href="http://shengpan.net/top-tips-for-ios9/#StoryboardReference" target="_blank" rel="external">UIStoryboard Reference</a>。<br><strong>代码可视化</strong><br>还有什么能比代码可视化更加炫酷的呢？作为前端工程师，最享受的时候，就是枯燥的代码和算法变成了优美的动画。但这一切都只在按下command+R之后。<br>现在，通过Storyboard,我们也可以在编译时实时预览我们的代码所产生的效果。<br><img src="http://cc.cocimg.com/api/uploads/20160224/1456281330792796.gif" alt="IB_DESIGNABLE.gif" title="1456281330792796.gif"><br>通过为自定义的View添加IB_DESIGNABLE关键字（注意图中关键字的位置）,我们让Storyboard为我们自定义的视图进行实时渲染。有的人可能会担心实时渲染造成的性能问题。这点大可放心，Xcode有一套非常优秀的缓存机制(优秀到有些时候必须要clean一下，某些小改动才会在真机上生效),只需要编译一次，视图就会被缓存，不会造成每次在Storyboard、代码文件中切换时多次渲染的问题。<br>在swift中则为@IBDesignable，放在class关键字之前<br>到这里令人惊叹的类似Playground的事实渲染功能，已经可以动态地应用在项目中了。我们可以利用IB_DESIGNABLE和IBInspectable来制作图表等高度自定义的、独特的视图。<br>当然，故事板狂魔对故事板的使用不会就此罢手的，本着一切能用Storyboard配置就不写代码的原则，我们也希望可以在故事板中配置自定义控件的属性。幸运的是，Apple再次为我们的想法提供了可能。<br><strong>IBInspectable</strong></p>
+<p><img src="http://cc.cocimg.com/api/uploads/20160224/1456281374553319.gif" alt="IBInspectable.gif" title="1456281374553319.gif"><br>通过为自定义View的属性添加IBInspectable关键字（注意图中关键字的位置），我们可以将原本需要代码配置的属性，放到故事板中。IBInspectable支持以下类型的属性：</p>
+<ul>
+<li><p>BOOL</p>
+</li>
+<li><p>NSString</p>
+</li>
+<li><p>NSNumber</p>
+</li>
+<li><p>CGPoint</p>
+</li>
+<li><p>CGSize</p>
+</li>
+<li><p>CGRect</p>
+</li>
+<li><p>UIColor</p>
+</li>
+<li><p>NSRange</p>
+</li>
+<li><p>UIImage</p>
+</li>
+</ul>
+<p>在swift中则为@IBInspectable，放在var关键字之前<br><strong>为系统控件添加IBInspectable</strong><br>不少设计设都喜欢设计圆角。通常我们需要写如下代码:<br>12<code>view.layer.cornerRadius = 5;``view.layer.masksToBounds = YES;</code>为了解决这些重复代码的问题，有的人喜欢为View写Category，一行代码实现圆角。然而这需要在不同的ViewController中不断引入这个Category,不够优雅。当然，这种小事情我们也肯定不会愿意采用继承的。</p>
+<p>实际上，我们只需要为项目添加一个View的Category，在其中声明一个@property并加上IBInspectable关键字,然后在实现文件中的getter&amp;&amp;setter方法中实现具体的逻辑。不用import头文件，也不需要运行,Storyboard中将自动出现这个属性以供配置。这不正是我们梦寐以求的完全解耦吗！？</p>
+<p>123456<code>//UIView+CornerRadius.h``@interface UIView (CornerRadius)</code> <code>@property (nonatomic, assign) IBInspectable CGFloat cornerRadius;</code> <code>@end</code></p>
+<p>1234567891011121314<code>//UIView+CornerRadius.m``@implementation UIView (CornerRadius)</code> <code>- (void)setCornerRadius:(CGFloat)cornerRadius``{``    ``self.layer.cornerRadius = cornerRadius;``    ``self.layer.masksToBounds = cornerRadius &gt; 0;``}</code> <code>- (CGFloat)cornerRadius``{``    ``return</code> <code>self.layer.cornerRadius;``}``@end</code><img src="http://cc.cocimg.com/api/uploads/20160224/1456281543179496.gif" alt="CornerRadius.gif" title="1456281543179496.gif"><br>实际上，IBInspectable是对运行时属性进行的一种拓展，你在Attributed Inspector中进行的自定义属性配置，都会在Identity Inspector的运行时属性中得到体现。</p>
+<p><strong>Storyboard的弊端</strong><br>Storyboard也并非十全十美的。它依然有许多的问题亟待解决，有些致命的问题，更是成为导致许多开发者放弃Storyboard的原因。在iOS9普及率已经达到<a href="https://developer.apple.com/support/app-store/" target="_blank" rel="external">77%</a>的今天，Storyboard仍然有很多问题需要完善。<br><strong>难以维护</strong><br>Storyboard在某些角度上，是难以维护的。我所遇到过的实际情况是，公司一个项目的2.0版本，设计师希望替换原有字体。然而原来项目的每一个Label都是采用Storyboard来定义字体的，因此替换新字体需要在Storyboard中更改每一个Label。<br>幸亏我们知道Storyboard的源文件是XML，最终写了一个读取-解析-替换脚本来搞定这件事。<br><strong>性能瓶颈</strong><br>当项目达到一定的规模，即使是高性能的MacBook Pro,在打开Storyboard是也会有3-5秒的读取时间。无论是只有几个Scene的小东西，还是几十个Scene的庞然大物，都无法避免。Scene越多的文件，打开速度越慢(从另一个方面说明了分割大故事板的重要性)。<br>让人沮丧的是，这个造成卡顿的项目规模并不是太难达到。<br>我猜想是由于每一次打开都需要进行I/O操作造成的，Apple对这一块的缓存优化没有做到位。可能是由于Storyboard占用了太多内存，难以在内存中进行缓存。Whatever,这个问题总是让人困扰的。<br>然而需要指出的是，采用Storyboard开发或采用纯代码开发的App，在真机的运行效率上，并没有太大的区别。<br><strong>错误定位困难</strong><br>Storyboard的初学者应该对此深有体会。排除BAD_EXCUSE错误不说，单单是有提示的错误，就足以让人在代码和Storyboard之间来回摸索，却无法找到解决方案。<br>一个典型的例子是，在代码中删除了IBOUTLET属性或者IBAction方法，但是却忘了在Storyboard中删除对应的连接，运行后crash。然而控制台只会输出一些模糊其词的错误描述。</p>
+<p>123<code>*** Terminating app due to uncaught exception ``&#39;NSUnknownKeyException&#39;``, ``reason: &#39;[ setValue:forUndefinedKey:]:  ``this</code> <code>class is not key value coding-compliant ``for</code> <code>the key drawButton.&#39;</code>有经验的开发者可以从drawButton这个关键字中找到突破口，但大部分刚接触Storyboard的开发者，会被困在其中。<br><strong>最后</strong><br>综合其利弊，毅然选择了站在Storyboard这边。一方面是其提供的便利，另一方面是Apple对Storyboard的大力支持。这一点宏观上看，可以在以往对Storyboard的改进和增强上看出，微观上看，几乎所有iOS 8之后的simple code都或多或少采用了Storyboard作为界面开发工具。有理由相信，Storyboard的未来是光明的。<br>愿大家在Storyboard的路(keng)上，越走越远。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2016/02/25/Storyboard的爱与恨/">Storyboard的爱与恨</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">offbye</a></p>
+        <p><span>发布时间:</span>2016-02-25, 10:17:00</p>
+        <p><span>最后更新:</span>2016-05-13, 00:40:10</p>
+
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2016/02/25/Storyboard的爱与恨/" title="Storyboard的爱与恨">http://offbye.com/2016/02/25/Storyboard的爱与恨/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://offbye.com/2016/02/25/Storyboard的爱与恨/　　作者: offbye" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+        
+        <p><span>CSDN原文:</span> <a href="http://blog.csdn.net/offbye/article/details/50735606" target="_blank" title="Storyboard的爱与恨">http://blog.csdn.net/offbye/article/details/50735606</a> </p>
+        <p><span>CSDN PV:</span>350</p>
+        
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2016/02/25/iOS 9开发小技巧：LayoutGuide，Storyboard Reference/">
+                    iOS 9开发小技巧：LayoutGuide，Storyboard Reference
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/02/25/Swift iOS tableView static cell动态计算高度/">
+                    Swift iOS tableView static cell动态计算高度
+                </a>
+            </div>
+        
+    </nav>
+
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"Storyboard的爱与恨　| offbye　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="2016/02/25/Storyboard的爱与恨/" data-title="Storyboard的爱与恨" data-url="http://offbye.com/2016/02/25/Storyboard的爱与恨/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"offbye"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+    <!-- 多说公共JS代码 end -->
+</div>
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2016/02/25/iOS 9开发小技巧：LayoutGuide，Storyboard Reference/" title="上一篇: iOS 9开发小技巧：LayoutGuide，Storyboard Reference">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/02/25/Swift iOS tableView static cell动态计算高度/" title="下一篇: Swift iOS tableView static cell动态计算高度">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/05/12/YAML文件语法简介/">YAML文件语法简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/11/iOS-Sandbox-swift/">iOS App沙盒模型文件目录详解Swift版</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/11/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/06/iOS App沙盒模型文件目录详解Swift版/">iOS App沙盒模型文件目录详解Swift版</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/05/Swift iOS实现把PCM语音转成MP3格式/">Swift iOS实现把PCM语音转成MP3格式</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/04/RESTFUL API 安全设计/">RESTFUL API 安全设计</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/04/关于 Token，你应该知道的十件事/">关于 Token，你应该知道的十件事</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/04/程序员的成长和代码行数的关系/">程序员的成长和代码行数的关系</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/04/从JavaAndroid到Swift iOS开发：语言与框架对比/">从JavaAndroid到Swift iOS开发：语言与框架对比</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/26/Android开发常用开源框架推荐/">Android开发常用开源框架推荐</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/22/Swift Modules for React Native/">Swift Modules for React Native</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/15/Android官方MVP架构示例项目解析/">Android官方MVP架构示例项目解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/15/使用swift开发Cordova插件/">使用swift开发Cordova插件</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/14/Swift语言中的@available 和 #available/">Swift语言中的@available 和</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/31/Android volley 使用OkHttp3.0/">Android volley 使用OkHttp3.0</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/28/What's new in Swift 2.2/">What's new in Swift 2.2</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/16/java8新特性介绍/">java8新特性介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/15/Swift异常处理：throw和rethrow/">Swift异常处理：throw和rethrow</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/14/Swift iOS- 手势检测详解/">Swift iOS- 手势检测详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/11/Swift化零为整：Reduce 详解/">Swift化零为整：Reduce 详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/11/Swift2.1关键字 @noescape介绍/">Swift2.1关键字 @noescape介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/11/理解Swift中map 和 flatMap对集合的作用/">理解Swift中map 和 flatMap对集合的作用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/09/移动端专用数据库Realm介绍/">移动端专用数据库Realm介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/09/安装Xcode插件包管理器Alcatraz报错解决办法/">安装Xcode插件包管理器Alcatraz报错解决办法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/09/Android最佳实践 —— 详细谈谈如何减小APK体积/">Android最佳实践 —— 详细谈谈如何减小APK体积</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/05/iOS开发如何通过UMeng的错误分析解决crash问题/">iOS开发如何通过UMeng的错误分析解决crash问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/04/常见移动设备的 CSS3 Media Query 整理（iPhoneiPadGalaxy）/">常见移动设备的 CSS3 Media Query 整理（iPhoneiPadGalaxy）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/04/我在MDCC 2015的演讲PPT《HTML5移动应用多端开发架构实践》分享/">我在MDCC 2015的演讲PPT《HTML5移动应用多端开发架构实践》分享</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/01/深入理解iOS开发中的BitCode功能/">深入理解iOS开发中的BitCode功能</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/01/iOS swift动画和特效专题/">iOS swift动画和特效专题</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/29/Swift iOS项目archive操作会报错误built without full bitcode解决方法/">Swift iOS项目archive操作会报错误built without full bitcode解决方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/26/GCD 和延时调用/">GCD 和延时调用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/26/Swift - 多线程实现方式（3） - Grand Central Dispatch（GCD）/">Swift - 多线程实现方式（3） - Grand Central Dispatch（GCD）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/25/iOS 9开发小技巧：LayoutGuide，Storyboard Reference/">iOS 9开发小技巧：LayoutGuide，Storyboard Reference</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/25/Storyboard的爱与恨/">Storyboard的爱与恨</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/25/Swift iOS tableView static cell动态计算高度/">Swift iOS tableView static cell动态计算高度</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/24/5 个顶级 Android 开源库/">5 个顶级 Android 开源库</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/19/Swift高阶函数介绍（闭包、Map、Filter、Reduce）/">Swift高阶函数介绍（闭包、Map、Filter、Reduce）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/18/iOS Swift判断代码运行在模拟器上/">iOS Swift判断代码运行在模拟器上</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/17/iOS 开发 UI 搭建心得（一）—— 驾驭 StoryBoard  代码示例：httpsgithub.comjohnluiSwift-On-iOSblobmasterDifferen/">iOS 开发 UI 搭建心得（一）—— 驾驭 StoryBoard  代码示例：httpsgithub.comjohnluiSwift-On-iOSblobmasterDifferen</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/16/使用命令行统计代码行数/">使用命令行统计代码行数</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/03/HTTP 2.0的那些事/">HTTP 2.0的那些事</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/02/浅谈 RxAndroid + Retrofit + Databinding/">浅谈 RxAndroid + Retrofit + Databinding</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/28/2016这些Android技术会很火/">2016这些Android技术会很火</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/27/使用CodePush实时更新 React Native 和 Cordova 应用/">使用CodePush实时更新 React Native 和 Cordova 应用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/20/理解Swift中Optional类型－有和无的哲学/">理解Swift中Optional类型－有和无的哲学</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/19/其实你不知道MultiDex到底有多坑/">其实你不知道MultiDex到底有多坑</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/19/Android MultiDex分包变形记/">Android MultiDex分包变形记</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/14/Swift iOS项目最佳实践汇总/">Swift iOS项目最佳实践汇总</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/11/饿了么移动APP的架构演进/">饿了么移动APP的架构演进</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/30/Android 开发最佳实践/">Android 开发最佳实践</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/29/RxAndroid和RxJava的资料分享/">RxAndroid和RxJava的资料分享</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/28/技术人如何才能不焦虑/">技术人如何才能不焦虑</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/26/云栖社区12篇实战经验所组成的“近战”系列分享/">云栖社区12篇实战经验所组成的“近战”系列分享</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/26/程序员晋升攻略/">程序员晋升攻略</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/25/Xcode7.2版本carthage包管理器兼容问题解决/">Xcode7.2版本carthage包管理器兼容问题解决</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/14/2015年Android开发新技术盘点/">2015年Android开发新技术盘点</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/10/Android中Touch事件分析--解决HorizontalScrollView滑动和按钮事件触发问题/">Android中Touch事件分析--解决HorizontalScrollView滑动和按钮事件触发问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/03/Android动态加载黑科技 动态创建Activity模式/">Android动态加载黑科技 动态创建Activity模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/01/Android注解支持Support Annotations详解/">Android注解支持Support Annotations详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/27/Android Studio 2.0 Instant Run即时运行功能实现分析/">Android Studio 2.0 Instant Run即时运行功能实现分析</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/25/Android应用性能剖析全攻略/">Android应用性能剖析全攻略</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/24/自动生成Android不同分辨率下的图片/">自动生成Android不同分辨率下的图片</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/24/Android Studio 2.0 Preview发布,附下载地址，支持即时运行和GPU Profiler/">Android Studio 2.0 Preview发布,附下载地址，支持即时运行和GPU Profiler</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/17/React Native Android端10个最常见问题/">React Native Android端10个最常见问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/13/使用Javascript ES6进行开发的思考/">使用Javascript ES6进行开发的思考</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/13/安装包立减1M--微信Android资源混淆打包工具/">安装包立减1M--微信Android资源混淆打包工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/11/Ionic 2.0 Alpha版本发布了/">Ionic 2.0 Alpha版本发布了</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/10/美团Android资源混淆保护实践/">美团Android资源混淆保护实践</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/10/Android开发中的armeabi和armeabi-v7a介绍/">Android开发中的armeabi和armeabi-v7a介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/06/在CordovaActivity中添加原生View组件/">在CordovaActivity中添加原生View组件</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/05/技术贴：开源飞控那些事/">技术贴：开源飞控那些事</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/03/Android常用开源框架Proguard混淆解决方案/">Android常用开源框架Proguard混淆解决方案</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/03/美团Android DEX自动拆包及动态加载简介/">美团Android DEX自动拆包及动态加载简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/02/Google基于Dart的新移动开发框架Flutter介绍/">Google基于Dart的新移动开发框架Flutter介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/29/通过SharedPreferences实现进程间数据共享的问题详解/">通过SharedPreferences实现进程间数据共享的问题详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/26/Android修改TitleBar标题栏详解/">Android修改TitleBar标题栏详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/23/异步JavaScript的进化/">异步JavaScript的进化</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/21/Android Service创建USB HOST通信/">Android Service创建USB HOST通信</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/21/Android 热敏打印机打印二维码/">Android 热敏打印机打印二维码</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/13/基于webpack搭建前端工程解决方案探索/">基于webpack搭建前端工程解决方案探索</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/11/理解Flux架构/">理解Flux架构</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/09/Mac Yosemite系统 brew 报错的解决办法/">Mac Yosemite系统 brew 报错的解决办法</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/30/微信公众平台接入经验分享，纯干货/">微信公众平台接入经验分享，纯干货</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/28/使用Kotlin进行Android开发/">使用Kotlin进行Android开发</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/23/Umeng推送消息的坑，Android Service的androidexported详解/">Umeng推送消息的坑，Android Service的androidexported详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/22/自动生成Android屏幕适配的dimens.xml/">自动生成Android屏幕适配的dimens.xml</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/21/iOS9系统开始对企业发布App进行严格限制/">iOS9系统开始对企业发布App进行严格限制</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/16/sed 简明教程/">sed 简明教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/15/Gradle, 基于DSL的新一代Java构建工具/">Gradle, 基于DSL的新一代Java构建工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/15/Gradle常用命令和原理说明/">Gradle常用命令和原理说明</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/09/大势所趋！十大令人振奋的移动端APP设计趋势/">大势所趋！十大令人振奋的移动端APP设计趋势</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/02/Android微信智能心跳方案/">Android微信智能心跳方案</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/01/深入浅出学Spring Data JPA/">深入浅出学Spring Data JPA</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/29/在Mac上制作树莓派SD镜像/">在Mac上制作树莓派SD镜像</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/26/Git从远程的分支获取最新的版本到本地/">Git从远程的分支获取最新的版本到本地</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/25/Spring Data JPA 常用注解 @Query、@NamedQuery/">Spring Data JPA 常用注解 @Query、@NamedQuery</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/24/树莓派做 wifi 热点/">树莓派做 wifi 热点</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/23/树莓派把一个python脚本作为服务运行，配置开机自动启动/">树莓派把一个python脚本作为服务运行，配置开机自动启动</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/22/INSTALLING OPERATING SYSTEM IMAGES ON MAC OS/">INSTALLING OPERATING SYSTEM IMAGES ON MAC OS</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/18/基于Volley，Gson封装支持JWT无状态安全验证和数据防篡改的GsonRequest网络请求类/">基于Volley，Gson封装支持JWT无状态安全验证和数据防篡改的GsonRequest网络请求类</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/28/Python高效率编程的8条箴言/">Python高效率编程的8条箴言</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/28/如何使用Android Studio提高App质量/">如何使用Android Studio提高App质量</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/27/树莓派遥控船项目计划/">树莓派遥控船项目计划</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/24/树莓派的PWM脉宽调制功能介绍/">树莓派的PWM脉宽调制功能介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/23/python字符串连接/">python字符串连接</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/23/Android Studio上方便使用butterknife注解框架的偷懒插件Android Butterknife Zelezny/">Android Studio上方便使用butterknife注解框架的偷懒插件Android Butterknife Zelezny</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/23/Python的Lambda函数与排序/">Python的Lambda函数与排序</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/22/TypeScript 1.5正式发布，此版本是Visual Studio 2015更新的一部分，支持大量ES6新特性/">TypeScript 1.5正式发布，此版本是Visual Studio 2015更新的一部分，支持大量ES6新特性</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/20/iWeb峰会（HTML5峰会）2015年7月19日上海站会后感想/">iWeb峰会（HTML5峰会）2015年7月19日上海站会后感想</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/16/说说React,Flux,Reray和GraghQL/">说说React,Flux,Reray和GraghQL</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/16/ReactEurope Conf 参会感想/">ReactEurope Conf 参会感想</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/15/Android Studio Gradle项目中添加JNI so文件/">Android Studio Gradle项目中添加JNI so文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/15/mac os使用lsusb命令和连接未知的Android设备/">mac os使用lsusb命令和连接未知的Android设备</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/15/HTML5 HybridApp开发上手指引/">HTML5 HybridApp开发上手指引</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/15/Facebook的Web开发三板斧：React.js、Relay和GraphQL/">Facebook的Web开发三板斧：React.js、Relay和GraphQL</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/15/Flux再进化：Introducing Relay and GraphQL（译）/">Flux再进化：Introducing Relay and GraphQL（译）</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/14/为什么要造轮子？/">为什么要造轮子？</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/10/那些争议最大的编程观点/">那些争议最大的编程观点</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/10/Angular vs. React - the tie breaker/">Angular vs. React - the tie breaker</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/09/android：ToolBar详解（手把手教程）/">android：ToolBar详解（手把手教程）</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/08/Android Support Library更新到v22.1之AppCompat新特性/">Android Support Library更新到v22.1之AppCompat新特性</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/08/用Material Design设计App谷歌官方文档翻译/">用Material Design设计App谷歌官方文档翻译</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/07/Pure Android/">Pure Android</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/07/Material Design in Action — 哔哩哔哩动画 Android 客户端/">Material Design in Action — 哔哩哔哩动画 Android 客户端</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/07/Android Studio 批量打包，apk重命名/">Android Studio 批量打包，apk重命名</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/06/Android Studio Android studio 多渠道打包超简洁版/">Android Studio Android studio 多渠道打包超简洁版</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/06/Eclipse Android项目导入Android Studio时常见的编译错误及解决办法/">Eclipse Android项目导入Android Studio时常见的编译错误及解决办法</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/01/HTML5本地存储——IndexedDB（一：基本使用）/">HTML5本地存储——IndexedDB（一：基本使用）</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/15/SASS基础——十个常见的Mixins/">SASS基础——十个常见的Mixins</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/15/python 中的mixin特性/">python 中的mixin特性</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/10/Mac上通过Linux命令行批量查找和替换文本/">Mac上通过Linux命令行批量查找和替换文本</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/09/产品经理经常犯的十大顶级错误/">产品经理经常犯的十大顶级错误</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/09/ES6新特性概览/">ES6新特性概览</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/09/ES6 JavaScript Promise的感性认知/">ES6 JavaScript Promise的感性认知</a></li><li class="post-list-item"><a class="post-list-link" href="/2009/12/07/Centos 5.3上Asterisk安装及配置/">Centos 5.3上Asterisk安装及配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2009/12/07/rsh服务配置文档/">rsh服务配置文档</a></li><li class="post-list-item"><a class="post-list-link" href="/2009/12/07/centos 5.3中用yum安装MPlayer/">centos 5.3中用yum安装MPlayer</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2015-2016 offbye
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >本站到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.1.22/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 9;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  
+  <title>Android MultiDex分包变形记 | offbye</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Android MultiDex分包变形记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android MultiDex分包变形记">
+<meta property="og:url" content="http://offbye.com/2016/01/19/Android MultiDex分包变形记/index.html">
+<meta property="og:site_name" content="offbye">
+<meta property="og:description" content="Android MultiDex分包变形记">
+<meta property="og:image" content="http://devstorepic.qiniudn.com/FtYnbNRxoltf1ugsY334RqV4yBpl">
+<meta property="og:image" content="http://devstorepic.qiniudn.com/FhH88h-QsQRPAzK_f7jWqjbyU5cC">
+<meta property="og:image" content="http://devstorepic.qiniudn.com/Fp3tetemLNh3WtFS7nY95mkJX5KS">
+<meta property="og:image" content="http://devstorepic.qiniudn.com/FlE8AAfKBVHvG4M2wLxmd9oyokK4">
+<meta property="og:image" content="http://devstorepic.qiniudn.com/FvKUB0hoAkmH0csISYOlpebSztNk">
+<meta property="og:image" content="http://devstorepic.qiniudn.com/FqSxh-IhMly6oREAIXjRLZJMGRds">
+<meta property="og:image" content="http://devstorepic.qiniudn.com/FuaqrIsmgP8LTlVTYlshPNWDy6Ta">
+<meta property="og:image" content="http://devstorepic.qiniudn.com/Fmy7u00YWRcdNApTI7XFPSdSXLXB">
+<meta property="og:image" content="http://devstorepic.qiniudn.com/FsXGrvEYkoZUT0J0BGj6e8WzBV4-">
+<meta property="og:image" content="http://devstorepic.qiniudn.com/FmAzfHcNim6EvBZe6BudvOAJY-95">
+<meta property="og:image" content="http://devstorepic.qiniudn.com/FgewVu10BwgkQuJKPTiDl-OpCyyJ">
+<meta property="og:image" content="http://devstorepic.qiniudn.com/Fh4FLTUNJADOOd--ztWzIbDHHPWi">
+<meta property="og:image" content="http://devstorepic.qiniudn.com/FitbM95V_SUwTkaD8idS6c0X6uO5">
+<meta property="og:image" content="http://devstorepic.qiniudn.com/FmxJ-gCfOtPx3KJ3CA9MsyqtPjYa">
+<meta property="og:image" content="http://devstorepic.qiniudn.com/Fmnhc9HHnj8mzo_cRXIj0-K2AAWX">
+<meta property="og:image" content="http://devstorepic.qiniudn.com/FvO1N0fVtmzlX1_M_A_zDUhdfi2N">
+<meta property="og:image" content="http://devstorepic.qiniudn.com/FssG9xR51c3bWYv6sBXNKc_BDsU2">
+<meta property="og:updated_time" content="2016-05-12T16:40:15.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android MultiDex分包变形记">
+<meta name="twitter:description" content="Android MultiDex分包变形记">
+<meta name="twitter:image" content="http://devstorepic.qiniudn.com/FtYnbNRxoltf1ugsY334RqV4yBpl">
+  
+    <link rel="alternative" href="/atom.xml" title="offbye" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+      <link href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css" rel="stylesheet">
+  
+  
+  
+      <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+      <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+  
+  <script src="//cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.9/clipboard.min.js"></script>
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false,
+          fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+          scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.0.9/scrollreveal.min.js"
+      }
+  </script>
+
+  
+      <script>
+          yiliaConfig.rootUrl = "/";
+      </script>
+  
+
+  
+  
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">offbye</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">关注移动架构，Android，HTML5，iOS技术前沿</p>
+        
+                
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:offbye@gmail.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/offbye" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="http://blog.csdn.net/offbye" title="CSDN"></a>
+                            
+                                <a class="fa StackOverflow" target="_blank" href="#offbye" title="StackOverflow"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sandbox/">Sandbox</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/YAML/">YAML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/swift/">swift</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注移动端</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">offbye</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">offbye</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">关注移动架构，Android，HTML5，iOS技术前沿</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:offbye@gmail.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/offbye" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="http://blog.csdn.net/offbye" title="CSDN"></a>
+                            
+                                <a class="fa StackOverflow" target="_blank" href="#offbye" title="StackOverflow"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-Android MultiDex分包变形记" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/01/19/Android MultiDex分包变形记/" class="article-date">
+      <time datetime="2016-01-19T04:35:00.000Z" itemprop="datePublished">2016-01-19</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Android MultiDex分包变形记
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Android/">Android</a><a class="article-category-link" href="/categories/Android/MultiDex/">MultiDex</a>
+    </div>
+
+
+        
+
+        
+        <div style="display:block; clear:both;">
+          <span>CSDN原文:<a href="http://blog.csdn.net/offbye/article/details/50541688" target="_blank" title="Android MultiDex分包变形记">http://blog.csdn.net/offbye/article/details/50541688</a> </span>
+          <span style="float:right;margin-right:1em"> CSDN阅读数:647</span>
+        </div>
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>腾讯Bugly特约作者：李金涛</p>
+<p>一、背景<br>就在项目灰度测试前不久，爆出了在 Android 3.0以下手机上安装时出现 INSTALL _ FAILED<em>DEXOPT，导致安装失败。这一问题意味着项目将不能在 Android 3.0以下的手机上安装使用，对项目的发布有比较大的影响，所以必须尽快解决。<br>INSTALL </em> FAILED<em>DEXOPT导致无法安装的问题，从根本上来说，可能是两个原因造成的：<br>(1) 单个 dex 文件方法总数65K 的限制。<br>(2) Dexopt 的 LinearAlloc 限制。<br>当 Android 系统安装一个应用的时候，有一步是对 Dex 进行优化，这个过程有一个专门的工具来处理，叫 DexOpt。DexOpt 是在第一次加载 Dex 文件的时候执行的。这个过程会生成一个 ODEX 文件，即 Optimised Dex。执行 ODEX 的效率会比直接执行 Dex 文件的效率要高很多。<br>但是在早期的 Android 系统中，DexOpt 有两个问题。(一)：DexOpt 会把每一个类的方法 id 检索起来，存在一个链表结构里面，但是这个链表的长度是用一个 short 类型来保存的，导致了方法 id 的数目不能够超过65536个。当一个项目足够大的时候，显然这个方法数的上限是不够的。(二)：Dexopt 使用 LinearAlloc 来存储应用的方法信息。Dalvik LinearAlloc 是一个固定大小的缓冲区。在Android 版本的历史上，LinearAlloc 分别经历了4M/5M/8M/16M限制。Android 2.2和2.3的缓冲区只有5MB，Android 4.x提高到了8MB 或16MB。当方法数量过多导致超出缓冲区大小时，也会造成dexopt崩溃。<br>尽管在新版本的 Android 系统中，DexOpt 修复了方法数65K的限制问题，并且扩大了 LinearAlloc 限制，但是我们仍然需要对低版本的 Android 系统做兼容。<br>回头说项目。由于项目新版本新增功能点和代码较多，在方法数减无可减的时候，仍然不能解决INSTALL </em> FAILED _ DEXOPT的问题。所以，最终我们采用了 dex 分包的方案，来避开了 Android 3.0以下平台的方法数和 LinearAlloc 限制。<br>简单的说，分包就是在打包时将应用的代码分成多个 dex，使得主 dex 的方法数和所需的 LinearAlloc 不超过系统限制。在应用启动或运行过程中，首先是主 dex 启动运行后，再加载从 dex，这样就绕开了这两个限制。<br>这样，我们的分包方案就要解决两个问题：一是如何对 dex 进行拆分，二是如何加载从 dex。<br>二、Google 官方方案<br>1.Dex 拆分<br>首先，我们需要解决如何对dex进行拆分?<br>通过学习资料，我们知道，对于方法数超过65K 的问题，Google 官方从 Android Build tools 21.1就开始着手解决了。<br>先看官方网站提供的配置。Google MultiDex 官方文档是针对 Gradle 进行配置的，如下：<br>12345678910111213141516171819<code>android {``compileSdkVersion ``21``buildToolsVersion ``&quot;21.1.0&quot;`` </code> <code>defaultConfig {``...``minSdkVersion ``14``targetSdkVersion ``21``...`` </code> <code>// Enabling multidex support.``multiDexEnabled ``true``}``...``}`` </code> <code>dependencies {``  ``compile ``&#39;com.android.support:multidex:1.0.0&#39;``}</code>那么，是不是按 Google 官方文档配置一下就 OK 了呢?不管怎样，这是官方提供的方案，而且是最直接的做法，所以我们应该先试一试。<br>因为我们项目的 RDM 构建环境采用的是 ant 脚本编译，所以首先要想办法把 Google 官方编译配置改造成 ant 脚本。<br>官方文档上只提供了如何使用 MultiDex，没有说明构建时如何打包出多个 dex。其实是因为如果用了这种 Gradle来构建，当应用构建时，构建工具会自动分析哪些类必须放在第一个 DEX 文件(主 dex)，哪些类可以放在附加的 DEX 文件(从 dex)中，并将分析结果输出到 dx 进行后续打包。当它创建了主 dex 文件(classes.dex)后，如果有必要会继续创建从 DEX 文件，如 classes2.dex, classes3.dex。这种方法优点是配置比较简单，但是最大的缺点是不能指定哪些类必须包含在主 dex 中，容易导致应用启动时某些类找不到，出现 Class Not Found Exception。<br>我们把上述 Gradle 的配置改成 ant 脚本时，就不能简单套用了。通过查看 dx 工具的用法：<br><img src="http://devstorepic.qiniudn.com/FtYnbNRxoltf1ugsY334RqV4yBpl" alt="" title="dex分包变形记"><br>参数说明：<br>–multi-dex：多 dex 打包的开关。<br>–main-dex-list=：参数是一个类列表的文件，在该文件中的类会被打包在第一个 dex 中。<br>–minimal-main-dex：只有在–main-dex-list 文件中指定的类被打包在第一个 dex，其余的都在第二个 dex 文件中。<br>因为后两个参数是 optional 参数，所以理论上只需给 dx 加上“–multi-dex”参数即可生成出 classes.dex、classes2.dex、classes3.dex、…。<br>在 Gradle 中可以做如下的配置：<br>123456789101112131415161718192021<code>afterEvaluate { `` </code> <code>``tasks.matching { `` </code> <code>``it.name.startsWith(``&#39;dex&#39;``) `` </code> <code>``}.each { dx -&gt; `` </code> <code>``if</code> <code>(dx.additionalParameters == ``null``) { `` </code> <code>``dx.additionalParameters = [``&#39;--multi-dex&#39;``] `` </code> <code>``} ``else</code> <code>{ `` </code> <code>``dx.additionalParameters += ``&#39;--multi-dex&#39;</code> <code>` </code>       <code>}</code> <code>`    ``} `` </code> <code>}</code>好了，这样我们就可以改造我们的 ant 脚本了。<br>改造的方法是在项目打包的 ant 脚本中引入 Android build Tools 21.1.2，并把用 dx 生成 dex 的部分改造成下面的样子：<br><img src="http://devstorepic.qiniudn.com/FhH88h-QsQRPAzK_f7jWqjbyU5cC" alt="" title="dex分包变形记"><br>编译、打包，并没有像预期那样生成多个 dex，而是只生成了一个 classes.dex：<br><img src="http://devstorepic.qiniudn.com/Fp3tetemLNh3WtFS7nY95mkJX5KS" alt="" title="dex分包变形记"><br>生成的 apk 包跟 dex 分包前一样。为什么会这样?<br>再看 dx 的参数，main-dex-list 和 minimal-main-dex 只会影响到主 dex 中包含的文件，不会影响到从 dex 是否生成，所以应该是其他原因造成的。<br>查不到资料，分析源代码就是解决问题的不二法门。于是我把 dx.jar 反编译了一下，通过分析，找到了下面的几行关键代码：<br><img src="http://devstorepic.qiniudn.com/FlE8AAfKBVHvG4M2wLxmd9oyokK4" alt="" title="dex分包变形记"><br><img src="http://devstorepic.qiniudn.com/FvKUB0hoAkmH0csISYOlpebSztNk" alt="" title="dex分包变形记"><br>显然，dx 进行多 dex 打包时，默认每个 dex 中方法数最大为65536。而查看当前应用 dex 的方法数，一共只有51392(方法数没超标，主要是 LinearAlloc 超标)，没有达到65536，所以打包的时候只有一个 dex。<br>再继续分析代码，发现下面一段关键代码：<br><img src="http://devstorepic.qiniudn.com/FqSxh-IhMly6oREAIXjRLZJMGRds" alt="" title="dex分包变形记"><br>这说明 dx 有一个隐藏的参数：–set-max-idx-number，这个参数可以用于设置 dx 打包时每个 dex 最大的方法数，但是此参数并未在 dx 的 Usage 中列出(坑爹啊!)。<br>我们在 ant 脚本中把这个参数设置上，暂时设置每个 dex 的方法数最大为48000：<br><img src="http://devstorepic.qiniudn.com/FuaqrIsmgP8LTlVTYlshPNWDy6Ta" alt="" title="dex分包变形记"><br>重新打包，结果如下：<br><img src="http://devstorepic.qiniudn.com/Fmy7u00YWRcdNApTI7XFPSdSXLXB" alt="" title="dex分包变形记"><br>果然，第二个 dex 出现了!<br>可是，观察一下 res 目录，这里出现了一个新的问题，drawable 密度后缀的资源目录都多了一个 v4：<br><img src="http://devstorepic.qiniudn.com/FsXGrvEYkoZUT0J0BGj6e8WzBV4-" alt="" title="dex分包变形记"><br>为什么这几个目录会带 v4后缀呢?原来这是 R6以上的 Android SDK Tools 自动打包工具新加的一个处理，即为这些在 Android 1.0 时不存在的密度后缀命名的资源路径名称后面自动添加一个适合的版本后缀，以确保老版本不使用这些资源(只有 API level 4以及更高版本支持后缀)，v4 就表示使用在 Android 1.6 或更高版本。<br>上述的 Dex 拆分过程采用的就是 Google 官方的方案。Dex 拆分已经完成，如何加载呢?<br>2.Dex加载<br>因为 Android 系统在启动应用时只加载了主 dex(Classes.dex)，其他的 dex 需要我们在应用启动后进行动态加载安装。<br>Google 官方方案是如何加载的呢?<br>Google 官方支持 Multidex 的 jar 包是 android-support-multidex.jar，该 jar 包从 build tools 21.1 开始支持。这个 jar 加载 apk 中的从 dex 流程如下：<br><img src="http://devstorepic.qiniudn.com/FmAzfHcNim6EvBZe6BudvOAJY-95" alt="" title="dex分包变形记"><br>此处主要的工作就是从 apk 中提取出所有的从 dex(classes2.dex，classes3.dex，…)，然后通过反射依次安装加载从 dex 并合并 DexPathList 的 Element 数组。<br>如果引用这个 jar 包，MultiDexApplication 的 Java Doc 提供了三种方式来加载从 dex：<br>1)在 AndroidManifest.xml 中，把 application 定义为 android.support.multidex.MultiDexApplication。<br>2)用自定义的 Application 类继承 android.support.multidex.MultiDexApplication，再配置 application 为自定义的类。<br>3)如果之前自定义的 Application 类已经继承了其他 Application 类，而且不想改变，那么可以重写自定义 Application 类的 attachBaseContext() 或者 onCreate() 方法，并添加语句 MultiDex.install(this)。<br>为了使改动最小，我们采用上述3)中的调用方式：<br><img src="http://devstorepic.qiniudn.com/FgewVu10BwgkQuJKPTiDl-OpCyyJ" alt="" title="dex分包变形记"><br>到此为止，用 Google 官方方案进行 dex 拆分和加载就已经完成了。安装运行一下试试!<br>3.安装运行<br>我们把分包后的 apk 在 Android 4.3的手机上进行安装。没有问题，顺利安装上了!<br>没想到的是，启动时没出现任何页面，直接 crash。Crash 的 log 如下：<br><img src="http://devstorepic.qiniudn.com/Fh4FLTUNJADOOd--ztWzIbDHHPWi" alt="" title="dex分包变形记"><br>从 log 上看，项目在启动闪屏页面时无法实例化 com.example.AppService.AstApp，因为找不到 com.example.AppService.AstApp 这个类。既然 Application 类都找不到，那么我们在 Application 中加载从 dex 更加没有执行到了。<br>反编译一下 classes.dex 和 classes2.dex，果然 com.example.AppService.AstApp 是在classes2.dex，所以刚启动时在主 dex(classes.dex) 中找不到 com.example.AppService.AstApp(Application 类)。<br><img src="http://devstorepic.qiniudn.com/FitbM95V_SUwTkaD8idS6c0X6uO5" alt="" title="dex分包变形记"><br>理论上，启动必需的代码应该放在主 dex 中，这些代码包括 Application、BaseActivity 等代码以及继承自它们的代码的一个依赖集。但是我们看到，单纯依赖于构建工具自动进行 dex 拆分时，我们无法决定或干预哪些类应该放在主 dex，哪些类应该放在从 dex，这就可能导致启动时往往会有类库找不到。<br>接下来，我们就得想办法来自主定制主、从 dex 包含的文件，使它们完全可控。<br>4.Google 官方方案的小结<br>采用 Google 官方的拆包方案走到现在，我们需要再梳理一下思路了。<br>到现在为止，已经解决的问题是：<br>1)能正常打出多个 dex;<br>2)可以指定每个 dex 的大小;<br>3)可以加载多个 dex。<br>尚未解决的问题是：如何指定哪些类应该放到主 dex，哪些类应该放到从 dex?<br>关于这个问题，从前面 dx 工具的用法中可得知，我们可以在 dx 的参数中加入–main-dex-list，指定哪些类应该放在主 dex 中(也可同时配合使用参数–minimal-main-dex，指定主 dex 中只包含在–main-dex-list 文件中指定的类)。<br>可是问题又来了，怎么得到 main-dex-list 文件?在大的工程开发中，手动添加文件列表显然不现实。<br>同时，在前面研究和验证 Google 官方方案的过程中，也有几个不得不提的问题：<br>1)需要高版本的 build Tools、SDK Tools 编译打包;<br>2)编译打包 apk 后生成的 drawable 密度后缀目录被添加了 v4 后缀;<br>3)Google 的 MultiDex 方案在运行中需要比较大的 LinearAlloc，但是由于 Android 4.0 (API level 14) 以下的机器上 Dalvik LinearAlloc 的一个缺陷 (Issue 22586) 和限制 (Issue 78035)，可能导致运行时无法满足 LinearAlloc 的需求而造成 DexOpt 失败或者 Dalvik 虚拟机崩溃;<br>4)从 dex 不能太大，否则在运行时安装加载从 dex 的过程比较复杂和耗时，可能会导致应用程序无响应 (ANR) 的错误。<br>由于项目是首次做分包，安装包改动已经比较大了，如果再将一直使用且没有问题的 build Tools、SDK Tools 冒然升级以及 drawable 密度后缀目录改变，那么无论怎样，它们所带来的风险和挑战都是比较大的，也会带来后期测试和维护的工作量。所以，我们的方案一定要做到尽量减少这些改变。而对于后面两点，我们就应该考虑对 dex 的拆分进行干预，使每个 dex 的大小在一定的合理范围内，消除或减少触发 Dalvik LinearAlloc 缺陷和限制的概率以及分包引起的 ANR。<br>综合以上几点，我们就需要在对官方方案透彻研究的基础上，自己实现工具脚本来进行 dex 的自主拆分、加载，便于灵活的适应低版本 Android SDK tools 以及 Android 平台。<br>三、DEX 自动拆包和动态加载方案<br>1.Dex 拆分<br>根据前面对官方方案的研究总结，我们可以很快梳理出下面几个dex拆分步骤：<br>1)自动扫描整个工程代码得到 main-dex-list;<br>2)根据 main-dex-list 对整个工程编译后的所有 class 进行拆分，将主、从 dex 的 class 文件分开;<br>3)用 dx 工具对主、从 dex 的 class 文件分别打包成 .dex 文件，并放在 apk 的合适目录。<br>怎么自动生成 main-dex-list?<br>Android SDK 从 build tools 21 开始提供了 mainDexClasses 脚本来生成主 dex 的文件列表。查看这个脚本的源码，可以看到它主要做了下面两件事情：<br>1)调用 proguard 的 shrink 操作来生成一个临时 jar 包;<br>2)将生成的临时 jar 包和输入的文件集合作为参数，然后调用com.android.multidex.MainDexListBuilder 来生成主 dex 文件列表。<br>Proguard的官网执行步骤如下：<br><img src="http://devstorepic.qiniudn.com/FmxJ-gCfOtPx3KJ3CA9MsyqtPjYa" alt="" title="dex分包变形记"><br>在 shrink 这一步，proguard 会根据 keep 规则保留需要的类和类成员，并丢弃不需要的类和类成员。也就是说，上面 shrink 步骤生成的临时 jar 包里面保留了符合 keep 规则的类，这些类是需要放在主 dex 中的入口类。<br>但是仅有这些入口类放在主 dex 还不够，还要找出入口类引用的其他类，不然仍然会在启动时出现 NoClassDefFoundError。而找出这些引用类，就是调用的 com.android.multidex.MainDexListBuilder，它的部分核心代码如下：<br><img src="http://devstorepic.qiniudn.com/Fmnhc9HHnj8mzo_cRXIj0-K2AAWX" alt="" title="dex分包变形记"><br>在调用 com.android.multidex.MainDexListBuilder 之后，符合 keep 规则的主 dex 文件列表就生成了。<br>既然 Android SDK 已经提供了这样一种比较方便的工具，我们就不再重复发明轮子了。所以我们首先把 mainDexClasses 脚本进行了一些适当的改造，然后移植到 RDM 构建环境下，然后根据项目代码的实际情况将主要的基础类、common 类、wakeup 类做为补充规则加入扫描规则中，再加上基本规则 Application、Activity、Service、Provider、Receiver 等类，就组成了项目的主 dex 扫描规则。<br>这时，新的问题是，由于项目编译打包时有代码混淆的步骤，那我们扫描主 dex 文件列表时到底是在代码混淆之前还是之后?理论上，混淆前后都可以扫描，但是混淆之后扫描时主要的问题是：在制定 keep 规则时，最合理的方式是采用包路径来制定规则，而混淆后的代码中大部分包路径被混淆了，我们无法根据混淆后的包路径来制定 keep 规则，也就无法完全指定哪些文件应该放在主 dex 中。所以，结论就是，我们必须在代码混淆之前扫描生成主 dex 文件列表。<br>再往下做时，问题又出现了，我们是在扫描生成主 dex 文件列表后就立刻将主、从 dex 的 class 文件拆分到不同目录，然后各自进行代码混淆呢还是统一混淆后再进行 class 文件的拆分呢?答案是，我们需要统一混淆后再做拆分。因为如果拆分后各自混淆，则必然会造成混淆后主、从 dex 引用类名的不一致，从而导致应用无法正常运行。<br>但是，这样又有了新的问题，我们是在代码混淆之前扫描生成的主 dex 文件列表，当代码混淆之后，大部分类名称和路径都改变了，我们又如何根据主 dex 文件列表做拆分呢?答案是，因为 proguard 做代码混淆时生成了一个混淆前后代码之间的 mapping 关系文件，我们只需要根据这个 mapping 文件进行映射，即可得到混淆后的主 dex 文件列表。<br>到此为止，思路已经梳理得比较清楚了。<br>按照这个思路，很快就实现了工具脚本，完成了对主、从 dex 的拆分。这样就实现了主、从 dex 的灵活的生成和定制，不仅解决了前面 Google 官方方案存在的问题，而且也为将来从 dex 的异步加载、按需加载提供了比较好的基础。<br>最后，项目的从 dex 是打成 jar 包放在 assets 目录，如下图所示：<br><img src="http://devstorepic.qiniudn.com/FvO1N0fVtmzlX1_M_A_zDUhdfi2N" alt="" title="dex分包变形记"><br>2.Dex加载<br>Google 官方提供的 android-support-multidex.jar 可以用来加载官方方案打包的 dex，也完全可以用于加载我们自己的方案打包的 dex，但是这种方式有下面几个不利的地方：<br>1)灵活性不够，需要所有的从 dex 跟主 dex 在同一级目录，即都在 apk 的根目录，而且从 dex 的命名要符合 classes2.dex、classes3.dex、…、classes(N).dex。<br>2)该 jar 包提供的是同步加载方式，而且是启动时一次性加载所有的从 dex，但是从项目分包的需求以及其他产品的经验来看，加载接口提供异步加载和按需加载的能力是很有必要的。<br>因此，我们的加载方案需要有比较好的灵活性以及提供同步加载、异步加载、按需加载的能力。根据这些要求，我们研究了网上一些开源的代码(也包括 Google 官方 android-support-multidex.jar 的代码)，然后经过改造和验证，实现了一种比较灵活的加载方案。<br>跟 Google 官方加载方案一样，这个方案采用的也是运行时动态加载的方式，利用了 Dalvik 虚拟机的类加载器。<br>我们知道，在 Java 虚拟机里动态加载用的是 ClassLoader。但是在 Dalvik 虚拟机里，却不是 ClassLoader，Android 为我们从 ClassLoader 派生出了两个类：DexClassLoader 和 PathClassLoader。这两者的区别就是 PathClassLoader 不能主动从 zip 包中释放出 dex，因此只支持直接操作 dex 格式文件，或者已经安装的 apk(因为已经安装的 apk 在 cache 中存在缓存的 dex 文件);而 DexClassLoader 可以支持 .apk、.jar 和 .dex文件，并且会在指定的 outpath 路径释放出 dex 文件。<br>由于前面说了，在安装包里有多个 dex 时，应用安装时不会主动释放从 dex，所以我们需要用 DexClassLoader 来释放加载从 dex。当需要加载从 dex 时，加载逻辑会先从 apk 相应的目录释放出所需加载的从 dex，然后执行加载。<br>加载过程的部分核心代码如下：<br><img src="http://devstorepic.qiniudn.com/FssG9xR51c3bWYv6sBXNKc_BDsU2" alt="" title="dex分包变形记"><br>上述代码是通过反射获取 PathClassLoader 中的 DexPathList 中的 Element 数组(加载主 dex 后的 Element 数组)和 DexClassLoader 中的 DexPathList 中的 Element 数组(加载从 dex 后的 Element 数组)，然后将两个 Element 数组合并之后，再将其赋值给 PathClassLoader 的 Element 数组。这样就将主、从 dex 中类的访问方式进行了统一，所以也称为 dex 的注入。<br>那么什么时候加载从 dex 呢?这个问题也就是从 dex 的加载时机。<br>如果是启动时同步加载，一般可以在 Application 的 onCreate 或 attachBaseContext 中执行加载，两者区别不大。不过，由于 Application 的 onCreate 调用是在 ContentProvider 的 OnCreate 调用之后，而 attachBaseContext 的调用是在 ContentProvider 的 OnCreate 调用之前，所以当 app 有注册 ContentProvider 的时候，就必须在 attachBaseContext 中加载从 dex。<br>如果是按需加载，则在代码充分解耦后，只要在从 dex 中的代码调用之前执行加载，都是可以的。<br>3.安装运行<br>Dex 拆分脚本和加载代码都完成了，打一个包，然后在 Android 2.3 系统的手机上安装运行试试吧。一切顺利，终于出现了久违的闪屏页!<br>4.小结<br>上面就是项目 dex 分包方案的研究经过，主要是把 Google 的方案研究清楚以后，又参考了网上的一些开源代码，从而实现了自己的 DEX 自动拆包和动态加载方案。在我们的方案中，可以通过脚本工具来完全定制拆分过程和主、从 dex 文件内容，在运行时也能比较自由、灵活的动态加载从 dex。<br>四、性能影响<br>Dex 分包后，如果是启动时同步加载，对应用的启动速度会有一定的影响，但是主要影响的是安装后首次启动。这是因为安装后首次启动时，Android 系统会对加载的从 dex 做 Dexopt 并生成 ODEX，而 Dexopt 是比较耗时的操作，所以对安装后首次启动速度影响较大。在非安装后首次启动时，应用只需加载 ODEX，这个过程速度很快，对启动速度影响不大。同时，从 dex 的大小也直接影响启动速度，即从dex 越小则启动越快。<br>目前项目的从 dex 的原始大小在 1M 左右。经过测试，安装后首次启动时，在 GT-I8160(Android 2.3) 上加载耗时大约 1200ms，在 N i9250(Android 4.3) 上加载耗时大约 1000ms;非安装后首次启动时，在这两台测试手机上的加载速度分别为约 10ms 和 4ms。<br>五、后续<br>分包方案落地后，我们又解决了覆盖安装和 MD5 校验的问题。不过后续还有不少可优化的点如下：<br>(1) 应用启动性能的优化。如添加启动页、提前做 DexOpt 等;<br>(2) 编译脚本性能优化。由于分包是一个比较复杂和耗时的过程，开始时分包脚本的性能并不理想，后来经过我们两次优化，将打包过程中的分包时间从7分多钟优化到10秒以内;<br>(3) 研究未来可能的按需加载或异步加载从 dex 的问题。<br>腾讯Bugly简介<br>Bugly是腾讯内部产品质量监控平台的外发版本，支持iOS和Android两大主流平台,其主要功能是App发布以后，对用户侧发生的crash以及卡顿现象进行监控并上报，让开发同学可以第一时间了解到app的质量情况，及时修改。目前腾讯内部所有的产品，均在使用其进行线上产品的崩溃监控。<br>腾讯内部团队4年打磨，目前腾讯内部所有的产品都在使用，基本覆盖了中国市场的移动设备以及网络环境，可靠性有保证。使用Bugly，你就使用了和手机QQ、QQ空间、手机管家相同的质量保障手段，Bugly会持续对产品进行优化打磨，在服务好内部团队的同时，帮助更多的开发者。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2016/01/19/Android MultiDex分包变形记/">Android MultiDex分包变形记</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">offbye</a></p>
+        <p><span>发布时间:</span>2016-01-19, 12:35:00</p>
+        <p><span>最后更新:</span>2016-05-13, 00:40:15</p>
+
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2016/01/19/Android MultiDex分包变形记/" title="Android MultiDex分包变形记">http://offbye.com/2016/01/19/Android MultiDex分包变形记/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://offbye.com/2016/01/19/Android MultiDex分包变形记/　　作者: offbye" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+        
+        <p><span>CSDN原文:</span> <a href="http://blog.csdn.net/offbye/article/details/50541688" target="_blank" title="Android MultiDex分包变形记">http://blog.csdn.net/offbye/article/details/50541688</a> </p>
+        <p><span>CSDN PV:</span>647</p>
+        
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2016/01/19/其实你不知道MultiDex到底有多坑/">
+                    其实你不知道MultiDex到底有多坑
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/01/14/Swift iOS项目最佳实践汇总/">
+                    Swift iOS项目最佳实践汇总
+                </a>
+            </div>
+        
+    </nav>
+
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"Android MultiDex分包变形记　| offbye　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="2016/01/19/Android MultiDex分包变形记/" data-title="Android MultiDex分包变形记" data-url="http://offbye.com/2016/01/19/Android MultiDex分包变形记/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"offbye"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+    <!-- 多说公共JS代码 end -->
+</div>
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2016/01/19/其实你不知道MultiDex到底有多坑/" title="上一篇: 其实你不知道MultiDex到底有多坑">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/01/14/Swift iOS项目最佳实践汇总/" title="下一篇: Swift iOS项目最佳实践汇总">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/05/12/YAML文件语法简介/">YAML文件语法简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/11/iOS-Sandbox-swift/">iOS App沙盒模型文件目录详解Swift版</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/11/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/06/iOS App沙盒模型文件目录详解Swift版/">iOS App沙盒模型文件目录详解Swift版</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/05/Swift iOS实现把PCM语音转成MP3格式/">Swift iOS实现把PCM语音转成MP3格式</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/04/RESTFUL API 安全设计/">RESTFUL API 安全设计</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/04/关于 Token，你应该知道的十件事/">关于 Token，你应该知道的十件事</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/04/程序员的成长和代码行数的关系/">程序员的成长和代码行数的关系</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/04/从JavaAndroid到Swift iOS开发：语言与框架对比/">从JavaAndroid到Swift iOS开发：语言与框架对比</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/26/Android开发常用开源框架推荐/">Android开发常用开源框架推荐</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/22/Swift Modules for React Native/">Swift Modules for React Native</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/15/Android官方MVP架构示例项目解析/">Android官方MVP架构示例项目解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/15/使用swift开发Cordova插件/">使用swift开发Cordova插件</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/14/Swift语言中的@available 和 #available/">Swift语言中的@available 和</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/31/Android volley 使用OkHttp3.0/">Android volley 使用OkHttp3.0</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/28/What's new in Swift 2.2/">What's new in Swift 2.2</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/16/java8新特性介绍/">java8新特性介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/15/Swift异常处理：throw和rethrow/">Swift异常处理：throw和rethrow</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/14/Swift iOS- 手势检测详解/">Swift iOS- 手势检测详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/11/Swift化零为整：Reduce 详解/">Swift化零为整：Reduce 详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/11/Swift2.1关键字 @noescape介绍/">Swift2.1关键字 @noescape介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/11/理解Swift中map 和 flatMap对集合的作用/">理解Swift中map 和 flatMap对集合的作用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/09/移动端专用数据库Realm介绍/">移动端专用数据库Realm介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/09/安装Xcode插件包管理器Alcatraz报错解决办法/">安装Xcode插件包管理器Alcatraz报错解决办法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/09/Android最佳实践 —— 详细谈谈如何减小APK体积/">Android最佳实践 —— 详细谈谈如何减小APK体积</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/05/iOS开发如何通过UMeng的错误分析解决crash问题/">iOS开发如何通过UMeng的错误分析解决crash问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/04/常见移动设备的 CSS3 Media Query 整理（iPhoneiPadGalaxy）/">常见移动设备的 CSS3 Media Query 整理（iPhoneiPadGalaxy）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/04/我在MDCC 2015的演讲PPT《HTML5移动应用多端开发架构实践》分享/">我在MDCC 2015的演讲PPT《HTML5移动应用多端开发架构实践》分享</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/01/深入理解iOS开发中的BitCode功能/">深入理解iOS开发中的BitCode功能</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/01/iOS swift动画和特效专题/">iOS swift动画和特效专题</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/29/Swift iOS项目archive操作会报错误built without full bitcode解决方法/">Swift iOS项目archive操作会报错误built without full bitcode解决方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/26/GCD 和延时调用/">GCD 和延时调用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/26/Swift - 多线程实现方式（3） - Grand Central Dispatch（GCD）/">Swift - 多线程实现方式（3） - Grand Central Dispatch（GCD）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/25/iOS 9开发小技巧：LayoutGuide，Storyboard Reference/">iOS 9开发小技巧：LayoutGuide，Storyboard Reference</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/25/Storyboard的爱与恨/">Storyboard的爱与恨</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/25/Swift iOS tableView static cell动态计算高度/">Swift iOS tableView static cell动态计算高度</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/24/5 个顶级 Android 开源库/">5 个顶级 Android 开源库</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/19/Swift高阶函数介绍（闭包、Map、Filter、Reduce）/">Swift高阶函数介绍（闭包、Map、Filter、Reduce）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/18/iOS Swift判断代码运行在模拟器上/">iOS Swift判断代码运行在模拟器上</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/17/iOS 开发 UI 搭建心得（一）—— 驾驭 StoryBoard  代码示例：httpsgithub.comjohnluiSwift-On-iOSblobmasterDifferen/">iOS 开发 UI 搭建心得（一）—— 驾驭 StoryBoard  代码示例：httpsgithub.comjohnluiSwift-On-iOSblobmasterDifferen</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/16/使用命令行统计代码行数/">使用命令行统计代码行数</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/03/HTTP 2.0的那些事/">HTTP 2.0的那些事</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/02/浅谈 RxAndroid + Retrofit + Databinding/">浅谈 RxAndroid + Retrofit + Databinding</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/28/2016这些Android技术会很火/">2016这些Android技术会很火</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/27/使用CodePush实时更新 React Native 和 Cordova 应用/">使用CodePush实时更新 React Native 和 Cordova 应用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/20/理解Swift中Optional类型－有和无的哲学/">理解Swift中Optional类型－有和无的哲学</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/19/其实你不知道MultiDex到底有多坑/">其实你不知道MultiDex到底有多坑</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/19/Android MultiDex分包变形记/">Android MultiDex分包变形记</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/14/Swift iOS项目最佳实践汇总/">Swift iOS项目最佳实践汇总</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/11/饿了么移动APP的架构演进/">饿了么移动APP的架构演进</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/30/Android 开发最佳实践/">Android 开发最佳实践</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/29/RxAndroid和RxJava的资料分享/">RxAndroid和RxJava的资料分享</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/28/技术人如何才能不焦虑/">技术人如何才能不焦虑</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/26/云栖社区12篇实战经验所组成的“近战”系列分享/">云栖社区12篇实战经验所组成的“近战”系列分享</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/26/程序员晋升攻略/">程序员晋升攻略</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/25/Xcode7.2版本carthage包管理器兼容问题解决/">Xcode7.2版本carthage包管理器兼容问题解决</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/14/2015年Android开发新技术盘点/">2015年Android开发新技术盘点</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/10/Android中Touch事件分析--解决HorizontalScrollView滑动和按钮事件触发问题/">Android中Touch事件分析--解决HorizontalScrollView滑动和按钮事件触发问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/03/Android动态加载黑科技 动态创建Activity模式/">Android动态加载黑科技 动态创建Activity模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/01/Android注解支持Support Annotations详解/">Android注解支持Support Annotations详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/27/Android Studio 2.0 Instant Run即时运行功能实现分析/">Android Studio 2.0 Instant Run即时运行功能实现分析</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/25/Android应用性能剖析全攻略/">Android应用性能剖析全攻略</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/24/自动生成Android不同分辨率下的图片/">自动生成Android不同分辨率下的图片</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/24/Android Studio 2.0 Preview发布,附下载地址，支持即时运行和GPU Profiler/">Android Studio 2.0 Preview发布,附下载地址，支持即时运行和GPU Profiler</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/17/React Native Android端10个最常见问题/">React Native Android端10个最常见问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/13/使用Javascript ES6进行开发的思考/">使用Javascript ES6进行开发的思考</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/13/安装包立减1M--微信Android资源混淆打包工具/">安装包立减1M--微信Android资源混淆打包工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/11/Ionic 2.0 Alpha版本发布了/">Ionic 2.0 Alpha版本发布了</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/10/美团Android资源混淆保护实践/">美团Android资源混淆保护实践</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/10/Android开发中的armeabi和armeabi-v7a介绍/">Android开发中的armeabi和armeabi-v7a介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/06/在CordovaActivity中添加原生View组件/">在CordovaActivity中添加原生View组件</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/05/技术贴：开源飞控那些事/">技术贴：开源飞控那些事</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/03/Android常用开源框架Proguard混淆解决方案/">Android常用开源框架Proguard混淆解决方案</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/03/美团Android DEX自动拆包及动态加载简介/">美团Android DEX自动拆包及动态加载简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/02/Google基于Dart的新移动开发框架Flutter介绍/">Google基于Dart的新移动开发框架Flutter介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/29/通过SharedPreferences实现进程间数据共享的问题详解/">通过SharedPreferences实现进程间数据共享的问题详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/26/Android修改TitleBar标题栏详解/">Android修改TitleBar标题栏详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/23/异步JavaScript的进化/">异步JavaScript的进化</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/21/Android Service创建USB HOST通信/">Android Service创建USB HOST通信</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/21/Android 热敏打印机打印二维码/">Android 热敏打印机打印二维码</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/13/基于webpack搭建前端工程解决方案探索/">基于webpack搭建前端工程解决方案探索</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/11/理解Flux架构/">理解Flux架构</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/09/Mac Yosemite系统 brew 报错的解决办法/">Mac Yosemite系统 brew 报错的解决办法</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/30/微信公众平台接入经验分享，纯干货/">微信公众平台接入经验分享，纯干货</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/28/使用Kotlin进行Android开发/">使用Kotlin进行Android开发</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/23/Umeng推送消息的坑，Android Service的androidexported详解/">Umeng推送消息的坑，Android Service的androidexported详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/22/自动生成Android屏幕适配的dimens.xml/">自动生成Android屏幕适配的dimens.xml</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/21/iOS9系统开始对企业发布App进行严格限制/">iOS9系统开始对企业发布App进行严格限制</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/16/sed 简明教程/">sed 简明教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/15/Gradle, 基于DSL的新一代Java构建工具/">Gradle, 基于DSL的新一代Java构建工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/15/Gradle常用命令和原理说明/">Gradle常用命令和原理说明</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/09/大势所趋！十大令人振奋的移动端APP设计趋势/">大势所趋！十大令人振奋的移动端APP设计趋势</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/02/Android微信智能心跳方案/">Android微信智能心跳方案</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/01/深入浅出学Spring Data JPA/">深入浅出学Spring Data JPA</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/29/在Mac上制作树莓派SD镜像/">在Mac上制作树莓派SD镜像</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/26/Git从远程的分支获取最新的版本到本地/">Git从远程的分支获取最新的版本到本地</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/25/Spring Data JPA 常用注解 @Query、@NamedQuery/">Spring Data JPA 常用注解 @Query、@NamedQuery</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/24/树莓派做 wifi 热点/">树莓派做 wifi 热点</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/23/树莓派把一个python脚本作为服务运行，配置开机自动启动/">树莓派把一个python脚本作为服务运行，配置开机自动启动</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/22/INSTALLING OPERATING SYSTEM IMAGES ON MAC OS/">INSTALLING OPERATING SYSTEM IMAGES ON MAC OS</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/18/基于Volley，Gson封装支持JWT无状态安全验证和数据防篡改的GsonRequest网络请求类/">基于Volley，Gson封装支持JWT无状态安全验证和数据防篡改的GsonRequest网络请求类</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/28/Python高效率编程的8条箴言/">Python高效率编程的8条箴言</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/28/如何使用Android Studio提高App质量/">如何使用Android Studio提高App质量</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/27/树莓派遥控船项目计划/">树莓派遥控船项目计划</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/24/树莓派的PWM脉宽调制功能介绍/">树莓派的PWM脉宽调制功能介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/23/python字符串连接/">python字符串连接</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/23/Android Studio上方便使用butterknife注解框架的偷懒插件Android Butterknife Zelezny/">Android Studio上方便使用butterknife注解框架的偷懒插件Android Butterknife Zelezny</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/23/Python的Lambda函数与排序/">Python的Lambda函数与排序</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/22/TypeScript 1.5正式发布，此版本是Visual Studio 2015更新的一部分，支持大量ES6新特性/">TypeScript 1.5正式发布，此版本是Visual Studio 2015更新的一部分，支持大量ES6新特性</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/20/iWeb峰会（HTML5峰会）2015年7月19日上海站会后感想/">iWeb峰会（HTML5峰会）2015年7月19日上海站会后感想</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/16/说说React,Flux,Reray和GraghQL/">说说React,Flux,Reray和GraghQL</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/16/ReactEurope Conf 参会感想/">ReactEurope Conf 参会感想</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/15/Android Studio Gradle项目中添加JNI so文件/">Android Studio Gradle项目中添加JNI so文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/15/mac os使用lsusb命令和连接未知的Android设备/">mac os使用lsusb命令和连接未知的Android设备</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/15/HTML5 HybridApp开发上手指引/">HTML5 HybridApp开发上手指引</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/15/Facebook的Web开发三板斧：React.js、Relay和GraphQL/">Facebook的Web开发三板斧：React.js、Relay和GraphQL</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/15/Flux再进化：Introducing Relay and GraphQL（译）/">Flux再进化：Introducing Relay and GraphQL（译）</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/14/为什么要造轮子？/">为什么要造轮子？</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/10/那些争议最大的编程观点/">那些争议最大的编程观点</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/10/Angular vs. React - the tie breaker/">Angular vs. React - the tie breaker</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/09/android：ToolBar详解（手把手教程）/">android：ToolBar详解（手把手教程）</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/08/Android Support Library更新到v22.1之AppCompat新特性/">Android Support Library更新到v22.1之AppCompat新特性</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/08/用Material Design设计App谷歌官方文档翻译/">用Material Design设计App谷歌官方文档翻译</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/07/Pure Android/">Pure Android</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/07/Material Design in Action — 哔哩哔哩动画 Android 客户端/">Material Design in Action — 哔哩哔哩动画 Android 客户端</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/07/Android Studio 批量打包，apk重命名/">Android Studio 批量打包，apk重命名</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/06/Android Studio Android studio 多渠道打包超简洁版/">Android Studio Android studio 多渠道打包超简洁版</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/06/Eclipse Android项目导入Android Studio时常见的编译错误及解决办法/">Eclipse Android项目导入Android Studio时常见的编译错误及解决办法</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/01/HTML5本地存储——IndexedDB（一：基本使用）/">HTML5本地存储——IndexedDB（一：基本使用）</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/15/SASS基础——十个常见的Mixins/">SASS基础——十个常见的Mixins</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/15/python 中的mixin特性/">python 中的mixin特性</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/10/Mac上通过Linux命令行批量查找和替换文本/">Mac上通过Linux命令行批量查找和替换文本</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/09/产品经理经常犯的十大顶级错误/">产品经理经常犯的十大顶级错误</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/09/ES6新特性概览/">ES6新特性概览</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/09/ES6 JavaScript Promise的感性认知/">ES6 JavaScript Promise的感性认知</a></li><li class="post-list-item"><a class="post-list-link" href="/2009/12/07/Centos 5.3上Asterisk安装及配置/">Centos 5.3上Asterisk安装及配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2009/12/07/rsh服务配置文档/">rsh服务配置文档</a></li><li class="post-list-item"><a class="post-list-link" href="/2009/12/07/centos 5.3中用yum安装MPlayer/">centos 5.3中用yum安装MPlayer</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2015-2016 offbye
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >本站到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.1.22/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 9;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

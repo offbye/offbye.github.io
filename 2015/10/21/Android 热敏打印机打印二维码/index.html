@@ -1,0 +1,2702 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  
+  <title>Android 热敏打印机打印二维码 | offbye</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Android 热敏打印机打印二维码">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android 热敏打印机打印二维码">
+<meta property="og:url" content="http://offbye.com/2015/10/21/Android 热敏打印机打印二维码/index.html">
+<meta property="og:site_name" content="offbye">
+<meta property="og:description" content="Android 热敏打印机打印二维码">
+<meta property="og:image" content="http://a1.eoeandroid.com/attachment/forum/201502/02/211859rzerb206eqqrprq8.png">
+<meta property="og:updated_time" content="2016-05-12T16:39:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android 热敏打印机打印二维码">
+<meta name="twitter:description" content="Android 热敏打印机打印二维码">
+<meta name="twitter:image" content="http://a1.eoeandroid.com/attachment/forum/201502/02/211859rzerb206eqqrprq8.png">
+  
+    <link rel="alternative" href="/atom.xml" title="offbye" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+      <link href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css" rel="stylesheet">
+  
+  
+  
+      <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+      <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+  
+  <script src="//cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.9/clipboard.min.js"></script>
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false,
+          fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+          scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.0.9/scrollreveal.min.js"
+      }
+  </script>
+
+  
+      <script>
+          yiliaConfig.rootUrl = "/";
+      </script>
+  
+
+  
+  
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">offbye</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">关注移动架构，Android，HTML5，iOS技术前沿</p>
+        
+                
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:offbye@gmail.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/offbye" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="http://blog.csdn.net/offbye" title="CSDN"></a>
+                            
+                                <a class="fa StackOverflow" target="_blank" href="#offbye" title="StackOverflow"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sandbox/">Sandbox</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/YAML/">YAML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/swift/">swift</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注移动端</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">offbye</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">offbye</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">关注移动架构，Android，HTML5，iOS技术前沿</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:offbye@gmail.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/offbye" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="http://blog.csdn.net/offbye" title="CSDN"></a>
+                            
+                                <a class="fa StackOverflow" target="_blank" href="#offbye" title="StackOverflow"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-Android 热敏打印机打印二维码" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/10/21/Android 热敏打印机打印二维码/" class="article-date">
+      <time datetime="2015-10-21T02:01:00.000Z" itemprop="datePublished">2015-10-21</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Android 热敏打印机打印二维码
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/android/">android</a><a class="article-category-link" href="/categories/android/热敏打印机/">热敏打印机</a>
+    </div>
+
+
+        
+
+        
+        <div style="display:block; clear:both;">
+          <span>CSDN原文:<a href="http://blog.csdn.net/offbye/article/details/49300253" target="_blank" title="Android 热敏打印机打印二维码">http://blog.csdn.net/offbye/article/details/49300253</a> </span>
+          <span style="float:right;margin-right:1em"> CSDN阅读数:651</span>
+        </div>
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <pre><code>最近项目需要研究下Android通过usbhost和蓝牙连接热敏打印机打印小票，收集了一下资料参考，感觉这块技术比较乱的，每家打印机都有自己的SDK，但其实底层的原理差不多，做个稳定兼容多个品牌热敏打印机的APP还是有难度的。
+</code></pre><p>　　昨天晚上说抽时间来写一篇关于Android 热敏打印机打印二维码和图片的文章，所幸在下班之前把它给写了，和大家分享吧。我的是Android机器有内置热敏打印机的，我是把apk跑在我的Android机器上的，操作程序打印的。<br>　　一、打印机的型号<br>　　RP-POS80S或RP-POS80P或RP-POS80CS或RP-POS80CP打印机 高速热敏打印机　　打印方式：直接热敏打印　　打印密度：640点/行　　打印纸宽：80mm　　有效打印宽度：72mm　　最小走纸距离：0.125mm　　打印字符　　ACSII码字符集：12×24点　　国标一、二级汉字字库：24×24点　　采用命令集：ESC/POS打印命令集<br>　　二、打印位图命令</p>
+<pre><code>ESC *m nL nH d1...dk     [名称]   选择位图模式     [格式]   ASCII码   ESC  *       m nL nH d1...dk     十六进制码    1B   2A   m nL nH d1...dk     十进制码   27  42   m nL nH d1...dk     [范围]   m= 0, 1, 32, 33     0 £ nL£ 255     0 £ nH£ 3     0 £ d£ 255
+</code></pre><p>[描述]用 m选择位图的模式，位图的点数由 nL和 nH指定，如下所示：<br>  m  模式垂直方向水平方向点数点密度点密度数据个数 (K)08-点 单密度867.7 dpi101.6 dpinL+ nH´ 25618-点 双密度867.7 dpi203.2 dpinL+ nH´ 2563224-点 单密度24203.2 dpi101.6 dpi(nL+ nH ´ 256) ´33324-点 双密度24203.2 dpi203.2 dpi(nL+ nH ´ 256) ´3<br>Dpi:每25.4毫米{1英寸}打印点数<br>[注意]·如果m的值超出了指定的范围，那么nL和之后的数据被当作常规数据处理。· nL和 nH表示水平方向上位图中的点数。通过nL+ nH´ 256计算出点数。· 如果位图数据输入超出了一行上能被打印的点数，那么超出的数据被忽略。· d表示位图数据。设置相应的位为 1去打印某点，或设置为 0以不打印某点。· 如果用GS L 和 GSW 设置的打印范围的宽度比用ESC <em>命令 发送的数据所要求的宽度小时，则对有问题的行执行下列操作（但是打印不能超出最大可打印范围）：<br>① 打印区域的宽度向右扩展以去适应数据量。② 如果步骤①不能为数据提供足够的宽度，那么左边缘就被减少以去适应数据。对于在单密度模式(m= 0, 32)中的数据的每一位，打印机打印两个点：对于在双密度模式(m= 1, 33)中的数据的每一位，打印机打印一个点。在计算一行中能打印的数据量时，这些必须要考虑。<br>· 在打印一个位图之后，打印机返回常规数据处理模式。· 这个命令不被打印模式(粗体、重叠、下划线、字符大小、或反白打印)影响， 除非是颠倒打印模式。· 下图描述了图象数据与被打印的点之间的关系。<br>8-点位图被选定时<br>：<img src="http://a1.eoeandroid.com/attachment/forum/201502/02/211859rzerb206eqqrprq8.png" alt=""><br>三、思路<br>因为所做的是打印图片（或者是二维码） ，先发送一个请求，从网络下载图片或者是二维码，得到这张图片过后，进行压缩到你想要的大小，在对压缩后的图片进行二值化，即黑白化，但是图片本身会有个α的值（即透明度）的问题，如果不进行处理的话，即使是黑白化的图片，得到图片的像素点也不是很精确。对于去透明度处理过后，在对这张图的每个最标点去像素值，即xxx  X  xxx大的图片，会有xxx X xxx个像素点。求出每个像素点的r、g、b的值，通过换算公式进行换算，得到一个像素值（0-255之间）。如果是0-128是黑色，129-255是白色（非黑即白化），这样每个点的像素值就可以确定了。<br>因为我的热敏打印机是24</em>24的，所以会是24个像素点为一组，假设我把图片压缩为360<em>360像素的大小，就会有15组（纵向的15行，横坐标还是360）。一组的有24</em>360的像素点，因为8位是一个字节，这样24个像素点可以分为3组，每8位组成一个字节，每个像素点不是0就是1（之前已经非黑即白过），这样会得到一个byte数组，如：byte[] b1 = {1, 0, 0, 1, 0, 0, 0, 1}; 在将这样的数组换成十进制的数值int v1；这样就会得到3<em>15</em>360个的int 值，在将这些int的值和打印机的打印头命令拼接起来，组成一个byte[] 数组，就可以打印了。<br>四、注意<br>1.热敏打印机是一行一行的打印，所以每一行又得加上打印的头命令，我的打印机头命令是5个，所以byte[]数组的长度会是3<em>15</em>360+5<em>15<br>2.大家看好自己打印机的打印密度，比如我的是24</em>24的，所以我剪裁图片的大小会是24的倍数，360*360.大家最好也剪裁成相应的倍数，这样计算会方便点，不然的话，要对空白区域进行白色补缺。<br>贴代码1. package com.woyou.util;</p>
+<ol>
+<li></li>
+<li><p>import android.graphics.Bitmap;</p>
+</li>
+<li><p>import android.graphics.Canvas;</p>
+</li>
+<li><p>import android.graphics.Matrix;</p>
+</li>
+<li><p>import android.graphics.Rect;</p>
+</li>
+<li><p>import android.util.Log;</p>
+</li>
+<li></li>
+<li><p>/**</p>
+</li>
+<li><ul>
+<li>将图片转化为二进制</li>
+</ul>
+</li>
+<li><ul>
+<li>@author nsz</li>
+</ul>
+</li>
+<li><ul>
+<li>2015年1月30日</li>
+</ul>
+</li>
+<li><p>*/</p>
+</li>
+<li><p>public class PicFromPrintUtils {</p>
+</li>
+<li></li>
+<li></li>
+<li><p>public void init(){</p>
+</li>
+<li><p>//                Gray = 0.29900 <em> R + 0.58700 </em> G + 0.11400 * B</p>
+</li>
+<li><p>}</p>
+</li>
+<li></li>
+<li><p>/<strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong>*</strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></p>
+</li>
+<li><ul>
+<li>我们的热敏打印机是RP-POS80S或RP-POS80P或RP-POS80CS或RP-POS80CP打印机</li>
+</ul>
+</li>
+<li><ul>
+<li>360*360的图片，8个字节（8个像素点）是一个二进制，将二进制转化为十进制数值</li>
+</ul>
+</li>
+<li><ul>
+<li>y轴：24个像素点为一组，即360就是15组（0-14）</li>
+</ul>
+</li>
+<li><ul>
+<li>x轴：360个像素点（0-359）</li>
+</ul>
+</li>
+<li><ul>
+<li>里面的每一组（24<em>360），每8个像素点为一个二进制，（每组有3个，3</em>8=24）</li>
+</ul>
+</li>
+<li><p><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong>**</strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong>/</p>
+</li>
+<li><p>/**</p>
+</li>
+<li><ul>
+<li>把一张Bitmap图片转化为打印机可以打印的bit(将图片压缩为360*360)</li>
+</ul>
+</li>
+<li><ul>
+<li>效率很高（相对于下面）</li>
+</ul>
+</li>
+<li><ul>
+<li>@param bit</li>
+</ul>
+</li>
+<li><ul>
+<li>@return</li>
+</ul>
+</li>
+<li><p>*/</p>
+</li>
+<li><p>public static byte[] draw2PxPoint(Bitmap bit) {    </p>
+</li>
+<li><p>byte[] data = new byte[16290];</p>
+</li>
+<li><p>int k = 0;</p>
+</li>
+<li><p>for (int j = 0; j &lt; 15; j++) {</p>
+</li>
+<li><p>data[k++] = 0x1B;</p>
+</li>
+<li><p>data[k++] = 0x2A;</p>
+</li>
+<li><p>data[k++] = 33; // m=33时，选择24点双密度打印，分辨率达到200DPI。</p>
+</li>
+<li><p>data[k++] = 0x68;</p>
+</li>
+<li><p>data[k++] = 0x01;</p>
+</li>
+<li><p>for (int i = 0; i &lt; 360; i++) {</p>
+</li>
+<li><p>for (int m = 0; m &lt; 3; m++) {</p>
+</li>
+<li><p>for (int n = 0; n &lt; 8; n++) {</p>
+</li>
+<li><p>byte b = px2Byte(i, j <em> 24 + m </em> 8 + n, bit);</p>
+</li>
+<li><p>data[k] += data[k] + b;</p>
+</li>
+<li><p>}</p>
+</li>
+<li><p>k++;</p>
+</li>
+<li><p>}</p>
+</li>
+<li><p>}</p>
+</li>
+<li><p>data[k++] = 10;</p>
+</li>
+<li><p>}</p>
+</li>
+<li><p>return data;</p>
+</li>
+<li><p>}</p>
+</li>
+<li></li>
+<li><p>/**</p>
+</li>
+<li><ul>
+<li>把一张Bitmap图片转化为打印机可以打印的bit</li>
+</ul>
+</li>
+<li><ul>
+<li>@param bit</li>
+</ul>
+</li>
+<li><ul>
+<li>@return</li>
+</ul>
+</li>
+<li><p>*/</p>
+</li>
+<li><p>public static byte[] pic2PxPoint(Bitmap bit){</p>
+</li>
+<li><p>long start = System.currentTimeMillis();</p>
+</li>
+<li><p>byte[] data = new byte[16290];</p>
+</li>
+<li><p>int k = 0;</p>
+</li>
+<li><p>for (int i = 0; i &lt; 15; i++) {</p>
+</li>
+<li><p>data[k++] = 0x1B;</p>
+</li>
+<li><p>data[k++] = 0x2A;</p>
+</li>
+<li><p>data[k++] = 33; // m=33时，选择24点双密度打印，分辨率达到200DPI。</p>
+</li>
+<li><p>data[k++] = 0x68;</p>
+</li>
+<li><p>data[k++] = 0x01;</p>
+</li>
+<li><p>for (int x = 0; x &lt; 360; x++) {</p>
+</li>
+<li><p>for (int m = 0; m &lt; 3; m++) {</p>
+</li>
+<li><p>byte[]  by = new byte[8];</p>
+</li>
+<li><p>for (int n = 0; n &lt; 8; n++) {</p>
+</li>
+<li><p>byte b = px2Byte(x, i <em> 24 + m </em> 8 +7-n, bit);</p>
+</li>
+<li><p>by[n] = b;</p>
+</li>
+<li><p>}</p>
+</li>
+<li><p>data[k] = (byte) changePointPx1(by);</p>
+</li>
+<li><p>k++;</p>
+</li>
+<li><p>}</p>
+</li>
+<li><p>}</p>
+</li>
+<li><p>data[k++] = 10;</p>
+</li>
+<li><p>}</p>
+</li>
+<li><p>long end = System.currentTimeMillis();</p>
+</li>
+<li><p>long str = end - start;</p>
+</li>
+<li><p>Log.i(“TAG”, “str:” + str);</p>
+</li>
+<li><p>return data;</p>
+</li>
+<li><p>}</p>
+</li>
+<li></li>
+<li><p>/**</p>
+</li>
+<li><ul>
+<li>图片二值化，黑色是1，白色是0</li>
+</ul>
+</li>
+<li><ul>
+<li>@param x  横坐标</li>
+</ul>
+</li>
+<li><ul>
+<li>@param y         纵坐标                        </li>
+</ul>
+</li>
+<li><ul>
+<li>@param bit 位图</li>
+</ul>
+</li>
+<li><ul>
+<li>@return</li>
+</ul>
+</li>
+<li><p>*/</p>
+</li>
+<li><p>public static byte px2Byte(int x, int y, Bitmap bit) {</p>
+</li>
+<li><p>byte b;</p>
+</li>
+<li><p>int pixel = bit.getPixel(x, y);</p>
+</li>
+<li><p>int red = (pixel &amp; 0x00ff0000) &gt;&gt; 16; // 取高两位</p>
+</li>
+<li><p>int green = (pixel &amp; 0x0000ff00) &gt;&gt; 8; // 取中两位</p>
+</li>
+<li><p>int blue = pixel &amp; 0x000000ff; // 取低两位</p>
+</li>
+<li><p>int gray = RGB2Gray(red, green, blue);</p>
+</li>
+<li><p>if ( gray &lt; 128 ){</p>
+</li>
+<li><p>b = 1;</p>
+</li>
+<li><p>} else {</p>
+</li>
+<li><p>b = 0;</p>
+</li>
+<li><p>}</p>
+</li>
+<li><p>return b;</p>
+</li>
+<li><p>}</p>
+</li>
+<li></li>
+<li><p>/**</p>
+</li>
+<li><ul>
+<li>图片灰度的转化</li>
+</ul>
+</li>
+<li><ul>
+<li>@param r  </li>
+</ul>
+</li>
+<li><ul>
+<li>@param g</li>
+</ul>
+</li>
+<li><ul>
+<li>@param b</li>
+</ul>
+</li>
+<li><ul>
+<li>@return</li>
+</ul>
+</li>
+<li><p>*/</p>
+</li>
+<li><p>private static int RGB2Gray(int r, int g, int b){</p>
+</li>
+<li><p>int gray = (int) (0.29900 <em> r + 0.58700 </em> g + 0.11400 * b);  //灰度转化公式</p>
+</li>
+<li><p>return  gray;</p>
+</li>
+<li><p>}</p>
+</li>
+<li></li>
+<li><p>/**</p>
+</li>
+<li><ul>
+<li>对图片进行压缩（去除透明度）</li>
+</ul>
+</li>
+<li><ul>
+<li>@param bitmapOrg</li>
+</ul>
+</li>
+<li><p>*/</p>
+</li>
+<li><p>public static Bitmap compressPic(Bitmap bitmapOrg) {</p>
+</li>
+<li><p>// 获取这个图片的宽和高</p>
+</li>
+<li><p>int width = bitmapOrg.getWidth();</p>
+</li>
+<li><p>int height = bitmapOrg.getHeight();</p>
+</li>
+<li><p>// 定义预转换成的图片的宽度和高度</p>
+</li>
+<li><p>int newWidth = 360;</p>
+</li>
+<li><p>int newHeight = 360;</p>
+</li>
+<li><p>Bitmap targetBmp = Bitmap.createBitmap(newWidth, newHeight, Bitmap.Config.ARGB_8888);  </p>
+</li>
+<li><p>Canvas targetCanvas = new Canvas(targetBmp);</p>
+</li>
+<li><p>targetCanvas.drawColor(0xffffffff);</p>
+</li>
+<li><p>targetCanvas.drawBitmap(bitmapOrg, new Rect(0, 0, width, height), new Rect(0, 0, newWidth, newHeight), null);</p>
+</li>
+<li><p>return targetBmp;</p>
+</li>
+<li><p>}</p>
+</li>
+<li></li>
+<li></li>
+<li><p>/**</p>
+</li>
+<li><ul>
+<li>对图片进行压缩(不去除透明度)</li>
+</ul>
+</li>
+<li><ul>
+<li>@param bitmapOrg</li>
+</ul>
+</li>
+<li><p>*/</p>
+</li>
+<li><p>public static Bitmap compressBitmap(Bitmap bitmapOrg) {</p>
+</li>
+<li><p>// 加载需要操作的图片，这里是一张图片</p>
+</li>
+<li><p>//                Bitmap bitmapOrg = BitmapFactory.decodeResource(getResources(),R.drawable.alipay);</p>
+</li>
+<li><p>// 获取这个图片的宽和高</p>
+</li>
+<li><p>int width = bitmapOrg.getWidth();</p>
+</li>
+<li><p>int height = bitmapOrg.getHeight();</p>
+</li>
+<li><p>// 定义预转换成的图片的宽度和高度</p>
+</li>
+<li><p>int newWidth = 360;</p>
+</li>
+<li><p>int newHeight = 360;</p>
+</li>
+<li><p>// 计算缩放率，新尺寸除原始尺寸</p>
+</li>
+<li><p>float scaleWidth = ((float) newWidth) / width;</p>
+</li>
+<li><p>float scaleHeight = ((float) newHeight) / height;</p>
+</li>
+<li><p>// 创建操作图片用的matrix对象</p>
+</li>
+<li><p>Matrix matrix = new Matrix();</p>
+</li>
+<li><p>// 缩放图片动作</p>
+</li>
+<li><p>matrix.postScale(scaleWidth, scaleHeight);</p>
+</li>
+<li><p>// 创建新的图片</p>
+</li>
+<li><p>Bitmap resizedBitmap = Bitmap.createBitmap(bitmapOrg, 0, 0, width,height, matrix, true);</p>
+</li>
+<li><p>// 将上面创建的Bitmap转换成Drawable对象，使得其可以使用在ImageView, ImageButton中</p>
+</li>
+<li><p>//                BitmapDrawable bmd = new BitmapDrawable(resizedBitmap);</p>
+</li>
+<li><p>return resizedBitmap;</p>
+</li>
+<li><p>}</p>
+</li>
+<li></li>
+<li><p>/**</p>
+</li>
+<li><ul>
+<li>将[1,0,0,1,0,0,0,1]这样的二进制转为化十进制的数值（效率更高）</li>
+</ul>
+</li>
+<li><ul>
+<li>@param arry</li>
+</ul>
+</li>
+<li><ul>
+<li>@return</li>
+</ul>
+</li>
+<li><p>*/</p>
+</li>
+<li><p>public static int changePointPx1(byte[] arry){</p>
+</li>
+<li><p>int v = 0;</p>
+</li>
+<li><p>for (int j = 0; j &lt;arry.length; j++) {</p>
+</li>
+<li><p>if( arry[j] == 1) {</p>
+</li>
+<li><p>v = v | 1 &lt;&lt; j;</p>
+</li>
+<li><p>}</p>
+</li>
+<li><p>}</p>
+</li>
+<li><p>return v;</p>
+</li>
+<li><p>}</p>
+</li>
+<li></li>
+<li><p>/**</p>
+</li>
+<li><ul>
+<li>将[1,0,0,1,0,0,0,1]这样的二进制转为化十进制的数值</li>
+</ul>
+</li>
+<li><ul>
+<li>@param arry</li>
+</ul>
+</li>
+<li><ul>
+<li>@return</li>
+</ul>
+</li>
+<li><p>*/</p>
+</li>
+<li><p>public byte changePointPx(byte[] arry){</p>
+</li>
+<li><p>byte v = 0;</p>
+</li>
+<li><p>for (int i = 0; i &lt; 8; i++) {</p>
+</li>
+<li><p>v += v + arry[i];</p>
+</li>
+<li><p>}</p>
+</li>
+<li><p>return v;</p>
+</li>
+<li><p>}</p>
+</li>
+<li></li>
+<li><p>/**</p>
+</li>
+<li><ul>
+<li>得到位图的某个点的像素值</li>
+</ul>
+</li>
+<li><ul>
+<li>@param bitmap</li>
+</ul>
+</li>
+<li><ul>
+<li>@return</li>
+</ul>
+</li>
+<li><p>*/</p>
+</li>
+<li><p>public byte[] getPicPx(Bitmap bitmap){</p>
+</li>
+<li><p>int[] pixels = new int[bitmap.getWidth() * bitmap.getHeight()];// 保存所有的像素的数组，图片宽×高</p>
+</li>
+<li><p>bitmap.getPixels(pixels, 0, bitmap.getWidth(), 0, 0, bitmap.getWidth(), bitmap.getHeight());</p>
+</li>
+<li><p>for (int i = 0; i &lt; pixels.length; i++) {</p>
+</li>
+<li><p>int clr = pixels[i];</p>
+</li>
+<li><p>int red = (clr &amp; 0x00ff0000) &gt;&gt; 16; // 取高两位</p>
+</li>
+<li><p>int green = (clr &amp; 0x0000ff00) &gt;&gt; 8; // 取中两位</p>
+</li>
+<li><p>int blue = clr &amp; 0x000000ff; // 取低两位</p>
+</li>
+<li><p>System.out.println(“r=” + red + “,g=” + green + “,b=” + blue);</p>
+</li>
+<li><p>}</p>
+</li>
+<li><p>return null;</p>
+</li>
+<li><p>}</p>
+</li>
+<li></li>
+<li><p>}</p>
+</li>
+</ol>
+<p>复制代码<br>下面楼层继续…</p>
+<ol>
+<li><p>package com.woyou.util;</p>
+</li>
+<li></li>
+<li><p>import java.io.ByteArrayOutputStream;</p>
+</li>
+<li><p>import java.io.File;</p>
+</li>
+<li><p>import java.io.IOException;</p>
+</li>
+<li><p>import java.io.InputStream;</p>
+</li>
+<li><p>import java.io.OutputStream;</p>
+</li>
+<li><p>import java.security.InvalidParameterException;</p>
+</li>
+<li><p>import java.text.DecimalFormat;</p>
+</li>
+<li><p>import java.text.SimpleDateFormat;</p>
+</li>
+<li><p>import java.util.Date;</p>
+</li>
+<li><p>import java.util.Locale;</p>
+</li>
+<li></li>
+<li><p>import android.content.Context;</p>
+</li>
+<li><p>import android_serialport_api.SerialPort;</p>
+</li>
+<li></li>
+<li><p>/**</p>
+</li>
+<li><ul>
+<li>打印机辅助</li>
+</ul>
+</li>
+<li><ul>
+<li></li>
+</ul>
+</li>
+<li><ul>
+<li>@author nsz        2015年1月30日</li>
+</ul>
+</li>
+<li><p>*/</p>
+</li>
+<li><p>public class PrintUtil {</p>
+</li>
+<li><p>final static int BUFFER_SIZE = 4096;</p>
+</li>
+<li></li>
+<li><p>/**</p>
+</li>
+<li><ul>
+<li>对一个byte[] 进行打印</li>
+</ul>
+</li>
+<li><ul>
+<li>@param printText</li>
+</ul>
+</li>
+<li><ul>
+<li>@return</li>
+</ul>
+</li>
+<li><ul>
+<li>add by yidie</li>
+</ul>
+</li>
+<li><p>*/</p>
+</li>
+<li><p>public static boolean printBytes(byte[] printText) {</p>
+</li>
+<li><p>boolean returnValue = true;</p>
+</li>
+<li><p>try {</p>
+</li>
+<li><p>OutputStream mOutputStream = getSerialPort().getOutputStream();</p>
+</li>
+<li><p>mOutputStream.write(printText);</p>
+</li>
+<li><p>} catch (Exception ex) {</p>
+</li>
+<li><p>returnValue = false;</p>
+</li>
+<li><p>}</p>
+</li>
+<li><p>return returnValue;</p>
+</li>
+<li><p>}</p>
+</li>
+<li></li>
+<li><p>/**</p>
+</li>
+<li><ul>
+<li>“\n” 就是换行</li>
+</ul>
+</li>
+<li><ul>
+<li>@param paramString</li>
+</ul>
+</li>
+<li><ul>
+<li>@return</li>
+</ul>
+</li>
+<li><ul>
+<li>add by yidie</li>
+</ul>
+</li>
+<li><p>*/</p>
+</li>
+<li><p>public static boolean printString(String paramString) {</p>
+</li>
+<li><p>return printBytes(getGbk(paramString));</p>
+</li>
+<li><p>}</p>
+</li>
+<li></li>
+<li><p>/<strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><em>*</em></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></p>
+</li>
+<li><ul>
+<li>add by yidie 2012-01-10 功能：设置打印绝对位置 参数： int 在当前行，定位光标位置，取值范围0至576点 说明：</li>
+</ul>
+</li>
+<li><ul>
+<li>在字体常规大小下，每汉字24点，英文字符12点 如位于第n个汉字后，则position=24*n</li>
+</ul>
+</li>
+<li><ul>
+<li>如位于第n个半角字符后，则position=12*n</li>
+</ul>
+</li>
+<li><p><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><em>**</em></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong>/</p>
+</li>
+<li></li>
+<li><p>public static byte[] setCusorPosition(int position) {</p>
+</li>
+<li><p>byte[] returnText = new byte[4]; // 当前行，设置绝对打印位置 ESC $ bL bH</p>
+</li>
+<li><p>returnText[0] = 0x1B;</p>
+</li>
+<li><p>returnText[1] = 0x24;</p>
+</li>
+<li><p>returnText[2] = (byte) (position % 256);</p>
+</li>
+<li><p>returnText[3] = (byte) (position / 256);</p>
+</li>
+<li><p>return returnText;</p>
+</li>
+<li><p>}</p>
+</li>
+<li></li>
+<li><p>/**</p>
+</li>
+<li><ul>
+<li>设置打印机的行高</li>
+</ul>
+</li>
+<li><ul>
+<li>@param h</li>
+</ul>
+</li>
+<li><ul>
+<li>@return</li>
+</ul>
+</li>
+<li><p>*/</p>
+</li>
+<li><p>public static byte[] setLineHeight(byte h) {</p>
+</li>
+<li><p>byte[] returnText = new byte[] { 0x1B, 0x33, h }; // 切纸； 1B 33 n</p>
+</li>
+<li><p>return returnText;</p>
+</li>
+<li><p>}</p>
+</li>
+<li></li>
+<li><p>public static byte[] setDefaultLineHeight() {</p>
+</li>
+<li><p>byte[] returnText = new byte[] { 0x1B, 0x32 }; // 切纸； 1B 32</p>
+</li>
+<li><p>return returnText;</p>
+</li>
+<li><p>}</p>
+</li>
+<li></li>
+<li><p>public static byte[] InputStreamTOByte(InputStream in) throws IOException {</p>
+</li>
+<li></li>
+<li><p>ByteArrayOutputStream outStream = new ByteArrayOutputStream();</p>
+</li>
+<li><p>byte[] data = new byte[BUFFER_SIZE];</p>
+</li>
+<li><p>int count = -1;</p>
+</li>
+<li><p>while ((count = in.read(data, 0, BUFFER_SIZE)) != -1)</p>
+</li>
+<li><p>outStream.write(data, 0, count);</p>
+</li>
+<li></li>
+<li><p>data = null;</p>
+</li>
+<li><p>return outStream.toByteArray();</p>
+</li>
+<li><p>}</p>
+</li>
+<li></li>
+<li><p>/**</p>
+</li>
+<li><ul>
+<li>打印我有外卖的logo</li>
+</ul>
+</li>
+<li><ul>
+<li>@param c</li>
+</ul>
+</li>
+<li><p>*/</p>
+</li>
+<li><p>public static void printLogo(Context c) {</p>
+</li>
+<li><p>PrintUtil.printBytes(PrintUtil.setLineHeight((byte) 0));</p>
+</li>
+<li><p>InputStream is = c.getClass().getResourceAsStream(“/assets/bill.bin”);</p>
+</li>
+<li><p>byte[] b;</p>
+</li>
+<li><p>try {</p>
+</li>
+<li><p>b = InputStreamTOByte(is);</p>
+</li>
+<li><p>PrintUtil.printBytes(b);</p>
+</li>
+<li><p>PrintUtil.printBytes(PrintUtil.setDefaultLineHeight());</p>
+</li>
+<li><p>} catch (Exception e) {</p>
+</li>
+<li><p>e.printStackTrace();</p>
+</li>
+<li><p>}</p>
+</li>
+<li><p>}</p>
+</li>
+<li></li>
+<li><p>public static byte[] getLogo(Context c) {</p>
+</li>
+<li><p>InputStream is = c.getClass().getResourceAsStream(“/assets/bill.bin”);</p>
+</li>
+<li><p>byte[] b;</p>
+</li>
+<li><p>try {</p>
+</li>
+<li><p>b = InputStreamTOByte(is);</p>
+</li>
+<li><p>return b;</p>
+</li>
+<li><p>} catch (Exception e) {</p>
+</li>
+<li><p>e.printStackTrace();</p>
+</li>
+<li><p>}</p>
+</li>
+<li><p>return null;</p>
+</li>
+<li><p>}</p>
+</li>
+<li></li>
+<li><p>/**</p>
+</li>
+<li><ul>
+<li>得到店铺logo</li>
+</ul>
+</li>
+<li><ul>
+<li>@param c</li>
+</ul>
+</li>
+<li><ul>
+<li>@param bit</li>
+</ul>
+</li>
+<li><ul>
+<li>@return</li>
+</ul>
+</li>
+<li><p>*/</p>
+</li>
+<li><p>public static byte[] getLogo(Context c, byte[] bit) {</p>
+</li>
+<li><p>InputStream is = c.getClass().getResourceAsStream(“/assets/bill.bin”);</p>
+</li>
+<li><p>byte[] b = bit;</p>
+</li>
+<li><p>try {</p>
+</li>
+<li><p>b = InputStreamTOByte(is);</p>
+</li>
+<li><p>return b;</p>
+</li>
+<li><p>} catch (Exception e) {</p>
+</li>
+<li><p>e.printStackTrace();</p>
+</li>
+<li><p>}</p>
+</li>
+<li><p>return null;</p>
+</li>
+<li><p>}</p>
+</li>
+<li></li>
+<li><p>public static byte[] getLogo(byte[] bs) {</p>
+</li>
+<li><p>byte[] b;</p>
+</li>
+<li><p>try {</p>
+</li>
+<li><p>b = bs;</p>
+</li>
+<li><p>return b;</p>
+</li>
+<li><p>} catch (Exception e) {</p>
+</li>
+<li><p>e.printStackTrace();</p>
+</li>
+<li><p>}</p>
+</li>
+<li><p>return null;</p>
+</li>
+<li><p>}        </p>
+</li>
+<li></li>
+<li><p>/**</p>
+</li>
+<li><ul>
+<li>支付打印(二维码)</li>
+</ul>
+</li>
+<li><ul>
+<li>@param b</li>
+</ul>
+</li>
+<li><ul>
+<li>@param money</li>
+</ul>
+</li>
+<li><ul>
+<li>@return</li>
+</ul>
+</li>
+<li><ul>
+<li>[url=home.php?mod=space&amp;uid=2643633]@throws[/url] InvalidParameterException</li>
+</ul>
+</li>
+<li><ul>
+<li>@throws SecurityException</li>
+</ul>
+</li>
+<li><ul>
+<li>@throws IOException</li>
+</ul>
+</li>
+<li><p>*/</p>
+</li>
+<li><p>public static boolean printAlipayTitle(byte[] b, String money) </p>
+</li>
+<li><p>throws InvalidParameterException, SecurityException, IOException {</p>
+</li>
+<li></li>
+<li><p>int iNum = 0;</p>
+</li>
+<li><p>byte[] tempBuffer = new byte[1000];</p>
+</li>
+<li></li>
+<li><p>byte[]  oldText = setAlignCenter(‘2’);</p>
+</li>
+<li><p>System.arraycopy(oldText, 0,  tempBuffer,  iNum,  oldText.length);</p>
+</li>
+<li><p>iNum += oldText.length;</p>
+</li>
+<li><p>oldText = setWH(‘4’); </p>
+</li>
+<li><p>System.arraycopy(oldText, 0, tempBuffer,  iNum,  oldText.length);</p>
+</li>
+<li><p>iNum += oldText.length;</p>
+</li>
+<li><p>oldText = setBold(true);</p>
+</li>
+<li><p>System.arraycopy(oldText, 0, tempBuffer, iNum, oldText.length);</p>
+</li>
+<li><p>iNum += oldText.length;</p>
+</li>
+<li><p>oldText = getGbk(“支付凭证\n”);</p>
+</li>
+<li><p>System.arraycopy(oldText, 0, tempBuffer, iNum, oldText.length);</p>
+</li>
+<li><p>iNum += oldText.length;</p>
+</li>
+<li></li>
+<li><p>oldText = getGbk(“\n”);</p>
+</li>
+<li><p>System.arraycopy(oldText, 0, tempBuffer, iNum, oldText.length);</p>
+</li>
+<li><p>iNum += oldText.length;</p>
+</li>
+<li></li>
+<li><p>oldText = setAlignCenter(‘2’);</p>
+</li>
+<li><p>System.arraycopy(oldText, 0,  tempBuffer,  iNum,  oldText.length);</p>
+</li>
+<li><p>iNum += oldText.length;</p>
+</li>
+<li><p>oldText = setWH(‘3’); </p>
+</li>
+<li><p>System.arraycopy(oldText, 0, tempBuffer,  iNum,  oldText.length);</p>
+</li>
+<li><p>iNum += oldText.length;</p>
+</li>
+<li><p>oldText = setBold(true);</p>
+</li>
+<li><p>System.arraycopy(oldText, 0, tempBuffer, iNum, oldText.length);</p>
+</li>
+<li><p>iNum += oldText.length;</p>
+</li>
+<li><p>oldText = getGbk(“您共消费了” + money + “元\n”);</p>
+</li>
+<li><p>System.arraycopy(oldText, 0, tempBuffer, iNum, oldText.length);</p>
+</li>
+<li><p>iNum += oldText.length;</p>
+</li>
+<li></li>
+<li><p>oldText = getGbk(“\n”);</p>
+</li>
+<li><p>System.arraycopy(oldText, 0, tempBuffer, iNum, oldText.length);</p>
+</li>
+<li><p>iNum += oldText.length;</p>
+</li>
+<li></li>
+<li><p>oldText = setAlignCenter(‘2’);</p>
+</li>
+<li><p>System.arraycopy(oldText, 0,  tempBuffer,  iNum,  oldText.length);</p>
+</li>
+<li><p>iNum += oldText.length;</p>
+</li>
+<li><p>oldText = setWH(‘3’); </p>
+</li>
+<li><p>System.arraycopy(oldText, 0, tempBuffer,  iNum,  oldText.length);</p>
+</li>
+<li><p>iNum += oldText.length;</p>
+</li>
+<li><p>oldText = setBold(true);</p>
+</li>
+<li><p>System.arraycopy(oldText, 0, tempBuffer, iNum, oldText.length);</p>
+</li>
+<li><p>iNum += oldText.length;</p>
+</li>
+<li><p>oldText = getGbk(“请扫码支付\n\n”);</p>
+</li>
+<li><p>System.arraycopy(oldText, 0, tempBuffer, iNum, oldText.length);</p>
+</li>
+<li><p>iNum += oldText.length;</p>
+</li>
+<li></li>
+<li><p>SerialPort mSerialPort = getSerialPort();</p>
+</li>
+<li><p>OutputStream mOutputStream = mSerialPort.getOutputStream();</p>
+</li>
+<li><p>try {</p>
+</li>
+<li><p>mOutputStream.write(tempBuffer);</p>
+</li>
+<li><p>printBytes(b);</p>
+</li>
+<li><p>printString(“\n\n\n”);</p>
+</li>
+<li><p>printBytes(CutPaper());</p>
+</li>
+<li><p>} catch (IOException e) {</p>
+</li>
+<li><p>e.printStackTrace();</p>
+</li>
+<li><p>return false;</p>
+</li>
+<li><p>}</p>
+</li>
+<li><p>return true;</p>
+</li>
+<li><p>}</p>
+</li>
+<li></li>
+<li><p>/<strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><em>*</em></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></p>
+</li>
+<li><ul>
+<li>add by yidie 2012-01-10 功能：订单打印 参数： String 订单短号 OrderDetail 打印内容，包含</li>
+</ul>
+</li>
+<li><ul>
+<li>GoodsInfo[] String 打印标题</li>
+</ul>
+</li>
+<li><p><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><em>**</em></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong>/</p>
+</li>
+<li></li>
+<li><p>public static boolean printOrder(Context c, byte[] b)</p>
+</li>
+<li><p>throws InvalidParameterException, SecurityException, IOException {</p>
+</li>
+<li></li>
+<li><p>DecimalFormat dcmFmt = new DecimalFormat(“0.00”);</p>
+</li>
+<li><p>int iNum = 0, i;</p>
+</li>
+<li></li>
+<li><p>byte[] tempBuffer = new byte[8000];</p>
+</li>
+<li><p>String stTmp = “”;</p>
+</li>
+<li></li>
+<li><p>byte[] oldText = setAlignCenter(‘2’);</p>
+</li>
+<li><p>System.arraycopy(oldText, 0, tempBuffer, iNum, oldText.length);</p>
+</li>
+<li><p>iNum += oldText.length;</p>
+</li>
+<li></li>
+<li><p>oldText = getLogo(c, b);</p>
+</li>
+<li><p>System.arraycopy(oldText, 0, tempBuffer, iNum, oldText.length);</p>
+</li>
+<li><p>iNum += oldText.length;</p>
+</li>
+<li></li>
+<li><p>oldText = setWH(‘1’);</p>
+</li>
+<li><p>System.arraycopy(oldText, 0, tempBuffer, iNum, oldText.length);</p>
+</li>
+<li><p>iNum += oldText.length;</p>
+</li>
+<li></li>
+<li><p>oldText = getGbk(“\n”);</p>
+</li>
+<li><p>System.arraycopy(oldText, 0, tempBuffer, iNum, oldText.length);</p>
+</li>
+<li><p>iNum += oldText.length;</p>
+</li>
+<li></li>
+<li><p>oldText = setAlignCenter(‘2’);</p>
+</li>
+<li><p>System.arraycopy(oldText, 0, tempBuffer, iNum, oldText.length);</p>
+</li>
+<li><p>iNum += oldText.length;</p>
+</li>
+<li></li>
+<li><p>oldText = setWH(‘4’);</p>
+</li>
+<li><p>System.arraycopy(oldText, 0, tempBuffer, iNum, oldText.length);</p>
+</li>
+<li><p>iNum += oldText.length;</p>
+</li>
+<li></li>
+<li><p>oldText = setBold(true);</p>
+</li>
+<li><p>System.arraycopy(oldText, 0, tempBuffer, iNum, oldText.length);</p>
+</li>
+<li><p>iNum += oldText.length;</p>
+</li>
+<li></li>
+<li><p>oldText = setWH(‘1’);</p>
+</li>
+<li><p>System.arraycopy(oldText, 0, tempBuffer, iNum, oldText.length);</p>
+</li>
+<li><p>iNum += oldText.length;</p>
+</li>
+<li></li>
+<li><p>oldText = getGbk(“\n”);</p>
+</li>
+<li><p>System.arraycopy(oldText, 0, tempBuffer, iNum, oldText.length);</p>
+</li>
+<li><p>iNum += oldText.length;</p>
+</li>
+<li></li>
+<li><p>oldText = setAlignCenter(‘1’);</p>
+</li>
+<li><p>System.arraycopy(oldText, 0, tempBuffer, iNum, oldText.length);</p>
+</li>
+<li><p>iNum += oldText.length;</p>
+</li>
+<li></li>
+<li><p>oldText = setCusorPosition(324);</p>
+</li>
+<li><p>System.arraycopy(oldText, 0, tempBuffer, iNum, oldText.length);</p>
+</li>
+<li><p>iNum += oldText.length;</p>
+</li>
+<li></li>
+<li><p>String strTime = new SimpleDateFormat(“yyyy-MM-dd HH:mm”,</p>
+</li>
+<li><p>Locale.SIMPLIFIED_CHINESE).format(new Date());</p>
+</li>
+<li><p>oldText = getGbk(strTime + “打印\n”);</p>
+</li>
+<li><p>System.arraycopy(oldText, 0, tempBuffer, iNum, oldText.length);</p>
+</li>
+<li><p>iNum += oldText.length;</p>
+</li>
+<li></li>
+<li><p>oldText = setBold(false);</p>
+</li>
+<li><p>System.arraycopy(oldText, 0, tempBuffer, iNum, oldText.length);</p>
+</li>
+<li><p>iNum += oldText.length;</p>
+</li>
+<li></li>
+<li><p>oldText = getGbk(“———————————————-\n”);</p>
+</li>
+<li><p>System.arraycopy(oldText, 0, tempBuffer, iNum, oldText.length);</p>
+</li>
+<li><p>iNum += oldText.length;</p>
+</li>
+<li></li>
+<li><p>oldText = setWH(‘3’);</p>
+</li>
+<li><p>System.arraycopy(oldText, 0, tempBuffer, iNum, oldText.length);</p>
+</li>
+<li><p>iNum += oldText.length;</p>
+</li>
+<li></li>
+<li><p>oldText = getGbk(“   商品名称              单价    数量    金额\n”);</p>
+</li>
+<li><p>System.arraycopy(oldText, 0, tempBuffer, iNum, oldText.length);</p>
+</li>
+<li><p>iNum += oldText.length;</p>
+</li>
+<li></li>
+<li><p>oldText = getGbk(“———————————————-\n”);</p>
+</li>
+<li><p>System.arraycopy(oldText, 0, tempBuffer, iNum, oldText.length);</p>
+</li>
+<li><p>iNum += oldText.length;</p>
+</li>
+<li></li>
+<li><p>oldText = setWH(‘3’);</p>
+</li>
+<li><p>System.arraycopy(oldText, 0, tempBuffer, iNum, oldText.length);</p>
+</li>
+<li><p>iNum += oldText.length;</p>
+</li>
+<li></li>
+<li><p>oldText = setAlignCenter(‘2’);</p>
+</li>
+<li><p>System.arraycopy(oldText, 0, tempBuffer, iNum, oldText.length);</p>
+</li>
+<li><p>iNum += oldText.length;</p>
+</li>
+<li></li>
+<li><p>oldText = setWH(‘1’);</p>
+</li>
+<li><p>System.arraycopy(oldText, 0, tempBuffer, iNum, oldText.length);</p>
+</li>
+<li><p>iNum += oldText.length;</p>
+</li>
+<li></li>
+<li><p>oldText = getGbk(“\n感谢使用[我有外卖]订餐,24小时服务热线 4008519517\n\n\n”);</p>
+</li>
+<li><p>System.arraycopy(oldText, 0, tempBuffer, iNum, oldText.length);</p>
+</li>
+<li><p>iNum += oldText.length;</p>
+</li>
+<li></li>
+<li><p>oldText = CutPaper();</p>
+</li>
+<li><p>System.arraycopy(oldText, 0, tempBuffer, iNum, oldText.length);</p>
+</li>
+<li><p>iNum += oldText.length;</p>
+</li>
+<li></li>
+<li><p>SerialPort mSerialPort = getSerialPort();</p>
+</li>
+<li><p>OutputStream mOutputStream = mSerialPort.getOutputStream();</p>
+</li>
+<li><p>try {</p>
+</li>
+<li><p>mOutputStream.write(tempBuffer);</p>
+</li>
+<li><p>} catch (IOException e) {</p>
+</li>
+<li><p>e.printStackTrace();</p>
+</li>
+<li><p>return false;</p>
+</li>
+<li><p>}</p>
+</li>
+<li><p>return true;</p>
+</li>
+<li><p>}</p>
+</li>
+<li></li>
+<li><p>/<strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><em>*</em></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></p>
+</li>
+<li><ul>
+<li>add by yidie 2012-01-12 功能：报表打印 参数： String 打印标题，如“月报表：2013-01”</li>
+</ul>
+</li>
+<li><ul>
+<li>ReportUserSale 打印内容，包含 UserSaleInfo[]</li>
+</ul>
+</li>
+<li><p><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><em>**</em></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong>/</p>
+</li>
+<li></li>
+<li><p>public static boolean printReportUser() throws InvalidParameterException,</p>
+</li>
+<li><p>SecurityException, IOException {</p>
+</li>
+<li></li>
+<li><p>int iNum = 0;</p>
+</li>
+<li><p>String stTmp = “”;</p>
+</li>
+<li></li>
+<li><p>byte[] tempBuffer = new byte[8000];</p>
+</li>
+<li><p>SerialPort mSerialPort = getSerialPort();</p>
+</li>
+<li><p>OutputStream mOutputStream = mSerialPort.getOutputStream();</p>
+</li>
+<li></li>
+<li><p>byte[] oldText = setAlignCenter(‘1’);</p>
+</li>
+<li><p>System.arraycopy(oldText, 0, tempBuffer, iNum, oldText.length);</p>
+</li>
+<li><p>iNum += oldText.length;</p>
+</li>
+<li></li>
+<li><p>oldText = setWH(‘3’);</p>
+</li>
+<li><p>System.arraycopy(oldText, 0, tempBuffer, iNum, oldText.length);</p>
+</li>
+<li><p>iNum += oldText.length;</p>
+</li>
+<li></li>
+<li><p>oldText = setCusorPosition(324);</p>
+</li>
+<li><p>System.arraycopy(oldText, 0, tempBuffer, iNum, oldText.length);</p>
+</li>
+<li><p>iNum += oldText.length;</p>
+</li>
+<li></li>
+<li><p>String strTime = new SimpleDateFormat(“yyyy-MM-dd HH:mm”,</p>
+</li>
+<li><p>Locale.SIMPLIFIED_CHINESE).format(new Date());</p>
+</li>
+<li><p>oldText = getGbk(strTime + “打印\n”);</p>
+</li>
+<li><p>System.arraycopy(oldText, 0, tempBuffer, iNum, oldText.length);</p>
+</li>
+<li><p>iNum += oldText.length;</p>
+</li>
+<li></li>
+<li><p>oldText = setWH(‘1’);</p>
+</li>
+<li><p>System.arraycopy(oldText, 0, tempBuffer, iNum, oldText.length);</p>
+</li>
+<li><p>iNum += oldText.length;</p>
+</li>
+<li></li>
+<li><p>oldText = setAlignCenter(‘2’);</p>
+</li>
+<li><p>System.arraycopy(oldText, 0, tempBuffer, iNum, oldText.length);</p>
+</li>
+<li><p>iNum += oldText.length;</p>
+</li>
+<li></li>
+<li><p>oldText = setWH(‘4’);</p>
+</li>
+<li><p>System.arraycopy(oldText, 0, tempBuffer, iNum, oldText.length);</p>
+</li>
+<li><p>iNum += oldText.length;</p>
+</li>
+<li></li>
+<li><p>oldText = setBold(true);</p>
+</li>
+<li><p>System.arraycopy(oldText, 0, tempBuffer, iNum, oldText.length);</p>
+</li>
+<li><p>iNum += oldText.length;</p>
+</li>
+<li></li>
+<li><p>oldText = setWH(‘1’);</p>
+</li>
+<li><p>System.arraycopy(oldText, 0, tempBuffer, iNum, oldText.length);</p>
+</li>
+<li><p>iNum += oldText.length;</p>
+</li>
+<li></li>
+<li><p>oldText = getGbk(“\n\n”);</p>
+</li>
+<li><p>System.arraycopy(oldText, 0, tempBuffer, iNum, oldText.length);</p>
+</li>
+<li><p>iNum += oldText.length;</p>
+</li>
+<li></li>
+<li><p>oldText = setAlignCenter(‘1’);</p>
+</li>
+<li><p>System.arraycopy(oldText, 0, tempBuffer, iNum, oldText.length);</p>
+</li>
+<li><p>iNum += oldText.length;</p>
+</li>
+<li></li>
+<li><p>oldText = setBold(false);</p>
+</li>
+<li><p>System.arraycopy(oldText, 0, tempBuffer, iNum, oldText.length);</p>
+</li>
+<li><p>iNum += oldText.length;</p>
+</li>
+<li></li>
+<li><p>oldText = setWH(‘1’);</p>
+</li>
+<li><p>System.arraycopy(oldText, 0, tempBuffer, iNum, oldText.length);</p>
+</li>
+<li><p>iNum += oldText.length;</p>
+</li>
+<li></li>
+<li><p>oldText = getGbk(“　　   用户  　　　　　　   售出数量　售出金额\n”);</p>
+</li>
+<li><p>System.arraycopy(oldText, 0, tempBuffer, iNum, oldText.length);</p>
+</li>
+<li><p>iNum += oldText.length;</p>
+</li>
+<li></li>
+<li><p>oldText = getGbk(“———————————————-\n”);</p>
+</li>
+<li><p>System.arraycopy(oldText, 0, tempBuffer, iNum, oldText.length);</p>
+</li>
+<li><p>iNum += oldText.length;</p>
+</li>
+<li></li>
+<li><p>oldText = CutPaper();</p>
+</li>
+<li><p>System.arraycopy(oldText, 0, tempBuffer, iNum, oldText.length);</p>
+</li>
+<li><p>iNum += oldText.length;</p>
+</li>
+<li><p>try {</p>
+</li>
+<li><p>mOutputStream.write(tempBuffer);</p>
+</li>
+<li><p>} catch (IOException e) {</p>
+</li>
+<li><p>e.printStackTrace();</p>
+</li>
+<li><p>return false;</p>
+</li>
+<li><p>}</p>
+</li>
+<li></li>
+<li><p>return true;</p>
+</li>
+<li><p>}</p>
+</li>
+<li></li>
+<li><p>/<strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><em>*</em></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></p>
+</li>
+<li><ul>
+<li>add by yidie 2012-01-12 功能：报表打印 参数： String 打印标题，如“月报表：2013-01” ReportSale</li>
+</ul>
+</li>
+<li><ul>
+<li>打印内容，包含 SaleInfo[]</li>
+</ul>
+</li>
+<li><p><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><em>**</em></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong>/</p>
+</li>
+<li></li>
+<li><p>private static SerialPort mSerialPort = null;</p>
+</li>
+<li></li>
+<li><p>public static SerialPort getSerialPort() throws SecurityException,</p>
+</li>
+<li><p>IOException, InvalidParameterException {</p>
+</li>
+<li><p>if (mSerialPort == null) {</p>
+</li>
+<li><p>String spFile = null;</p>
+</li>
+<li><p>String model = MainBoardUtil.getModel(); // android.os.Build.MODEL.toLowerCase();</p>
+</li>
+<li><p>if (model.contains(Constants.MAIN_BOARD_SMDKV210)) {</p>
+</li>
+<li><p>spFile = “/dev/s3c2410_serial0”;</p>
+</li>
+<li><p>} else if (model.contains(Constants.MAIN_BOARD_RK30)) {</p>
+</li>
+<li><p>spFile = “/dev/ttyS1”;</p>
+</li>
+<li><p>} else if (model.contains(Constants.MAIN_BOARD_C500)) {</p>
+</li>
+<li><p>spFile = “/dev/ttyS1”;</p>
+</li>
+<li><p>} else {</p>
+</li>
+<li><p>throw new IOException(“unknow hardware!”);</p>
+</li>
+<li><p>}</p>
+</li>
+<li></li>
+<li><p>int baudrate = 115200;</p>
+</li>
+<li><p>boolean flagCon = true;</p>
+</li>
+<li></li>
+<li><p>File myFile = new File(spFile);</p>
+</li>
+<li></li>
+<li><p>/<em> Open the serial port </em>/</p>
+</li>
+<li><p>mSerialPort = new SerialPort(myFile, baudrate, 0, flagCon);</p>
+</li>
+<li><p>}</p>
+</li>
+<li><p>return mSerialPort;</p>
+</li>
+<li><p>}</p>
+</li>
+<li></li>
+<li><p>public static void closeSerialPort() {</p>
+</li>
+<li><p>if (mSerialPort != null) {</p>
+</li>
+<li><p>mSerialPort.close();</p>
+</li>
+<li><p>mSerialPort = null;</p>
+</li>
+<li><p>}</p>
+</li>
+<li><p>}</p>
+</li>
+<li></li>
+<li><p>public static byte[] getGbk(String stText) {</p>
+</li>
+<li><p>byte[] returnText = null;</p>
+</li>
+<li><p>try {</p>
+</li>
+<li><p>returnText = stText.getBytes(“GBK”); // 必须放在try内才可以</p>
+</li>
+<li><p>} catch (Exception ex) {</p>
+</li>
+<li><p>;</p>
+</li>
+<li><p>}</p>
+</li>
+<li><p>return returnText;</p>
+</li>
+<li><p>}</p>
+</li>
+<li></li>
+<li><p>public static byte[] setWH(char dist) {</p>
+</li>
+<li><p>byte[] returnText = new byte[3]; // GS ! 11H 倍宽倍高</p>
+</li>
+<li><p>returnText[0] = 0x1D;</p>
+</li>
+<li><p>returnText[1] = 0x21;</p>
+</li>
+<li></li>
+<li><p>switch (dist) // 1-无；2-倍宽；3-倍高； 4-倍宽倍高</p>
+</li>
+<li><p>{</p>
+</li>
+<li><p>case ‘2’:</p>
+</li>
+<li><p>returnText[2] = 0x10;</p>
+</li>
+<li><p>break;</p>
+</li>
+<li><p>case ‘3’:</p>
+</li>
+<li><p>returnText[2] = 0x01;</p>
+</li>
+<li><p>break;</p>
+</li>
+<li><p>case ‘4’:</p>
+</li>
+<li><p>returnText[2] = 0x11;</p>
+</li>
+<li><p>break;</p>
+</li>
+<li><p>default:</p>
+</li>
+<li><p>returnText[2] = 0x00;</p>
+</li>
+<li><p>break;</p>
+</li>
+<li><p>}</p>
+</li>
+<li></li>
+<li><p>return returnText;</p>
+</li>
+<li><p>}</p>
+</li>
+<li></li>
+<li><p>/**</p>
+</li>
+<li><ul>
+<li>打印的对齐方式</li>
+</ul>
+</li>
+<li><ul>
+<li>@param dist</li>
+</ul>
+</li>
+<li><ul>
+<li>@return</li>
+</ul>
+</li>
+<li><p>*/</p>
+</li>
+<li><p>public static byte[] setAlignCenter(char dist) {</p>
+</li>
+<li><p>byte[] returnText = new byte[3]; // 对齐 ESC a</p>
+</li>
+<li><p>returnText[0] = 0x1B;</p>
+</li>
+<li><p>returnText[1] = 0x61;</p>
+</li>
+<li></li>
+<li><p>switch (dist) // 1-左对齐；2-居中对齐；3-右对齐</p>
+</li>
+<li><p>{</p>
+</li>
+<li><p>case ‘2’:</p>
+</li>
+<li><p>returnText[2] = 0x01;</p>
+</li>
+<li><p>break;</p>
+</li>
+<li><p>case ‘3’:</p>
+</li>
+<li><p>returnText[2] = 0x02;</p>
+</li>
+<li><p>break;</p>
+</li>
+<li><p>default:</p>
+</li>
+<li><p>returnText[2] = 0x00;</p>
+</li>
+<li><p>break;</p>
+</li>
+<li><p>}</p>
+</li>
+<li><p>return returnText;</p>
+</li>
+<li><p>}</p>
+</li>
+<li></li>
+<li><p>public static byte[] setBold(boolean dist) {</p>
+</li>
+<li><p>byte[] returnText = new byte[3]; // 加粗 ESC E</p>
+</li>
+<li><p>returnText[0] = 0x1B;</p>
+</li>
+<li><p>returnText[1] = 0x45;</p>
+</li>
+<li></li>
+<li><p>if (dist) {</p>
+</li>
+<li><p>returnText[2] = 0x01; // 表示加粗</p>
+</li>
+<li><p>} else {</p>
+</li>
+<li><p>returnText[2] = 0x00;</p>
+</li>
+<li><p>}</p>
+</li>
+<li><p>return returnText;</p>
+</li>
+<li><p>}</p>
+</li>
+<li></li>
+<li><p>public static byte[] PrintBarcode(String stBarcode) {</p>
+</li>
+<li><p>int iLength = stBarcode.length() + 4;</p>
+</li>
+<li><p>byte[] returnText = new byte[iLength];</p>
+</li>
+<li></li>
+<li><p>returnText[0] = 0x1D;</p>
+</li>
+<li><p>returnText[1] = ‘k’;</p>
+</li>
+<li><p>returnText[2] = 0x45;</p>
+</li>
+<li><p>returnText[3] = (byte) stBarcode.length(); // 条码长度；</p>
+</li>
+<li></li>
+<li><p>System.arraycopy(stBarcode.getBytes(), 0, returnText, 4,</p>
+</li>
+<li><p>stBarcode.getBytes().length);</p>
+</li>
+<li></li>
+<li><p>return returnText;</p>
+</li>
+<li><p>}</p>
+</li>
+<li></li>
+<li><p>/**</p>
+</li>
+<li><ul>
+<li>切纸</li>
+</ul>
+</li>
+<li><ul>
+<li>@return</li>
+</ul>
+</li>
+<li><p>*/</p>
+</li>
+<li><p>public static byte[] CutPaper() {</p>
+</li>
+<li><p>byte[] returnText = new byte[] { 0x1D, 0x56, 0x42, 0x00 }; // 切纸； GS V</p>
+</li>
+<li><p>// 66D 0D</p>
+</li>
+<li><p>return returnText;</p>
+</li>
+<li><p>}</p>
+</li>
+<li><p>}</p>
+</li>
+<li></li>
+</ol>
+<p>复制代码1. package com.woyou.woyoupay;</p>
+<ol>
+<li></li>
+<li><p>import java.io.IOException;</p>
+</li>
+<li><p>import java.net.URL;</p>
+</li>
+<li><p>import java.util.ArrayList;</p>
+</li>
+<li><p>import java.util.List;</p>
+</li>
+<li></li>
+<li><p>import org.json.JSONException;</p>
+</li>
+<li><p>import org.json.JSONObject;</p>
+</li>
+<li></li>
+<li><p>import android.app.Activity;</p>
+</li>
+<li><p>import android.app.ProgressDialog;</p>
+</li>
+<li><p>import android.content.Intent;</p>
+</li>
+<li><p>import android.graphics.Bitmap;</p>
+</li>
+<li><p>import android.graphics.BitmapFactory;</p>
+</li>
+<li><p>import android.graphics.drawable.Drawable;</p>
+</li>
+<li><p>import android.os.Bundle;</p>
+</li>
+<li><p>import android.text.Html;</p>
+</li>
+<li><p>import android.util.Log;</p>
+</li>
+<li><p>import android.view.View;</p>
+</li>
+<li><p>import android.view.View.OnClickListener;</p>
+</li>
+<li><p>import android.view.Window;</p>
+</li>
+<li><p>import android.widget.ImageView;</p>
+</li>
+<li><p>import android.widget.TextView;</p>
+</li>
+<li></li>
+<li><p>import com.anjoyo.net.AsyncHttpClient;</p>
+</li>
+<li><p>import com.anjoyo.net.JsonHttpResponseHandler;</p>
+</li>
+<li><p>import com.anjoyo.net.RequestParams;</p>
+</li>
+<li><p>import com.woyou.R;</p>
+</li>
+<li><p>import com.woyou.bean.ScanCodeRes;</p>
+</li>
+<li><p>import com.woyou.util.Constants;</p>
+</li>
+<li><p>import com.woyou.util.PicFromPrintUtils;</p>
+</li>
+<li><p>import com.woyou.util.PrintUtil;</p>
+</li>
+<li><p>import com.woyou.util.ThreadPoolManager;</p>
+</li>
+<li></li>
+<li><p>public class Print2DCodeAct extends Activity implements OnClickListener {</p>
+</li>
+<li><p>private static final String TAG = “Print2DCodeAct”;</p>
+</li>
+<li><p>TextView back, print, motifiscan;</p>
+</li>
+<li><p>TextView oId, money, price;</p>
+</li>
+<li><p>ImageView printImg;</p>
+</li>
+<li><p>ProgressDialog dialog;</p>
+</li>
+<li></li>
+<li><p>@Override</p>
+</li>
+<li><p>protected void onCreate(Bundle savedInstanceState) {</p>
+</li>
+<li><p>super.onCreate(savedInstanceState);</p>
+</li>
+<li><p>requestWindowFeature(Window.FEATURE_NO_TITLE);</p>
+</li>
+<li><p>setContentView(R.layout.activity_print2dcode);</p>
+</li>
+<li><p>initView();</p>
+</li>
+<li><p>}</p>
+</li>
+<li></li>
+<li><p>String extra;</p>
+</li>
+<li><p>private void initView() {</p>
+</li>
+<li><p>Intent intent = getIntent();</p>
+</li>
+<li><p>extra = intent.getStringExtra(“money”);</p>
+</li>
+<li><p>back = (TextView) this.findViewById(R.id.back);</p>
+</li>
+<li><p>oId = (TextView) this.findViewById(R.id.order_id);</p>
+</li>
+<li><p>back.setOnClickListener(this);</p>
+</li>
+<li><p>motifiscan = (TextView) this.findViewById(R.id.motifiscan);</p>
+</li>
+<li><p>print = (TextView) this.findViewById(R.id.print_image);</p>
+</li>
+<li><p>printImg = (ImageView) this.findViewById(R.id.print_two_image);</p>
+</li>
+<li><p>money = (TextView) this.findViewById(R.id.money);</p>
+</li>
+<li><p>print.setOnClickListener(this);</p>
+</li>
+<li><p>motifiscan.setOnClickListener(this);</p>
+</li>
+<li><p>money.setText(Html.fromHtml(“￥<big>“ + extra + “</big>“));</p>
+</li>
+<li></li>
+<li><p>//显示图片</p>
+</li>
+<li><p>//                Bitmap bitmapOrg = BitmapFactory.decodeResource(getResources(), R.drawable.alipay);</p>
+</li>
+<li><p>//                Bitmap bitmap = compressPic(bitmapOrg);</p>
+</li>
+<li><p>//                image_alipy.setImageBitmap(bitmap);</p>
+</li>
+<li></li>
+<li><p>//请求数据</p>
+</li>
+<li><p>getData();</p>
+</li>
+<li><p>}</p>
+</li>
+<li></li>
+<li><p>private void showDialog() {</p>
+</li>
+<li><p>if (dialog == null) {</p>
+</li>
+<li><p>dialog = new ProgressDialog(this);</p>
+</li>
+<li><p>dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);</p>
+</li>
+<li><p>dialog.setCancelable(true);</p>
+</li>
+<li><p>dialog.setMessage(“正在加载中，请稍候…”);</p>
+</li>
+<li><p>}</p>
+</li>
+<li><p>dialog.show();</p>
+</li>
+<li><p>}</p>
+</li>
+<li><p>private void hideDialog() {</p>
+</li>
+<li><p>runOnUiThread(new Runnable() {</p>
+</li>
+<li></li>
+<li><p>@Override</p>
+</li>
+<li><p>public void run() {</p>
+</li>
+<li><p>if (dialog != null) {</p>
+</li>
+<li><p>dialog.dismiss();</p>
+</li>
+<li><p>}</p>
+</li>
+<li><p>}</p>
+</li>
+<li><p>});</p>
+</li>
+<li><p>}</p>
+</li>
+<li></li>
+<li></li>
+<li></li>
+<li><p>@Override</p>
+</li>
+<li><p>protected void onResume() {</p>
+</li>
+<li><p>super.onResume();</p>
+</li>
+<li><p>Constants.ACTIVITY_INSTANCE = Print2DCodeAct.this;</p>
+</li>
+<li><p>}</p>
+</li>
+<li></li>
+<li><p>List<scancoderes> list = new ArrayList<scancoderes>();</scancoderes></scancoderes></p>
+</li>
+<li><p>Bitmap compressPic = null;</p>
+</li>
+<li><p>String big_pic_url;</p>
+</li>
+<li><p>String pic_url;</p>
+</li>
+<li><p>String small_pic_url;</p>
+</li>
+<li><p>private void getData() {</p>
+</li>
+<li><p>float f = Float.parseFloat(extra) * 100;</p>
+</li>
+<li><p>int inte = (int) f;</p>
+</li>
+<li><p>long parseLong = Long.parseLong(String.valueOf(inte));</p>
+</li>
+<li></li>
+<li><p>String sign = Constants.md5(“100512354” + “150039203” + Constants.KEY);</p>
+</li>
+<li><p>String url = “<a href="http://api.coupon.dev.wosai.cn/Upay/alipayQrCodeOffline" target="_blank" rel="external">http://api.coupon.dev.wosai.cn/Upay/alipayQrCodeOffline</a>“;</p>
+</li>
+<li><p>AsyncHttpClient client = new AsyncHttpClient();</p>
+</li>
+<li><p>RequestParams params = new RequestParams();</p>
+</li>
+<li><p>params.put(“store_own_order_id”, “1234”);</p>
+</li>
+<li><p>params.put(“subject”, “喔噻体验商品”);</p>
+</li>
+<li><p>params.put(“total_fee”, parseLong+””);</p>
+</li>
+<li><p>params.put(“wosai_store_id”, “100512354”);</p>
+</li>
+<li><p>params.put(“wosai_app_id”, “150039203”);</p>
+</li>
+<li><p>params.put(“sign”, sign);</p>
+</li>
+<li><p>params.put(“notify_url”, “<a href="http://www.woyouwaimai.com/get" target="_blank" rel="external">http://www.woyouwaimai.com/get</a>“);   //推送支付成功的通知</p>
+</li>
+<li><p>Log.i(TAG, url + params);</p>
+</li>
+<li></li>
+<li><p>client.get(url, params, new JsonHttpResponseHandler() {</p>
+</li>
+<li><p>@Override</p>
+</li>
+<li><p>public void onStart() {</p>
+</li>
+<li><p>super.onStart();</p>
+</li>
+<li><p>showDialog();</p>
+</li>
+<li><p>}</p>
+</li>
+<li><p>@Override</p>
+</li>
+<li><p>public void onSuccess(JSONObject response) {</p>
+</li>
+<li><p>super.onSuccess(response);</p>
+</li>
+<li><p>try {</p>
+</li>
+<li><p>String code = response.getString(“code”);</p>
+</li>
+<li><p>String msg = response.getString(“msg”);</p>
+</li>
+<li><p>Log.i(TAG, “code:” + code);</p>
+</li>
+<li><p>Log.i(TAG, “msg:” + msg);</p>
+</li>
+<li><p>if (“10000”.equals(code)) {</p>
+</li>
+<li><p>JSONObject data = response.getJSONObject(“data”);</p>
+</li>
+<li><p>String order_sn = data.getString(“order_sn”);</p>
+</li>
+<li><p>String wosai_store_id = data.getString(“wosai_store_id”);</p>
+</li>
+<li><p>int status = data.getInt(“status”);</p>
+</li>
+<li><p>String ctime = data.getString(“ctime”);</p>
+</li>
+<li><p>JSONObject order_pay_detail = data.getJSONObject(“order_pay_detail”);</p>
+</li>
+<li><p>String order_detail = data.getString(“order_detail”);</p>
+</li>
+<li><p>String pay_way = data.getString(“pay_way”);</p>
+</li>
+<li><p>long total_fee = data.getLong(“total_fee”);</p>
+</li>
+<li></li>
+<li><p>String is_success = order_pay_detail.getString(“is_success”);</p>
+</li>
+<li><p>JSONObject responses = order_pay_detail.getJSONObject(“response”);</p>
+</li>
+<li><p>String sign = order_pay_detail.getString(“sign”);</p>
+</li>
+<li><p>String sign_type = order_pay_detail.getString(“sign_type”);</p>
+</li>
+<li></li>
+<li><p>JSONObject alipay = responses.getJSONObject(“alipay”);</p>
+</li>
+<li><p>big_pic_url = alipay.getString(“big_pic_url”);</p>
+</li>
+<li><p>String out_trade_no = alipay.getString(“out_trade_no”);</p>
+</li>
+<li><p>pic_url = alipay.getString(“pic_url”);</p>
+</li>
+<li><p>String qr_code = alipay.getString(“qr_code”);</p>
+</li>
+<li><p>String result_code = alipay.getString(“result_code”);</p>
+</li>
+<li><p>small_pic_url = alipay.getString(“small_pic_url”);</p>
+</li>
+<li><p>String voucher_type = alipay.getString(“voucher_type”);</p>
+</li>
+<li><p>Log.i(TAG, “big_pic_url:” + big_pic_url);</p>
+</li>
+<li><p>Log.i(TAG, “pic_url:” + pic_url);</p>
+</li>
+<li><p>Log.i(TAG, “small_pic_url:” + small_pic_url);</p>
+</li>
+<li></li>
+<li><p>ScanCodeRes res = new ScanCodeRes();</p>
+</li>
+<li><p>res.setOrder_sn(order_sn);</p>
+</li>
+<li><p>res.setWosai_store_id(wosai_store_id);</p>
+</li>
+<li><p>res.setStatus(status);</p>
+</li>
+<li><p>res.setCtime(ctime);</p>
+</li>
+<li><p>res.setIs_success(is_success);</p>
+</li>
+<li><p>res.setOrder_detail(order_detail);</p>
+</li>
+<li><p>res.setTotal_fee(total_fee);</p>
+</li>
+<li><p>res.setPay_way(pay_way);</p>
+</li>
+<li><p>list.add(res);</p>
+</li>
+<li></li>
+<li><p>Constants.memoryCache.put(Constants.SCAN_CODE_RESULT, list);</p>
+</li>
+<li></li>
+<li><p>}</p>
+</li>
+<li><p>} catch (JSONException e) {</p>
+</li>
+<li><p>e.printStackTrace();</p>
+</li>
+<li><p>hideDialog();</p>
+</li>
+<li><p>}</p>
+</li>
+<li><p>}</p>
+</li>
+<li></li>
+<li><p>@Override</p>
+</li>
+<li><p>public void onFinish() {</p>
+</li>
+<li><p>super.onFinish();</p>
+</li>
+<li><p>ThreadPoolManager.getInstance().executeTask(new Runnable() {</p>
+</li>
+<li><p>@Override</p>
+</li>
+<li><p>public void run() {</p>
+</li>
+<li><p>try {</p>
+</li>
+<li><p>Bitmap bitmap = BitmapFactory.decodeStream(new URL(pic_url).openStream());</p>
+</li>
+<li><p>compressPic = PicFromPrintUtils.compressPic(bitmap);</p>
+</li>
+<li><p>}catch (IOException e) {</p>
+</li>
+<li><p>e.printStackTrace();</p>
+</li>
+<li><p>}</p>
+</li>
+<li><p>runOnUiThread(new Runnable() {</p>
+</li>
+<li></li>
+<li><p>@Override</p>
+</li>
+<li><p>public void run() {</p>
+</li>
+<li><p>printImg.setImageBitmap(compressPic);</p>
+</li>
+<li><p>print2Code(compressPic);</p>
+</li>
+<li><p>hideDialog();</p>
+</li>
+<li><p>}</p>
+</li>
+<li><p>});</p>
+</li>
+<li></li>
+<li><p>}</p>
+</li>
+<li><p>});</p>
+</li>
+<li><p>}</p>
+</li>
+<li></li>
+<li><p>});</p>
+</li>
+<li><p>}</p>
+</li>
+<li></li>
+<li><p>//打印二维码</p>
+</li>
+<li><p>private void print2Code(Bitmap bitmap){</p>
+</li>
+<li><p>final byte[] bs = PicFromPrintUtils.draw2PxPoint(bitmap);</p>
+</li>
+<li><p>ThreadPoolManager.getInstance().executeTask(new Runnable() {</p>
+</li>
+<li><p>@Override</p>
+</li>
+<li><p>public void run() {</p>
+</li>
+<li><p>try {</p>
+</li>
+<li><p>PrintUtil.printAlipayTitle(bs, extra);</p>
+</li>
+<li><p>} catch (Exception e) {</p>
+</li>
+<li><p>e.printStackTrace();</p>
+</li>
+<li><p>}</p>
+</li>
+<li><p>}</p>
+</li>
+<li><p>});</p>
+</li>
+<li><p>}</p>
+</li>
+<li></li>
+<li><p>@Override</p>
+</li>
+<li><p>public void onClick(View v) {</p>
+</li>
+<li><p>switch (v.getId()) {</p>
+</li>
+<li><p>case R.id.print_image:</p>
+</li>
+<li><p>if ( compressPic != null ){</p>
+</li>
+<li><p>print2Code(compressPic);</p>
+</li>
+<li><p>}</p>
+</li>
+<li><p>break;</p>
+</li>
+<li></li>
+<li><p>case R.id.back:</p>
+</li>
+<li><p>finish();</p>
+</li>
+<li><p>break;</p>
+</li>
+<li></li>
+<li><p>case R.id.motifiscan:</p>
+</li>
+<li><p>Intent intent = new Intent(this, HomeAct.class);</p>
+</li>
+<li><p>intent.putExtra(“money”, extra);</p>
+</li>
+<li><p>startActivity(intent);</p>
+</li>
+<li><p>break;</p>
+</li>
+<li><p>}</p>
+</li>
+<li><p>}</p>
+</li>
+<li></li>
+<li><p>public Drawable loadImageFromNetwork(String urladdr) {</p>
+</li>
+<li><p>Drawable drawable = null;</p>
+</li>
+<li><p>try {</p>
+</li>
+<li><p>drawable = Drawable.createFromStream(new URL(urladdr).openStream(),”image.jpg”);</p>
+</li>
+<li><p>} catch (IOException e) {</p>
+</li>
+<li><p>Log.d(“test”, e.getMessage());</p>
+</li>
+<li><p>}</p>
+</li>
+<li><p>if (drawable == null) {</p>
+</li>
+<li><p>Log.d(“test”, “null drawable”);</p>
+</li>
+<li><p>} else {</p>
+</li>
+<li><p>Log.d(“test”, “not null drawable”);</p>
+</li>
+<li><p>}</p>
+</li>
+<li><p>return drawable;</p>
+</li>
+<li><p>}</p>
+</li>
+<li></li>
+<li><p>// 计算图片的缩放值</p>
+</li>
+<li><p>public static int calculateInSampleSize(BitmapFactory.Options options,</p>
+</li>
+<li><p>int reqWidth, int reqHeight) {</p>
+</li>
+<li><p>final int height = options.outHeight;</p>
+</li>
+<li><p>final int width = options.outWidth;</p>
+</li>
+<li><p>int inSampleSize = 1;</p>
+</li>
+<li><p>if (height &gt; reqHeight || width &gt; reqWidth) {</p>
+</li>
+<li><p>final int heightRatio = Math.round((float) height</p>
+</li>
+<li><p>/ (float) reqHeight);</p>
+</li>
+<li><p>final int widthRatio = Math.round((float) width / (float) reqWidth);</p>
+</li>
+<li><p>inSampleSize = heightRatio &lt; widthRatio ? heightRatio : widthRatio;</p>
+</li>
+<li><p>}</p>
+</li>
+<li><p>return inSampleSize;</p>
+</li>
+<li><p>}</p>
+</li>
+<li></li>
+<li><p>}</p>
+</li>
+<li></li>
+</ol>
+<p>复制代码</p>
+<p>代码不是很全，只上了一些核心的代码，因为这是公司的项目，不适合把工程贴上来，忘大家见谅。中间会有一些简单的算法，是为提高效率用的，代码的整合力度也不是很好，大家将就点吧。</p>
+<p>原文<br><a href="http://www.eoeandroid.com/thread-564903-1-1.html?_dsign=50a25db8" target="_blank" rel="external">http://www.eoeandroid.com/thread-564903-1-1.html?_dsign=50a25db8</a></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2015/10/21/Android 热敏打印机打印二维码/">Android 热敏打印机打印二维码</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">offbye</a></p>
+        <p><span>发布时间:</span>2015-10-21, 10:01:00</p>
+        <p><span>最后更新:</span>2016-05-13, 00:39:34</p>
+
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2015/10/21/Android 热敏打印机打印二维码/" title="Android 热敏打印机打印二维码">http://offbye.com/2015/10/21/Android 热敏打印机打印二维码/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://offbye.com/2015/10/21/Android 热敏打印机打印二维码/　　作者: offbye" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+        
+        <p><span>CSDN原文:</span> <a href="http://blog.csdn.net/offbye/article/details/49300253" target="_blank" title="Android 热敏打印机打印二维码">http://blog.csdn.net/offbye/article/details/49300253</a> </p>
+        <p><span>CSDN PV:</span>651</p>
+        
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2015/10/21/Android Service创建USB HOST通信/">
+                    Android Service创建USB HOST通信
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2015/10/13/基于webpack搭建前端工程解决方案探索/">
+                    基于webpack搭建前端工程解决方案探索
+                </a>
+            </div>
+        
+    </nav>
+
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"Android 热敏打印机打印二维码　| offbye　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="2015/10/21/Android 热敏打印机打印二维码/" data-title="Android 热敏打印机打印二维码" data-url="http://offbye.com/2015/10/21/Android 热敏打印机打印二维码/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"offbye"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+    <!-- 多说公共JS代码 end -->
+</div>
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2015/10/21/Android Service创建USB HOST通信/" title="上一篇: Android Service创建USB HOST通信">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2015/10/13/基于webpack搭建前端工程解决方案探索/" title="下一篇: 基于webpack搭建前端工程解决方案探索">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/05/12/YAML文件语法简介/">YAML文件语法简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/11/iOS-Sandbox-swift/">iOS App沙盒模型文件目录详解Swift版</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/11/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/06/iOS App沙盒模型文件目录详解Swift版/">iOS App沙盒模型文件目录详解Swift版</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/05/Swift iOS实现把PCM语音转成MP3格式/">Swift iOS实现把PCM语音转成MP3格式</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/04/RESTFUL API 安全设计/">RESTFUL API 安全设计</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/04/关于 Token，你应该知道的十件事/">关于 Token，你应该知道的十件事</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/04/程序员的成长和代码行数的关系/">程序员的成长和代码行数的关系</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/04/从JavaAndroid到Swift iOS开发：语言与框架对比/">从JavaAndroid到Swift iOS开发：语言与框架对比</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/26/Android开发常用开源框架推荐/">Android开发常用开源框架推荐</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/22/Swift Modules for React Native/">Swift Modules for React Native</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/15/Android官方MVP架构示例项目解析/">Android官方MVP架构示例项目解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/15/使用swift开发Cordova插件/">使用swift开发Cordova插件</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/14/Swift语言中的@available 和 #available/">Swift语言中的@available 和</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/31/Android volley 使用OkHttp3.0/">Android volley 使用OkHttp3.0</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/28/What's new in Swift 2.2/">What's new in Swift 2.2</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/16/java8新特性介绍/">java8新特性介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/15/Swift异常处理：throw和rethrow/">Swift异常处理：throw和rethrow</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/14/Swift iOS- 手势检测详解/">Swift iOS- 手势检测详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/11/Swift化零为整：Reduce 详解/">Swift化零为整：Reduce 详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/11/Swift2.1关键字 @noescape介绍/">Swift2.1关键字 @noescape介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/11/理解Swift中map 和 flatMap对集合的作用/">理解Swift中map 和 flatMap对集合的作用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/09/移动端专用数据库Realm介绍/">移动端专用数据库Realm介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/09/安装Xcode插件包管理器Alcatraz报错解决办法/">安装Xcode插件包管理器Alcatraz报错解决办法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/09/Android最佳实践 —— 详细谈谈如何减小APK体积/">Android最佳实践 —— 详细谈谈如何减小APK体积</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/05/iOS开发如何通过UMeng的错误分析解决crash问题/">iOS开发如何通过UMeng的错误分析解决crash问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/04/常见移动设备的 CSS3 Media Query 整理（iPhoneiPadGalaxy）/">常见移动设备的 CSS3 Media Query 整理（iPhoneiPadGalaxy）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/04/我在MDCC 2015的演讲PPT《HTML5移动应用多端开发架构实践》分享/">我在MDCC 2015的演讲PPT《HTML5移动应用多端开发架构实践》分享</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/01/深入理解iOS开发中的BitCode功能/">深入理解iOS开发中的BitCode功能</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/01/iOS swift动画和特效专题/">iOS swift动画和特效专题</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/29/Swift iOS项目archive操作会报错误built without full bitcode解决方法/">Swift iOS项目archive操作会报错误built without full bitcode解决方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/26/GCD 和延时调用/">GCD 和延时调用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/26/Swift - 多线程实现方式（3） - Grand Central Dispatch（GCD）/">Swift - 多线程实现方式（3） - Grand Central Dispatch（GCD）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/25/iOS 9开发小技巧：LayoutGuide，Storyboard Reference/">iOS 9开发小技巧：LayoutGuide，Storyboard Reference</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/25/Storyboard的爱与恨/">Storyboard的爱与恨</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/25/Swift iOS tableView static cell动态计算高度/">Swift iOS tableView static cell动态计算高度</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/24/5 个顶级 Android 开源库/">5 个顶级 Android 开源库</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/19/Swift高阶函数介绍（闭包、Map、Filter、Reduce）/">Swift高阶函数介绍（闭包、Map、Filter、Reduce）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/18/iOS Swift判断代码运行在模拟器上/">iOS Swift判断代码运行在模拟器上</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/17/iOS 开发 UI 搭建心得（一）—— 驾驭 StoryBoard  代码示例：httpsgithub.comjohnluiSwift-On-iOSblobmasterDifferen/">iOS 开发 UI 搭建心得（一）—— 驾驭 StoryBoard  代码示例：httpsgithub.comjohnluiSwift-On-iOSblobmasterDifferen</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/16/使用命令行统计代码行数/">使用命令行统计代码行数</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/03/HTTP 2.0的那些事/">HTTP 2.0的那些事</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/02/浅谈 RxAndroid + Retrofit + Databinding/">浅谈 RxAndroid + Retrofit + Databinding</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/28/2016这些Android技术会很火/">2016这些Android技术会很火</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/27/使用CodePush实时更新 React Native 和 Cordova 应用/">使用CodePush实时更新 React Native 和 Cordova 应用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/20/理解Swift中Optional类型－有和无的哲学/">理解Swift中Optional类型－有和无的哲学</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/19/其实你不知道MultiDex到底有多坑/">其实你不知道MultiDex到底有多坑</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/19/Android MultiDex分包变形记/">Android MultiDex分包变形记</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/14/Swift iOS项目最佳实践汇总/">Swift iOS项目最佳实践汇总</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/11/饿了么移动APP的架构演进/">饿了么移动APP的架构演进</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/30/Android 开发最佳实践/">Android 开发最佳实践</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/29/RxAndroid和RxJava的资料分享/">RxAndroid和RxJava的资料分享</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/28/技术人如何才能不焦虑/">技术人如何才能不焦虑</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/26/云栖社区12篇实战经验所组成的“近战”系列分享/">云栖社区12篇实战经验所组成的“近战”系列分享</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/26/程序员晋升攻略/">程序员晋升攻略</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/25/Xcode7.2版本carthage包管理器兼容问题解决/">Xcode7.2版本carthage包管理器兼容问题解决</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/14/2015年Android开发新技术盘点/">2015年Android开发新技术盘点</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/10/Android中Touch事件分析--解决HorizontalScrollView滑动和按钮事件触发问题/">Android中Touch事件分析--解决HorizontalScrollView滑动和按钮事件触发问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/03/Android动态加载黑科技 动态创建Activity模式/">Android动态加载黑科技 动态创建Activity模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/01/Android注解支持Support Annotations详解/">Android注解支持Support Annotations详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/27/Android Studio 2.0 Instant Run即时运行功能实现分析/">Android Studio 2.0 Instant Run即时运行功能实现分析</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/25/Android应用性能剖析全攻略/">Android应用性能剖析全攻略</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/24/自动生成Android不同分辨率下的图片/">自动生成Android不同分辨率下的图片</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/24/Android Studio 2.0 Preview发布,附下载地址，支持即时运行和GPU Profiler/">Android Studio 2.0 Preview发布,附下载地址，支持即时运行和GPU Profiler</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/17/React Native Android端10个最常见问题/">React Native Android端10个最常见问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/13/使用Javascript ES6进行开发的思考/">使用Javascript ES6进行开发的思考</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/13/安装包立减1M--微信Android资源混淆打包工具/">安装包立减1M--微信Android资源混淆打包工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/11/Ionic 2.0 Alpha版本发布了/">Ionic 2.0 Alpha版本发布了</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/10/美团Android资源混淆保护实践/">美团Android资源混淆保护实践</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/10/Android开发中的armeabi和armeabi-v7a介绍/">Android开发中的armeabi和armeabi-v7a介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/06/在CordovaActivity中添加原生View组件/">在CordovaActivity中添加原生View组件</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/05/技术贴：开源飞控那些事/">技术贴：开源飞控那些事</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/03/Android常用开源框架Proguard混淆解决方案/">Android常用开源框架Proguard混淆解决方案</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/03/美团Android DEX自动拆包及动态加载简介/">美团Android DEX自动拆包及动态加载简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/02/Google基于Dart的新移动开发框架Flutter介绍/">Google基于Dart的新移动开发框架Flutter介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/29/通过SharedPreferences实现进程间数据共享的问题详解/">通过SharedPreferences实现进程间数据共享的问题详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/26/Android修改TitleBar标题栏详解/">Android修改TitleBar标题栏详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/23/异步JavaScript的进化/">异步JavaScript的进化</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/21/Android Service创建USB HOST通信/">Android Service创建USB HOST通信</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/21/Android 热敏打印机打印二维码/">Android 热敏打印机打印二维码</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/13/基于webpack搭建前端工程解决方案探索/">基于webpack搭建前端工程解决方案探索</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/11/理解Flux架构/">理解Flux架构</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/09/Mac Yosemite系统 brew 报错的解决办法/">Mac Yosemite系统 brew 报错的解决办法</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/30/微信公众平台接入经验分享，纯干货/">微信公众平台接入经验分享，纯干货</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/28/使用Kotlin进行Android开发/">使用Kotlin进行Android开发</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/23/Umeng推送消息的坑，Android Service的androidexported详解/">Umeng推送消息的坑，Android Service的androidexported详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/22/自动生成Android屏幕适配的dimens.xml/">自动生成Android屏幕适配的dimens.xml</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/21/iOS9系统开始对企业发布App进行严格限制/">iOS9系统开始对企业发布App进行严格限制</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/16/sed 简明教程/">sed 简明教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/15/Gradle, 基于DSL的新一代Java构建工具/">Gradle, 基于DSL的新一代Java构建工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/15/Gradle常用命令和原理说明/">Gradle常用命令和原理说明</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/09/大势所趋！十大令人振奋的移动端APP设计趋势/">大势所趋！十大令人振奋的移动端APP设计趋势</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/02/Android微信智能心跳方案/">Android微信智能心跳方案</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/01/深入浅出学Spring Data JPA/">深入浅出学Spring Data JPA</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/29/在Mac上制作树莓派SD镜像/">在Mac上制作树莓派SD镜像</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/26/Git从远程的分支获取最新的版本到本地/">Git从远程的分支获取最新的版本到本地</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/25/Spring Data JPA 常用注解 @Query、@NamedQuery/">Spring Data JPA 常用注解 @Query、@NamedQuery</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/24/树莓派做 wifi 热点/">树莓派做 wifi 热点</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/23/树莓派把一个python脚本作为服务运行，配置开机自动启动/">树莓派把一个python脚本作为服务运行，配置开机自动启动</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/22/INSTALLING OPERATING SYSTEM IMAGES ON MAC OS/">INSTALLING OPERATING SYSTEM IMAGES ON MAC OS</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/18/基于Volley，Gson封装支持JWT无状态安全验证和数据防篡改的GsonRequest网络请求类/">基于Volley，Gson封装支持JWT无状态安全验证和数据防篡改的GsonRequest网络请求类</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/28/Python高效率编程的8条箴言/">Python高效率编程的8条箴言</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/28/如何使用Android Studio提高App质量/">如何使用Android Studio提高App质量</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/27/树莓派遥控船项目计划/">树莓派遥控船项目计划</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/24/树莓派的PWM脉宽调制功能介绍/">树莓派的PWM脉宽调制功能介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/23/python字符串连接/">python字符串连接</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/23/Android Studio上方便使用butterknife注解框架的偷懒插件Android Butterknife Zelezny/">Android Studio上方便使用butterknife注解框架的偷懒插件Android Butterknife Zelezny</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/23/Python的Lambda函数与排序/">Python的Lambda函数与排序</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/22/TypeScript 1.5正式发布，此版本是Visual Studio 2015更新的一部分，支持大量ES6新特性/">TypeScript 1.5正式发布，此版本是Visual Studio 2015更新的一部分，支持大量ES6新特性</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/20/iWeb峰会（HTML5峰会）2015年7月19日上海站会后感想/">iWeb峰会（HTML5峰会）2015年7月19日上海站会后感想</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/16/说说React,Flux,Reray和GraghQL/">说说React,Flux,Reray和GraghQL</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/16/ReactEurope Conf 参会感想/">ReactEurope Conf 参会感想</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/15/Android Studio Gradle项目中添加JNI so文件/">Android Studio Gradle项目中添加JNI so文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/15/mac os使用lsusb命令和连接未知的Android设备/">mac os使用lsusb命令和连接未知的Android设备</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/15/HTML5 HybridApp开发上手指引/">HTML5 HybridApp开发上手指引</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/15/Facebook的Web开发三板斧：React.js、Relay和GraphQL/">Facebook的Web开发三板斧：React.js、Relay和GraphQL</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/15/Flux再进化：Introducing Relay and GraphQL（译）/">Flux再进化：Introducing Relay and GraphQL（译）</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/14/为什么要造轮子？/">为什么要造轮子？</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/10/那些争议最大的编程观点/">那些争议最大的编程观点</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/10/Angular vs. React - the tie breaker/">Angular vs. React - the tie breaker</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/09/android：ToolBar详解（手把手教程）/">android：ToolBar详解（手把手教程）</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/08/Android Support Library更新到v22.1之AppCompat新特性/">Android Support Library更新到v22.1之AppCompat新特性</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/08/用Material Design设计App谷歌官方文档翻译/">用Material Design设计App谷歌官方文档翻译</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/07/Pure Android/">Pure Android</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/07/Material Design in Action — 哔哩哔哩动画 Android 客户端/">Material Design in Action — 哔哩哔哩动画 Android 客户端</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/07/Android Studio 批量打包，apk重命名/">Android Studio 批量打包，apk重命名</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/06/Android Studio Android studio 多渠道打包超简洁版/">Android Studio Android studio 多渠道打包超简洁版</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/06/Eclipse Android项目导入Android Studio时常见的编译错误及解决办法/">Eclipse Android项目导入Android Studio时常见的编译错误及解决办法</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/01/HTML5本地存储——IndexedDB（一：基本使用）/">HTML5本地存储——IndexedDB（一：基本使用）</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/15/SASS基础——十个常见的Mixins/">SASS基础——十个常见的Mixins</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/15/python 中的mixin特性/">python 中的mixin特性</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/10/Mac上通过Linux命令行批量查找和替换文本/">Mac上通过Linux命令行批量查找和替换文本</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/09/产品经理经常犯的十大顶级错误/">产品经理经常犯的十大顶级错误</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/09/ES6新特性概览/">ES6新特性概览</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/09/ES6 JavaScript Promise的感性认知/">ES6 JavaScript Promise的感性认知</a></li><li class="post-list-item"><a class="post-list-link" href="/2009/12/07/Centos 5.3上Asterisk安装及配置/">Centos 5.3上Asterisk安装及配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2009/12/07/rsh服务配置文档/">rsh服务配置文档</a></li><li class="post-list-item"><a class="post-list-link" href="/2009/12/07/centos 5.3中用yum安装MPlayer/">centos 5.3中用yum安装MPlayer</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2015-2016 offbye
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >本站到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.1.22/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 9;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

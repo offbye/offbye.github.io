@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  
+  <title>基于webpack搭建前端工程解决方案探索 | offbye</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="基于webpack搭建前端工程解决方案探索">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于webpack搭建前端工程解决方案探索">
+<meta property="og:url" content="http://offbye.com/2015/10/13/基于webpack搭建前端工程解决方案探索/index.html">
+<meta property="og:site_name" content="offbye">
+<meta property="og:description" content="基于webpack搭建前端工程解决方案探索">
+<meta property="og:image" content="http://cdn4.infoqstatic.com/statics_s1_20151006-0049u2/resource/articles/frontend-engineering-webpack/zh/resources/code_splitting1.jpg">
+<meta property="og:image" content="http://cdn4.infoqstatic.com/statics_s1_20151006-0049u2/resource/articles/frontend-engineering-webpack/zh/resources/code_splitting2.jpg">
+<meta property="og:image" content="http://cdn4.infoqstatic.com/statics_s1_20151006-0049u2/resource/articles/frontend-engineering-webpack/zh/resources/hmr.jpg">
+<meta property="og:image" content="http://cdn4.infoqstatic.com/statics_s1_20151006-0049u2/resource/articles/frontend-engineering-webpack/zh/resources/hmr_build.png">
+<meta property="og:updated_time" content="2016-05-12T16:39:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="基于webpack搭建前端工程解决方案探索">
+<meta name="twitter:description" content="基于webpack搭建前端工程解决方案探索">
+<meta name="twitter:image" content="http://cdn4.infoqstatic.com/statics_s1_20151006-0049u2/resource/articles/frontend-engineering-webpack/zh/resources/code_splitting1.jpg">
+  
+    <link rel="alternative" href="/atom.xml" title="offbye" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+      <link href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css" rel="stylesheet">
+  
+  
+  
+      <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+      <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+  
+  <script src="//cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.9/clipboard.min.js"></script>
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false,
+          fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+          scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.0.9/scrollreveal.min.js"
+      }
+  </script>
+
+  
+      <script>
+          yiliaConfig.rootUrl = "/";
+      </script>
+  
+
+  
+  
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">offbye</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">关注移动架构，Android，HTML5，iOS技术前沿</p>
+        
+                
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:offbye@gmail.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/offbye" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="http://blog.csdn.net/offbye" title="CSDN"></a>
+                            
+                                <a class="fa StackOverflow" target="_blank" href="#offbye" title="StackOverflow"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sandbox/">Sandbox</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/YAML/">YAML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/swift/">swift</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注移动端</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">offbye</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">offbye</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">关注移动架构，Android，HTML5，iOS技术前沿</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:offbye@gmail.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/offbye" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="http://blog.csdn.net/offbye" title="CSDN"></a>
+                            
+                                <a class="fa StackOverflow" target="_blank" href="#offbye" title="StackOverflow"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-基于webpack搭建前端工程解决方案探索" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/10/13/基于webpack搭建前端工程解决方案探索/" class="article-date">
+      <time datetime="2015-10-13T05:17:00.000Z" itemprop="datePublished">2015-10-13</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      基于webpack搭建前端工程解决方案探索
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/webpack/">webpack</a><a class="article-category-link" href="/categories/webpack/前端工程化/">前端工程化</a>
+    </div>
+
+
+        
+
+        
+        <div style="display:block; clear:both;">
+          <span>CSDN原文:<a href="http://blog.csdn.net/offbye/article/details/49097267" target="_blank" title="基于webpack搭建前端工程解决方案探索">http://blog.csdn.net/offbye/article/details/49097267</a> </span>
+          <span style="float:right;margin-right:1em"> CSDN阅读数:601</span>
+        </div>
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>##关于前端工程<br>下面是百科关于“<a href="http://baike.baidu.com/link?url=8KWAhpkQgUuyqAdcnb0Y380yJ5Ol8pY1-cGPR_iegeVsmnskjrZPiTLsVavNguvCSwBzhLFpUMFtOK0EiQtmAcGQRREMQa6PqF-4L62jQqC" target="_blank" rel="external">软件工程</a>”的名词解释：</p>
+<blockquote>
+<p>软件工程是一门研究用工程化方法构建和维护有效的、实用的和高质量的软件的学科。<br>其中，工程化是方法，是将软件研发的各个链路串接起来的工具。<br>有IDE的支持，负责初始化工程、工程结构组织、debug、编译、打包等工作对于软件“工程化”，个人以为至少应当有如下特点：</p>
+<ul>
+<li>有固定或者约定的工程结构，规定软件所依赖的不同类别的资源的存放路径甚至代码的写法等</li>
+<li>软件依赖的资源可能来自软件开发者，也有可能是第三方，工程化需要集成对资源的获取、打包、发布、版本管理等能力</li>
+<li>和其他系统的集成，如CI系统、运维系统、监控系统等</li>
+</ul>
+</blockquote>
+<p>广泛意义上讲，前端也属于软件工程的范畴。<br>但前端没有Eclipse、Visual Studio等为特定语言量身打造的IDE。因为前端不需要编译，即改即生效，在开发和调试时足够方便，只需要打开个浏览器即可完成，所以前端一般不会扯到“工程”这个概念。<br>在很长一段时间里，前端很简单，比如下面简单的几行代码就能够成一个可运行前端应用：<br>    &lt;!DOCTYPE html&gt;<br>    <html><br>    <head><br>        <title>webapp</title><br>        <linkrel="stylesheet"href="app.css"><br>    </linkrel="stylesheet"href="app.css"></head><br>    <body><br>        <h1>app title</h1><br>        <scriptsrc="app.js"><br>    </scriptsrc="app.js"></body><br>    </html><br>但随着webapp的复杂程度不断在增加，前端也在变得很庞大和复杂，按照传统的开发方式会让前端失控：代码庞大难以维护、性能优化难做、开发成本变高。<br>感谢Node.js，使得JavaScript这门前端的主力语言突破了浏览器环境的限制可以独立运行在OS之上，这让JavaScript拥有了文件IO、网络IO的能力，前端可以根据需要任意定制研发辅助工具。<br>一时间出现了以Grunt、Gulp为代表的一批前端构建工具，“前端工程”这个概念逐渐被强调和重视。但是由于前端的复杂性和特殊性，前端工程化一直很难做，构建工具有太多局限性。<br>诚如张云龙<a href="https://github.com/fouber" target="_blank" rel="external">@fouber</a>所言：</p>
+<blockquote>
+<p>前端是一种特殊的GUI软件，它有两个特殊性：一是前端由三种编程语言组成，二是前端代码在用户端运行时增量安装。<br>html、css和js的配合才能保证webapp的运行，增量安装是按需加载的需要。开发完成后输出三种以上不同格式的静态资源，静态资源之间有可能存在互相依赖关系，最终构成一个复杂的资源依赖树（甚至网）。<br>所以，前端工程，最起码需要解决以下问题：</p>
+<ul>
+<li>提供开发所需的一整套运行环境，这和IDE作用类似</li>
+<li>资源管理，包括资源获取、依赖处理、实时更新、按需加载、公共模块管理等</li>
+<li>打通研发链路的各个环节，debug、mock、proxy、test、build、deploy等</li>
+</ul>
+</blockquote>
+<p>其中，资源管理是前端最需要也是最难做的一个环节。<br>注：个人以为，与前端工程化对应的另一个重要的领域是前端组件化，前者属于工具，解决研发效率问题，后者属于前端生态，解决代码复用的问题，本篇对于后者不做深入。</p>
+<p>##前端工程化的探索<br>前端工程化的建设，早前的做法是使用Grunt、Gulp等构建工具。但本质上它们只是一个任务调度器，将功能独立的任务拆解出来，按需组合运行任务。如果要完成前端工程化，这两者配置门槛很高，每一个任务都需要开发者自行使用插件解决，而且对于资源的依赖管理能力太弱。<br>在国内，百度出品的<a href="http://fis.baidu.com/" target="_blank" rel="external">fis</a>也是一种不错的工程化工具的选择，fis内部也解决了资源依赖管理的问题。因笔者没有在项目中实践过fis，所以不进行更多的评价。<br>webpack以一种非常优雅的方式解决了前端资源依赖管理的问题，它在内部已经集成了许多资源依赖处理的细节，但是对于使用者而言只需要做少量的配置，再结合构建工具，很容易搭建一套前端工程解决方案。<br>基于webpack的前端自动化工具，可以自由组合各种开源技术栈（Koa/Express/其他web框架、webpack、Sass/Less/Stylus、Gulp/Grunt等），没有复杂的资源依赖配置，工程结构也相对简单和灵活。<br>在此以开发一个多页面型webapp为例，给出上面所提出的问题的解决方案。</p>
+<p>##前端开发环境搭建</p>
+<p>###主要目录结构</p>
+<pre><code>- webapp/               # webapp根目录
+  - src/                # 开发目录
+    + css/              # sass生成的css资源目录
+    + img/              # webapp图片资源目录
+    - js/               # webapp js&amp;jsx资源目录
+      - components/     # 标准组件存放目录
+          - foo/        # 组件foo
+            + css/      # 组件foo的样式
+            + js/       # 组件foo的逻辑
+            + tmpl/     # 组件foo的模板
+            index.js    # 组件foo的入口
+          + bar/        # 组件bar
+      + lib/            # 第三方纯js库
+      ...               # 根据项目需要任意添加的代码目录
+    + tmpl/             # webapp前端模板资源目录
+    a.html              # webapp入口文件a
+    b.html              # webapp入口文件b
+  - assets/             # 编译输出目录，即发布目录
+    + js/               # 编译输出的js目录
+    + img/              # 编译输出的图片目录
+    + css/              # 编译输出的css目录
+    a.html              # 编译输出的入口a
+    b.html              # 编译处理后的入口b
+  + mock/               # 假数据目录
+  app.js                # 本地server入口
+  routes.js             # 本地路由配置
+  webpack.config.js     # webpack配置文件
+  gulpfile.js           # gulp任务配置
+  package.json          # 项目配置
+  README.md             # 项目说明
+</code></pre><p>这是个经典的前端项目目录结构，项目目结构在一定程度上约定了开发规范。业务开发的同学只需关注<code>src</code>目录即可，开发时尽可能最小化模块粒度，这是异步加载的需要。<code>assets</code>是整个工程的产出，无需关注里边的内容是什么，至于怎么打包和解决资源依赖的，往下看。</p>
+<p>###本地开发环境<br>我们使用开源web框架搭建一个webserver，便于本地开发和调试，以及灵活地处理前端路由，以<code>koa</code>为例，主要代码如下：<br>    // app.js<br>    var http = require(‘http’);<br>    var koa = require(‘koa’);<br>    var serve = require(‘koa-static’);</p>
+<pre><code>var app = koa();
+var debug = process.env.NODE_ENV !== &apos;production&apos;;
+// 开发环境和生产环境对应不同的目录
+var viewDir = debug ? &apos;src&apos; : &apos;assets&apos;;
+
+// 处理静态资源和入口文件
+app.use(serve(path.resolve(__dirname, viewDir), {
+    maxage: 0
+}));
+
+app = http.createServer(app.callback());
+
+app.listen(3005, &apos;0.0.0.0&apos;, function() {
+    console.log(&apos;app listen success.&apos;);
+});
+</code></pre><p>运行<code>node app</code>启动本地server，浏览器输入<code>http://localhost:8080/a.html</code>即可看到页面内容，最基本的环境就算搭建完成。<br>如果只是处理静态资源请求，可以有很多的替代方案，如Fiddler替换文件、本地起Nginx服务器等等。搭建一个Web服务器，它能够非常灵活地配置路由和处理动态请求，可以任意定制开发环境的个性化需求用于提升开发效率，总之local webserver拥有无限的可能。</p>
+<p>###定制动态请求<br>我们的local server是<code>localhost</code>域，在ajax请求时为了突破前端同源策略的限制，本地server需支持代理其他域下的api的功能，即proxy。同时还要支持对未完成的api进行mock的功能。<br>    // app.js<br>    var router = require(‘koa-router’)();<br>    var routes = require(‘./routes’);<br>    routes(router, app);<br>    app.use(router.routes());<br>     ```</p>
+<pre><code>``` js
+// routes.js
+var proxy = require(&apos;koa-proxy&apos;);
+var list = require(&apos;./mock/list&apos;);
+module.exports = function(router, app) {
+    // mock api
+    // 可以根据需要任意定制接口的返回
+    router.get(&apos;/api/list&apos;, function*() {
+        var query = this.query || {};
+        var offset = query.offset || 0;
+        var limit = query.limit || 10;
+        var diff = limit - list.length;
+
+        if(diff &lt;= 0) {
+            this.body = {code: 0, data: list.slice(0, limit)};
+        } else {
+            var arr = list.slice(0, list.length);
+            var i = 0;
+            while(diff--) arr.push(arr[i++]);
+            this.body = {code: 0, data: arr};
+        }
+    });
+    // proxy api
+    router.get(&apos;/api/foo/bar&apos;, proxy({url: &apos;http://foo.bar.com&apos;}));
+}
+</code></pre><p>##webpack资源管理</p>
+<p>###资源的获取<br>ECMAScript 6之前，前端的模块化一直没有统一的标准，仅前端包管理系统就有好几个。所以任何一个库实现的loader都不得不去兼容基于多种模块化标准开发的模块。<br>webpack同时提供了对CommonJS、AMD和ES6模块化标准的支持，对于非前三种标准开发的模块，webpack提供了<a href="http://webpack.github.io/docs/shimming-modules.html" target="_blank" rel="external">shimming modules</a>的功能。<br>受Node.js的影响，越来越多的前端开发者开始采用CommonJS作为模块开发标准，<code>npm</code>已经逐渐成为前端模块的托管平台，这大大降低了前后端模块复用的难度。<br>在webpack配置项里，可以把node_modules路径添加到resolve search root列表里边，这样就可以直接load npm模块了：<br>    // webpack.config.js<br>    resolve: {<br>        root: [process.cwd() + ‘/src’, process.cwd() + ‘/node_modules’],<br>        alias: {},<br>        extensions: [‘’, ‘.js’, ‘.css’, ‘.scss’, ‘.ejs’, ‘.png’, ‘.jpg’]<br>    },</p>
+<pre><code>&lt;div class=&quot;se-preview-section-delimiter&quot;&gt;&lt;/div&gt;
+$ npm install jquery react --save
+
+&lt;div class=&quot;se-preview-section-delimiter&quot;&gt;&lt;/div&gt;
+// page-x.js
+import $ from &apos;jquery&apos;;
+import React from &apos;react&apos;;
+</code></pre><p>###资源引用<br>根据webpack的设计理念，所有资源都是“模块”，webpack内部实现了一套资源加载机制，这与Requirejs、Sea.js、Browserify等实现有所不同，除了借助插件体系加载不同类型的资源文件之外，webpack还对输出结果提供了非常精细的控制能力，开发者只需要根据需要调整参数即可：<br>    // webpack.config.js<br>    // webpack loaders的配置示例<br>    …<br>    loaders: [<br>        {<br>            test: /.(jpe?g|png|gif|svg)$/i,<br>            loaders: [<br>                ‘image?{bypassOnDebug: true, progressive:true, \<br>                    optimizationLevel: 3, pngquant:{quality: “65-80”}}’,<br>                ‘url?limit=10000&amp;name=img/[hash:8].[name].[ext]’,<br>            ]<br>        },<br>        {<br>            test: /.(woff|eot|ttf)$/i,<br>            loader: ‘url?limit=10000&amp;name=fonts/[hash:8].[name].[ext]’<br>        },<br>        {test: /.(tpl|ejs)$/, loader: ‘ejs’},<br>        {test: /.js$/, loader: ‘jsx’},<br>        {test: /.css$/, loader: ‘style!css’},<br>        {test: /.scss$/, loader: ‘style!css!scss’},<br>    ]<br>    …<br>简单解释下上面的代码，<code>test</code>项表示匹配的资源类型，<code>loader</code>或<code>loaders</code>项表示用来加载这种类型的资源的loader，loader的使用可以参考<a href="http://webpack.github.io/docs/using-loaders.html" target="_blank" rel="external">using loaders</a>，更多的loader可以参考<a href="http://webpack.github.io/docs/list-of-loaders.html" target="_blank" rel="external">list of loaders</a>。<br>对于开发者来说，使用loader很简单，最好先配置好特定类型的资源对应的loaders，在业务代码直接使用webpack提供的<code>require（source path）</code>接口即可：<br>    // a.js<br>    // 加载css资源<br>    require(‘../css/a.css’);</p>
+<pre><code>// 加载其他js资源
+var foo = require(&apos;./widgets/foo&apos;);
+var bar = require(&apos;./widgets/bar&apos;);
+
+// 加载图片资源
+var loadingImg = require(&apos;../img/loading.png&apos;);
+
+var img = document.createElement(&apos;img&apos;);
+
+img.src = loadingImg;
+</code></pre><p>注意，<code>require()</code>还支持在资源path前面指定loader，即<code>require(![loaders list]![source path])</code>形式：<br>    require(“!style!css!less!bootstrap/less/bootstrap.less”);<br>    // “bootstrap.less”这个资源会先被”less-loader”处理，<br>    // 其结果又会被”css-loader”处理，接着是”style-loader”<br>    // 可类比pipe操作<br>require()时指定的loader会覆盖配置文件里对应的loader配置项。</p>
+<p>###资源依赖处理<br>通过loader机制，可以不需要做额外的转换即可加载浏览器不直接支持的资源类型，如<code>.scss</code>、<code>.less</code>、<code>.json</code>、<code>.ejs</code>等。<br>但是对于css、js和图片，采用webpack加载和直接采用标签引用加载，有何不同呢？<br>运行webpack的打包命令，可以得到<code>a.js</code>的输出的结果：<br>    webpackJsonp([0], {<br>        /<strong><em>/0:<br>        /</em></strong>/function(module, exports, <strong>webpack_require</strong>) {</p>
+<pre><code>        __webpack_require__(6);
+
+        var foo = __webpack_require__(25);
+        var bar = __webpack_require__(26);
+
+        var loadingImg = __webpack_require__(24);
+        var img = document.createElement(&apos;img&apos;);
+
+        img.src = loadingImg;
+    },
+
+    /***/6:
+    /***/function(module, exports, __webpack_require__) {
+        ...
+    },
+
+    /***/7:
+    /***/function(module, exports, __webpack_require__) {
+        ...
+    },
+
+    /***/24:
+    /***/function(module, exports) {
+        ...
+    },
+
+    /***/25:
+    /***/function(module, exports) {
+        ...
+    },
+
+    /***/26:
+    /***/function(module, exports) {
+        ...
+    }
+});
+</code></pre><p>从输出结果可以看到，webpack内部实现了一个全局的<code>webpackJsonp()</code>用于加载处理后的资源，并且webpack把资源进行重新编号，每一个资源成为一个模块，对应一个id，后边是模块的内部实现，而这些操作都是webpack内部处理的，使用者无需关心内部细节甚至输出结果。<br>上面的输出代码，因篇幅限制删除了其他模块的内部实现细节，完整的输出请看<a href="http://www.infoq.com/cn/articles/a.out.js" target="_blank" rel="external">a.out.js</a>，来看看图片的输出：<br>    /<strong><em>/24:<br>    /</em></strong>/function(module, exports) {</p>
+<pre><code>    module.exports = &quot;data:image/png;base64,...&quot;;
+
+    /***/
+}
+</code></pre><p>注意到图片资源的loader配置：<br>    {<br>        test: /.(jpe?g|png|gif|svg)$/i,<br>        loaders: [<br>            ‘image?…’,<br>            ‘url?limit=10000&amp;name=img/[hash:8].[name].[ext]’,<br>        ]<br>    }<br>意思是，图片资源在加载时先压缩，然后当内容size小于~10KB时，会自动转成base64的方式内嵌进去，这样可以减少一个HTTP的请求。当图片大于10KB时，则会在<code>img/</code>下生成压缩后的图片，命名是<code>[hash:8].[name].[ext]</code>的形式。<code>hash:8</code>的意思是取图片内容hushsum值的前8位，这样做能够保证引用的是图片资源的最新修改版本，保证浏览器端能够即时更新。<br>对于css文件，默认情况下webpack会把css content内嵌到js里边，运行时会使用<code>style</code>标签内联。如果希望将css使用<code>link</code>标签引入，可以使用<code>ExtractTextPlugin</code>插件进行提取。</p>
+<p>###资源的编译输出<br>webpack的三个概念：模块（module）、入口文件（entry）、分块（chunk）。<br>其中，module指各种资源文件，如js、css、图片、svg、scss、less等等，一切资源皆被当做模块。<br>webpack编译输出的文件包括以下2种：</p>
+<ul>
+<li>entry：入口，可以是一个或者多个资源合并而成，由html通过script标签引入</li>
+<li>chunk：被entry所依赖的额外的代码块，同样可以包含一个或者多个文件</li>
+</ul>
+<p>下面是一段entry和output项的配置示例：<br>    entry: {<br>        a: ‘./src/js/a.js’<br>    },<br>    output: {<br>        path: path.resolve(debug ? ‘<strong>build’ : ‘./assets/‘),<br>        filename: debug ? ‘[name].js’ : ‘js/[chunkhash:8].[name].min.js’,<br>        chunkFilename: debug ? ‘[chunkhash:8].chunk.js’ : ‘js/[chunkhash:8].chunk.min.js’,<br>        publicPath: debug ? ‘/</strong>build/‘ : ‘’<br>    }<br>其中<code>entry</code>项是入口文件路径映射表，<code>output</code>项是对输出文件路径和名称的配置，占位符如<code>[id]</code>、<code>[chunkhash]</code>、<code>[name]</code>等分别代表编译后的模块id、chunk的hashnum值、chunk名等，可以任意组合决定最终输出的资源格式。hashnum的做法，基本上弱化了版本号的概念，版本迭代的时候chunk是否更新只取决于chnuk的内容是否发生变化。<br>细心的同学可能会有疑问，entry表示入口文件，需要手动指定，那么chunk到底是什么，chunk是怎么生成的？<br>在开发webapp时，总会有一些功能是使用过程中才会用到的，出于性能优化的需要，对于这部分资源我们希望做成异步加载，所以这部分的代码一般不用打包到入口文件里边。<br>对于这一点，webpack提供了非常好的支持，即<a href="http://webpack.github.io/docs/code-splitting.html" target="_blank" rel="external">code splitting</a>，即使用<code>require.ensure()</code>作为代码分割的标识。<br>例如某个需求场景，根据url参数，加载不同的两个UI组件，示例代码如下：<br>    var component = getUrlQuery(‘component’);</p>
+<pre><code>if(&apos;dialog&apos; === component) {
+    require.ensure([], function(require) {
+        var dialog = require(&apos;./components/dialog&apos;);
+        // todo ...
+    });
+}
+
+if(&apos;toast&apos; === component) {
+    require.ensure([], function(require) {
+        var toast = require(&apos;./components/toast&apos;);
+        // todo ...
+    });
+}
+</code></pre><p>url分别输入不同的参数后得到瀑布图：<br><img src="http://cdn4.infoqstatic.com/statics_s1_20151006-0049u2/resource/articles/frontend-engineering-webpack/zh/resources/code_splitting1.jpg" alt=""><br><img src="http://cdn4.infoqstatic.com/statics_s1_20151006-0049u2/resource/articles/frontend-engineering-webpack/zh/resources/code_splitting2.jpg" alt=""><br>webpack将<code>require.ensure()</code>包裹的部分单独打包了，即图中看到的<code>[hash].chunk.js</code>，既解决了异步加载的问题，又保证了加载到的是最新的chunk的内容。<br>假设app还有一个入口页面<code>b.html</code>，那麽就需要相应的再增加一个入口文件<code>b.js</code>，直接在<code>entry</code>项配置即可。多个入口文件之间可能公用一个模块，可以使用<code>CommonsChunkPlugin</code>插件对指定的chunks进行公共模块的提取，下面代码示例演示提取所有入口文件公用的模块，将其独立打包：<br>    var chunks = Object.keys(entries);</p>
+<pre><code>plugins: [
+    new CommonsChunkPlugin({
+        name: &apos;vendors&apos;, // 将公共模块提取，生成名为`vendors`的chunk
+        chunks: chunks,
+        minChunks: chunks.length // 提取所有entry共同依赖的模块
+    })
+],
+</code></pre><p>###资源的实时更新<br>引用模块，webpack提供了<code>require()</code> API（也可以通过添加bable插件来支持ES6的<code>import</code>语法）。但是在开发阶段不可能改一次编译一次，webpack提供了强大的热更新支持，即<a href="http://webpack.github.io/docs/hot-module-replacement-with-webpack.html" target="_blank" rel="external">HMR(hot module replace)</a>。<br>HMR简单说就是webpack启动一个本地webserver（webpack-dev-server），负责处理由webpack生成的静态资源请求。注意webpack-dev-server是把所有资源存储在内存的，所以你会发现在本地没有生成对应的chunk访问却正常。<br>下面这张来自webpack官网的图片，可以很清晰地说明<code>module</code>、<code>entry</code>、<code>chunk</code>三者的关系以及webpack如何实现热更新的：<br><img src="http://cdn4.infoqstatic.com/statics_s1_20151006-0049u2/resource/articles/frontend-engineering-webpack/zh/resources/hmr.jpg" alt=""><br>enter0表示入口文件，chunk1~4分别是提取公共模块所生成的资源块，当模块4和9发生改变时，因为模块4被打包在chunk1中，模块9打包在chunk3中，所以HMR runtime会将变更部分同步到chunk1和chunk3中对应的模块，从而达到hot replace。<br>webpack-dev-server的启动很简单，配置完成之后可以通过cli启动，然后在页面引入入口文件时添加webpack-dev-server的host即可将HMR集成到已有服务器：<br>    …<br>    <body><br>        …<br>        <script src="http://localhost:8080/__build/vendors.js"></script><br>        <script src="http://localhost:8080/__build/a.js"></script><br>    </body><br>    …<br>因为我们的local server就是基于Node.js的webserver，这里可以更进一步，将webpack开发服务器以中间件的形式集成到local webserver，不需要cli方式启动（少开一个cmd tab）：<br>    // app.js<br>    var webpackDevMiddleware = require(‘koa-webpack-dev-middleware’);<br>    var webpack = require(‘webpack’);<br>    var webpackConf = require(‘./webpack.config’);</p>
+<pre><code>app.use(webpackDevMiddleware(webpack(webpackConf), {
+    contentBase: webpackConf.output.path,
+    publicPath: webpackConf.output.publicPath,
+    hot: true,
+    stats: webpackConf.devServer.stats
+}));
+</code></pre><p>启动HMR之后，每次保存都会重新编译生成新的chnuk，通过控制台的log，可以很直观地看到这一过程：<br><img src="http://cdn4.infoqstatic.com/statics_s1_20151006-0049u2/resource/articles/frontend-engineering-webpack/zh/resources/hmr_build.png" alt=""></p>
+<p>###公用代码的处理：封装组件<br>webpack解决了资源依赖的问题，这使得封装组件变得很容易，例如：<br>    // js/components/component-x.js<br>    require(‘./component-x.css’);</p>
+<pre><code>// @see https://github.com/okonet/ejs-loader
+var template = require(&apos;./component-x.ejs&apos;);
+var str = template({foo: &apos;bar&apos;});
+
+function someMethod() {}
+
+exports.someMethod = someMethod;
+</code></pre><p>使用：<br>    // js/a.js<br>    import {someMethod} from “./components/component-x”;<br>    someMethod();<br>正如开头所说，将三种语言、多种资源合并成js来管理，大大降低了维护成本。<br>对于新开发的组件或library，建议推送到<code>npm</code>仓库进行共享。如果需要支持其他加载方式（如RequireJS或标签直接引入），可以参考webpack提供的<a href="http://webpack.github.io/docs/configuration.html#externals" target="_blank" rel="external">externals</a>项。</p>
+<p>###资源路径切换<br>由于入口文件是手动使用script引入的，在webpack编译之后入口文件的名称和路径一般会改变，即开发环境和生产环境引用的路径不同：<br>    // 开发环境<br>    // a.html<br>    <script src="/__build/vendors.js"></script><br>    <script src="/__build/a.js"></script></p>
+<pre><code>// 生产环境
+// a.html
+&lt;script src=&quot;http://cdn.site.com/js/460de4b8.vendors.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;http://cdn.site.com/js/e7d20340.a.min.js&quot;&gt;&lt;/script&gt;
+</code></pre><p>webpack提供了<code>HtmlWebpackPlugin</code>插件来解决这个问题，HtmlWebpackPlugin支持从模板生成html文件，生成的html里边可以正确解决js打包之后的路径、文件名问题，配置示例：<br>    // webpack.config.js<br>    plugins: [<br>        new HtmlWebpackPlugin({<br>            template: ‘./src/a.html’,<br>            filename: ‘a’,<br>            inject: ‘body’,<br>            chunks: [‘vendors’, ‘a’]<br>        })<br>    ]<br>这里资源根路径的配置在<code>output</code>项：<br>    // webpack.config.js<br>    output: {<br>        …<br>        publicPath: debug ? ‘/__build/‘ : ‘<a href="http://cdn.site.com/" target="_blank" rel="external">http://cdn.site.com/</a>‘<br>    }<br>其他入口html文件采用类似处理方式。</p>
+<p>##辅助工具集成<br>local server解决本地开发环境的问题，webpack解决开发和生产环境资源依赖管理的问题。在项目开发中，可能会有许多额外的任务需要完成，比如对于使用compass生成sprites的项目，因目前webpack还不直接支持sprites，所以还需要compass watch，再比如工程的远程部署等，所以需要使用一些构建工具或者脚本的配合，打通研发的链路。<br>因为每个团队在部署代码、单元测试、自动化测试、发布等方面做法都不同，前端需要遵循公司的标准进行自动化的整合，这部分不深入了。<br>附上笔者根据本篇的理论所完成的一个前端自动化解决方案项目模板：<br><a href="https://github.com/chemdemo/webpack-bootstrap" target="_blank" rel="external">webpack-bootstrap</a><br>（完）。</p>
+<p>##参考文章</p>
+<ul>
+<li><a href="http://webpack.github.io/docs/" target="_blank" rel="external">http://webpack.github.io/docs/</a></li>
+<li><a href="https://github.com/petehunt/webpack-howto" target="_blank" rel="external">https://github.com/petehunt/webpack-howto</a></li>
+<li><a href="http://christianalfoni.github.io/javascript/2014/12/13/did-you-know-webpack-and-react-is-awesome.html" target="_blank" rel="external">http://christianalfoni.github.io/javascript/2014/12/13/did-you-know-webpack-and-react-is-awesome.html</a></li>
+<li><a href="https://github.com/webpack/react-starter/blob/master/make-webpack-config.js" target="_blank" rel="external">https://github.com/webpack/react-starter/blob/master/make-webpack-config.js</a></li>
+</ul>
+<hr>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2015/10/13/基于webpack搭建前端工程解决方案探索/">基于webpack搭建前端工程解决方案探索</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">offbye</a></p>
+        <p><span>发布时间:</span>2015-10-13, 13:17:00</p>
+        <p><span>最后更新:</span>2016-05-13, 00:39:34</p>
+
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2015/10/13/基于webpack搭建前端工程解决方案探索/" title="基于webpack搭建前端工程解决方案探索">http://offbye.com/2015/10/13/基于webpack搭建前端工程解决方案探索/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://offbye.com/2015/10/13/基于webpack搭建前端工程解决方案探索/　　作者: offbye" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+        
+        <p><span>CSDN原文:</span> <a href="http://blog.csdn.net/offbye/article/details/49097267" target="_blank" title="基于webpack搭建前端工程解决方案探索">http://blog.csdn.net/offbye/article/details/49097267</a> </p>
+        <p><span>CSDN PV:</span>601</p>
+        
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2015/10/21/Android 热敏打印机打印二维码/">
+                    Android 热敏打印机打印二维码
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2015/10/11/理解Flux架构/">
+                    理解Flux架构
+                </a>
+            </div>
+        
+    </nav>
+
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">app title</span></a></li></ol>
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"基于webpack搭建前端工程解决方案探索　| offbye　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="2015/10/13/基于webpack搭建前端工程解决方案探索/" data-title="基于webpack搭建前端工程解决方案探索" data-url="http://offbye.com/2015/10/13/基于webpack搭建前端工程解决方案探索/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"offbye"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+    <!-- 多说公共JS代码 end -->
+</div>
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2015/10/21/Android 热敏打印机打印二维码/" title="上一篇: Android 热敏打印机打印二维码">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2015/10/11/理解Flux架构/" title="下一篇: 理解Flux架构">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/05/12/YAML文件语法简介/">YAML文件语法简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/11/iOS-Sandbox-swift/">iOS App沙盒模型文件目录详解Swift版</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/11/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/06/iOS App沙盒模型文件目录详解Swift版/">iOS App沙盒模型文件目录详解Swift版</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/05/Swift iOS实现把PCM语音转成MP3格式/">Swift iOS实现把PCM语音转成MP3格式</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/04/RESTFUL API 安全设计/">RESTFUL API 安全设计</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/04/关于 Token，你应该知道的十件事/">关于 Token，你应该知道的十件事</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/04/程序员的成长和代码行数的关系/">程序员的成长和代码行数的关系</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/04/从JavaAndroid到Swift iOS开发：语言与框架对比/">从JavaAndroid到Swift iOS开发：语言与框架对比</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/26/Android开发常用开源框架推荐/">Android开发常用开源框架推荐</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/22/Swift Modules for React Native/">Swift Modules for React Native</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/15/Android官方MVP架构示例项目解析/">Android官方MVP架构示例项目解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/15/使用swift开发Cordova插件/">使用swift开发Cordova插件</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/14/Swift语言中的@available 和 #available/">Swift语言中的@available 和</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/31/Android volley 使用OkHttp3.0/">Android volley 使用OkHttp3.0</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/28/What's new in Swift 2.2/">What's new in Swift 2.2</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/16/java8新特性介绍/">java8新特性介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/15/Swift异常处理：throw和rethrow/">Swift异常处理：throw和rethrow</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/14/Swift iOS- 手势检测详解/">Swift iOS- 手势检测详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/11/Swift化零为整：Reduce 详解/">Swift化零为整：Reduce 详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/11/Swift2.1关键字 @noescape介绍/">Swift2.1关键字 @noescape介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/11/理解Swift中map 和 flatMap对集合的作用/">理解Swift中map 和 flatMap对集合的作用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/09/移动端专用数据库Realm介绍/">移动端专用数据库Realm介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/09/安装Xcode插件包管理器Alcatraz报错解决办法/">安装Xcode插件包管理器Alcatraz报错解决办法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/09/Android最佳实践 —— 详细谈谈如何减小APK体积/">Android最佳实践 —— 详细谈谈如何减小APK体积</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/05/iOS开发如何通过UMeng的错误分析解决crash问题/">iOS开发如何通过UMeng的错误分析解决crash问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/04/常见移动设备的 CSS3 Media Query 整理（iPhoneiPadGalaxy）/">常见移动设备的 CSS3 Media Query 整理（iPhoneiPadGalaxy）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/04/我在MDCC 2015的演讲PPT《HTML5移动应用多端开发架构实践》分享/">我在MDCC 2015的演讲PPT《HTML5移动应用多端开发架构实践》分享</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/01/深入理解iOS开发中的BitCode功能/">深入理解iOS开发中的BitCode功能</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/01/iOS swift动画和特效专题/">iOS swift动画和特效专题</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/29/Swift iOS项目archive操作会报错误built without full bitcode解决方法/">Swift iOS项目archive操作会报错误built without full bitcode解决方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/26/GCD 和延时调用/">GCD 和延时调用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/26/Swift - 多线程实现方式（3） - Grand Central Dispatch（GCD）/">Swift - 多线程实现方式（3） - Grand Central Dispatch（GCD）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/25/iOS 9开发小技巧：LayoutGuide，Storyboard Reference/">iOS 9开发小技巧：LayoutGuide，Storyboard Reference</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/25/Storyboard的爱与恨/">Storyboard的爱与恨</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/25/Swift iOS tableView static cell动态计算高度/">Swift iOS tableView static cell动态计算高度</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/24/5 个顶级 Android 开源库/">5 个顶级 Android 开源库</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/19/Swift高阶函数介绍（闭包、Map、Filter、Reduce）/">Swift高阶函数介绍（闭包、Map、Filter、Reduce）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/18/iOS Swift判断代码运行在模拟器上/">iOS Swift判断代码运行在模拟器上</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/17/iOS 开发 UI 搭建心得（一）—— 驾驭 StoryBoard  代码示例：httpsgithub.comjohnluiSwift-On-iOSblobmasterDifferen/">iOS 开发 UI 搭建心得（一）—— 驾驭 StoryBoard  代码示例：httpsgithub.comjohnluiSwift-On-iOSblobmasterDifferen</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/16/使用命令行统计代码行数/">使用命令行统计代码行数</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/03/HTTP 2.0的那些事/">HTTP 2.0的那些事</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/02/浅谈 RxAndroid + Retrofit + Databinding/">浅谈 RxAndroid + Retrofit + Databinding</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/28/2016这些Android技术会很火/">2016这些Android技术会很火</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/27/使用CodePush实时更新 React Native 和 Cordova 应用/">使用CodePush实时更新 React Native 和 Cordova 应用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/20/理解Swift中Optional类型－有和无的哲学/">理解Swift中Optional类型－有和无的哲学</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/19/其实你不知道MultiDex到底有多坑/">其实你不知道MultiDex到底有多坑</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/19/Android MultiDex分包变形记/">Android MultiDex分包变形记</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/14/Swift iOS项目最佳实践汇总/">Swift iOS项目最佳实践汇总</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/11/饿了么移动APP的架构演进/">饿了么移动APP的架构演进</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/30/Android 开发最佳实践/">Android 开发最佳实践</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/29/RxAndroid和RxJava的资料分享/">RxAndroid和RxJava的资料分享</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/28/技术人如何才能不焦虑/">技术人如何才能不焦虑</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/26/云栖社区12篇实战经验所组成的“近战”系列分享/">云栖社区12篇实战经验所组成的“近战”系列分享</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/26/程序员晋升攻略/">程序员晋升攻略</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/25/Xcode7.2版本carthage包管理器兼容问题解决/">Xcode7.2版本carthage包管理器兼容问题解决</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/14/2015年Android开发新技术盘点/">2015年Android开发新技术盘点</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/10/Android中Touch事件分析--解决HorizontalScrollView滑动和按钮事件触发问题/">Android中Touch事件分析--解决HorizontalScrollView滑动和按钮事件触发问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/03/Android动态加载黑科技 动态创建Activity模式/">Android动态加载黑科技 动态创建Activity模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/01/Android注解支持Support Annotations详解/">Android注解支持Support Annotations详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/27/Android Studio 2.0 Instant Run即时运行功能实现分析/">Android Studio 2.0 Instant Run即时运行功能实现分析</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/25/Android应用性能剖析全攻略/">Android应用性能剖析全攻略</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/24/自动生成Android不同分辨率下的图片/">自动生成Android不同分辨率下的图片</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/24/Android Studio 2.0 Preview发布,附下载地址，支持即时运行和GPU Profiler/">Android Studio 2.0 Preview发布,附下载地址，支持即时运行和GPU Profiler</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/17/React Native Android端10个最常见问题/">React Native Android端10个最常见问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/13/使用Javascript ES6进行开发的思考/">使用Javascript ES6进行开发的思考</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/13/安装包立减1M--微信Android资源混淆打包工具/">安装包立减1M--微信Android资源混淆打包工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/11/Ionic 2.0 Alpha版本发布了/">Ionic 2.0 Alpha版本发布了</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/10/美团Android资源混淆保护实践/">美团Android资源混淆保护实践</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/10/Android开发中的armeabi和armeabi-v7a介绍/">Android开发中的armeabi和armeabi-v7a介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/06/在CordovaActivity中添加原生View组件/">在CordovaActivity中添加原生View组件</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/05/技术贴：开源飞控那些事/">技术贴：开源飞控那些事</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/03/Android常用开源框架Proguard混淆解决方案/">Android常用开源框架Proguard混淆解决方案</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/03/美团Android DEX自动拆包及动态加载简介/">美团Android DEX自动拆包及动态加载简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/02/Google基于Dart的新移动开发框架Flutter介绍/">Google基于Dart的新移动开发框架Flutter介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/29/通过SharedPreferences实现进程间数据共享的问题详解/">通过SharedPreferences实现进程间数据共享的问题详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/26/Android修改TitleBar标题栏详解/">Android修改TitleBar标题栏详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/23/异步JavaScript的进化/">异步JavaScript的进化</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/21/Android Service创建USB HOST通信/">Android Service创建USB HOST通信</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/21/Android 热敏打印机打印二维码/">Android 热敏打印机打印二维码</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/13/基于webpack搭建前端工程解决方案探索/">基于webpack搭建前端工程解决方案探索</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/11/理解Flux架构/">理解Flux架构</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/09/Mac Yosemite系统 brew 报错的解决办法/">Mac Yosemite系统 brew 报错的解决办法</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/30/微信公众平台接入经验分享，纯干货/">微信公众平台接入经验分享，纯干货</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/28/使用Kotlin进行Android开发/">使用Kotlin进行Android开发</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/23/Umeng推送消息的坑，Android Service的androidexported详解/">Umeng推送消息的坑，Android Service的androidexported详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/22/自动生成Android屏幕适配的dimens.xml/">自动生成Android屏幕适配的dimens.xml</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/21/iOS9系统开始对企业发布App进行严格限制/">iOS9系统开始对企业发布App进行严格限制</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/16/sed 简明教程/">sed 简明教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/15/Gradle, 基于DSL的新一代Java构建工具/">Gradle, 基于DSL的新一代Java构建工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/15/Gradle常用命令和原理说明/">Gradle常用命令和原理说明</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/09/大势所趋！十大令人振奋的移动端APP设计趋势/">大势所趋！十大令人振奋的移动端APP设计趋势</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/02/Android微信智能心跳方案/">Android微信智能心跳方案</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/01/深入浅出学Spring Data JPA/">深入浅出学Spring Data JPA</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/29/在Mac上制作树莓派SD镜像/">在Mac上制作树莓派SD镜像</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/26/Git从远程的分支获取最新的版本到本地/">Git从远程的分支获取最新的版本到本地</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/25/Spring Data JPA 常用注解 @Query、@NamedQuery/">Spring Data JPA 常用注解 @Query、@NamedQuery</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/24/树莓派做 wifi 热点/">树莓派做 wifi 热点</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/23/树莓派把一个python脚本作为服务运行，配置开机自动启动/">树莓派把一个python脚本作为服务运行，配置开机自动启动</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/22/INSTALLING OPERATING SYSTEM IMAGES ON MAC OS/">INSTALLING OPERATING SYSTEM IMAGES ON MAC OS</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/18/基于Volley，Gson封装支持JWT无状态安全验证和数据防篡改的GsonRequest网络请求类/">基于Volley，Gson封装支持JWT无状态安全验证和数据防篡改的GsonRequest网络请求类</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/28/Python高效率编程的8条箴言/">Python高效率编程的8条箴言</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/28/如何使用Android Studio提高App质量/">如何使用Android Studio提高App质量</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/27/树莓派遥控船项目计划/">树莓派遥控船项目计划</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/24/树莓派的PWM脉宽调制功能介绍/">树莓派的PWM脉宽调制功能介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/23/python字符串连接/">python字符串连接</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/23/Android Studio上方便使用butterknife注解框架的偷懒插件Android Butterknife Zelezny/">Android Studio上方便使用butterknife注解框架的偷懒插件Android Butterknife Zelezny</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/23/Python的Lambda函数与排序/">Python的Lambda函数与排序</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/22/TypeScript 1.5正式发布，此版本是Visual Studio 2015更新的一部分，支持大量ES6新特性/">TypeScript 1.5正式发布，此版本是Visual Studio 2015更新的一部分，支持大量ES6新特性</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/20/iWeb峰会（HTML5峰会）2015年7月19日上海站会后感想/">iWeb峰会（HTML5峰会）2015年7月19日上海站会后感想</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/16/说说React,Flux,Reray和GraghQL/">说说React,Flux,Reray和GraghQL</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/16/ReactEurope Conf 参会感想/">ReactEurope Conf 参会感想</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/15/Android Studio Gradle项目中添加JNI so文件/">Android Studio Gradle项目中添加JNI so文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/15/mac os使用lsusb命令和连接未知的Android设备/">mac os使用lsusb命令和连接未知的Android设备</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/15/HTML5 HybridApp开发上手指引/">HTML5 HybridApp开发上手指引</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/15/Facebook的Web开发三板斧：React.js、Relay和GraphQL/">Facebook的Web开发三板斧：React.js、Relay和GraphQL</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/15/Flux再进化：Introducing Relay and GraphQL（译）/">Flux再进化：Introducing Relay and GraphQL（译）</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/14/为什么要造轮子？/">为什么要造轮子？</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/10/那些争议最大的编程观点/">那些争议最大的编程观点</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/10/Angular vs. React - the tie breaker/">Angular vs. React - the tie breaker</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/09/android：ToolBar详解（手把手教程）/">android：ToolBar详解（手把手教程）</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/08/Android Support Library更新到v22.1之AppCompat新特性/">Android Support Library更新到v22.1之AppCompat新特性</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/08/用Material Design设计App谷歌官方文档翻译/">用Material Design设计App谷歌官方文档翻译</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/07/Pure Android/">Pure Android</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/07/Material Design in Action — 哔哩哔哩动画 Android 客户端/">Material Design in Action — 哔哩哔哩动画 Android 客户端</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/07/Android Studio 批量打包，apk重命名/">Android Studio 批量打包，apk重命名</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/06/Android Studio Android studio 多渠道打包超简洁版/">Android Studio Android studio 多渠道打包超简洁版</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/06/Eclipse Android项目导入Android Studio时常见的编译错误及解决办法/">Eclipse Android项目导入Android Studio时常见的编译错误及解决办法</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/01/HTML5本地存储——IndexedDB（一：基本使用）/">HTML5本地存储——IndexedDB（一：基本使用）</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/15/SASS基础——十个常见的Mixins/">SASS基础——十个常见的Mixins</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/15/python 中的mixin特性/">python 中的mixin特性</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/10/Mac上通过Linux命令行批量查找和替换文本/">Mac上通过Linux命令行批量查找和替换文本</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/09/产品经理经常犯的十大顶级错误/">产品经理经常犯的十大顶级错误</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/09/ES6新特性概览/">ES6新特性概览</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/09/ES6 JavaScript Promise的感性认知/">ES6 JavaScript Promise的感性认知</a></li><li class="post-list-item"><a class="post-list-link" href="/2009/12/07/Centos 5.3上Asterisk安装及配置/">Centos 5.3上Asterisk安装及配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2009/12/07/rsh服务配置文档/">rsh服务配置文档</a></li><li class="post-list-item"><a class="post-list-link" href="/2009/12/07/centos 5.3中用yum安装MPlayer/">centos 5.3中用yum安装MPlayer</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2015-2016 offbye
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >本站到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.1.22/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 9;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

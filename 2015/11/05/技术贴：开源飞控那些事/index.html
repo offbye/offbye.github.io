@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  
+  <title>技术贴：开源飞控那些事 | offbye</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="技术贴：开源飞控那些事">
+<meta property="og:type" content="article">
+<meta property="og:title" content="技术贴：开源飞控那些事">
+<meta property="og:url" content="http://offbye.com/2015/11/05/技术贴：开源飞控那些事/index.html">
+<meta property="og:site_name" content="offbye">
+<meta property="og:description" content="技术贴：开源飞控那些事">
+<meta property="og:image" content="http://photo.5imx.com/portal/201509/06/150129mowwgdwzh2ghk2og.jpg">
+<meta property="og:image" content="http://photo.5imx.com/portal/201509/06/150129vvbzz6mddod061d2.jpg">
+<meta property="og:image" content="http://photo.5imx.com/portal/201509/06/150130qdth4yekd13drw9k.jpg">
+<meta property="og:image" content="http://photo.5imx.com/portal/201509/06/150130uokxlpoy2idklnpo.jpg">
+<meta property="og:image" content="http://photo.5imx.com/portal/201509/06/150131nz2gl3gjzgj07fkl.jpg">
+<meta property="og:image" content="http://photo.5imx.com/portal/201509/06/150131waovqvvzzajeajzg.jpg">
+<meta property="og:image" content="http://photo.5imx.com/portal/201509/06/150132b4butqbvaba36ub8.jpg">
+<meta property="og:image" content="http://photo.5imx.com/portal/201509/06/150132nmk565udkxcmk8uc.jpg">
+<meta property="og:image" content="http://photo.5imx.com/portal/201509/06/150132kcq9vw2pc9merw92.jpg">
+<meta property="og:image" content="http://photo.5imx.com/portal/201509/06/150133cm88r4r8mrc8xcmx.jpg">
+<meta property="og:image" content="http://photo.5imx.com/portal/201509/06/150133udy2sd7w87y8lqb2.jpg">
+<meta property="og:image" content="http://photo.5imx.com/portal/201509/06/150134vmoncf6i2kc3966j.jpg">
+<meta property="og:image" content="http://photo.5imx.com/portal/201509/06/150134ut1a4zxez41nq8q7.jpg">
+<meta property="og:image" content="http://photo.5imx.com/portal/201509/06/150135uaasclaa25jj0nvc.jpg">
+<meta property="og:image" content="http://photo.5imx.com/portal/201509/06/150135lzn7bpnatr7n7nin.jpg">
+<meta property="og:image" content="http://photo.5imx.com/portal/201509/06/150136jv68ssi3iyi0miun.jpg">
+<meta property="og:image" content="http://photo.5imx.com/portal/201509/06/150136m7bsrfs7i7pjw8mb.jpg">
+<meta property="og:image" content="http://photo.5imx.com/portal/201509/06/150136j75n15n86vb600g0.jpg">
+<meta property="og:updated_time" content="2016-05-12T16:39:31.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="技术贴：开源飞控那些事">
+<meta name="twitter:description" content="技术贴：开源飞控那些事">
+<meta name="twitter:image" content="http://photo.5imx.com/portal/201509/06/150129mowwgdwzh2ghk2og.jpg">
+  
+    <link rel="alternative" href="/atom.xml" title="offbye" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+      <link href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css" rel="stylesheet">
+  
+  
+  
+      <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+      <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+  
+  <script src="//cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.9/clipboard.min.js"></script>
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false,
+          fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+          scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.0.9/scrollreveal.min.js"
+      }
+  </script>
+
+  
+      <script>
+          yiliaConfig.rootUrl = "/";
+      </script>
+  
+
+  
+  
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">offbye</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">关注移动架构，Android，HTML5，iOS技术前沿</p>
+        
+                
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:offbye@gmail.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/offbye" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="http://blog.csdn.net/offbye" title="CSDN"></a>
+                            
+                                <a class="fa StackOverflow" target="_blank" href="#offbye" title="StackOverflow"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sandbox/">Sandbox</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/YAML/">YAML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/swift/">swift</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注移动端</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">offbye</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">offbye</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">关注移动架构，Android，HTML5，iOS技术前沿</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:offbye@gmail.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/offbye" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="http://blog.csdn.net/offbye" title="CSDN"></a>
+                            
+                                <a class="fa StackOverflow" target="_blank" href="#offbye" title="StackOverflow"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-技术贴：开源飞控那些事" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/11/05/技术贴：开源飞控那些事/" class="article-date">
+      <time datetime="2015-11-05T01:15:00.000Z" itemprop="datePublished">2015-11-05</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      技术贴：开源飞控那些事
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/开源飞控/">开源飞控</a>
+    </div>
+
+
+        
+
+        
+        <div style="display:block; clear:both;">
+          <span>CSDN原文:<a href="http://blog.csdn.net/offbye/article/details/49658161" target="_blank" title="技术贴：开源飞控那些事">http://blog.csdn.net/offbye/article/details/49658161</a> </span>
+          <span style="float:right;margin-right:1em"> CSDN阅读数:1560</span>
+        </div>
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>原文 <a href="http://bbs.5imx.com/bbs/portal.php?mod=view&amp;aid=202" target="_blank" rel="external">http://bbs.5imx.com/bbs/portal.php?mod=view&amp;aid=202</a><br>李大伟 北京航空航天大学无人驾驶飞行器设计研究所 副教授<br>杨炯  北京航空航天大学 无人驾驶飞行器设计研究所 工程师</p>
+<pre><code>在纷繁复杂的无人机产品中，四旋翼飞行器以其结构简单、使用方便、成本低廉等优势，最先进入了大众的视线。但是，这种飞行器对飞行控制能力的要求是最高的，因此它刺激了大批基于MEMS传感器的开源飞控的出现。
+</code></pre><p><img src="http://photo.5imx.com/portal/201509/06/150129mowwgdwzh2ghk2og.jpg" alt="">1 如何定义开源<br>    开源（Open Source）的概念最早被应用于开源软件，开放源代码促进会（Open Source Initiative）用其描述那些源码可以被公众使用的软件，并且此软件的使用、修改和发行也不受许可证的限制。每一个开源项目均拥有自己的论坛，由团队或个人进行管理，论坛定期发布开源代码，而对此感兴趣的程序员都可以下载这些代码，并对其进行修改，然后上传自己的成果，管理者从众多的修改中选择合适的代码改进程序并再次发布新版本。如此循环，形成“共同开发、共同分享”的良性循环。<br><img src="http://photo.5imx.com/portal/201509/06/150129vvbzz6mddod061d2.jpg" alt="">开源软件的发展逐渐与硬件相结合，产生了开源硬件。开源硬件的原则声明和定义是开源硬件协会(Open Source HardWare Association,OSHWA)的委员会及其工作组，以及其他更多的人员共同完成的。硬件与软件不同之处是实物资源应该始终致力于创造实物商品。因此，生产在开源硬件(OSHW)许可下的品目（产品）的人和公司有义务明确该产品没有在原设计者核准前被生产，销售和授权，并且没有使用任何原设计者拥有的商标。硬件设计的源代码的特定格式可以被其他人获取，以方便对其进行修改。在实现技术自由的同时，开源硬件提供知识共享并鼓励硬件设计开放交流贸易。<br><img src="http://photo.5imx.com/portal/201509/06/150130qdth4yekd13drw9k.jpg" alt="">开源硬件(OSHW)定义1.0是在软件开源定义基础上定义的。该定义是由Bruce Perens和Debian的开发者作为Debian自由软件方针而创建的。开源硬件必须符合以下条件：<br>第一，文档同时发布。硬件必须与包含设计文件的文档同时发布，并且必须允许对于设计文件的修改和分发。文档必须包含设计文件，不允许故意在设计文件中进行模糊描述。不允许使用中间格式，或生产用文件替代设计文件。许可可要求开放格式的全文设计文件。<br>第二，许可范围。硬件文档中，如果硬件设计不是全部在许可条件下发布，必须明确说明设计的哪些部分在范围之内。<br>第三，必要的软件。如果被许可的设计需要软件、固件或者其他硬件设计完成其重要功能所需要的条件时，许可可要求以下任意一条件得到满足：<br>A．设计与其之间的接口需要补充充足的文档。这样可通过文档简单地编写开源的、完成其重要功能所需的软件。<br>B.必要的软件需在OSI推荐的开源许可下进行发布。<br>第四，衍生品。许可应允许修改版本和衍生品，并且允许它们在与原始品同样的许可条款下进行分发。许可应允许制造、销售、分发、使用利用设计文件生产的产品，并允许设计文件本身和其衍生品。<br>第五，自由再分发。许可应不限制任何团体销售或者发放工程文档。许可不得对此种销售收取使用费或者其他费用。许可不得对衍生品的销售收取使用费或者其他费用。<br>第六，归属权。许可可要求在分发设计文件，生产产品或其衍生品时，衍生文档和设备相关的版权声明中提供原许可者归属权。许可可要求正常使用设备的最终用户能够获得该归属权信息，但不可以要求特定的显示格式。许可可以要求衍生品包含一个与原始设计不同的名字或者版本号。<br>第七，禁止对个人和组织的歧视。许可禁止对个人和组织进行差别待遇。<br>第八，禁止对应用领域的歧视。许可禁止限制任何人在特定应用领域使用设计（包括成品）。比如，许可禁止限制在商业或者核研究中使用该硬件。<br>第九，许可的分发。许可赋予的权利必须应用于所有设计及衍生品再分发的对象，并且该过程无需这些团体执行额外的许可。<br>第十，许可不可以限制特定产品。许可赋予的权利不得取决于在特定产品中被许可的设计。如果设计的一部分在许可条件下被使用或者分发，所有再分发的对象应该获得原设计所赋予的相同的权利。<br>第十一，许可不可以限制其他硬件或者软件。许可禁止对于与被许可的设计相组合的其他部件添加限制条件，但是设计的衍生品不在该禁止范畴内。比如许可不得要求与被许可的设计一同销售的其他硬件是开源的，也不可以要求只有开源软件可以在设备外部使用。<br>第十二，许可必须是技术中立的。许可的任何条款不可以基于任何个人技术、特定部分或者部件、材料或者接口、使用风格等。</p>
+<p>2 开源飞控又是何物<br>    了解了开源硬件的概念，开源飞控的概念也就比较容易理解了。所谓开源飞控就是建立在开源思想基础上的自动飞行控制器项目（Open Source Auto Pilot），同时包含开源软件和开源硬件，而软件则包含飞控硬件中的固件和地面站软件两部分。爱好者不但可以参与软件的研发，也可以参与硬件的研发，不但可以购买硬件来开发软件，也可以自制硬件，这样便可让更多人自由享受该项目的开发成果。<br>    开源项目的使用具有商业性，所以每个开源飞控项目都会给出官方的法律条款以界定开发者和使用者权利，不同的开源飞控对其法律界定都有所不同。</p>
+<p>3 开源飞控的发展<br>开源飞控的发展可分为三代：<br>第一代开源飞控系统使用Arduino或其他类似的开源电子平台为基础，扩展连接各种MEMS传感器，能够让无人机平稳地飞起来，其主要特点是模块化和可扩展能力。<br><img src="http://photo.5imx.com/portal/201509/06/150130uokxlpoy2idklnpo.jpg" alt="">第二代开源飞控系统大多拥有自己的开源硬件、开发环境和社区，采用全集成的硬件架构，将全部10DOF传感器、主控单片机，甚至GPS等设备全部集成在一块电路板上，以提高可靠性。它使用全数字三轴MEMS传感器组成航姿系统（IMU）；能够控制飞行器完成自主航线飞行，同时可加装电台与地面站进行通信，初步具备完整自动驾驶仪的功能。此类飞控还能够支持多种无人设备，包含固**翼飞行器、多旋翼飞行器、直升机和车辆等，并具备多种飞行模式，包含手动飞行、半自主飞行和全自主飞行。第二代飞控的主要特点是高集成性、高可靠性，其功能已经接近商业自动驾驶仪标准。<br>第三代开源飞控系统将会在软件和人工智能方面进行革新。它加入了集群飞行、图像识别、自主避障、自动跟踪飞行等高级飞行功能，向机器视觉、集群化、开发过程平台化的方向发展。</p>
+<p>4 你不该错过的开源飞控一览<br>Arduino飞控<br><img src="http://photo.5imx.com/portal/201509/06/150131nz2gl3gjzgj07fkl.jpg" alt="">要谈开源飞控的发展就必须从著名的开源硬件项目Arduino谈起。Arduino是最早的开源飞控，由Massimo Banzi、David Cuartielles、Tom Igoe、Gianluca Martino、David Mellis 和 Nicholas Zambetti于2005年在意大利交互设计学院合作开发而成。Arduino公司首先为电子开发爱好者搭建了一个灵活的开源硬件平台和开发环境，用户可以从Arduino官方网站取得硬件的设计文档，调整电路板及元件，以符合自己实际设计的需要。<br>Arduino可以通过与其配套的Arduino IDE软件查看源代码并上传自己编写的代码，Arduino IDE使用的是基于C语言和C++的Arduino语言，十分容易掌握，并且Arduino IDE可以在Windows、Macintosh OSX和Linux三大主流操作系统上运行。<br>随着该平台逐渐被爱好者所接受，各种功能的电子扩展模块层出不穷，其中最为复杂的便是集成了MEMS传感器的飞行控制器。为了得到更好的飞控设计源代码，Arduino公司决定开放其飞控源代码，他们开启了开源飞控的发展道路。著名的开源飞控WMC和APM都是Arduino飞控的直接衍生产品，至今仍然使用Arduino开发环境进行开发。<br>APM飞控<br><img src="http://photo.5imx.com/portal/201509/06/150131waovqvvzzajeajzg.jpg" alt="">APM（ArduPilotMega）是在2007年由DIY无人机社区（DIY Drones）推出的飞控产品，是当今最为成熟的开源硬件项目。APM基于Arduino的开源平台，对多处硬件做出了改进，包括加速度计、陀螺仪和磁力计组合惯性测量单元（IMU）。由于APM良好的可定制性，APM在全球航模爱好者范围内迅速传播开来。通过开源软件Mission Planner，开发者可以配置APM的设置，接受并显示传感器的数据，使用google map 完成自动驾驶等功能，但是Mission Planner仅支持windows操作系统。<br>目前APM飞控已经成为开源飞控成熟的标杆，可支持多旋翼、guding*翼、直升机和无人驾驶车等无人设备。针对多旋翼，APM飞控支持各种四、六、八轴产品，并且连接外置GPS传感器以后能够增稳，并完成自主起降、自主航线飞行、回家、定高、定点等丰富的飞行模式。APM能够连接外置的超声波传感器和光流传感器，在室内实现定高和定点飞行。<br>PX4和PIXHawk<br><img src="http://photo.5imx.com/portal/201509/06/150132b4butqbvaba36ub8.jpg" alt="">PX4是一个软硬件开源项目（遵守BSD协议），目的在于为学术、爱好和工业团体提供一款低成本、高性能的高端自驾仪。这个项目源于苏黎世联邦理工大学的计算机视觉与几何实验室、自主系统实验室和自动控制实验室的PIXHawk项目。PX4FMU自驾仪模块运行高效的实时操作系统(RTOS)，Nuttx提供可移植操作系统接口（POSIX）类型的环境。例如：printf()、pthreads、/dev/ttyS1、open()、write()、poll()、ioctl()等。软件可以使用USB bootloader更新。PX4通过MAVLink同地面站通讯，兼容的地面站有QGroundControl和Mission Planner，软件全部开源且遵守BSD协议。<br>由3DR联合APM小组与PX4小组于2014年推出的PIXHawk飞控是PX4飞控的升级版本，拥有PX4和APM两套固件和相应的地面站软件。该飞控是目前全世界飞控产品中硬件规格最高的产品，也是当前爱好者手中最炙手可热的产品。PIXHawk拥有168MHz的运算频率，并突破性地采用了整合硬件浮点运算核心的Cortex-M4的单片机作为主控芯片，内置两套陀螺和加速度计MEMS传感器，互为补充矫正，内置三轴磁场传感器并可以外接一个三轴磁场传感器，同时可外接一主一备两个GPS传感器，在故障时自动切换。<br>基于其高速运算的核心和浮点算法，PIXHawk使用最先进的定高算法，可以仅凭气压高度计便将飞行器高度固定在1米以内。它支持目前几乎所有的多旋翼类型，甚至包括三旋翼和H4这样结构不规则的产品。它使飞行器拥有多种飞行模式，支持全自主航线、关键点围绕、鼠标引导、“FollowMe”、对尾飞行等高级的飞行模式，并能够完成自主调参。<br>PIXHawk飞控的开放性非常好，几百项参数全部开放给玩家调整，靠基础模式简单调试后亦可飞行。PIXHawk集成多种电子地图，爱好者们可以根据当地情况进行选择。<br>OpenPilot与Taulabs<br><img src="http://photo.5imx.com/portal/201509/06/150132nmk565udkxcmk8uc.jpg" alt="">OpenPilot是由OpenPilot社区于2009年推出的自动驾驶仪项目，旨在为社会提供低成本但功能强大的稳定型自动驾驶仪。这个项目由两部分组成，包括OpenPilot自驾仪与其相配套的软件。其中，自驾仪的固件部分由C语言编写，而地面站则用C++编写，并可在Windows、Macintosh OSX和Linux三大主流操作系统上运行。<br>OpenPilot的最大特点是硬件架构非常简单，从它目前拥有的众多硬件设计就可以看出其与众不同之处。官方发布的飞控硬件包括CC、CC3D、ATOM、Revolution、Revolution nano等，衍生硬件包括Sparky、Quanton、REVOMINI等，甚至包含直接使用STM32开发板扩展而成的FlyingF3、FlyingF4、DescoveryF4等，其中CC3D已经是300mm以下轴距穿越机和超小室内航模的首选飞控，而DiscoveryF4被大量用于爱好者研究飞控，Quanton更是成为了Taulabs的首选硬件。<br>下面我们来说说Openpilot旗下最流行的硬件CC3D。此飞控板只采用一颗72MHz的32位STM32单片机和一颗MPU6000就能够完成四旋翼、guding翼、直升机的姿态控制飞行（注意，该硬件可进行的是三自由度姿态控制，而不是增稳），电路板大小只有35mm×35mm。与所有开源飞控不同，它不需要GPS融合或者磁场传感器参与修正，就能保持长时间的姿态控制。以上所有功能全部使用一个固件，通过设置便可更改飞机种类、飞行模式、支持云台增稳等功能。其编译完的固件所需容量只有大约100KB，代码效率令人惊叹，是所有飞控程序员学习的楷模。其地面站软件集成了完整的电子地图，可以通过电台实时监测飞机状态。<br>TauLabs飞控是OpenPilot飞控的衍生产品。当前TauLabs最流行的硬件叫做Quanton，由原OpenPilot飞控小组成员独立完成。它继承了OpenPilot简单高效的特点，并扩展了气压高度计和三轴磁场传感器，将主控单片机升级为带有硬件浮点运算的Cortex-M4核心。该飞控是最早支持自动调参的开源飞控产品，带有模型辨识算法，能够在飞行中进行自整定姿态PID控制参数。TauLabs能够完成许多高级飞行模式，连接外置GPS后可使多旋翼具备定高、定点、回家等功能。飞控集成了电子地图，且界面非常友好，使用向导模式进行初始化，初学者可以简单上手。<br>MultiWiiCopter（MWC）<br><img src="http://photo.5imx.com/portal/201509/06/150132kcq9vw2pc9merw92.jpg" alt="">MultiWiiCopter（MWC）飞控是一款典型的Arduino衍生产品，是专为多旋翼开发的低成本飞控，它完整地保留了Arduino IDE开发和Arduino设备升级和使用的方法。由于成本低、架构简单、固件比较成熟，因此该飞控在国内外拥有大量爱好者。除了支持常见的四、六、八旋翼以外，该飞控的最大特点是支持很多奇特的飞行器类型，比如三旋翼、阿凡达飞行器（BIcopter avatar style）、Y4型多旋翼（其中两轴为上下对置）等，使得该飞控的开发趣味性较强，容易博得大家的喜爱。<br>KKMultiCopter<br><img src="http://photo.5imx.com/portal/201509/06/150133cm88r4r8mrc8xcmx.jpg" alt="">KK飞控是源于韩国的一款开源飞控项目，也是第一种广为大众接受的多旋翼飞控，在开源飞控发展的初期，该飞控的横空出世对整个四旋翼行业是一种震撼。该飞控只使用三个成本低廉的单轴陀螺，配合一台最简单的四通道遥控设备，就能控制常见的三、四、六旋翼飞行器，并且支持“十字”型，X型、H型和上下对置等多种布局。该飞控使用三个可调电阻调整感度作为调参方法，保留了早期航模陀螺仪的特征。作为多旋翼飞控起始的重要见证，这款“古董”级经典飞控，依然拥有众多玩家。<br>Paparazzi（PPZ）<br><img src="http://photo.5imx.com/portal/201509/06/150133udy2sd7w87y8lqb2.jpg" alt="">Paparazzi（PPZ）是一个软硬件全开源的项目，它始于2003年，开发目标是建立一个配置灵活且性能强大的开源飞控项目。PPZ的一大特点是，该开源飞控方案中除了常见的飞控硬件、飞控软件和地面站软件之外，还包含地面站硬件，包括各种调制解调器、天线等设备。从功能上讲，PPZ已经接近一个小型的无人机系统了。<br>该开源项目的另一个特点是采用ubuntu操作系统，它将全部地面站软件和开发环境集成于该系统下，官方称之为Live CD。一张CD加飞控硬件就可完成从开发到使用的全部工作。<br>PPZ目前最流行的硬件版本是Paparazzi（PPZ）Lisa/M v2.0。该硬件拥有大量的扩展接口，并且使用可扩展的单独的IMU传感器板。这也是早期开源飞控比较流行的做法，这样可以像DIY台式计算机那样，随着传感器升级而不断升级IMU硬件。<br>Autoquad飞控和ESC32电调<br><img src="http://photo.5imx.com/portal/201509/06/150134vmoncf6i2kc3966j.jpg" alt="">Autoquad飞控来自德国，作为早期开源飞控，Autoquad功能非常强大，但是受限于当时的传感器产品，它不得不采用大量模拟MEMS传感器。所谓模拟传感器指的是传感器芯片内部不集成数模转换器（ADC）和运算核心，而直接将微机械传感器的变化通过放大和硬件滤波后以电压的形式输出，需要主控单片机进行AD采集。因为传感器在不同温度环境下，输出值会受到影响，模拟MEMS传感器给参数校准带来了不少麻烦。很多玩家在第一次使用该飞控时，不得不借助电冰箱来进行传感器校准，而一些厂家为了保证批量产品的稳定性，只能在飞行器上对电路板进行加温，使其保持温度恒定。<br>但是，这种校准方法却为一些骨灰级玩家带来了额外的乐趣，很多人反而乐此不疲。对于大多数普通爱好者而言，这实在是一项难度不小的工作。随着带有出厂校准的数字传感器的普及，Autoquad作为历史的积淀，也完成了它的使命。<br>但是，该开源项目的另一个分支ESC32电调却逐渐在玩家中被接受了。该电调是第一个采用数字接口进行控制的电调产品，玩家可以通过串口、I2C接口和CAN接口来控制电机的转速，这比传统的PWM接口信息速度要快很多倍。常见的PWM电调波形更新速度为每秒钟四百次，而数字接口的更新速度可达到百万次。尤其是对于动力变化非常敏感的多旋翼飞行器来说，这种高速通信是非常必要的。该电调还支持转速闭环，并且能够针对电机进行详细调参，这些功能都是传统航模电调不能比拟的。<br>当然，Autoquad也在进步，它发布了全新的飞控产品Autoquad M4，对主控单片机和传感器进行了全面升级，采用常见的STM32F4单片机和数字传感器。但是面对PIXHawk、APM等已经成熟多年的先进飞控产品，它已经从前辈沦落为后起之秀。</p>
+<p>5 不可不知的MEMS传感器<br>为什么用MEMS<br><img src="http://photo.5imx.com/portal/201509/06/150134ut1a4zxez41nq8q7.jpg" alt="">讲完开源飞控，我们必须对飞控上的关键器件——MEMS传感器进行进一步的研究。如果把自动驾驶仪比作飞行器的“大脑”，那么MEMS传感器就是“飞行器”的眼耳鼻。正是这些传感器将飞行器的动态信息收集并发给主控单片机，飞行器才能够通过计算得到飞机的姿态和位置。<br>为什么开源飞控要使用MEMS传感器？要开发飞控，如何得到飞行器的航姿是第一任务，传统的载人飞行器一般使用机械陀螺和光纤陀螺来完成这项任务，但是受限于体积、重量和成本，在多旋翼等小型飞行器上无法采用这种设备。因此，以MEMS传感器为核心的DOF（Degree Of Freedom,自由度）系统成为唯一的选择。由于近十年来，家用游戏机和手机的迅速发展，使得MEMS传感器在这十几年中得到了飞速的普及，让低成本的运动感知成为了可能，这正是目前的微型飞控系统形成的基本条件。<br>开源飞控所使用的MEMS传感器与手机和游戏机来自相同的厂家，比如ST microelectronics，INVENSENSE等。MEMS传感器从早期的多芯片组合使用，发展到现在的单芯片集成多轴传感器，从模拟传感器发展为数字传感器，已经经历了多次较大变革。<br>MPU6000<br><img src="http://photo.5imx.com/portal/201509/06/150135uaasclaa25jj0nvc.jpg" alt="">MPU6000是开源飞控传感器的王者，虽然新的传感器层出不穷，但是它的地位一直无法撼动。PIXHawk飞控的早期版本曾经抛弃了MPU6000，但是后来又不得不重新使用，因为这颗MEMS芯片已经被所有进行开源飞控项目开发的爱好者们所接受。<br>MPU6000在一块4mm×4mm的芯片内部集成了三轴角速率陀螺和三轴加速度计，并且集成AD采集、解算核心，以及温度传感器。如此高的集成度在当时还是其他厂商望尘莫及的。而对于旋转矩阵、四元数和欧拉角格式的融合演算数据的输出更是降低了主控单片机解算姿态的计算量。SPI和I2C双数字接口、3.3V与大部分单片机相同的供电电压（2.4V至3.4V）、4mA的最大功耗、可定制的传感器量程、-40℃至+85℃的工作温度……这些特性极大地方便了主控计算机的工作。难怪INVENSENSE自信地称这款产品为MPU（Motion Processor Unit，运动处理单元），并且在芯片型号后面不加任何后缀。<br>所有想深入进行开源飞控开发的爱好者们都应该从这款芯片开始学习传感器的应用和航姿解算的基本算法，这是最简单有效的途径。OpenPilot的CC3D飞控就给大家提供了很好的实例，它只利用了这一颗传感器，便做出了经典的飞控产品。<br>MS5611<br><img src="http://photo.5imx.com/portal/201509/06/150135lzn7bpnatr7n7nin.jpg" alt="">MS5611是传感器中的另一个传奇。芯片大小只有3mm×5mm，传感器精度高于很多的专业航空设备，且价格非常便宜。该传感器由瑞士的MEAS公司推出，在此之前，大多飞控采用的是摩托罗拉的气压传感器，体积要大几倍，且不是贴片器件，需要“立”在电路板上，MS5611一经推出就立即成为所有开源飞控气压测量的标配。<br>MS5611传感器响应时间只有1ms，工作功耗为1μA，可以测量10-1200mbar的气压数值。MS5611具有SPI和I2C总线接口、与单片机相同的供电电压、-40℃至+85℃的工作温度、全贴片封装、全金属屏蔽外壳、集成24位高精度AD采集器等特性，这些特性使其非常适合在高度集成的数字电路中工作，所以成为了开源飞控测试气压高度的首选。<br>HMC5883<br><img src="http://photo.5imx.com/portal/201509/06/150136jv68ssi3iyi0miun.jpg" alt="">接触过磁阻传感器（也就是磁罗盘传感器）的人都知道，使Z轴磁阻传感器实现扁平化是多么的不容易。霍尼韦尔也是在研发了数十款相关的产品之后，才最终有能力生产出这款全集成的三轴数字罗盘的。我们不得不惊叹于它的体积—3mm×3mm的面积、厚度不足1mm。更加让人惊叹的是其低廉的价格，所以，除了PIXHawk这样极度追求硬件先进性的飞控以外，其他开源飞控如果配有磁罗盘的话，无一例外均使用的是HMC5883。当然，霍尼韦尔早已推出了升级型的HMC5983，将角度测量精度提高到了1°以内。对于爱好者们来说，HMC5883已经够用了。<br>磁阻传感器的设计难点在于铁氧体的消磁，能够把铁氧体传感器和消磁驱动单元、12位ADC、运算核心等全部集成在如此小的芯片当中是十分不易的。HMC5883其他的特性包括：在±8GS的磁场中实现2mGS的分辨率、与单片机相同的供电电压、-30℃至+85℃的工作环境温度等。虽然ST microelectronics已经推出了集成三轴磁阻传感器和三轴加速度计的LSM303D，并且体积更小、集成度更高，但是HMC5883一直是磁罗盘的首选芯片。<br>L3GD20<br><img src="http://photo.5imx.com/portal/201509/06/150136m7bsrfs7i7pjw8mb.jpg" alt="">L3GD20的面积仅有4mm×4mm，注定其为移动设备而生。ST是最早一批开发MEMS芯片的厂家，也是最早发布陀螺产品的公司，但L3GD20还是晚来了一步。虽然它精度更高，但是风头已被MPU6000抢走。虽然没有集成三轴加速度计，但是凭借高精度角速率测量、大范围的自定义量程，以及更加低廉的价格，L3GD20逐渐为业界承认，以至于PIXHawk一度想用它取代MPU6000。当然，最终PIXHawk并没有实现替代的愿望，他们并存于这款开源飞控之上，互为补充，成就了PIXHawk的冗余设计。<br>L3GD20具备与单片机相同的供电电压、-40℃至+85℃的工作环境温度、兼容I2C和SPI数字接口、内置可调低/高通滤波器电路、6mA的工作功耗，以及集成的温度传感器，这些同样可作为高集成电路角速率陀螺仪不错的选择。<br>LSM303D<br><img src="http://photo.5imx.com/portal/201509/06/150136j75n15n86vb600g0.jpg" alt="">如果说其他传感器是为移动设备而生的，那么LSM303D就是为L3GD20而生的。它与L3GD20一同可以组成完整的9DOF航姿传感器系统（IMU），并且其供电、测量精度和数字接口几乎一模一样。这套系统要比MPU6000与HMC5883的组合总成本更低、测量精度更高，难怪INVENSENSE要马不停蹄地推出MPU9250系列的单芯片9DOF产品来与其竞争。<br>与单片机相同的供电电压、-40℃至+85℃的工作环境温度、兼容I2C和SPI数字接口、集成温度传感器，这些参数几乎可以照抄L3GD20。</p>
+<p>6 软件如何控制硬件<br>讲完了硬件，我们来谈谈常见的算法。开源飞控架构不同，软件也大相径庭。但是只要是飞控都离不开捷联惯导、卡尔曼滤波和PID控制这三大算法。<br>捷联式惯导系统<br>导航的目的是为了实时获取无人机的姿态、速度和位置参数。光电码盘可用来测量无人机的转动角度，测速电机可用来测量无人机的角速度，测速计可用来测量无人机的速度，但是以上各种测量手段均不能单独同时测量无人机的线运动和角运动，而惯性导航就可做到这一点。因为惯性导航系统不需要物理参照，所以它被称为DOF系统（Degree Of Freedom，自由度），此外惯性导航还不会受到设备外部自然和人为的干扰，特别适合在恶劣环境下的使用。<br>20世纪90年代以后，随着微机电系统（MEMS）技术的发展，惯性敏感元件实现了体积小型化，提高了可靠性，并适合批量生产，从此捷联式惯导系统进入了微机电领域，并开始向民用领域广泛渗透，出现在机器人系统和新一代的交通工具中。进入21世纪，捷联式惯导系统几乎完全取代了平台式惯导系统。<br>Kalman滤波算法<br>信号在传输与检测过程中不可避免地会受到来自外界的干扰与设备内部噪声的影响，为获取准确的信号，就要对信号进行滤波。所谓滤波就是指从混合在一起的诸多信号中提取出有用信号的过程。举个例子，大家熟知的低通滤波器就是利用信号所处频带的不同，设置具有相应频率特性的滤波器，使得有用的低频信号尽量无衰减地通过，从而去除高频杂波。<br>而Kalman滤波是Kalman于1960年提出的从与被提取信号有关的观测量中通过算法估计所需信号的一种滤波算法，他创新地将状态空间的概念引入随机估计理论中，将信号过程看作是具有白噪声影响的线性系统输入输出过程，在估计过程中利用系统的多种方程构成滤波算法。此外，Kalman滤波的输入输出是由时间更新和观测更新算法联系在一起的，根据系统状态方程和观测方程估计出所需处理的信号。那么为什么Kalman滤波会应用到惯性导航系统中呢？这主要是因为惯性导航系统的“纯惯性”传感器不足以达到所需的导航精度，为了补偿导航系统的不足，常常使用其他导航设备来提高导航精度，以减小导航误差。因此开发人员想到了Kalman滤波算法，利用该算法，可以将来自惯性导航系统与其他导航装置的数据（如惯性导航系统计算的位置对照GPS接收机给出的位置信息）加以混合利用，估计和校正未知的惯性导航系统误差。<br>飞行控制PID算法<br>虽然现代控制理论发展日臻完善，人们通过科学研究获得了诸多具有优异控制效果的算法和理论，但在工程应用领域，基于经典PID的控制算法仍然是最简单、最有效的控制方案。目前主流的几款开源飞控中，无一例外地都是采用PID控制算法来实现无人机的姿态和轨迹控制。<br>PID控制器是一种线性控制器，它主要根据给定值和实际输出值构成控制偏差，然后利用偏差给出合理的控制量。<br>那么PID控制器算法能解决什么问题呢？以多旋翼为例，在没有控制系统的情况下，直接用信号驱动电机带动螺旋桨旋转产生控制力，会出现动态响应太快，或者太慢，或者控制过冲或者不足的现象，多旋翼根本无法顺利完成起飞和悬停动作。为了解决这些问题，就需要在控制系统回路中加入PID控制器算法。在姿态信息和螺旋桨转速之间建立比例、积分和微分的关系，通过调节各个环节的参数大小，使多旋翼系统控制达到动态响应迅速、既不过冲、也不欠缺的现象。</p>
+<p>###本文</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2015/11/05/技术贴：开源飞控那些事/">技术贴：开源飞控那些事</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">offbye</a></p>
+        <p><span>发布时间:</span>2015-11-05, 09:15:00</p>
+        <p><span>最后更新:</span>2016-05-13, 00:39:31</p>
+
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2015/11/05/技术贴：开源飞控那些事/" title="技术贴：开源飞控那些事">http://offbye.com/2015/11/05/技术贴：开源飞控那些事/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://offbye.com/2015/11/05/技术贴：开源飞控那些事/　　作者: offbye" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+        
+        <p><span>CSDN原文:</span> <a href="http://blog.csdn.net/offbye/article/details/49658161" target="_blank" title="技术贴：开源飞控那些事">http://blog.csdn.net/offbye/article/details/49658161</a> </p>
+        <p><span>CSDN PV:</span>1560</p>
+        
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2015/11/06/在CordovaActivity中添加原生View组件/">
+                    在CordovaActivity中添加原生View组件
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2015/11/03/Android常用开源框架Proguard混淆解决方案/">
+                    Android常用开源框架Proguard混淆解决方案
+                </a>
+            </div>
+        
+    </nav>
+
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"技术贴：开源飞控那些事　| offbye　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="2015/11/05/技术贴：开源飞控那些事/" data-title="技术贴：开源飞控那些事" data-url="http://offbye.com/2015/11/05/技术贴：开源飞控那些事/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"offbye"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+    <!-- 多说公共JS代码 end -->
+</div>
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2015/11/06/在CordovaActivity中添加原生View组件/" title="上一篇: 在CordovaActivity中添加原生View组件">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2015/11/03/Android常用开源框架Proguard混淆解决方案/" title="下一篇: Android常用开源框架Proguard混淆解决方案">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/05/12/YAML文件语法简介/">YAML文件语法简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/11/iOS-Sandbox-swift/">iOS App沙盒模型文件目录详解Swift版</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/11/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/06/iOS App沙盒模型文件目录详解Swift版/">iOS App沙盒模型文件目录详解Swift版</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/05/Swift iOS实现把PCM语音转成MP3格式/">Swift iOS实现把PCM语音转成MP3格式</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/04/RESTFUL API 安全设计/">RESTFUL API 安全设计</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/04/关于 Token，你应该知道的十件事/">关于 Token，你应该知道的十件事</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/04/程序员的成长和代码行数的关系/">程序员的成长和代码行数的关系</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/04/从JavaAndroid到Swift iOS开发：语言与框架对比/">从JavaAndroid到Swift iOS开发：语言与框架对比</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/26/Android开发常用开源框架推荐/">Android开发常用开源框架推荐</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/22/Swift Modules for React Native/">Swift Modules for React Native</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/15/Android官方MVP架构示例项目解析/">Android官方MVP架构示例项目解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/15/使用swift开发Cordova插件/">使用swift开发Cordova插件</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/14/Swift语言中的@available 和 #available/">Swift语言中的@available 和</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/31/Android volley 使用OkHttp3.0/">Android volley 使用OkHttp3.0</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/28/What's new in Swift 2.2/">What's new in Swift 2.2</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/16/java8新特性介绍/">java8新特性介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/15/Swift异常处理：throw和rethrow/">Swift异常处理：throw和rethrow</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/14/Swift iOS- 手势检测详解/">Swift iOS- 手势检测详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/11/Swift化零为整：Reduce 详解/">Swift化零为整：Reduce 详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/11/Swift2.1关键字 @noescape介绍/">Swift2.1关键字 @noescape介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/11/理解Swift中map 和 flatMap对集合的作用/">理解Swift中map 和 flatMap对集合的作用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/09/移动端专用数据库Realm介绍/">移动端专用数据库Realm介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/09/安装Xcode插件包管理器Alcatraz报错解决办法/">安装Xcode插件包管理器Alcatraz报错解决办法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/09/Android最佳实践 —— 详细谈谈如何减小APK体积/">Android最佳实践 —— 详细谈谈如何减小APK体积</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/05/iOS开发如何通过UMeng的错误分析解决crash问题/">iOS开发如何通过UMeng的错误分析解决crash问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/04/常见移动设备的 CSS3 Media Query 整理（iPhoneiPadGalaxy）/">常见移动设备的 CSS3 Media Query 整理（iPhoneiPadGalaxy）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/04/我在MDCC 2015的演讲PPT《HTML5移动应用多端开发架构实践》分享/">我在MDCC 2015的演讲PPT《HTML5移动应用多端开发架构实践》分享</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/01/深入理解iOS开发中的BitCode功能/">深入理解iOS开发中的BitCode功能</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/01/iOS swift动画和特效专题/">iOS swift动画和特效专题</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/29/Swift iOS项目archive操作会报错误built without full bitcode解决方法/">Swift iOS项目archive操作会报错误built without full bitcode解决方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/26/GCD 和延时调用/">GCD 和延时调用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/26/Swift - 多线程实现方式（3） - Grand Central Dispatch（GCD）/">Swift - 多线程实现方式（3） - Grand Central Dispatch（GCD）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/25/iOS 9开发小技巧：LayoutGuide，Storyboard Reference/">iOS 9开发小技巧：LayoutGuide，Storyboard Reference</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/25/Storyboard的爱与恨/">Storyboard的爱与恨</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/25/Swift iOS tableView static cell动态计算高度/">Swift iOS tableView static cell动态计算高度</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/24/5 个顶级 Android 开源库/">5 个顶级 Android 开源库</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/19/Swift高阶函数介绍（闭包、Map、Filter、Reduce）/">Swift高阶函数介绍（闭包、Map、Filter、Reduce）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/18/iOS Swift判断代码运行在模拟器上/">iOS Swift判断代码运行在模拟器上</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/17/iOS 开发 UI 搭建心得（一）—— 驾驭 StoryBoard  代码示例：httpsgithub.comjohnluiSwift-On-iOSblobmasterDifferen/">iOS 开发 UI 搭建心得（一）—— 驾驭 StoryBoard  代码示例：httpsgithub.comjohnluiSwift-On-iOSblobmasterDifferen</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/16/使用命令行统计代码行数/">使用命令行统计代码行数</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/03/HTTP 2.0的那些事/">HTTP 2.0的那些事</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/02/浅谈 RxAndroid + Retrofit + Databinding/">浅谈 RxAndroid + Retrofit + Databinding</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/28/2016这些Android技术会很火/">2016这些Android技术会很火</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/27/使用CodePush实时更新 React Native 和 Cordova 应用/">使用CodePush实时更新 React Native 和 Cordova 应用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/20/理解Swift中Optional类型－有和无的哲学/">理解Swift中Optional类型－有和无的哲学</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/19/其实你不知道MultiDex到底有多坑/">其实你不知道MultiDex到底有多坑</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/19/Android MultiDex分包变形记/">Android MultiDex分包变形记</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/14/Swift iOS项目最佳实践汇总/">Swift iOS项目最佳实践汇总</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/11/饿了么移动APP的架构演进/">饿了么移动APP的架构演进</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/30/Android 开发最佳实践/">Android 开发最佳实践</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/29/RxAndroid和RxJava的资料分享/">RxAndroid和RxJava的资料分享</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/28/技术人如何才能不焦虑/">技术人如何才能不焦虑</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/26/云栖社区12篇实战经验所组成的“近战”系列分享/">云栖社区12篇实战经验所组成的“近战”系列分享</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/26/程序员晋升攻略/">程序员晋升攻略</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/25/Xcode7.2版本carthage包管理器兼容问题解决/">Xcode7.2版本carthage包管理器兼容问题解决</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/14/2015年Android开发新技术盘点/">2015年Android开发新技术盘点</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/10/Android中Touch事件分析--解决HorizontalScrollView滑动和按钮事件触发问题/">Android中Touch事件分析--解决HorizontalScrollView滑动和按钮事件触发问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/03/Android动态加载黑科技 动态创建Activity模式/">Android动态加载黑科技 动态创建Activity模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/01/Android注解支持Support Annotations详解/">Android注解支持Support Annotations详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/27/Android Studio 2.0 Instant Run即时运行功能实现分析/">Android Studio 2.0 Instant Run即时运行功能实现分析</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/25/Android应用性能剖析全攻略/">Android应用性能剖析全攻略</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/24/自动生成Android不同分辨率下的图片/">自动生成Android不同分辨率下的图片</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/24/Android Studio 2.0 Preview发布,附下载地址，支持即时运行和GPU Profiler/">Android Studio 2.0 Preview发布,附下载地址，支持即时运行和GPU Profiler</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/17/React Native Android端10个最常见问题/">React Native Android端10个最常见问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/13/使用Javascript ES6进行开发的思考/">使用Javascript ES6进行开发的思考</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/13/安装包立减1M--微信Android资源混淆打包工具/">安装包立减1M--微信Android资源混淆打包工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/11/Ionic 2.0 Alpha版本发布了/">Ionic 2.0 Alpha版本发布了</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/10/美团Android资源混淆保护实践/">美团Android资源混淆保护实践</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/10/Android开发中的armeabi和armeabi-v7a介绍/">Android开发中的armeabi和armeabi-v7a介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/06/在CordovaActivity中添加原生View组件/">在CordovaActivity中添加原生View组件</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/05/技术贴：开源飞控那些事/">技术贴：开源飞控那些事</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/03/Android常用开源框架Proguard混淆解决方案/">Android常用开源框架Proguard混淆解决方案</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/03/美团Android DEX自动拆包及动态加载简介/">美团Android DEX自动拆包及动态加载简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/02/Google基于Dart的新移动开发框架Flutter介绍/">Google基于Dart的新移动开发框架Flutter介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/29/通过SharedPreferences实现进程间数据共享的问题详解/">通过SharedPreferences实现进程间数据共享的问题详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/26/Android修改TitleBar标题栏详解/">Android修改TitleBar标题栏详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/23/异步JavaScript的进化/">异步JavaScript的进化</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/21/Android Service创建USB HOST通信/">Android Service创建USB HOST通信</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/21/Android 热敏打印机打印二维码/">Android 热敏打印机打印二维码</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/13/基于webpack搭建前端工程解决方案探索/">基于webpack搭建前端工程解决方案探索</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/11/理解Flux架构/">理解Flux架构</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/09/Mac Yosemite系统 brew 报错的解决办法/">Mac Yosemite系统 brew 报错的解决办法</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/30/微信公众平台接入经验分享，纯干货/">微信公众平台接入经验分享，纯干货</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/28/使用Kotlin进行Android开发/">使用Kotlin进行Android开发</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/23/Umeng推送消息的坑，Android Service的androidexported详解/">Umeng推送消息的坑，Android Service的androidexported详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/22/自动生成Android屏幕适配的dimens.xml/">自动生成Android屏幕适配的dimens.xml</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/21/iOS9系统开始对企业发布App进行严格限制/">iOS9系统开始对企业发布App进行严格限制</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/16/sed 简明教程/">sed 简明教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/15/Gradle, 基于DSL的新一代Java构建工具/">Gradle, 基于DSL的新一代Java构建工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/15/Gradle常用命令和原理说明/">Gradle常用命令和原理说明</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/09/大势所趋！十大令人振奋的移动端APP设计趋势/">大势所趋！十大令人振奋的移动端APP设计趋势</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/02/Android微信智能心跳方案/">Android微信智能心跳方案</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/01/深入浅出学Spring Data JPA/">深入浅出学Spring Data JPA</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/29/在Mac上制作树莓派SD镜像/">在Mac上制作树莓派SD镜像</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/26/Git从远程的分支获取最新的版本到本地/">Git从远程的分支获取最新的版本到本地</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/25/Spring Data JPA 常用注解 @Query、@NamedQuery/">Spring Data JPA 常用注解 @Query、@NamedQuery</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/24/树莓派做 wifi 热点/">树莓派做 wifi 热点</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/23/树莓派把一个python脚本作为服务运行，配置开机自动启动/">树莓派把一个python脚本作为服务运行，配置开机自动启动</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/22/INSTALLING OPERATING SYSTEM IMAGES ON MAC OS/">INSTALLING OPERATING SYSTEM IMAGES ON MAC OS</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/18/基于Volley，Gson封装支持JWT无状态安全验证和数据防篡改的GsonRequest网络请求类/">基于Volley，Gson封装支持JWT无状态安全验证和数据防篡改的GsonRequest网络请求类</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/28/Python高效率编程的8条箴言/">Python高效率编程的8条箴言</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/28/如何使用Android Studio提高App质量/">如何使用Android Studio提高App质量</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/27/树莓派遥控船项目计划/">树莓派遥控船项目计划</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/24/树莓派的PWM脉宽调制功能介绍/">树莓派的PWM脉宽调制功能介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/23/python字符串连接/">python字符串连接</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/23/Android Studio上方便使用butterknife注解框架的偷懒插件Android Butterknife Zelezny/">Android Studio上方便使用butterknife注解框架的偷懒插件Android Butterknife Zelezny</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/23/Python的Lambda函数与排序/">Python的Lambda函数与排序</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/22/TypeScript 1.5正式发布，此版本是Visual Studio 2015更新的一部分，支持大量ES6新特性/">TypeScript 1.5正式发布，此版本是Visual Studio 2015更新的一部分，支持大量ES6新特性</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/20/iWeb峰会（HTML5峰会）2015年7月19日上海站会后感想/">iWeb峰会（HTML5峰会）2015年7月19日上海站会后感想</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/16/说说React,Flux,Reray和GraghQL/">说说React,Flux,Reray和GraghQL</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/16/ReactEurope Conf 参会感想/">ReactEurope Conf 参会感想</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/15/Android Studio Gradle项目中添加JNI so文件/">Android Studio Gradle项目中添加JNI so文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/15/mac os使用lsusb命令和连接未知的Android设备/">mac os使用lsusb命令和连接未知的Android设备</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/15/HTML5 HybridApp开发上手指引/">HTML5 HybridApp开发上手指引</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/15/Facebook的Web开发三板斧：React.js、Relay和GraphQL/">Facebook的Web开发三板斧：React.js、Relay和GraphQL</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/15/Flux再进化：Introducing Relay and GraphQL（译）/">Flux再进化：Introducing Relay and GraphQL（译）</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/14/为什么要造轮子？/">为什么要造轮子？</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/10/那些争议最大的编程观点/">那些争议最大的编程观点</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/10/Angular vs. React - the tie breaker/">Angular vs. React - the tie breaker</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/09/android：ToolBar详解（手把手教程）/">android：ToolBar详解（手把手教程）</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/08/Android Support Library更新到v22.1之AppCompat新特性/">Android Support Library更新到v22.1之AppCompat新特性</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/08/用Material Design设计App谷歌官方文档翻译/">用Material Design设计App谷歌官方文档翻译</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/07/Pure Android/">Pure Android</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/07/Material Design in Action — 哔哩哔哩动画 Android 客户端/">Material Design in Action — 哔哩哔哩动画 Android 客户端</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/07/Android Studio 批量打包，apk重命名/">Android Studio 批量打包，apk重命名</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/06/Android Studio Android studio 多渠道打包超简洁版/">Android Studio Android studio 多渠道打包超简洁版</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/06/Eclipse Android项目导入Android Studio时常见的编译错误及解决办法/">Eclipse Android项目导入Android Studio时常见的编译错误及解决办法</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/01/HTML5本地存储——IndexedDB（一：基本使用）/">HTML5本地存储——IndexedDB（一：基本使用）</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/15/SASS基础——十个常见的Mixins/">SASS基础——十个常见的Mixins</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/15/python 中的mixin特性/">python 中的mixin特性</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/10/Mac上通过Linux命令行批量查找和替换文本/">Mac上通过Linux命令行批量查找和替换文本</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/09/产品经理经常犯的十大顶级错误/">产品经理经常犯的十大顶级错误</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/09/ES6新特性概览/">ES6新特性概览</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/09/ES6 JavaScript Promise的感性认知/">ES6 JavaScript Promise的感性认知</a></li><li class="post-list-item"><a class="post-list-link" href="/2009/12/07/Centos 5.3上Asterisk安装及配置/">Centos 5.3上Asterisk安装及配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2009/12/07/rsh服务配置文档/">rsh服务配置文档</a></li><li class="post-list-item"><a class="post-list-link" href="/2009/12/07/centos 5.3中用yum安装MPlayer/">centos 5.3中用yum安装MPlayer</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2015-2016 offbye
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >本站到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.1.22/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 9;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
