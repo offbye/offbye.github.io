@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  
+  <title>NodeJs使用json web token验证REST服务 | offbye</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="NodeJs使用json web token验证REST服务">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NodeJs使用json web token验证REST服务">
+<meta property="og:url" content="http://offbye.com/2015/08/13/NodeJs使用json web token验证REST服务/index.html">
+<meta property="og:site_name" content="offbye">
+<meta property="og:description" content="NodeJs使用json web token验证REST服务">
+<meta property="og:updated_time" content="2016-05-12T16:38:59.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="NodeJs使用json web token验证REST服务">
+<meta name="twitter:description" content="NodeJs使用json web token验证REST服务">
+  
+    <link rel="alternative" href="/atom.xml" title="offbye" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+      <link href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css" rel="stylesheet">
+  
+  
+  
+      <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+      <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+  
+  <script src="//cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.9/clipboard.min.js"></script>
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false,
+          fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+          scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.0.9/scrollreveal.min.js"
+      }
+  </script>
+
+  
+      <script>
+          yiliaConfig.rootUrl = "/";
+      </script>
+  
+
+  
+  
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">offbye</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">关注移动架构，Android，HTML5，iOS技术前沿</p>
+        
+                
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>Menu</li>
+                        <li>Tags</li>
+                        
+                        <li>Friends</li>
+                        
+                        
+                        <li>About Me</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:offbye@gmail.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/offbye" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="http://blog.csdn.net/offbye" title="CSDN"></a>
+                            
+                                <a class="fa StackOverflow" target="_blank" href="#offbye" title="StackOverflow"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sandbox/">Sandbox</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/YAML/">YAML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/swift/">swift</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注移动端</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">offbye</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">offbye</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">关注移动架构，Android，HTML5，iOS技术前沿</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:offbye@gmail.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/offbye" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="http://blog.csdn.net/offbye" title="CSDN"></a>
+                            
+                                <a class="fa StackOverflow" target="_blank" href="#offbye" title="StackOverflow"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
+</nav>
+      <div class="body-wrap"><article id="post-NodeJs使用json web token验证REST服务" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/08/13/NodeJs使用json web token验证REST服务/" class="article-date">
+      <time datetime="2015-08-13T11:39:00.000Z" itemprop="datePublished">2015-08-13</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      NodeJs使用json web token验证REST服务
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/JWT/">JWT</a><a class="article-category-link" href="/categories/JWT/REST接口/">REST接口</a><a class="article-category-link" href="/categories/JWT/REST接口/Security/">Security</a><a class="article-category-link" href="/categories/JWT/REST接口/Security/nodejs/">nodejs</a>
+    </div>
+
+
+        
+
+        
+        <div style="display:block; clear:both;">
+          <span>CSDN原文:<a href="http://blog.csdn.net/offbye/article/details/47617367" target="_blank" title="NodeJs使用json web token验证REST服务">http://blog.csdn.net/offbye/article/details/47617367</a> </span>
+          <span style="float:right;margin-right:1em"> CSDN阅读数:614</span>
+        </div>
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>做了这么长时间的web开发，从JAVA EE中的jsf，spring，hibernate框架，到spring web MVC，到用php框架thinkPHP，到现在的nodejs，我自己的看法是越来越喜欢干净整洁的web层，之前用jsf开发做view层的时候，用的primefaces做的界面显示，虽然primefaces的确提供了很大的便利，可以让开发人员专注于业务逻辑开发，这样其实就省去了前端开发的工作。而后来发现有些客户需要的展现形式很难实现，或者通过拼凑的方法实现的结果效率不高。使用不灵活，后来自己渐渐的转向了做前端工程师。spring<br> WEB MVC可以做到干净整洁的web层，可以做到web层分离，通过ajax和服务端通信。现在在学习AngularJS框架，后台数据服务端打算用REST风格的接口来做，这个在前后台交互上就要考虑数据通信的安全问题，关于这个在<a href="http://www.haomou.net/2014/08/07/2014_session/" target="_blank" rel="external">关于SESSION的理解</a>一文中其实有提到的。<br><a href=""></a></p>
+<p>转载请注明出处：<a href="http://www.haomou.net/2014/08/13/2014_web_token/" target="_blank" rel="external">http://www.haomou.net/2014/08/13/2014_web_token/</a></p>
+<p>###来龙去脉<br>诸如Ember，Angular，Backbone之类的前端框架类库正随着更加精细的Web应用而日益壮大。正因如此，服务器端的组建也正正在从传统的任务中解脱，转而变的更像API。API使得传统的前端和后端的概念解耦。开发者可以脱离前端，独立的开发后端，在测试上获得更大的便利。这种途径也使得一个移动应用和网页应用可以使用相同的后端。<br>当使用一个API时，其中一个挑战就是认证（authentication）。在传统的web应用中，服务端成功的返回一个响应（response）依赖于两件事。一是，他通过一种存储机制保存了会话信息（Session）。每一个会话都有它独特的信息（id），常常是一个长的，随机化的字符串，它被用来让未来的请求（Request）检索信息。其次，包含在响应头（Header）里面的信息使客户端保存了一个Cookie。服务器自动的在每个子请求里面加上了会话ID，这使得服务器可以通过检索Session中的信息来辨别用户。这就是传统的web应用逃避HTTP面向无连接的方法（This<br> is how traditional web applications get around the fact that HTTP is stateless）。<br>API应该被设计成无状态的（Stateless）。这意味着没有登陆，注销的方法，也没有sessions，API的设计者同样也不能依赖Cookie，因为不能保证这些request是由浏览器所发出的。自然，我们需要一个新的机制。这篇文章关注于JSON Web Tokens，简写为JWTs，一个可能的解决这个问题的机制。这篇文章利用Node的Express框架作为后端，以及Backbone作为前端。</p>
+<p>###常用方法<br>第一个是使用在HTTP规范中所制定的Basic Auth， 它需要在在响应中设定一个验证身份的Header。客户端必须在每个子响应是附加它们的凭证（credenbtial），包括它的密码。如果这些凭证通过了，那么用户的信息就会被传递到服务端应用。<br>第二个方面有点类似，但是使用应用自己的验证机制。通常包括将发送的凭证与存储的凭证进行检查。和Basic Auth相比，这种需要在每次请求（call）中发送凭证。<br>第三种是OAuth（或者OAuth2）。为第三方的认证所设计，但是更难配置。至少在服务器端更难。<br>在使用中，并不会每次都让用户提交用户名和密码，通常的情况是客户端通过一些可靠信息和服务器交换取token，这个token作为客服端再次请求的权限钥匙。Token通常比密码更加长而且复杂。比如说，JWTs通常会长达150个字符。一旦获得了token，在每次调用API的时候都要附加上它。然后，这仍然比直接发送账户和密码更加安全，哪怕是HTTPS。<br>把token想象成一个安全的护照。你在一个安全的前台验证你的身份（通过你的用户名和密码），如果你成功验证了自己，你就可以取得这个。当你走进大楼的时候（试图从调用API获取资源），你会被要求验证你的护照，而不是在前台重新验证。</p>
+<p>###JWTs<br>JWTs是一份草案，尽管在本质上它是一个老生常谈的一种更加具体的认证授权的机制。一个JWT被周期（period）分成了三个部分。JWT是URL-safe的，意味着可以用来查询字符参数。（译者注：也就是可以脱离URL，不用考虑URL的信息）。关于Json Web Token，参考<a href="http://self-issued.info/docs/draft-ietf-oauth-json-web-token.html" target="_blank" rel="external">http://self-issued.info/docs/draft-ietf-oauth-json-web-token.html</a><br>JWT的第一部分是对一个简单js对象的编码后的字符串，这个js对象是用来描述这个token类型以及使用的hash算法。下面的例子展示的是一个使用了HMAC SHA-256算法的JWT token。<br>    1<br>    2<br>    3<br>    4</p>
+<pre><code>{
+  &quot;typ&quot; : &quot;JWT&quot;,
+  &quot;alg&quot; : &quot;HS256&quot;}
+</code></pre><p>在加密之后，这个对象变成了一个字符串：<br>eyJ0eXAiOiJKV1QiLA0KICJhbGciOiJIUzI1NiJ9<br>JWT的第二部分是token的核心，这部分同样是对一个js对象的编码，包含了一些摘要信息。有一些是必须的，有一些是选择性的。实例如下：<br>    1<br>    2<br>    3<br>    4<br>    5</p>
+<pre><code>{
+  &quot;iss&quot;: &quot;joe&quot;,
+  &quot;exp&quot;: 1300819380,
+  &quot;http://example.com/is_root&quot;: true}
+</code></pre><p>这个结构被称为JWT Claims Set。这个iss是issuer的简写，表明请求的实体，可以是发出请求的用户的信息。exp是expires的简写，是用来指定token的生命周期。（相关参数参看：<a href="http://tools.ietf.org/html/draft-ietf-oauth-json-web-token-19" target="_blank" rel="external">the<br> document</a>）加密编码之后如下：<br>    1</p>
+<pre><code>eyJpc3MiOiJqb2UiLA0KICJleHAiOjEzMDA4MTkzODAsDQogImh0dHA6Ly9leGFtcGxlLmNvbS9pc19yb290Ijp0cnVlfQ
+</code></pre><p>JWT的第三个部分，是JWT根据第一部分和第二部分的签名（Signature）。像这个样子：<br>    1</p>
+<pre><code>dBjftJeZ4CVP-mB92K27uhbUJU1p1r_wW1gFWFOEjXk
+</code></pre><p>最后将上面的合并起来，JWT token如下：<br>    1</p>
+<pre><code>eyJ0eXAiOiJKV1QiLA0KICJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJqb2UiLA0KICJleHAiOjEzMDA4MTkzODAsDQogImh0dHA6Ly9leGFtcGxlLmNvbS9pc19yb290Ijp0cnVlfQ.dBjftJeZ4CVP-mB92K27uhbUJU1p1r_wW1gFWFOEjXk
+</code></pre><p>###处理Tokens<br>我们将用JWT simple模块去处理token，它将使我们从钻研如何加密解密中解脱出来。如果你有兴趣，可以阅读这篇说明，或者读这个仓库的源码。<br>首先我们将使用下面的命令安装这个库。记住你可以在命令中加入—save，让其自动的让其加入到你的package.json文件里面。<br>    npm install jwt-simple</p>
+<p>在你应用的初始环节，加入以下代码。这个代码引入了Express和JWT simple，而且创建了一个新的Express应用。最后一行设定了app的一个名为jwtTokenSecret的变量，其值为‘YOUR_SECRET_STRING’（记得把它换成别的）。<br>    var express = require(‘express’);<br>    var jwt = require(‘jwt-simple’);<br>    var app = express();</p>
+<pre><code>app.set(&apos;jwtTokenSecret&apos;, &apos;YOUR_SECRET_STRING&apos;);
+</code></pre><p>###获取token<br>我们需要做的第一件事就是让客户端通过他们的账号密码交换token。这里有2种可能的方法在RESTful API里面。第一种是使用POST请求来通过验证，使服务端发送带有token的响应。除此之外，你可以使用GET请求，这需要他们使用参数提供凭证（指URL），或者更好的使用请求头。<br>这篇文章的目的是为了解释token验证的方法而不是基本的用户名/密码验证机制。所以我们假设我们已经通过请求得到了用户名和密码：<br>    1</p>
+<pre><code>User.findOne({ username: username }, function(err, user) {
+  if (err) {
+    // user not found
+    return res.send(401);
+  }
+
+  if (!user) {
+    // incorrect username
+    return res.send(401);
+  }
+
+  if (!user.validPassword(password)) {
+    // incorrect password
+    return res.send(401);
+  }
+
+  // User has authenticated OK
+  res.send(200);
+});
+</code></pre><p>如果用户成功验证账号和密码，然后我们生成一个token，返回给用户。<br>    1</p>
+<pre><code>var expires = moment().add(&apos;days&apos;, 7).valueOf();
+var token = jwt.encode({
+  iss: user.id,
+  exp: expires
+}, app.get(&apos;jwtTokenSecret&apos;));
+
+res.json({
+  token : token,
+  expires: expires,
+  user: user.toJSON()
+});
+</code></pre><p>注意到jwt.encode()函数有2个参数。第一个就是一个需要加密的对象，第二个是一个加密的密钥。这个token是由我们之前提到的iss和exp组成的。注意到Moment.js被用来设置token将在7天之后失效。而res.json()方法用来传递这个JSON对象给客户端。</p>
+<p>###验证Token<br>客户端获取到token后，应该在每次向服务器请求数据时附带这个token，然后服务端验证token。<br>为了验证JWT，我们需要写出一些可以完成这些功能的中间件（Middleware）：</p>
+<ul>
+<li>检查附上的token</li>
+<li>试图解密</li>
+<li>验证token的可用性</li>
+<li><p>如果token是合法的，检索里面用户的信息，以及附加到请求的对象上<br>我们来写一个中间件的框架    1</p>
+<p>  // @file jwtauth.js</p>
+<p>  var UserModel = require(‘../models/user’);<br>  var jwt = require(‘jwt-simple’);</p>
+<p>  module.exports = function(req, res, next) {</p>
+<pre><code>// code goes here
+</code></pre><p>  };</p>
+</li>
+</ul>
+<p>为了获得最大的可扩展性，我们允许客户端使用一下3个方法附加我们的token：作为请求链接（query)的参数，作为主体的参数（body），和作为请求头（Header）的参数。对于最后一个，我们将使用Header x-access-token。<br>下面是我们的允许在中间件的代码，试图去检索token：<br>    1</p>
+<pre><code>var token = (req.body &amp;&amp; req.body.access_token) || (req.query &amp;&amp; req.query.access_token) || req.headers[&apos;x-access-token&apos;];
+</code></pre><p>注意到他为了访问req.body，我们需要首先使用express.bodyParser()中间件（译者注，这个是Express 3.x的中间件）。<br>下一步，我们讲解析JWT:<br>    1</p>
+<pre><code>if (token) {
+  try {
+    var decoded = jwt.decode(token, app.get(&apos;jwtTokenSecret&apos;));
+
+    // handle token here
+
+  } catch (err) {
+    return next();
+  }
+} else {
+  next();
+}
+</code></pre><p>如果解析的过程失败，那么JWT Simple组件将会抛出一段异常。如果异常发生了，或者没有token，我们将会调用next()来继续处理请求。这代表喆我们无法确定用户。如果一个合格的token合法并且被解码，我们应该得到2个属性，iss包含着用户ID以及exp包含token过期的时间戳。我们将首先处理后者，如果它过期了，我们就拒绝它：<br>    1</p>
+<pre><code>if (decoded.exp &lt;= Date.now()) {
+  res.end(&apos;Access token has expired&apos;, 400);
+}
+</code></pre><p>如果token依旧合法，我们可以从中检索出用户信息，并且附加到请求对象里面去：<br>    1</p>
+<pre><code>User.findOne({ _id: decoded.iss }, function(err, user) {
+  req.user = user;
+});
+</code></pre><p>最后，将这个中间件附加到路由里面：<br>    1</p>
+<pre><code>var jwtauth = require(&apos;./jwtauth.js&apos;);
+
+app.get(&apos;/something&apos;, [express.bodyParser(), jwtauth], function(req, res){
+  // do something
+});
+</code></pre><p>或者匹配一些路由<br>    1</p>
+<pre><code>app.all(&apos;/api/*&apos;, [express.bodyParser(), jwtauth]);
+</code></pre><p>###客户端请求<br>我们提供了一个简单的get端去获得一个远端的token。这非常直接了，所以我们不用纠结细节，就是发起一个请求，传递用户名和密码，如果请求成功了，我们就会得到一个包含着token的响应。<br>我们现在研究的是后续的请求。一个方法是通过JQuery的ajaxSetup()方法。这可以直接用来做Ajax请求，或者通过前端框架使用包装过的Ajax方法。比如，假设我们将我们的请求使用window.localStorage.setItem(‘token’, ‘the-long-access-token’);放在本地存储（Local Storage）里面，我们可以通过这种方法将token附加到请求头里面：<br>    1</p>
+<pre><code>var token = window.localStorage.getItem(&apos;token&apos;);
+
+if (token) {
+  $.ajaxSetup({
+    headers: {
+      &apos;x-access-token&apos;: token
+    }
+  });
+}
+</code></pre><p>很简单，但是这会劫持所有Ajax请求，如果这里有一个token在本地存储里面。它将会附加到一个名为x-access-token的Header里面。</p>
+<p>###bear token<br>关于bear token，参看 <a href="http://tools.ietf.org/html/rfc6750" target="_blank" rel="external">RFC<br> 6750: The OAuth 2.0 Authorization Framework: Bearer Token Usage</a>, 目前国内各大网站都是用不同的token，也没说必须使用bear token，只有twitter明确说明的是使用bear token。<br>OAuth 2.0 (RFC 6749) 定义了 Client 如何取得 Access Token 的方法。Client 可以用 Access Token 以 Resource Owner 的名义来向 Resource Server 取得 Protected Resource ，例如我 (Resource Owner) 授权一個手机 App (Client) 以我 (Resource Owner) 的名义去 Facebook (Resource Server) 取得我的朋友名单 (Protected Resource)。OAuth<br> 2.0 定义Access Token 是 Resource Server 用来认证的唯一方式，有了这个， Resource Server 就不需要再提供其他认证方式，例如账号密码。<br>然而在 RFC 6749 里面只定义抽象的概念，细节如 Access Token 格式、怎么传到 Resource Server ，以及 Access Token 无效时， Resource Server 怎么处理，都没有定义。所以在 RFC 6750 另外定义了 Bearer Token 的用法。Bearer Token 是一种 Access Token ，由 Authorization Server 在 Resource Owner 的允许下核发给 Client ，Resource Server 只要认在这个<br> Token 就可以认定 Client 已经获取 Resource Owner 的许可，不需要用密码学的方式来验证这个 Token 的真伪。关于Token 被偷走的安全性问题，另一篇再说。<br>Bearer Token 的格式<br>    1</p>
+<pre><code>Bearer XXXXXXXX
+</code></pre><p>其中 XXXXXXXX 的格式为 b64token ，ABNF 的定義：<br>    1</p>
+<pre><code>b64token = 1*( ALPHA / DIGIT / &quot;-&quot; / &quot;.&quot; / &quot;_&quot; / &quot;~&quot; / &quot;+&quot; / &quot;/&quot; ) *&quot;=&quot;
+</code></pre><p>写成 Regular Expression 即是：<br>    1</p>
+<pre><code>/[A-Za-z0-9\-\._~\+\/]+=*/
+</code></pre><p>关于Bear Token还是打算另起一篇，详细说明：<a href="http://www.haomou.net/2014/08/13/2014_bare_token/" target="_blank" rel="external">Bearer<br> Token</a></p>
+<p>###express-jwt实例<br>下面给一个具体的实例，这个例子的客户端是web app，使用AngularJS框架。服务端使用NodeJS做的RESTful API接口，客户端直接调用接口数据，其中使用了token认证机制。<br>当用户把他的授权信息发过来的时候， Node.js 服务检查是否正确，然后返回一个基于用户信息的唯一 token 。 AngularJS 应用把 token 保存在用户的 SessionStorage ，之后的在发送请求的时候，在请求头里面加上包含这个 token 的 Authorization。如果 endpoint 需要确认用户授权，服务端检查验证这个 token，然后如果成功了就返回数据，如果失败了返回 401 或者其它的异常。<br>用到的技术：</p>
+<ul>
+<li>AngularJS</li>
+<li>NodeJS （ express.js, express-jwt 和 moongoose）</li>
+<li>MongoDB</li>
+<li><p>Redis （备用，用于记录用户退出登录时候还没有超时的token）####客户端 : AngularJS 部分<br>首先，我们来创建我们的 AdminUserCtrl controller 和处理 login/logout 动作。    1<br>  2<br>  3<br>  4<br>  5<br>  6<br>  7<br>  8<br>  9<br>  10<br>  11<br>  12<br>  13<br>  14<br>  15<br>  16<br>  17<br>  18<br>  19<br>  20<br>  21<br>  22<br>  23<br>  24<br>  25<br>  26<br>  27</p>
+<p>  appControllers.controller(‘AdminUserCtrl’, [‘$scope’, ‘$location’, ‘$window’, ‘UserService’, ‘AuthenticationService’,<br>  functionAdminUserCtrl($scope, $location, $window, UserService, AuthenticationService){</p>
+<p>  //Admin User Controller (login, logout)<br>  $scope.logIn = functionlogIn(username, password){<br>  if (username !== undefined &amp;&amp; password !== undefined) {</p>
+<pre><code>UserService.logIn(username, password).success(function(data){
+    AuthenticationService.isLogged = true;
+</code></pre><p>  $window.sessionStorage.token = data.token;<br>  $location.path(“/admin”);</p>
+<pre><code>        }).error(function(status, data){
+            console.log(status);
+            console.log(data);
+        });
+    }
+}
+</code></pre><p>  $scope.logout = functionlogout(){<br>  if (AuthenticationService.isLogged) {</p>
+<pre><code>AuthenticationService.isLogged = false;
+delete $window.sessionStorage.token;
+</code></pre><p>  $location.path(“/“);</p>
+<pre><code>        }
+    }
+}
+</code></pre><p>  ]);</p>
+</li>
+</ul>
+<p>这个 controller 用了两个 service: UserService 和 AuthenticationService。第一个处理调用 REST api 用证书。后面一个处理用户的认证。它只有一个布尔值，用来表示用户是否被授权。<br>    1<br>    2<br>    3<br>    4<br>    5<br>    6<br>    7<br>    8<br>    9<br>    10<br>    11<br>    12<br>    13<br>    14<br>    15<br>    16<br>    17<br>    18</p>
+<pre><code>appServices.factory(&apos;AuthenticationService&apos;, function(){
+var auth = {
+        isLogged: false
+    }
+
+return auth;
+});
+appServices.factory(&apos;UserService&apos;, function($http){
+return {
+        logIn: function(username, password){
+return$http.post(options.api.base_url + &apos;/login&apos;, {username: username, password: password});
+        },
+
+        logOut: function(){
+
+        }
+    }
+});
+</code></pre><p>好了，我们需要做张登陆页面:<br>    1</p>
+<pre><code>&lt;form class=&quot;form-horizontal&quot; role=&quot;form&quot;&gt;
+    &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label for=&quot;inputUsername&quot; class=&quot;col-sm-4 control-label&quot;&gt;Username&lt;/label&gt;
+        &lt;div class=&quot;col-sm-4&quot;&gt;
+            &lt;input type=&quot;text&quot; class=&quot;form-control&quot; id=&quot;inputUsername&quot; placeholder=&quot;Username&quot; ng-model=&quot;login.email&quot;&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label for=&quot;inputPassword&quot; class=&quot;col-sm-4 control-label&quot;&gt;Password&lt;/label&gt;
+        &lt;div class=&quot;col-sm-4&quot;&gt;
+            &lt;input type=&quot;password&quot; class=&quot;form-control&quot; id=&quot;inputPassword&quot; placeholder=&quot;Password&quot; ng-model=&quot;login.password&quot;&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;form-group&quot;&gt;
+        &lt;div class=&quot;col-sm-offset-4 col-sm-10&quot;&gt;
+            &lt;button type=&quot;submit&quot; class=&quot;btn btn-default&quot; ng-click=&quot;logIn(login.email, login.password)&quot;&gt;Log In&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/form&gt;
+</code></pre><p>当用户发送他的信息过来，我们的 controller 把内容发送到 Node.js 服务器，如果信息可用，我们把 AuthenticationService里面的 isLogged 设为 true。我们把从服务端发过来的 token 存起来，以便下次请求的时候使用。等讲到 Node.js 的时候我们会看看怎么处理。<br>好了，我们要往每个请求里面追加一个特殊的头信息了:[Authorization: Bearer ] 。为了实现这个需求，我们建立一个服务，叫 TokenInterceptor。<br>    1<br>    2<br>    3<br>    4<br>    5<br>    6<br>    7<br>    8<br>    9<br>    10<br>    11<br>    12<br>    13<br>    14<br>    15</p>
+<pre><code>appServices.factory(&apos;TokenInterceptor&apos;, function($q, $window, AuthenticationService){
+return {
+        request: function(config){
+            config.headers = config.headers || {};
+if ($window.sessionStorage.token) {
+                config.headers.Authorization = &apos;Bearer &apos; + $window.sessionStorage.token;
+            }
+return config;
+        },
+
+        response: function(response){
+return response || $q.when(response);
+        }
+    };
+});
+</code></pre><p>然后我们把这个interceptor 追加到 $httpProvider :<br>    1<br>    2<br>    3</p>
+<pre><code>app.config(function($httpProvider){
+$httpProvider.interceptors.push(&apos;TokenInterceptor&apos;);
+});
+</code></pre><p>然后，我们要开始配置路由了，让 AngularJS 知道哪些需要授权，在这里，我们需要检查用户是否已经被授权，也就是查看 AuthenticationService 的 isLogged 值。<br>    1<br>    2<br>    3<br>    4<br>    5<br>    6<br>    7<br>    8<br>    9<br>    10<br>    11<br>    12<br>    13<br>    14<br>    15<br>    16<br>    17<br>    18<br>    19<br>    20<br>    21<br>    22<br>    23<br>    24<br>    25<br>    26<br>    27<br>    28<br>    29<br>    30<br>    31<br>    32<br>    33<br>    34<br>    35<br>    36<br>    37<br>    38<br>    39<br>    40<br>    41<br>    42<br>    43<br>    44<br>    45<br>    46<br>    47<br>    48<br>    49<br>    50<br>    51<br>    52<br>    53<br>    54</p>
+<pre><code>app.config([&apos;$locationProvider&apos;, &apos;$routeProvider&apos;, 
+function($location, $routeProvider) {
+    $routeProvider.
+when(&apos;/&apos;, {
+templateUrl: &apos;partials/post.list.html&apos;,
+controller: &apos;PostListCtrl&apos;
+        }).
+when(&apos;/post/:id&apos;, {
+templateUrl: &apos;partials/post.view.html&apos;,
+controller: &apos;PostViewCtrl&apos;
+        }).
+when(&apos;/tag/:tagName&apos;, {
+templateUrl: &apos;partials/post.list.html&apos;,
+controller: &apos;PostListTagCtrl&apos;
+        }).
+when(&apos;/admin&apos;, {
+templateUrl: &apos;partials/admin.post.list.html&apos;,
+controller: &apos;AdminPostListCtrl&apos;,
+access: { requiredLogin: true }
+        }).
+when(&apos;/admin/post/create&apos;, {
+templateUrl: &apos;partials/admin.post.create.html&apos;,
+controller: &apos;AdminPostCreateCtrl&apos;,
+access: { requiredLogin: true }
+        }).
+when(&apos;/admin/post/edit/:id&apos;, {
+templateUrl: &apos;partials/admin.post.edit.html&apos;,
+controller: &apos;AdminPostEditCtrl&apos;,
+access: { requiredLogin: true }
+        }).
+when(&apos;/admin/login&apos;, {
+templateUrl: &apos;partials/admin.login.html&apos;,
+controller: &apos;AdminUserCtrl&apos;
+        }).
+when(&apos;/admin/logout&apos;, {
+templateUrl: &apos;partials/admin.logout.html&apos;,
+controller: &apos;AdminUserCtrl&apos;,
+access: { requiredLogin: true }
+        }).
+        otherwise({
+redirectTo: &apos;/&apos;
+        });
+}]);
+
+app.run(function($rootScope, $location, $window, AuthenticationService) {
+    $rootScope.$on(&quot;$routeChangeStart&quot;, function(event, nextRoute, currentRoute) {
+//redirect only if both isLogged isfalseandno token is set
+if (nextRoute != null &amp;&amp; nextRoute.access != null &amp;&amp; nextRoute.access.requiredLogin 
+            &amp;&amp; !AuthenticationService.isLogged &amp;&amp; !$window.sessionStorage.token) {
+
+            $location.path(&quot;/admin/login&quot;);
+        }
+    });
+});
+</code></pre><p>####服务端: Node.js + MongoDB 部分<br>为了在我们的 RESTful api 处理授权信息，我们要用到 express-jwt (JSON Web Token) 来生成一个唯一 Token，基于用户的信息。以及验证 Token。<br>首先，我们在 MongoDB 里面创建一个用户的 Schema。我们还要创建调用一个中间件，在创建和保存用户信息到数据库之前，用于加密密码。还有我们需要一个方法来解密密码，当收到用户请求的时候，检查是否在数据库里面有匹配的。<br>    1<br>    2<br>    3<br>    4<br>    5<br>    6<br>    7<br>    8<br>    9<br>    10<br>    11<br>    12<br>    13<br>    14<br>    15<br>    16<br>    17<br>    18<br>    19<br>    20<br>    21<br>    22<br>    23<br>    24<br>    25<br>    26<br>    27<br>    28<br>    29<br>    30<br>    31<br>    32</p>
+<pre><code>var Schema = mongoose.Schema;
+
+// User schema
+var User = new Schema({
+    username: { type: String, required: true, unique: true },
+    password: { type: String, required: true}
+});
+
+// Bcrypt middleware on UserSchema
+User.pre(&apos;save&apos;, function(next){
+var user = this;
+
+if (!user.isModified(&apos;password&apos;)) return next();
+
+  bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt){
+if (err) return next(err);
+
+    bcrypt.hash(user.password, salt, function(err, hash){
+if (err) return next(err);
+        user.password = hash;
+        next();
+    });
+  });
+});
+
+//Password verification
+User.methods.comparePassword = function(password, cb){
+    bcrypt.compare(password, this.password, function(err, isMatch){
+if (err) return cb(err);
+        cb(isMatch);
+    });
+};
+</code></pre><p>然后我们开始写授权用户和创建 Token 的方法:<br>    1<br>    2<br>    3<br>    4<br>    5<br>    6<br>    7<br>    8<br>    9<br>    10<br>    11<br>    12<br>    13<br>    14<br>    15<br>    16<br>    17<br>    18<br>    19<br>    20<br>    21<br>    22<br>    23<br>    24<br>    25<br>    26<br>    27</p>
+<pre><code>exports.login = function(req, res){
+var username = req.body.username || &apos;&apos;;
+var password = req.body.password || &apos;&apos;;
+
+if (username == &apos;&apos; || password == &apos;&apos;) {
+return res.send(401);
+    }
+
+    db.userModel.findOne({username: username}, function(err, user){
+if (err) {
+console.log(err);
+return res.send(401);
+        }
+
+        user.comparePassword(password, function(isMatch){
+if (!isMatch) {
+console.log(&quot;Attempt failed to login with &quot; + user.username);
+return res.send(401);
+            }
+
+var token = jwt.sign(user, secret.secretToken, { expiresInMinutes: 60 });
+
+return res.json({token:token});
+        });
+
+    });
+};
+</code></pre><p>最后，我们需要把 jwt 中间件加到所有的，访问时需要授权的路由上面:<br>    1<br>    2<br>    3<br>    4<br>    5<br>    6<br>    7<br>    8<br>    9<br>    10<br>    11<br>    12<br>    13<br>    14<br>    15<br>    16<br>    17<br>    18<br>    19<br>    20<br>    21<br>    22<br>    23<br>    24<br>    25<br>    26<br>    27<br>    28<br>    29<br>    30<br>    31<br>    32<br>    33<br>    34<br>    35<br>    36<br>    37<br>    38<br>    39<br>    40<br>    41<br>    42<br>    43</p>
+<pre><code>/*Get all published posts*/
+app.get(&apos;/post&apos;, routes.posts.list);
+/*    Get all posts*/
+app.get(&apos;/post/all&apos;, jwt({secret: secret.secretToken}), routes.posts.listAll);
+
+/*    Get an existing post. Require url*/
+app.get(&apos;/post/:id&apos;, routes.posts.read);
+
+/*    Get posts by tag*/
+app.get(&apos;/tag/:tagName&apos;, routes.posts.listByTag);
+
+/*    Login*/
+app.post(&apos;/login&apos;, routes.users.login);
+
+/*    Logout*/
+app.get(&apos;/logout&apos;, routes.users.logout);
+
+/*    Create a new post. Require data*/
+app.post(&apos;/post&apos;, jwt({secret: secret.secretToken}), routes.posts.create);
+
+/*    Update an existing post. Require id*/
+app.put(&apos;/post&apos;, jwt({secret: secret.secretToken}), routes.posts.update);
+
+/*    Delete an existing post. Require id*/
+app.delete(&apos;/post/:id&apos;, jwt({secret: secret.secretToken}), routes.posts.delete);
+</code></pre><p>上面这个实例就采用了token的验证方式构建了api接口，但是有两个问题需要解决：</p>
+<ul>
+<li>用户退出登录，但是token并没有失效，因为服务端没有删除这个token</li>
+<li><p>token失效了，怎么办，如果还是让用于登录重新获取token，会体验不好。应该有token刷新机制。###使用Redis解决问题1<br>解决方法是：当用户点了 logout 按钮的时候，Token 只会保存一段时间，就是你用<a href="https://github.com/auth0/node-jsonwebtoken" target="_blank" rel="external">jsonwebtoken</a> 登陆之后，token<br>有效的这段时间，我们将这个token存放在Redis中，生存时间也是jwt获取这个token的时间。这个时间到期后，token 会被 redis 自动删掉。最后，我们创建一个 nodejs 的中间件，检查所有受限 endopoint 用的 token 是否存在 Redis 数据库中。####NodeJS 配置 Reids<br>  1<br>  2<br>  3<br>  4<br>  5<br>  6<br>  7<br>  8<br>  9<br>  10<br>  11<br>  12<br>  13</p>
+<p>  var redis = require(‘redis’);<br>  var redisClient = redis.createClient(6379);</p>
+<p>  redisClient.on(‘error’, function(err){<br>  console.log(‘Error ‘ + err);<br>  });</p>
+<p>  redisClient.on(‘connect’, function(){<br>  console.log(‘Redis is ready’);<br>  });</p>
+<p>  exports.redis = redis;<br>  exports.redisClient = redisClient;</p>
+</li>
+</ul>
+<p>然后，我们来创建一个方法，用来检查提供的 token 是不是被</p>
+<p>####Token 管理和中间件<br>为了在 Redis 中保存 Token，我们要创建一个方法来拿到请求中的 Header 的 Token 参数，然后把它作为 Redis 的 key 保存起来。值是什么我们不管它。<br>    1<br>    2<br>    3<br>    4<br>    5<br>    6<br>    7<br>    8<br>    9<br>    10<br>    11<br>    12<br>    13<br>    14<br>    15<br>    16<br>    17<br>    18<br>    19<br>    20<br>    21<br>    22<br>    23<br>    24<br>    25<br>    26<br>    27<br>    28<br>    29<br>    30<br>    31</p>
+<pre><code>var redisClient = require(&apos;./redis_database&apos;).redisClient;
+var TOKEN_EXPIRATION = 60;
+var TOKEN_EXPIRATION_SEC = TOKEN_EXPIRATION * 60;
+
+exports.expireToken = function(headers){
+var token = getToken(headers);
+
+if (token != null) {
+        redisClient.set(token, { is_expired: true });
+        redisClient.expire(token, TOKEN_EXPIRATION_SEC);
+    }
+};
+
+var getToken = function(headers){
+if (headers &amp;&amp; headers.authorization) {
+var authorization = headers.authorization;
+var part = authorization.split(&apos; &apos;);
+
+if (part.length == 2) {
+var token = part[1];
+
+return part[1];
+        }
+else {
+returnnull;
+        }
+    }
+else {
+returnnull;
+    }
+};
+</code></pre><p>然后，再创建一个中间件来验证一下 token，当用户发起请求的时候:<br>    1<br>    2<br>    3<br>    4<br>    5<br>    6<br>    7<br>    8<br>    9<br>    10<br>    11<br>    12<br>    13<br>    14<br>    15<br>    16<br>    17<br>    18<br>    19</p>
+<pre><code>// Middleware for token verification
+exports.verifyToken = function (req, res, next) {
+vartoken = getToken(req.headers);
+
+    redisClient.get(token, function (err, reply) {
+if (err) {
+            console.log(err);
+return res.send(500);
+        }
+
+if (reply) {
+            res.send(401);
+        }
+else {
+            next();
+        }
+
+    });
+};
+</code></pre><p>verifyToken 这个方法，是一个中间件，用来拿到请求头中的 token，然后在 Redis 里面查找它。如果 token 被发现了，我们就发 HTTP 401.否则我们就继续工作流，让请求访问 API。<br>我们要在用户点 logout 的时候，执行 expireToken 方法:<br>    1<br>    2<br>    3<br>    4<br>    5<br>    6<br>    7<br>    8<br>    9<br>    10<br>    11</p>
+<pre><code>exports.logout = function(req, res){
+if (req.user) {
+        tokenManager.expireToken(req.headers);
+
+delete req.user;
+return res.send(200);
+    }
+else {
+return res.send(401);
+    }
+}
+</code></pre><p>最后我们更新路由，用上新的中间件:<br>    1<br>    2<br>    3<br>    4<br>    5<br>    6<br>    7<br>    8<br>    9<br>    10<br>    11<br>    12<br>    13<br>    14<br>    15<br>    16<br>    17</p>
+<pre><code>//Login
+app.post(&apos;/user/signin&apos;, routes.users.signin);
+
+//Logout
+app.get(&apos;/user/logout&apos;, jwt({secret: secret.secretToken}), routes.users.logout);
+
+//Get all posts
+app.get(&apos;/post/all&apos;, jwt({secret: secret.secretToken}), tokenManager.verifyToken, routes.posts.listAll);
+
+//Create a new post
+app.post(&apos;/post&apos;, jwt({secret: secret.secretToken}), tokenManager.verifyToken , routes.posts.create);
+
+//Edit the post id
+app.put(&apos;/post&apos;, jwt({secret: secret.secretToken}), tokenManager.verifyToken, routes.posts.update);
+
+//Delete the post id
+app.delete(&apos;/post/:id&apos;, jwt({secret: secret.secretToken}), tokenManager.verifyToken, routes.posts.delete);
+</code></pre><p>好了，现在我们每次发送请求的时候，我们都去解析 token， 然后看看是不是有效的。<br>这里有整个项目的<a href="https://github.com/kdelemme/blogjs" target="_blank" rel="external">源代码</a></p>
+<p>###refresh token解决问题2<br>    1<br>    2<br>    3<br>    4<br>    5<br>    6<br>    7<br>    8<br>    9<br>    10<br>    11<br>    12<br>    13<br>    14<br>    15<br>    16<br>    17<br>    18<br>    19<br>    20<br>    21<br>    22<br>    23<br>    24<br>    25<br>    26<br>    27<br>    28<br>    29<br>    30<br>    31<br>    32<br>    33<br>    34</p>
+<pre><code>appServices.factory(&apos;TokenInterceptor&apos;, function($q, $window, $location, AuthenticationService){
+return {
+        request: function(config){
+            config.headers = config.headers || {};
+if ($window.sessionStorage.token) {
+                config.headers.Authorization = &apos;Bearer &apos; + $window.sessionStorage.token;
+            }
+return config;
+        },
+
+        requestError: function(rejection){
+return$q.reject(rejection);
+        },
+
+/* Set Authentication.isAuthenticated to true if 200 received */
+        response: function(response){
+if (response != null &amp;&amp; response.status == 200 &amp;&amp; $window.sessionStorage.token &amp;&amp; !AuthenticationService.isAuthenticated) {
+                AuthenticationService.isAuthenticated = true;
+            }
+return response || $q.when(response);
+        },
+
+/* Revoke client authentication if 401 is received */
+        responseError: function(rejection){
+if (rejection != null &amp;&amp; rejection.status === 401 &amp;&amp; ($window.sessionStorage.token || AuthenticationService.isAuthenticated)) {
+                delete $window.sessionStorage.token;
+                AuthenticationService.isAuthenticated = false;
+$location.path(&quot;/admin/login&quot;);
+            }
+
+return$q.reject(rejection);
+        }
+    };
+});
+</code></pre><p>上面代码中的最后一部分responseError其实就是授权失败的部分，这里面的处理方法是返回到登录授权页面。<br>这里面考虑的方法是，如果是token超时，使用refresh_token来换取新的token。这个refresh_token，是一开始核发的时候一块发布给客户端的，这里就不能使用上面这个bear token了，要自己处理一下token的问题。<br>思路1：在user中记录token超时时间，计算一下剩余时间，如果剩余时间比如说小于1分钟，开始核发新的token，客户端自动使用新的token，等退出时，就不核发新的token。</p>
+<p>###谢谢！<br>转载请注明出处：<a href="http://www.haomou.net/2014/08/13/2014_web_token/" target="_blank" rel="external">http://www.haomou.net/2014/08/13/2014_web_token/</a><br>有</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>Title:</span><a href="/2015/08/13/NodeJs使用json web token验证REST服务/">NodeJs使用json web token验证REST服务</a></p>
+        <p><span>Author:</span><a href="/" title="Back to Homepage">offbye</a></p>
+        <p><span>Created:</span>2015-08-13, 19:39:00</p>
+        <p><span>Updated:</span>2016-05-13, 00:38:59</p>
+
+        <p>
+            <span>Full URL:</span><a class="post-url" href="/2015/08/13/NodeJs使用json web token验证REST服务/" title="NodeJs使用json web token验证REST服务">http://offbye.com/2015/08/13/NodeJs使用json web token验证REST服务/</a>
+            <span class="copy-path" data-clipboard-text="From http://offbye.com/2015/08/13/NodeJs使用json web token验证REST服务/　　By offbye" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>License:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"CC BY-NC-SA 4.0"</a> Keep Link &amp; Author if Distribute.
+        </p>
+        
+        <p><span>CSDN原文:</span> <a href="http://blog.csdn.net/offbye/article/details/47617367" target="_blank" title="NodeJs使用json web token验证REST服务">http://blog.csdn.net/offbye/article/details/47617367</a> </p>
+        <p><span>CSDN PV:</span>614</p>
+        
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2015/08/13/JSON Web Token JWT 简介/">
+                    JSON Web Token JWT 简介
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2015/08/13/一个Spring Boot， JWT，AugularJS接口安全验证的简单例子/">
+                    一个Spring Boot， JWT，AugularJS接口安全验证的简单例子
+                </a>
+            </div>
+        
+    </nav>
+
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="Hide"  title="Show or Hide Table of Contents">
+<script>
+    var valueHide = "Hide";
+    var valueShow = "Show";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"NodeJs使用json web token验证REST服务　| offbye　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="2015/08/13/NodeJs使用json web token验证REST服务/" data-title="NodeJs使用json web token验证REST服务" data-url="http://offbye.com/2015/08/13/NodeJs使用json web token验证REST服务/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"offbye"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+    <!-- 多说公共JS代码 end -->
+</div>
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2015/08/13/JSON Web Token JWT 简介/" title="Pre: JSON Web Token JWT 简介">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2015/08/13/一个Spring Boot， JWT，AugularJS接口安全验证的简单例子/" title="Next: 一个Spring Boot， JWT，AugularJS接口安全验证的简单例子">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/05/13/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/12/YAML文件语法简介/">YAML文件语法简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/11/iOS-Sandbox-swift/">iOS App沙盒模型文件目录详解Swift版</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/06/iOS App沙盒模型文件目录详解Swift版/">iOS App沙盒模型文件目录详解Swift版</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/05/Swift iOS实现把PCM语音转成MP3格式/">Swift iOS实现把PCM语音转成MP3格式</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/04/RESTFUL API 安全设计/">RESTFUL API 安全设计</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/04/关于 Token，你应该知道的十件事/">关于 Token，你应该知道的十件事</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/04/程序员的成长和代码行数的关系/">程序员的成长和代码行数的关系</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/04/从JavaAndroid到Swift iOS开发：语言与框架对比/">从JavaAndroid到Swift iOS开发：语言与框架对比</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/26/Android开发常用开源框架推荐/">Android开发常用开源框架推荐</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/22/Swift Modules for React Native/">Swift Modules for React Native</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/15/Android官方MVP架构示例项目解析/">Android官方MVP架构示例项目解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/15/使用swift开发Cordova插件/">使用swift开发Cordova插件</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/14/Swift语言中的@available 和 #available/">Swift语言中的@available 和</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/31/Android volley 使用OkHttp3.0/">Android volley 使用OkHttp3.0</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/28/What's new in Swift 2.2/">What's new in Swift 2.2</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/16/java8新特性介绍/">java8新特性介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/15/Swift异常处理：throw和rethrow/">Swift异常处理：throw和rethrow</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/14/Swift iOS- 手势检测详解/">Swift iOS- 手势检测详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/11/Swift化零为整：Reduce 详解/">Swift化零为整：Reduce 详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/11/Swift2.1关键字 @noescape介绍/">Swift2.1关键字 @noescape介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/11/理解Swift中map 和 flatMap对集合的作用/">理解Swift中map 和 flatMap对集合的作用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/09/移动端专用数据库Realm介绍/">移动端专用数据库Realm介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/09/安装Xcode插件包管理器Alcatraz报错解决办法/">安装Xcode插件包管理器Alcatraz报错解决办法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/09/Android最佳实践 —— 详细谈谈如何减小APK体积/">Android最佳实践 —— 详细谈谈如何减小APK体积</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/05/iOS开发如何通过UMeng的错误分析解决crash问题/">iOS开发如何通过UMeng的错误分析解决crash问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/04/常见移动设备的 CSS3 Media Query 整理（iPhoneiPadGalaxy）/">常见移动设备的 CSS3 Media Query 整理（iPhoneiPadGalaxy）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/04/我在MDCC 2015的演讲PPT《HTML5移动应用多端开发架构实践》分享/">我在MDCC 2015的演讲PPT《HTML5移动应用多端开发架构实践》分享</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/01/深入理解iOS开发中的BitCode功能/">深入理解iOS开发中的BitCode功能</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/01/iOS swift动画和特效专题/">iOS swift动画和特效专题</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/29/Swift iOS项目archive操作会报错误built without full bitcode解决方法/">Swift iOS项目archive操作会报错误built without full bitcode解决方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/26/GCD 和延时调用/">GCD 和延时调用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/26/Swift - 多线程实现方式（3） - Grand Central Dispatch（GCD）/">Swift - 多线程实现方式（3） - Grand Central Dispatch（GCD）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/25/iOS 9开发小技巧：LayoutGuide，Storyboard Reference/">iOS 9开发小技巧：LayoutGuide，Storyboard Reference</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/25/Storyboard的爱与恨/">Storyboard的爱与恨</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/25/Swift iOS tableView static cell动态计算高度/">Swift iOS tableView static cell动态计算高度</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/24/5 个顶级 Android 开源库/">5 个顶级 Android 开源库</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/19/Swift高阶函数介绍（闭包、Map、Filter、Reduce）/">Swift高阶函数介绍（闭包、Map、Filter、Reduce）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/18/iOS Swift判断代码运行在模拟器上/">iOS Swift判断代码运行在模拟器上</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/17/iOS 开发 UI 搭建心得（一）—— 驾驭 StoryBoard  代码示例：httpsgithub.comjohnluiSwift-On-iOSblobmasterDifferen/">iOS 开发 UI 搭建心得（一）—— 驾驭 StoryBoard  代码示例：httpsgithub.comjohnluiSwift-On-iOSblobmasterDifferen</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/16/使用命令行统计代码行数/">使用命令行统计代码行数</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/03/HTTP 2.0的那些事/">HTTP 2.0的那些事</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/02/浅谈 RxAndroid + Retrofit + Databinding/">浅谈 RxAndroid + Retrofit + Databinding</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/28/2016这些Android技术会很火/">2016这些Android技术会很火</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/27/使用CodePush实时更新 React Native 和 Cordova 应用/">使用CodePush实时更新 React Native 和 Cordova 应用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/20/理解Swift中Optional类型－有和无的哲学/">理解Swift中Optional类型－有和无的哲学</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/19/其实你不知道MultiDex到底有多坑/">其实你不知道MultiDex到底有多坑</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/19/Android MultiDex分包变形记/">Android MultiDex分包变形记</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/14/Swift iOS项目最佳实践汇总/">Swift iOS项目最佳实践汇总</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/11/饿了么移动APP的架构演进/">饿了么移动APP的架构演进</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/30/Android 开发最佳实践/">Android 开发最佳实践</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/29/RxAndroid和RxJava的资料分享/">RxAndroid和RxJava的资料分享</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/28/技术人如何才能不焦虑/">技术人如何才能不焦虑</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/26/云栖社区12篇实战经验所组成的“近战”系列分享/">云栖社区12篇实战经验所组成的“近战”系列分享</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/26/程序员晋升攻略/">程序员晋升攻略</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/25/Xcode7.2版本carthage包管理器兼容问题解决/">Xcode7.2版本carthage包管理器兼容问题解决</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/14/2015年Android开发新技术盘点/">2015年Android开发新技术盘点</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/10/Android中Touch事件分析--解决HorizontalScrollView滑动和按钮事件触发问题/">Android中Touch事件分析--解决HorizontalScrollView滑动和按钮事件触发问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/03/Android动态加载黑科技 动态创建Activity模式/">Android动态加载黑科技 动态创建Activity模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/01/Android注解支持Support Annotations详解/">Android注解支持Support Annotations详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/27/Android Studio 2.0 Instant Run即时运行功能实现分析/">Android Studio 2.0 Instant Run即时运行功能实现分析</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/25/Android应用性能剖析全攻略/">Android应用性能剖析全攻略</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/24/自动生成Android不同分辨率下的图片/">自动生成Android不同分辨率下的图片</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/24/Android Studio 2.0 Preview发布,附下载地址，支持即时运行和GPU Profiler/">Android Studio 2.0 Preview发布,附下载地址，支持即时运行和GPU Profiler</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/17/React Native Android端10个最常见问题/">React Native Android端10个最常见问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/13/使用Javascript ES6进行开发的思考/">使用Javascript ES6进行开发的思考</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/13/安装包立减1M--微信Android资源混淆打包工具/">安装包立减1M--微信Android资源混淆打包工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/11/Ionic 2.0 Alpha版本发布了/">Ionic 2.0 Alpha版本发布了</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/10/美团Android资源混淆保护实践/">美团Android资源混淆保护实践</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/10/Android开发中的armeabi和armeabi-v7a介绍/">Android开发中的armeabi和armeabi-v7a介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/06/在CordovaActivity中添加原生View组件/">在CordovaActivity中添加原生View组件</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/05/技术贴：开源飞控那些事/">技术贴：开源飞控那些事</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/03/Android常用开源框架Proguard混淆解决方案/">Android常用开源框架Proguard混淆解决方案</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/03/美团Android DEX自动拆包及动态加载简介/">美团Android DEX自动拆包及动态加载简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/02/Google基于Dart的新移动开发框架Flutter介绍/">Google基于Dart的新移动开发框架Flutter介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/29/通过SharedPreferences实现进程间数据共享的问题详解/">通过SharedPreferences实现进程间数据共享的问题详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/26/Android修改TitleBar标题栏详解/">Android修改TitleBar标题栏详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/23/异步JavaScript的进化/">异步JavaScript的进化</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/21/Android Service创建USB HOST通信/">Android Service创建USB HOST通信</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/21/Android 热敏打印机打印二维码/">Android 热敏打印机打印二维码</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/13/基于webpack搭建前端工程解决方案探索/">基于webpack搭建前端工程解决方案探索</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/11/理解Flux架构/">理解Flux架构</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/09/Mac Yosemite系统 brew 报错的解决办法/">Mac Yosemite系统 brew 报错的解决办法</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/30/微信公众平台接入经验分享，纯干货/">微信公众平台接入经验分享，纯干货</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/28/使用Kotlin进行Android开发/">使用Kotlin进行Android开发</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/23/Umeng推送消息的坑，Android Service的androidexported详解/">Umeng推送消息的坑，Android Service的androidexported详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/22/自动生成Android屏幕适配的dimens.xml/">自动生成Android屏幕适配的dimens.xml</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/21/iOS9系统开始对企业发布App进行严格限制/">iOS9系统开始对企业发布App进行严格限制</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/16/sed 简明教程/">sed 简明教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/15/Gradle, 基于DSL的新一代Java构建工具/">Gradle, 基于DSL的新一代Java构建工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/15/Gradle常用命令和原理说明/">Gradle常用命令和原理说明</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/09/大势所趋！十大令人振奋的移动端APP设计趋势/">大势所趋！十大令人振奋的移动端APP设计趋势</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/02/Android微信智能心跳方案/">Android微信智能心跳方案</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/01/深入浅出学Spring Data JPA/">深入浅出学Spring Data JPA</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/29/在Mac上制作树莓派SD镜像/">在Mac上制作树莓派SD镜像</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/26/Git从远程的分支获取最新的版本到本地/">Git从远程的分支获取最新的版本到本地</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/25/Spring Data JPA 常用注解 @Query、@NamedQuery/">Spring Data JPA 常用注解 @Query、@NamedQuery</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/24/树莓派做 wifi 热点/">树莓派做 wifi 热点</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/23/树莓派把一个python脚本作为服务运行，配置开机自动启动/">树莓派把一个python脚本作为服务运行，配置开机自动启动</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/22/INSTALLING OPERATING SYSTEM IMAGES ON MAC OS/">INSTALLING OPERATING SYSTEM IMAGES ON MAC OS</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/18/基于Volley，Gson封装支持JWT无状态安全验证和数据防篡改的GsonRequest网络请求类/">基于Volley，Gson封装支持JWT无状态安全验证和数据防篡改的GsonRequest网络请求类</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/16/如何快速构建基于Spring4.0的Rest API（攻略）/">如何快速构建基于Spring4.0的Rest API（攻略）</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/16/Spring MVC 4 常用注解汇总/">Spring MVC 4 常用注解汇总</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/13/JSON Web Token JWT 简介/">JSON Web Token JWT 简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/13/NodeJs使用json web token验证REST服务/">NodeJs使用json web token验证REST服务</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/13/一个Spring Boot， JWT，AugularJS接口安全验证的简单例子/">一个Spring Boot， JWT，AugularJS接口安全验证的简单例子</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/11/基于Spring Boot，Security和JWB的REST接口的无状态认证/">基于Spring Boot，Security和JWB的REST接口的无状态认证</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/08/Spring Boot和JPA开发的一些坑/">Spring Boot和JPA开发的一些坑</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/06/Android ORM数据库框架对比/">Android ORM数据库框架对比</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/06/最流行的开源飞控项目ArduPilot Mega（APM）介绍及发展历史/">最流行的开源飞控项目ArduPilot Mega（APM）介绍及发展历史</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/06/使用Spring Boot快速构建应用/">使用Spring Boot快速构建应用</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/04/CSS 的黑科技/">CSS 的黑科技</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/31/The Future of JavaScript MVC Frameworks/">The Future of JavaScript MVC Frameworks</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/31/Raspberry Pi Camera Streaming to VLC Player/">Raspberry Pi Camera Streaming to VLC Player</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/29/linux下解压缩.tar.xz方法/">linux下解压缩.tar.xz方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/28/树莓派摄像头视频直播技术汇总/">树莓派摄像头视频直播技术汇总</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/28/Python高效率编程的8条箴言/">Python高效率编程的8条箴言</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/28/如何使用Android Studio提高App质量/">如何使用Android Studio提高App质量</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/27/树莓派遥控船项目计划/">树莓派遥控船项目计划</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/24/人人都能玩航拍 手把手教你装4轴/">人人都能玩航拍 手把手教你装4轴</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/24/树莓派的PWM脉宽调制功能介绍/">树莓派的PWM脉宽调制功能介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/23/python字符串连接/">python字符串连接</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/23/Android Studio上方便使用butterknife注解框架的偷懒插件Android Butterknife Zelezny/">Android Studio上方便使用butterknife注解框架的偷懒插件Android Butterknife Zelezny</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/23/Python的Lambda函数与排序/">Python的Lambda函数与排序</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/22/TypeScript 1.5正式发布，此版本是Visual Studio 2015更新的一部分，支持大量ES6新特性/">TypeScript 1.5正式发布，此版本是Visual Studio 2015更新的一部分，支持大量ES6新特性</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/20/iWeb峰会（HTML5峰会）2015年7月19日上海站会后感想/">iWeb峰会（HTML5峰会）2015年7月19日上海站会后感想</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/16/说说React,Flux,Reray和GraghQL/">说说React,Flux,Reray和GraghQL</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/16/ReactEurope Conf 参会感想/">ReactEurope Conf 参会感想</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/15/Android Studio Gradle项目中添加JNI so文件/">Android Studio Gradle项目中添加JNI so文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/15/mac os使用lsusb命令和连接未知的Android设备/">mac os使用lsusb命令和连接未知的Android设备</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/15/HTML5 HybridApp开发上手指引/">HTML5 HybridApp开发上手指引</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/15/Facebook的Web开发三板斧：React.js、Relay和GraphQL/">Facebook的Web开发三板斧：React.js、Relay和GraphQL</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/15/Flux再进化：Introducing Relay and GraphQL（译）/">Flux再进化：Introducing Relay and GraphQL（译）</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/14/为什么要造轮子？/">为什么要造轮子？</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/10/那些争议最大的编程观点/">那些争议最大的编程观点</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/10/Angular vs. React - the tie breaker/">Angular vs. React - the tie breaker</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/09/android：ToolBar详解（手把手教程）/">android：ToolBar详解（手把手教程）</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/08/Android Support Library更新到v22.1之AppCompat新特性/">Android Support Library更新到v22.1之AppCompat新特性</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/08/用Material Design设计App谷歌官方文档翻译/">用Material Design设计App谷歌官方文档翻译</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/07/Pure Android/">Pure Android</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/07/Material Design in Action — 哔哩哔哩动画 Android 客户端/">Material Design in Action — 哔哩哔哩动画 Android 客户端</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/07/Android Studio 批量打包，apk重命名/">Android Studio 批量打包，apk重命名</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/06/Android Studio Android studio 多渠道打包超简洁版/">Android Studio Android studio 多渠道打包超简洁版</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/06/Eclipse Android项目导入Android Studio时常见的编译错误及解决办法/">Eclipse Android项目导入Android Studio时常见的编译错误及解决办法</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/01/HTML5本地存储——IndexedDB（一：基本使用）/">HTML5本地存储——IndexedDB（一：基本使用）</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/15/SASS基础——十个常见的Mixins/">SASS基础——十个常见的Mixins</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/15/python 中的mixin特性/">python 中的mixin特性</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/10/Mac上通过Linux命令行批量查找和替换文本/">Mac上通过Linux命令行批量查找和替换文本</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/09/产品经理经常犯的十大顶级错误/">产品经理经常犯的十大顶级错误</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/09/ES6新特性概览/">ES6新特性概览</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/09/ES6 JavaScript Promise的感性认知/">ES6 JavaScript Promise的感性认知</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/06/机器学习的11个开源项目/">机器学习的11个开源项目</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/06/实现Instagram的Material Design概念设计/">实现Instagram的Material Design概念设计</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/04/18/2015年移动Web／HybridApp开发技能列表/">2015年移动Web／HybridApp开发技能列表</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/04/16/前端工程化：在gulp中顺序执行任务/">前端工程化：在gulp中顺序执行任务</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/04/09/Android 5.0 API新增和改进/">Android 5.0 API新增和改进</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/31/JavaScript的计时器的工作原理/">JavaScript的计时器的工作原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/31/ 浏览器原理  Repaint 、Reflow 的基本认识和优化/">浏览器原理  Repaint 、Reflow 的基本认识和优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/23/前端性能优化（JavaScript补充篇）/">前端性能优化（JavaScript补充篇）</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/18/Android 开发资源汇总/">Android 开发资源汇总</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/17/NodeJS+Express模块的跨域访问控制问题/">NodeJS+Express模块的跨域访问控制问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/07/Android手机平板两不误，使用Fragment实现兼容手机和平板的程序/">Android手机平板两不误，使用Fragment实现兼容手机和平板的程序</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/05/用树莓派制作一款只有刷脸才能开的保险柜/">用树莓派制作一款只有刷脸才能开的保险柜</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/02/28/腾讯移动Web整体解决方案--Spirit/">腾讯移动Web整体解决方案--Spirit</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/02/27/惊艳的基于nodejs的实时Web开发框架Meteor介绍/">惊艳的基于nodejs的实时Web开发框架Meteor介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/02/26/使用gulp压缩并合并AngularJS代码/">使用gulp压缩并合并AngularJS代码</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/01/28/移动前端开发之viewport的深入理解/">移动前端开发之viewport的深入理解</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/01/23/Hybrid Android App中通过js访问Shared Preferences的问题/">Hybrid Android App中通过js访问Shared Preferences的问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/01/07/Android编码规范及性能优化整理/">Android编码规范及性能优化整理</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/01/05/CSS中如何让 height100%; 起作用/">CSS中如何让 height100%; 起作用</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/29/AngularJS风格指南/">AngularJS风格指南</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/18/基于git的源代码管理模型——git flow/">基于git的源代码管理模型——git flow</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/18/Git的最佳实践git-flow/">Git的最佳实践git-flow</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/03/Android TVGoogle ADT1开发者版初体验/">Android TVGoogle ADT1开发者版初体验</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/02/GoogleIO 2013 Android快速联网框架Volley介绍/">GoogleIO 2013 Android快速联网框架Volley介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/27/Android MVVM框架RoboBinding初探/">Android MVVM框架RoboBinding初探</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/25/Android和iOS在新版本中助力HTML5/">Android和iOS在新版本中助力HTML5</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/23/香蕉派和树莓派的不同点及GPIO引脚定义/">香蕉派和树莓派的不同点及GPIO引脚定义</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/19/软件架构师应该知道的 97 件事笔记/">软件架构师应该知道的 97 件事笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/18/参加PyCon2014有感/">参加PyCon2014有感</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/14/Raspberry Pi VPN Gateway/">Raspberry Pi VPN Gateway</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/11/HTML5 终于定稿，八年后我们再一次谈谈怎么改变世界/">HTML5 终于定稿，八年后我们再一次谈谈怎么改变世界</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/06/Mac下查看某个命令的路径/">Mac下查看某个命令的路径</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/05/singleTop和singleTask有什么区别？ Activity 四种加载模式详解）/">singleTop和singleTask有什么区别？ Activity 四种加载模式详解）</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/05/2014年国内常用移动客户端推送服务介绍和比较/">2014年国内常用移动客户端推送服务介绍和比较</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/10/31/一篇文章读懂开源web引擎Crosswalk/">一篇文章读懂开源web引擎Crosswalk</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/10/30/AngularJs $broadcast $emit $on 事件触发controller间的值传递/">AngularJs $broadcast $emit $on 事件触发controller间的值传递</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/10/30/细嗅Promise/">细嗅Promise</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/10/28/从2014年D2前端技术论坛看前端发展趋势/">从2014年D2前端技术论坛看前端发展趋势</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/10/28/涛哥的Python脚本工具箱之生成带Logo的二维码/">涛哥的Python脚本工具箱之生成带Logo的二维码</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/10/22/mongodb适用和不适用的应用场景/">mongodb适用和不适用的应用场景</a></li><li class="post-list-item"><a class="post-list-link" href="/2009/12/07/Centos 5.3上Asterisk安装及配置/">Centos 5.3上Asterisk安装及配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2009/12/07/rsh服务配置文档/">rsh服务配置文档</a></li><li class="post-list-item"><a class="post-list-link" href="/2009/12/07/centos 5.3中用yum安装MPlayer/">centos 5.3中用yum安装MPlayer</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2015-2016 offbye
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="A fast, simple &amp; powerful blog framework">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="Another simple and elegant theme for Hexo">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >Site Visitors: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">Page Hits: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.1.22/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 9;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="Back to Top"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" title="Comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="Go to Bottom"><i class="fa fa-arrow-down"></i></a>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

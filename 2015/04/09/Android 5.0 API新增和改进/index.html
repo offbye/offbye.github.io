@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  
+  <title>Android 5.0 API新增和改进 | offbye</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Android 5.0 API新增和改进">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android 5.0 API新增和改进">
+<meta property="og:url" content="http://offbye.com/2015/04/09/Android 5.0 API新增和改进/index.html">
+<meta property="og:site_name" content="offbye">
+<meta property="og:description" content="Android 5.0 API新增和改进">
+<meta property="og:updated_time" content="2016-05-12T16:38:35.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android 5.0 API新增和改进">
+<meta name="twitter:description" content="Android 5.0 API新增和改进">
+  
+    <link rel="alternative" href="/atom.xml" title="offbye" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+      <link href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css" rel="stylesheet">
+  
+  
+  
+      <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+      <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+  
+  <script src="//cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.9/clipboard.min.js"></script>
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false,
+          fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+          scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.0.9/scrollreveal.min.js"
+      }
+  </script>
+
+  
+      <script>
+          yiliaConfig.rootUrl = "/";
+      </script>
+  
+
+  
+  
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">offbye</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">关注移动架构，Android，HTML5，iOS技术前沿</p>
+        
+                
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>Menu</li>
+                        <li>Tags</li>
+                        
+                        <li>Friends</li>
+                        
+                        
+                        <li>About Me</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:offbye@gmail.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/offbye" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="http://blog.csdn.net/offbye" title="CSDN"></a>
+                            
+                                <a class="fa StackOverflow" target="_blank" href="#offbye" title="StackOverflow"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sandbox/">Sandbox</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/YAML/">YAML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/swift/">swift</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注移动端</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">offbye</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">offbye</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">关注移动架构，Android，HTML5，iOS技术前沿</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:offbye@gmail.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/offbye" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="http://blog.csdn.net/offbye" title="CSDN"></a>
+                            
+                                <a class="fa StackOverflow" target="_blank" href="#offbye" title="StackOverflow"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
+</nav>
+      <div class="body-wrap"><article id="post-Android 5.0 API新增和改进" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/04/09/Android 5.0 API新增和改进/" class="article-date">
+      <time datetime="2015-04-09T06:11:00.000Z" itemprop="datePublished">2015-04-09</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Android 5.0 API新增和改进
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/android5/">android5</a><a class="article-category-link" href="/categories/android5/新特性/">新特性</a>
+    </div>
+
+
+        
+
+        
+        <div style="display:block; clear:both;">
+          <span>CSDN原文:<a href="http://blog.csdn.net/offbye/article/details/44959337" target="_blank" title="Android 5.0 API新增和改进">http://blog.csdn.net/offbye/article/details/44959337</a> </span>
+          <span style="float:right;margin-right:1em"> CSDN阅读数:664</span>
+        </div>
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>转自Android官网：<a href="https://developer.android.com/intl/zh-cn/about/versions/android-5.0.html" target="_blank" rel="external">点击打开链接</a><br>API 级别：21<br>Android 5.0 (<a href="https://developer.android.com/reference/android/os/Build.VERSION_CODES.html#LOLLIPOP" target="_blank" rel="external">LOLLIPOP</a>) 为用户和应用开发者提供了新的功能。本文档介绍了最值得注意的新 API。<br>有关新平台功能的扼要介绍，另请参阅 <a href="https://developer.android.com/about/versions/lollipop.html" target="_blank" rel="external">Android Lollipop 集锦</a>。</p>
+<p>###<a href=""></a>开始开发<br>要构建 Android 5.0 版应用，您必须先<a href="https://developer.android.com/sdk/index.html" target="_blank" rel="external">下载 Android SDK</a>，然后使用 <a href="https://developer.android.com/tools/help/sdk-manager.html" target="_blank" rel="external">SDK<br> 管理器</a>下载 Android 5.0 SDK 平台和系统映像。</p>
+<p>###<a href=""></a>更新您的目标 API 级别<br>要进一步针对运行 Android 5.0 的设备优化您的应用，请将 <a href="https://developer.android.com/guide/topics/manifest/uses-sdk-element.html#target" target="_blank" rel="external"><code>targetSdkVersion</code></a> 设置为 <code>&quot;21&quot;</code>，在<br> Android 5.0 系统映像上安装该应用并予以测试，然后将更改后的新版应用发布出去。<br>您既可以使用 5.0 API，也可以支持旧版本，方法是在代码中构建条件，确保先检查系统 API 级别再执行 <a href="https://developer.android.com/guide/topics/manifest/uses-sdk-element.html#min" target="_blank" rel="external"><code>minSdkVersion</code></a> 不支持的<br> API。要详细了解有关保持向后兼容的信息，请参阅<a href="https://developer.android.com/training/basics/supporting-devices/platforms.html" target="_blank" rel="external">支持不同平台版本</a>。<br>要详细了解有关各个 API 级别运行方式的信息，请参阅<a href="https://developer.android.com/guide/topics/manifest/uses-sdk-element.html#ApiLevels" target="_blank" rel="external">什么是 API 级别？</a></p>
+<p>##<a href=""></a>重要的行为变更</p>
+<hr>
+<p>请注意，如果您之前发布了 Android 版应用，那么您的应用可能会受到 Android 5.0 变化的影响。</p>
+<p>###<a href=""></a>如果您尚未针对新的 Android 运行时 (ART) 测试您的应用…<br>第 4.4 版引入了一个全新的实验性功能，即 Android 运行时 (ART)。在第 4.4 版中，ART 是可选的，默认运行时仍为 Dalvik。对于 Android 5.0，默认运行时现在是 ART。<br>有关 ART 新功能的概述，请参阅 <a href="https://source.android.com/devices/tech/dalvik/art.html" target="_blank" rel="external">ART 简介</a>。主要包括下面的一些新功能：</p>
+<ul>
+<li>预先 (AOT) 编译</li>
+<li>经过改进的垃圾回收 (GC)</li>
+<li>经过改进的调试支持</li>
+</ul>
+<p>大多数 Android 应用应该不用做出任何更改即可直接在 ART 下运行。不过，Dalvik 上运行的部分技术在 ART 上无法运行。要了解最重要的问题，请参阅<a href="https://developer.android.com/guide/practices/verifying-apps-art.html" target="_blank" rel="external">在 Android 运行时<br> (ART) 上验证应用行为</a>。请特别注意以下情况：</p>
+<ul>
+<li>您的应用使用 Java 原生接口 (JNI) 运行 C/C++ 代码。</li>
+<li>您使用的开发工具可生成非标准代码（例如某些混淆代码）。</li>
+<li>您使用的技术与垃圾回收压缩不兼容。（虽然 ART 当前没有实施垃圾回收压缩，但在 Android 开放源代码项目中，垃圾回收压缩正处于开发阶段）。</li>
+</ul>
+<p>###<a href=""></a>如果您的应用实施通知…<br>请确保您的通知能够反映出 Android 5.0 的这些变化。要详细了解如何设计适用于 Android 5.0 及更高版本的通知，请参阅<a href="https://developer.android.com/design/patterns/notifications.html" target="_blank" rel="external">通知设计指南</a>。</p>
+<p>####<a href=""></a>Material Design 设计样式<br>通知是在白色（或颜色非常浅的）背景上绘制的深色文本，以便与新的 Material Design 设计小部件协调一致。请确保所有通知在新的配色方案下都能够正常显示。如果通知无法正常显示，请予以修复：</p>
+<ul>
+<li>使用 <code>[setColor()](https://developer.android.com/reference/android/app/Notification.Builder.html#setColor(int))</code> 在图标图片后面的圆圈中设置一种强调色彩。</li>
+<li>更新或移除有颜色的资源。系统会忽略操作图标和主通知图标中的所有非 Alpha 通道。您应当假定这些图标仅包含 Alpha 通道。系统会用白色来绘制通知图标，而用深灰色来绘制操作图标。</li>
+</ul>
+<p>####<a href=""></a>声音和振动<br>如果您当前在使用 <code>[Ringtone](https://developer.android.com/reference/android/media/Ringtone.html)</code>、<code>[MediaPlayer](https://developer.android.com/reference/android/media/MediaPlayer.html)</code> 或 <code>[Vibrator](https://developer.android.com/reference/android/os/Vibrator.html)</code> 类为通知添加声音和振动，请移除该代码，这样系统才能以优先模式正常呈现通知。**若要添加声音和振动，请改用 <code>[Notification.Builder](https://developer.android.com/reference/android/app/Notification.Builder.html)</code> 方法。<br>将设备设置为 <code>[RINGER_MODE_SILENT](https://developer.android.com/reference/android/media/AudioManager.html#RINGER_MODE_SILENT)</code> 会导致它进入新的优先模式。如果将设备设置为 <code>[RINGER_MODE_NORMAL](https://developer.android.com/reference/android/media/AudioManager.html#RINGER_MODE_NORMAL)</code> 或<code>[RINGER_MODE_VIBRATE](https://developer.android.com/reference/android/media/AudioManager.html#RINGER_MODE_NORMAL)</code>，则会使其退出优先模式。<br>以前，Android 将 <code>[STREAM_MUSIC](https://developer.android.com/reference/android/media/AudioManager.html#STREAM_MUSIC)</code> 用作主音量流，以此来控制平板电脑设备的音量。在<br> Android 5.0 中，手机和平板电脑设备的主音量流现已统一，均由 <code>[STREAM_RING](https://developer.android.com/reference/android/media/AudioManager.html#STREAM_RING)</code> 或 <code>[STREAM_NOTIFICATION](https://developer.android.com/reference/android/media/AudioManager.html#STREAM_NOTIFICATION)</code> 控制。</p>
+<p>####<a href=""></a>通知在锁定屏幕上的公开程度<br>在 Android 5.0 中，通知现在默认显示在用户的锁定屏幕上。用户可以选择不公开敏感信息，这样的话系统会自动修改通知显示文本。要自定义这种经过修改的通知，请使用 <code>[setPublicVersion()](https://developer.android.com/reference/android/app/Notification.Builder.html#setPublicVersion(android.app.Notification))</code>。<br>如果通知不包含个人信息，或者您希望在通知中显示媒体播放控件，请调用 <code>[setVisibility()](https://developer.android.com/reference/android/app/Notification.Builder.html#setVisibility(int))</code> 方法，并将通知的公开程度的级别设置为 <code>[VISIBILITY_PUBLIC](https://developer.android.com/reference/android/app/Notification.html#VISIBILITY_PUBLIC)</code>。</p>
+<p>####<a href=""></a>媒体播放<br>如果您要实施可呈现媒体播放状态或传输控件的通知，请考虑使用新的 <code>[Notification.MediaStyle](https://developer.android.com/reference/android/app/Notification.MediaStyle.html)</code> 模板，而不是自定义<code>[RemoteViews.RemoteView](https://developer.android.com/reference/android/widget/RemoteViews.RemoteView.html)</code> 对象。无论您选择使用哪种方法，请务必将通知的公开程度设置为 <code>[VISIBILITY_PUBLIC](https://developer.android.com/reference/android/app/Notification.html#VISIBILITY_PUBLIC)</code>，以便用户可以在锁定屏幕中使用您的控件。请注意，从<br> Android 5.0 开始，系统不再在锁定屏幕中显示 <code>[RemoteControlClient](https://developer.android.com/reference/android/media/RemoteControlClient.html)</code> 对象。有关详情，请参阅<a href="https://developer.android.com/intl/zh-cn/about/versions/android-5.0.html#BehaviorMediaControl" target="_blank" rel="external">如果您的应用使用<br> RemoteControlClient</a>。</p>
+<p>####<a href=""></a>提醒通知<br>现在，当设备处于活动状态（即设备未锁定且屏幕亮起）时，通知可以显示在小型浮动窗口中（也称为提醒通知）。此类通知采用的显示形式与紧凑型通知采用的形式类似，不同的是提醒通知还会显示操作按钮。用户无需退出当前应用，即可根据提醒通知执行操作或关闭提醒通知。<br>可以触发提醒通知的情景示例包括：</p>
+<ul>
+<li>用户在全屏模式下执行操作（应用使用 <code>[fullScreenIntent](https://developer.android.com/reference/android/app/Notification.html#fullScreenIntent)</code>）</li>
+<li>通知的优先级较高，并且使用铃声或振动</li>
+</ul>
+<p>如果您的应用在上述任意一种情景下实施通知，请确保提醒通知能够正常呈现。</p>
+<p>###<a href=""></a>如果您的应用使用 RemoteControlClient…<br><code>[RemoteControlClient](https://developer.android.com/reference/android/media/RemoteControlClient.html)</code> 类现已被弃用。请尽快改用全新的 <code>[MediaSession](https://developer.android.com/reference/android/media/session/MediaSession.html)</code> API。<br>对于 <code>[MediaSession](https://developer.android.com/reference/android/media/session/MediaSession.html)</code> 或 <code>[RemoteControlClient](https://developer.android.com/reference/android/media/RemoteControlClient.html)</code>，Android<br> 5.0 中的锁定屏幕不会显示传输控件。相反，您的应用可以通过通知在锁定屏幕中提供媒体播放控件。这样，您的应用就能够更好地控制媒体按钮的展现方式，同时还能让用户无论在设备处于锁定还是解锁状态下都可以执行同样的操作。<br>为此，Android 5.0 引入了一个新的 <code>[Notification.MediaStyle](https://developer.android.com/reference/android/app/Notification.MediaStyle.html)</code> 模板。<code>[Notification.MediaStyle](https://developer.android.com/reference/android/app/Notification.MediaStyle.html)</code> 将您通过<code>[Notification.Builder.addAction()](https://developer.android.com/reference/android/app/Notification.Builder.html#addAction(int, java.lang.CharSequence, android.app.PendingIntent))</code> 添加的通知操作转换到在您应用的媒体播放通知中内嵌的紧凑型按钮中。将会话令牌传递到 <code>[setSession()](https://developer.android.com/reference/android/app/Notification.MediaStyle.html#setMediaSession(android.media.session.MediaSession.Token))</code> 方法，指示系统此通知控制正在进行的媒体会话。<br>请务必将通知的公开程度设置为 <code>[VISIBILITY_PUBLIC](https://developer.android.com/reference/android/app/Notification.html#VISIBILITY_PUBLIC)</code>，将通知标为安全通知，以便在任何锁定屏幕（安全屏幕或其他屏幕）上显示。有关详情，请参阅<a href="https://developer.android.com/intl/zh-cn/about/versions/android-5.0.html#LockscreenNotifications" target="_blank" rel="external">在锁定屏幕上显示通知</a>。<br>如果您的应用是在 Android <a href="https://developer.android.com/tv/index.html" target="_blank" rel="external">TV</a> 或 <a href="https://developer.android.com/wear/index.html" target="_blank" rel="external">Wear</a> 平台上运行，请通过实施 <code>[MediaSession](https://developer.android.com/reference/android/media/session/MediaSession.html)</code> 类来显示媒体播放控件。如果您的应用需要在<br> Android 设备上接收媒体按钮事件，您还应当实施 <code>[MediaSession](https://developer.android.com/reference/android/media/session/MediaSession.html)</code>。</p>
+<p>###<a href=""></a>如果您的应用使用 getRecentTasks()…<br>**由于 Android 5.0 中引入了并行文档和活动任务这一新功能（请参阅下文中的<a href="https://developer.android.com/intl/zh-cn/about/versions/android-5.0.html#Recents" target="_blank" rel="external">“最近用过”屏幕中的并行文档和活动</a>），<code>[ActivityManager.getRecentTasks()](https://developer.android.com/reference/android/app/ActivityManager.html#getRecentTasks(int, int))</code> 方法现已被弃用，以更好地保护用户隐私。为了实现向后兼容性，此方法仍会返回它的一小部分数据，包括调用应用自身的任务，同时还可能包括其他一些非敏感任务（例如“首页”）。如果您的应用在使用此方法检索它自身的任务，请改用 <code>[getAppTasks()](https://developer.android.com/reference/android/app/ActivityManager.html#getAppTasks())</code> 检索该信息。</p>
+<p>###<a href=""></a>如果您使用的是 Android 原生开发工具包 (NDK)…<br>Android 5.0 支持 64 位系统。64 位增强功能增加了寻址空间并提高了性能，同时仍能全面支持现有的 32 位应用。64 位支持还提高了 OpenSSL 的加密性能。另外，此版本还引入了新的原生媒体 NDK API 以及原生 OpenGL ES (GLES) 3.1 支持。<br>要利用 Android 5.0 中提供的 64 位支持，请从 <a href="https://developer.android.com/tools/sdk/ndk/index.html" target="_blank" rel="external">Android NDK 页面</a>下载并安装 NDK 10c 版。要详细了解 NDK 的重要变化和错误修复，请参阅 10c 版<a href="https://developer.android.com/tools/sdk/ndk/index.html#Revisions" target="_blank" rel="external">版本说明</a>。</p>
+<p>###<a href=""></a>如果您的应用绑定到某项服务…<br><code>[Context.bindService()](https://developer.android.com/reference/android/content/Context.html#bindService(android.content.Intent, android.content.ServiceConnection, int))</code> 方法现在要求获取显式 <code>[Intent](https://developer.android.com/reference/android/content/Intent.html)</code>；如果获取的是隐式<br> intent，则会引发异常。为了确保您的应用是安全的，请在启动或绑定 <code>[Service](https://developer.android.com/reference/android/app/Service.html)</code> 时使用显式<br> intent，并且不要为此服务声明 intent 过滤器。</p>
+<p>###<a href=""></a>如果您的应用使用 WebView…<br>Android 5.0 会更改您应用的默认行为。</p>
+<ul>
+<li><strong>如果您的应用的目标 API 级别不低于 21</strong>：- 默认情况下，系统会屏蔽<a href="https://developer.mozilla.org/en-US/docs/Security/MixedContent" target="_blank" rel="external">混合内容</a>和第三方 Cookie。要让系统不屏蔽混合内容和第三方<br>Cookie，请分别使用<code>[setMixedContentMode()](https://developer.android.com/reference/android/webkit/WebSettings.html#setMixedContentMode(int))</code> 和 <code>[setAcceptThirdPartyCookies()](https://developer.android.com/reference/android/webkit/CookieManager.html#setAcceptThirdPartyCookies(android.webkit.WebView, boolean))</code> 方法。</li>
+<li>系统现在可以智能选择要绘制的 HTML 文档部分。这一新的默认行为有助于降低内存占用量并提高性能。如果您要一次性呈现整个文档，请调用 <code>[enableSlowWholeDocumentDraw()](https://developer.android.com/reference/android/webkit/WebView.html#enableSlowWholeDocumentDraw())</code> 停用此优化行为。</li>
+</ul>
+<ul>
+<li><strong>如果您的应用的目标 API 级别低于 21</strong>：系统不会屏蔽混合内容和第三方 Cookie，并且始终会一次性呈现整个文档。</li>
+</ul>
+<p>##<a href=""></a>界面</p>
+<hr>
+<p>###<a href=""></a>Material Design 设计支持<br>**即将发布的版本新增了对 Android 新 Material Design 设计样式的支持。您可以借助 Material Design 设计样式创建应用，使其呈现动态的视觉效果并为用户提供自然的界面元素过渡效果。此支持包括：</p>
+<ul>
+<li>素材主题背景</li>
+<li>视图阴影</li>
+<li><code>[RecyclerView](https://developer.android.com/reference/android/support/v7/widget/RecyclerView.html)</code> 小部件</li>
+<li>可绘制的动画和样式效果</li>
+<li>Material Design 设计动画和活动过渡效果</li>
+<li>基于视图状态的视图属性动画生成器</li>
+<li>可自定义的界面小部件和应用栏（含您可以控制的调色板）</li>
+<li>基于 XML 矢量图形的动画和非动画图形内容</li>
+</ul>
+<p>要详细了解如何向您的应用添加 Material Design 设计功能，请参阅 <a href="https://developer.android.com/training/material/index.html" target="_blank" rel="external">Material Design 设计</a>。</p>
+<p>###<a href=""></a>“最近用过”屏幕中的并行文档和活动<br>在以前的版本中，对于用户最近与之互动的每个应用，<a href="https://developer.android.com/guide/components/recents.html" target="_blank" rel="external">“最近用过”屏幕</a>都只能显示一个任务。现在，您的应用可以视需要针对其他并行活动或文档打开多个任务。通过此功能，用户可以在“最近用过”屏幕中快速切换各个活动和文档，并能在所有应用之间获得一致的切换体验，从而实现多任务处理。此类并行任务示例可能包括：网络浏览器应用中打开的标签页、效率类应用中的文档、游戏中的并行对局或信息应用中的聊天。您的应用可以通过 <code>[ActivityManager.AppTask](https://developer.android.com/reference/android/app/ActivityManager.AppTask.html)</code> 类管理任务。<br>要插入逻辑中断，以便系统能够将您的活动视为一个新任务，请在通过 <code>[startActivity()](https://developer.android.com/reference/android/app/Activity.html#startActivity(android.content.Intent))</code> 启动活动时使用<code>[FLAG_ACTIVITY_NEW_DOCUMENT](https://developer.android.com/reference/android/content/Intent.html#FLAG_ACTIVITY_NEW_DOCUMENT)</code>。您还可以在清单中将 <a href="https://developer.android.com/guide/topics/manifest/activity-element.html" target="_blank" rel="external"><activity></activity></a> 元素的 <code>documentLaunchMode</code> 属性设置为 <code>&quot;intoExisting&quot;</code> 或<code>&quot;always&quot;</code>，从而实现该行为。<br>为了避免“最近用过”屏幕过于混乱，您可以设置应用能够在该屏幕中显示的任务数上限。为此，请设置 <a href="https://developer.android.com/guide/topics/manifest/application-element.html" target="_blank" rel="external"><application></application></a> 的<code>[android:maxRecents](https://developer.android.com/reference/android/R.attr.html#maxRecents)</code> 属性。目前可以指定的上限为，每个用户<br> 50 个任务（对于 RAM 较小的设备，则为每个用户 25 个任务）。<br>您可以将“最近用过”屏幕中的任务设置为在重新启动过程中保持不变。要控制这一持续行为，请使用<a href="https://developer.android.com/reference/android/R.attr.html#persistableMode" target="_blank" rel="external">android:persistableMode</a> 属性。您也可以通过调用 <code>[setTaskDescription()](https://developer.android.com/reference/android/app/Activity.html#setTaskDescription(android.app.ActivityManager.TaskDescription))</code> 方法，来更改“最近用过”屏幕中活动的视觉属性，如活动的颜色、标签和图标。</p>
+<p>###<a href=""></a>WebView 更新<br>Android 5.0 将 <code>[WebView](https://developer.android.com/reference/android/webkit/WebView.html)</code> 实施更新为<br> Chromium M37，不仅提高了安全性和稳定性，还修复了多项错误。Android 5.0 上运行的 <code>[WebView](https://developer.android.com/reference/android/webkit/WebView.html)</code> 的默认用户代理字符串已更新为采用<br> 37.0.0.0 作为版本号。<br>此版本引入了 <code>[PermissionRequest](https://developer.android.com/reference/android/webkit/PermissionRequest.html)</code> 类，该类允许您的应用 <a href="https://developer.mozilla.org/en-US/docs/NavigatorUserMedia.getUserMedia" target="_blank" rel="external">getUserMedia()</a> 之类的<br> Web API 向 <code>[WebView](https://developer.android.com/reference/android/webkit/WebView.html)</code> 授予对受保护资源（例如摄像头和麦克风）的访问权限。您的应用必须拥有对这些资源的相应<br> Android 权限，才能向 <code>[WebView](https://developer.android.com/reference/android/webkit/WebView.html)</code> 授予权限。<br>借助新的 <code>[onShowFileChooser()](https://developer.android.com/reference/android/webkit/WebChromeClient.html#onShowFileChooser(android.webkit.WebView, android.webkit.ValueCallback&lt;android.net.Uri[]&gt;, android.webkit.WebChromeClient.FileChooserParams))</code> 方法，您现在不但可以在 <code>[WebView](https://developer.android.com/reference/android/webkit/WebView.html)</code> 中使用输入表单字段，而且可以启动文件选择器从<br> Android 设备中选择图片和文件。<br>另外，此版本还支持 <a href="http://webaudio.github.io/web-audio-api/" target="_blank" rel="external">WebAudio</a>、<a href="https://www.khronos.org/webgl/" target="_blank" rel="external">WebGL</a> 和 <a href="http://www.webrtc.org/" target="_blank" rel="external">WebRTC</a> 等开放标准。要详细了解此版本中的新增功能，请参阅<a href="https://developer.chrome.com/multidevice/webview/overview" target="_blank" rel="external">Android<br> 版 WebView</a>。</p>
+<p>###<a href=""></a>屏幕截图和共享<br>通过 Android 5.0，您可以使用新的 <code>[android.media.projection](https://developer.android.com/reference/android/media/projection/package-summary.html)</code> API<br> 向您的应用添加屏幕截图和屏幕共享功能。例如，如果您希望在视频会议应用中启用屏幕共享，则会发现此功能非常实用。<br>通过新的 <code>[createVirtualDisplay()](https://developer.android.com/reference/android/media/projection/MediaProjection.html#createVirtualDisplay(java.lang.String, int, int, int, int, android.view.Surface, android.hardware.display.VirtualDisplay.Callback, android.os.Handler))</code> 方法，您的应用可以将主屏幕内容（默认显示屏）捕获到 <code>[Surface](https://developer.android.com/reference/android/view/Surface.html)</code> 对象中，然后通过网络发送该对象。该<br> API 仅允许捕获非安全的屏幕内容，不允许捕获系统音频。要开始屏幕截图，您的应用必须先使用通过<code>[createScreenCaptureIntent()](https://developer.android.com/reference/android/media/projection/MediaProjectionManager.html#createScreenCaptureIntent())</code> 方法获取的 <code>[Intent](https://developer.android.com/reference/android/content/Intent.html)</code> 启动屏幕截图对话框，来请求用户向其授予相应权限。<br>有关新 API 的使用示例，请参阅示例项目中的 <code>MediaProjectionDemo</code> 类。</p>
+<p>##<a href=""></a>通知</p>
+<hr>
+<p>###<a href=""></a>锁定屏幕通知<br>Android 5.0 中的锁定屏幕能够呈现通知。**用户可以通过“设置”来选择是否允许在安全的锁定屏幕上显示敏感的通知内容。<br>您的应用可以控制其通知在安全的锁定屏幕上显示时的具体公开程度。要控制公开程度的级别，请调用 <code>[setVisibility()](https://developer.android.com/reference/android/app/Notification.Builder.html#setVisibility(int))</code> 并指定下列值之一：</p>
+<ul>
+<li><code>[VISIBILITY_PRIVATE](https://developer.android.com/reference/android/app/Notification.html#VISIBILITY_PRIVATE)</code>：显示基本信息（例如通知图标），但隐藏通知的全部内容。</li>
+<li><code>[VISIBILITY_PUBLIC](https://developer.android.com/reference/android/app/Notification.html#VISIBILITY_PUBLIC)</code>：显示通知的全部内容。</li>
+<li><code>[VISIBILITY_SECRET](https://developer.android.com/reference/android/app/Notification.html#VISIBILITY_SECRET)</code>：不显示任何内容，甚至连通知图标也不显示。</li>
+</ul>
+<p>如果公开程度级别为 <code>[VISIBILITY_PRIVATE](https://developer.android.com/reference/android/app/Notification.html#VISIBILITY_PRIVATE)</code>，您还可以提供隐藏了个人详细信息的通知内容修改版本。例如，短信应用的通知可能会显示“您有<br> 3 条新短信”，但隐藏短信内容和发送者。要提供此备用通知，请先使用 <code>[Notification.Builder](https://developer.android.com/reference/android/app/Notification.Builder.html)</code> 创建替代通知。当创建不公开的通知对象时，请通过 <code>[setPublicVersion()](https://developer.android.com/reference/android/app/Notification.Builder.html#setPublicVersion(android.app.Notification))</code> 方法为其附加替代通知。</p>
+<p>###<a href=""></a>通知元数据<br>Android 5.0 使用与您的应用通知关联的元数据更智能地对通知进行排序。要设置元数据，请在构建通知时调用<code>[Notification.Builder](https://developer.android.com/reference/android/app/Notification.Builder.html)</code> 中的以下方法：</p>
+<ul>
+<li><code>[setCategory()](https://developer.android.com/reference/android/app/Notification.Builder.html#setCategory(java.lang.String))</code>：告诉系统当设备处于“优先”**模式时如何处理您的应用通知（例如，当通知表示来电、即时消息或警报时）。</li>
+<li><code>[setPriority()](https://developer.android.com/reference/android/app/Notification.Builder.html#setPriority(int))</code>：将通知标记为重要性高于或低于普通通知。如果还带有声音或振动，则优先级字段设置为 <code>[PRIORITY_MAX](https://developer.android.com/reference/android/app/Notification.html#PRIORITY_MAX)</code>或 <code>[PRIORITY_HIGH](https://developer.android.com/reference/android/app/Notification.html#PRIORITY_HIGH)</code> 的通知将出现在一个小的浮动窗口中。</li>
+<li><code>[addPerson()](https://developer.android.com/reference/android/app/Notification.Builder.html#addPerson(java.lang.String))</code>：允许您向通知添加一个或多个相关的人员。利用此方法，您的应用可指示系统将来自指定人员的通知归成一组，或者将来自这些人员的通知归类为重要性高于普通通知。</li>
+</ul>
+<p>##<a href=""></a>显卡</p>
+<hr>
+<p>###<a href=""></a>支持 OpenGL ES 3.1<br>Android 5.0 针对 OpenGL ES 3.1 添加了 Java 接口和原生支持。OpenGL ES 3.1 中提供的主要新功能包括：</p>
+<ul>
+<li>对着色器进行计算</li>
+<li>单独的着色器对象</li>
+<li>间接绘图命令</li>
+<li>多样本和模版纹理</li>
+<li>对着色语言的改进</li>
+<li>用于高级混合模式和调试的扩展</li>
+<li>对 OpenGL ES 2.0 和 3.0 的向后兼容性</li>
+</ul>
+<p>Android 上 OpenGL ES 3.1 的 Java 接口是通过 <code>[GLES31](https://developer.android.com/reference/android/opengl/GLES31.html)</code> 提供的。当使用<br> OpenGL ES 3.1 时，请务必在您的清单文件中使用 <a href="https://developer.android.com/guide/topics/manifest/uses-feature-element.html" target="_blank" rel="external">``</a>标记和 <code>android:glEsVersion</code> 属性声明它。例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;span class=&quot;tag&quot; style=&quot;color: rgb(0, 0, 136);&quot;&gt;&lt;manifest&gt;&lt;/span&gt;&lt;span class=&quot;pln&quot; style=&quot;color: rgb(0, 0, 0);&quot;&gt;</span><br><span class="line">    &lt;/span&gt;&lt;span class=&quot;tag&quot; style=&quot;color: rgb(0, 0, 136);&quot;&gt;&lt;uses-feature&lt;/span&gt;&lt;span class=&quot;pln&quot; style=&quot;color: rgb(0, 0, 0);&quot;&gt; &lt;/span&gt;&lt;span class=&quot;atn&quot; style=&quot;color: rgb(136, 34, 136);&quot;&gt;android:glEsVersion&lt;/span&gt;&lt;span class=&quot;pun&quot; style=&quot;color: rgb(102, 102, 0);&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;atv&quot; style=&quot;color: rgb(136, 0, 0);&quot;&gt;&quot;0x00030001&quot;&lt;/span&gt;&lt;span class=&quot;pln&quot; style=&quot;color: rgb(0, 0, 0);&quot;&gt; &lt;/span&gt;&lt;span class=&quot;tag&quot; style=&quot;color: rgb(0, 0, 136);&quot;&gt;/&gt;&lt;/span&gt;&lt;span class=&quot;pln&quot; style=&quot;color: rgb(0, 0, 0);&quot;&gt;</span><br><span class="line">    ...</span><br><span class="line">&lt;/span&gt;&lt;span class=&quot;tag&quot; style=&quot;color: rgb(0, 0, 136);&quot;&gt;&lt;/manifest&gt;&lt;/span&gt;</span><br></pre></td></tr></table></figure>
+<p>有关使用 OpenGL ES 的更多信息，包括如何在运行时检查设备支持的 OpenGL ES 版本，请参阅 <a href="https://developer.android.com/guide/topics/graphics/opengl.html" target="_blank" rel="external">OpenGL ES API 指南</a>。</p>
+<p>###<a href=""></a>Android 扩展程序包<br>除了 OpenGL ES 3.1 之外，本版本还提供了一个扩展程序包，该程序包具有适用于高级显卡功能的 Java 接口和原生支持。Android 将这些扩展程序视为一个程序包。（如果存在 <code>ANDROID_extension_pack_es31a</code> 扩展程序，则您的应用可以假定该程序包中的所有扩展都存在，并可通过单个 <code>#extension</code> 语句启用着色语言功能。）<br>该扩展程序包支持：</p>
+<ul>
+<li>对着色器存储缓冲区、图片和原子的有保证片段着色器支持（片段着色器支持在 OpenGL ES 3.1 中是可选的。）</li>
+<li>曲面细分和几何着色器</li>
+<li>ASTC (LDR) 纹理压缩格式</li>
+<li>按样本插值和着色</li>
+<li>为帧缓冲区中的每个颜色附件使用不同的混合模式</li>
+</ul>
+<p>该扩展程序包的 Java 接口是通过 <code>[GLES31Ext](https://developer.android.com/reference/android/opengl/GLES31Ext.html)</code> 提供的。在您的应用清单中，您可以声明您的应用必须仅安装在支持该扩展程序包的设备上。例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;span class=&quot;tag&quot; style=&quot;color: rgb(0, 0, 136);&quot;&gt;&lt;manifest&gt;&lt;/span&gt;&lt;span class=&quot;pln&quot; style=&quot;color: rgb(0, 0, 0);&quot;&gt;</span><br><span class="line">    &lt;/span&gt;&lt;span class=&quot;tag&quot; style=&quot;color: rgb(0, 0, 136);&quot;&gt;&lt;uses-feature&lt;/span&gt;&lt;span class=&quot;pln&quot; style=&quot;color: rgb(0, 0, 0);&quot;&gt; &lt;/span&gt;&lt;span class=&quot;atn&quot; style=&quot;color: rgb(136, 34, 136);&quot;&gt;android:name&lt;/span&gt;&lt;span class=&quot;pun&quot; style=&quot;color: rgb(102, 102, 0);&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;atv&quot; style=&quot;color: rgb(136, 0, 0);&quot;&gt;“android.hardware.opengles.aep”&lt;/span&gt;&lt;span class=&quot;pln&quot; style=&quot;color: rgb(0, 0, 0);&quot;&gt;</span><br><span class="line">        &lt;/span&gt;&lt;span class=&quot;atn&quot; style=&quot;color: rgb(136, 34, 136);&quot;&gt;android:required&lt;/span&gt;&lt;span class=&quot;pun&quot; style=&quot;color: rgb(102, 102, 0);&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;atv&quot; style=&quot;color: rgb(136, 0, 0);&quot;&gt;&quot;true&quot;&lt;/span&gt;&lt;span class=&quot;pln&quot; style=&quot;color: rgb(0, 0, 0);&quot;&gt; &lt;/span&gt;&lt;span class=&quot;tag&quot; style=&quot;color: rgb(0, 0, 136);&quot;&gt;/&gt;&lt;/span&gt;&lt;span class=&quot;pln&quot; style=&quot;color: rgb(0, 0, 0);&quot;&gt;</span><br><span class="line">    ...</span><br><span class="line">&lt;/span&gt;&lt;span class=&quot;tag&quot; style=&quot;color: rgb(0, 0, 136);&quot;&gt;&lt;/manifest&gt;&lt;/span&gt;</span><br></pre></td></tr></table></figure>
+<p>##<a href=""></a>媒体</p>
+<hr>
+<p>###<a href=""></a>用于高级摄像头功能的摄像头 API<br>Android 5.0 引入了新的 <a href="https://developer.android.com/reference/android/hardware/camera2/package-summary.html" target="_blank" rel="external">android.hardware.camera2</a> API 来帮助执行精细的照片拍摄和图片处理。您现在可以通过<code>[getCameraIdList()](https://developer.android.com/reference/android/hardware/camera2/CameraManager.html#getCameraIdList())</code> 以编程方式访问可供系统使用的摄像头设备，并通过 <code>[openCamera()](https://developer.android.com/reference/android/hardware/camera2/CameraManager.html#openCamera(java.lang.String, android.hardware.camera2.CameraDevice.StateCallback, android.os.Handler))</code> 连接到特定设备。要开始拍摄图片，请创建一个 <code>[CameraCaptureSession](https://developer.android.com/reference/android/hardware/camera2/CameraCaptureSession.html)</code> 并指定 <code>[Surface](https://developer.android.com/reference/android/view/Surface.html)</code> 对象来发送所拍摄的图片。您可以将 <code>[CameraCaptureSession](https://developer.android.com/reference/android/hardware/camera2/CameraCaptureSession.html)</code> 配置为单拍或连拍。<br>要想在拍摄了新图片时收到通知，请实施 <code>[CameraCaptureSession.CaptureCallback](https://developer.android.com/reference/android/hardware/camera2/CameraCaptureSession.CaptureCallback.html)</code> 监听器并将其设置在您的拍摄请求中。现在，当系统完成图片拍摄请求时，您的 <code>[CameraCaptureSession.CaptureCallback](https://developer.android.com/reference/android/hardware/camera2/CameraCaptureSession.CaptureCallback.html)</code> 监听器将收到对 <code>[onCaptureCompleted()](https://developer.android.com/reference/android/hardware/camera2/CameraCaptureSession.CaptureCallback.html#onCaptureCompleted(android.hardware.camera2.CameraCaptureSession, android.hardware.camera2.CaptureRequest, android.hardware.camera2.TotalCaptureResult))</code> 的调用，在 <code>[CaptureResult](https://developer.android.com/reference/android/hardware/camera2/CaptureResult.html)</code> 中向您提供图片拍摄元数据。<br><code>[CameraCharacteristics](https://developer.android.com/reference/android/hardware/camera2/CameraCharacteristics.html)</code> 类允许您的应用检测设备上有哪些摄像头功能可用。对象的 <code>[INFO_SUPPORTED_HARDWARE_LEVEL](https://developer.android.com/reference/android/hardware/camera2/CameraCharacteristics.html#INFO_SUPPORTED_HARDWARE_LEVEL)</code> 属性表示摄像头的功能级别。</p>
+<ul>
+<li>所有设备都至少支持 <code>[INFO_SUPPORTED_HARDWARE_LEVEL_LEGACY](https://developer.android.com/reference/android/hardware/camera2/CameraMetadata.html#INFO_SUPPORTED_HARDWARE_LEVEL_LEGACY)</code> 硬件级别，该级别的功能大致等同于已弃用的 <code>[Camera](https://developer.android.com/reference/android/hardware/Camera.html)</code> API<br>的功能。</li>
+<li>支持 <code>[INFO_SUPPORTED_HARDWARE_LEVEL_FULL](https://developer.android.com/reference/android/hardware/camera2/CameraMetadata.html#INFO_SUPPORTED_HARDWARE_LEVEL_FULL)</code> 硬件级别的设备不仅能让用户手动控制拍摄和后期处理，而且能够以高帧速率拍摄高分辨率图片。</li>
+</ul>
+<p>要了解如何使用更新后的<a href="https://developer.android.com/reference/android/hardware/camera2/package-summary.html" target="_blank" rel="external">摄像头</a> API，请参考本版本中的 <code>Camera2Basic</code> 和 <code>Camera2Video</code> 实施样本。</p>
+<p>###<a href=""></a>音频播放<br>此版本对 <code>[AudioTrack](https://developer.android.com/reference/android/media/AudioTrack.html)</code> 进行了以下更改：</p>
+<ul>
+<li>您的应用现在能够以浮点格式 (<code>[ENCODING_PCM_FLOAT](https://developer.android.com/reference/android/media/AudioFormat.html#ENCODING_PCM_FLOAT)</code>)<br>提供音频数据。这允许更大的动态范围、更一致的精度以及更大的动态余量。浮点算法在中间计算期间尤其有用。播放端点为音频数据使用整数格式，并且具有较低的位深度。（在 Android 5.0 中，内部管线的某些部分尚未采用浮点格式。）</li>
+<li>您的应用现在可以将音频数据提供为 <code>[ByteBuffer](https://developer.android.com/reference/java/nio/ByteBuffer.html)</code>，所用格式与 <code>[MediaCodec](https://developer.android.com/reference/android/media/MediaCodec.html)</code> 提供的格式相同。</li>
+<li><code>[WRITE_NON_BLOCKING](https://developer.android.com/reference/android/media/AudioTrack.html#WRITE_NON_BLOCKING)</code> 选项可以简化某些应用的缓冲和多线程处理。</li>
+</ul>
+<p>###<a href=""></a>媒体播放控件<br>使用新的通知和媒体 API，可确保系统界面能够了解您的媒体播放并提取和显示专辑封面。而借助新的 <code>[MediaSession](https://developer.android.com/reference/android/media/session/MediaSession.html)</code> 和<code>[MediaController](https://developer.android.com/reference/android/media/session/MediaController.html)</code> 类，您现在则可更轻松地跨界面和服务控制媒体播放。<br>新的 <code>[MediaSession](https://developer.android.com/reference/android/media/session/MediaSession.html)</code> 类替代了被弃用的 <code>[RemoteControlClient](https://developer.android.com/reference/android/media/RemoteControlClient.html)</code> 类，并且提供了一组用于处理传输控件和媒体按钮的回调方法。如果您的应用提供媒体播放并且在<br> Android <a href="https://developer.android.com/tv/index.html" target="_blank" rel="external">TV</a> 或 <a href="https://developer.android.com/wear/index.html" target="_blank" rel="external">Wear</a> 平台上运行，请使用 <code>[MediaSession](https://developer.android.com/reference/android/media/session/MediaSession.html)</code> 类和相同的回调方法来处理您的传输控件。<br>您现在可以通过新的 <code>[MediaController](https://developer.android.com/reference/android/media/session/MediaController.html)</code> 类构建您自己的媒体控制器应用。此类提供了一种线程安全方法，可让您通过自己的应用界面流程来监控媒体播放。在创建控制器时，请指定一个 <code>[MediaSession.Token](https://developer.android.com/reference/android/media/session/MediaSession.Token.html)</code> 对象，以便您的应用可以与给定的<code>[MediaSession](https://developer.android.com/reference/android/media/session/MediaSession.html)</code> 进行互动。通过使用 <code>[MediaController.TransportControls](https://developer.android.com/reference/android/media/session/MediaController.TransportControls.html)</code> 方法，您可以发送诸如 <code>[play()](https://developer.android.com/reference/android/media/session/MediaController.TransportControls.html#play())</code>、<code>[stop()](https://developer.android.com/reference/android/media/session/MediaController.TransportControls.html#stop())</code>、<code>[skipToNext()](https://developer.android.com/reference/android/media/session/MediaController.TransportControls.html#skipToNext())</code>和 <code>[setRating()](https://developer.android.com/reference/android/media/session/MediaController.TransportControls.html#setRating(android.media.Rating))</code> 之类的命令来控制该会话中的媒体播放。创建好控制器之后，您还可以注册一个 <code>[MediaController.Callback](https://developer.android.com/reference/android/media/session/MediaController.Callback.html)</code> 对象来监听该会话中的元数据和状态更改。<br>此外，您还可以通过新的 <code>[Notification.MediaStyle](https://developer.android.com/reference/android/app/Notification.MediaStyle.html)</code> 类创建允许将播放控件关联到媒体会话的丰富通知。</p>
+<p>###<a href=""></a>媒体浏览<br>Android 5.0 通过新的 <a href="https://developer.android.com/reference/android/media/browse/package-summary.html" target="_blank" rel="external">android.media.browse</a> API 引入了允许应用浏览其他应用的媒体内容库的功能。要公开您的应用中的媒体内容，请扩展 <code>[MediaBrowserService](https://developer.android.com/reference/android/service/media/MediaBrowserService.html)</code> 类。您的 <code>[MediaBrowserService](https://developer.android.com/reference/android/service/media/MediaBrowserService.html)</code> 实施应当提供对 <code>[MediaSession.Token](https://developer.android.com/reference/android/media/session/MediaSession.Token.html)</code> 的访问权限，以便应用可以播放通过您的服务提供的媒体内容。<br>要与媒体浏览器服务进行互动，请使用 <code>[MediaBrowser](https://developer.android.com/reference/android/media/browse/MediaBrowser.html)</code> 类。在创建 <code>[MediaBrowser](https://developer.android.com/reference/android/media/browse/MediaBrowser.html)</code> 实例时，请为 <code>[MediaSession](https://developer.android.com/reference/android/media/session/MediaSession.html)</code> 指定组件名称。然后，您的应用可以使用该浏览器实例连接到关联的服务，并获取 <code>[MediaSession.Token](https://developer.android.com/reference/android/media/session/MediaSession.Token.html)</code> 对象来播放通过该服务公开的内容。</p>
+<p>##<a href=""></a>存储</p>
+<hr>
+<p>###<a href=""></a>目录选择<br>Android 5.0 对<a href="https://developer.android.com/guide/topics/providers/document-provider.html" target="_blank" rel="external">存储访问框架</a>进行了扩展，允许用户选择整个目录子树，并向应用授予对其中包含的所有文档的读/写访问权限（无需请求用户逐项确认）。<br>要选择目录子树，请构建并发送 <code>[OPEN_DOCUMENT_TREE](https://developer.android.com/reference/android/content/Intent.html#ACTION_OPEN_DOCUMENT_TREE)</code> intent。系统将显示支持子树选择的所有 <code>[DocumentsProvider](https://developer.android.com/reference/android/provider/DocumentsProvider.html)</code> 实例，允许用户进行浏览并选择目录。返回的<br> URI 表示对所选子树的访问权限。然后，您可以使用 <code>[buildChildDocumentsUriUsingTree()](https://developer.android.com/reference/android/provider/DocumentsContract.html#buildChildDocumentsUriUsingTree(android.net.Uri, java.lang.String))</code>和 <code>[buildDocumentUriUsingTree()](https://developer.android.com/reference/android/provider/DocumentsContract.html#buildDocumentUriUsingTree(android.net.Uri, java.lang.String))</code> 以及 <code>[query()](https://developer.android.com/reference/android/content/ContentResolver.html#query(android.net.Uri, java.lang.String[], java.lang.String, java.lang.String[], java.lang.String))</code> 来深入了解此子树。<br>新的 <code>[createDocument()](https://developer.android.com/reference/android/provider/DocumentsContract.html#createDocument(android.content.ContentResolver, android.net.Uri, java.lang.String, java.lang.String))</code> 方法允许您在子树下的任何位置创建新的文档或目录。要管理现有文档，请使用 <code>[renameDocument()](https://developer.android.com/reference/android/provider/DocumentsContract.html#renameDocument(android.content.ContentResolver, android.net.Uri, java.lang.String))</code> 和<code>[deleteDocument()](https://developer.android.com/reference/android/provider/DocumentsProvider.html#deleteDocument(java.lang.String))</code>。在发出这些调用之前，请检查 <code>[COLUMN_FLAGS](https://developer.android.com/reference/android/provider/DocumentsContract.Document.html#COLUMN_FLAGS)</code> 以验证服务提供方是否支持这些调用。<br>如果您在实施 <code>[DocumentsProvider](https://developer.android.com/reference/android/provider/DocumentsProvider.html)</code> 并希望支持子树选择，请实施 <code>[isChildDocument()](https://developer.android.com/reference/android/provider/DocumentsProvider.html#isChildDocument(java.lang.String, java.lang.String))</code> 并在您的 <code>[COLUMN_FLAGS](https://developer.android.com/reference/android/provider/DocumentsContract.Root.html#COLUMN_FLAGS)</code> 中添加<code>[FLAG_SUPPORTS_IS_CHILD](https://developer.android.com/reference/android/provider/DocumentsContract.Root.html#FLAG_SUPPORTS_IS_CHILD)</code>。<br>Android 5.0 还在共享的存储空间内引入了程序包专用的新目录，您的应用可将要添加到 <code>[MediaStore](https://developer.android.com/reference/android/provider/MediaStore.html)</code> 中的媒体文件放置在这些目录中。新的 <code>[getExternalMediaDirs()](https://developer.android.com/reference/android/content/Context.html#getExternalMediaDirs())</code> 将返回这些目录在所有共享的存储设备上的路径。与 <code>[getExternalFilesDir()](https://developer.android.com/reference/android/content/Context.html#getExternalFilesDir(java.lang.String))</code> 类似，您的应用不需要额外的权限即可访问所返回的路径。平台将定期扫描这些目录中的新媒体，但您也可使用<code>[MediaScannerConnection](https://developer.android.com/reference/android/media/MediaScannerConnection.html)</code> 对新内容进行显式扫描。</p>
+<p>##<a href=""></a>无线和连接</p>
+<hr>
+<p>###<a href=""></a>多个网络连接<br>Android 5.0 提供了新的多网络 API，它们允许您的应用动态扫描具有特定功能的可用网络，然后与这些网络建立连接。如果您的应用需要一个专用网络（例如 SUPL、MMS 或运营商计费的网络），或者如果您希望使用某种特定类型的传输协议来发送数据，则此功能非常有用。<br>要从您的应用动态选择并连接到某个网络，请执行以下步骤：</p>
+<ol>
+<li>创建一个 <code>[ConnectivityManager](https://developer.android.com/reference/android/net/ConnectivityManager.html)</code>。</li>
+<li>使用 <code>[NetworkRequest.Builder](https://developer.android.com/reference/android/net/NetworkRequest.Builder.html)</code> 类创建一个 <code>[NetworkRequest](https://developer.android.com/reference/android/net/NetworkRequest.html)</code> 对象并指定您的应用感兴趣的网络功能和传输类型。</li>
+<li>要扫描合适的网络，请调用 <code>[requestNetwork()](https://developer.android.com/reference/android/net/ConnectivityManager.html#requestNetwork(android.net.NetworkRequest, android.net.ConnectivityManager.NetworkCallback))</code> 或 <code>[registerNetworkCallback()](https://developer.android.com/reference/android/net/ConnectivityManager.html#registerNetworkCallback(android.net.NetworkRequest, android.net.ConnectivityManager.NetworkCallback))</code>，并传入 <code>[NetworkRequest](https://developer.android.com/reference/android/net/NetworkRequest.html)</code> 对象和一个<code>[ConnectivityManager.NetworkCallback](https://developer.android.com/reference/android/net/ConnectivityManager.NetworkCallback.html)</code> 实施。如果希望在检测到合适的网络后主动切换到该网络，请使用<code>[requestNetwork()](https://developer.android.com/reference/android/net/ConnectivityManager.html#requestNetwork(android.net.NetworkRequest, android.net.ConnectivityManager.NetworkCallback))</code> 方法；如果希望仅接收网络扫描结果通知而不主动切换，请使用 <code>[registerNetworkCallback()](https://developer.android.com/reference/android/net/ConnectivityManager.html#registerNetworkCallback(android.net.NetworkRequest, android.net.ConnectivityManager.NetworkCallback))</code> 方法。</li>
+</ol>
+<p>当系统检测到合适的网络时，它将连接到该网络并调用 <code>[onAvailable()](https://developer.android.com/reference/android/net/ConnectivityManager.NetworkCallback.html#onAvailable(android.net.Network))</code> 回调。您可以在回调中使用 <code>[Network](https://developer.android.com/reference/android/net/Network.html)</code> 对象来获取关于该网络的更多信息，或者指示通信使用选定的网络。</p>
+<p>###<a href=""></a>低功耗蓝牙<br>Android 4.3 中作为重头戏引入了对<a href="https://developer.android.com/guide/topics/connectivity/bluetooth-le.html" target="_blank" rel="external">低功耗蓝牙</a>（“低功耗蓝牙”<em>*）的平台支持。在 Android 5.0 中，Android 设备现在可以用作低功耗蓝牙</em>外围设备*。应用可以使用此功能使附近的设备知道它的存在。例如，您可以构建相应的应用来允许设备用作计步器或健康检测器并与另一低功耗蓝牙设备交换其数据。<br>新的 <code>[android.bluetooth.le](https://developer.android.com/reference/android/bluetooth/le/package-summary.html)</code> API<br> 允许您的应用对公告进行广播，扫描响应，以及与附近的低功能蓝牙设备建立连接。要使用新的公告和扫描功能，请在您的清单中添加 <code>[BLUETOOTH_ADMIN](https://developer.android.com/reference/android/Manifest.permission.html#BLUETOOTH_ADMIN)</code> 权限。当用户从<br> Play 商店更新或下载您的应用时，会要求他们向您的应用授予以下权限：“蓝牙连接信息：允许应用控制蓝牙，包括向附近的蓝牙设备进行广播以及获取关于这些设备的信息。”<br>要开始低功耗蓝牙公告以便其他设备可以发现您的应用，请调用 <code>[startAdvertising()](https://developer.android.com/reference/android/bluetooth/le/BluetoothLeAdvertiser.html#startAdvertising(android.bluetooth.le.AdvertiseSettings, android.bluetooth.le.AdvertiseData, android.bluetooth.le.AdvertiseCallback))</code> 并传入 <code>[AdvertiseCallback](https://developer.android.com/reference/android/bluetooth/le/AdvertiseCallback.html)</code> 类的一个实施。回调对象将收到关于公告操作成功或失败的报告。<br>Android 5.0 引入了 <code>[ScanFilter](https://developer.android.com/reference/android/bluetooth/le/ScanFilter.html)</code> 类，以便您的应用可以仅扫描它感兴趣的特定类型的设备。要开始扫描低功耗蓝牙设备，请调用 <code>[startScan()](https://developer.android.com/reference/android/bluetooth/le/BluetoothLeScanner.html#startScan(android.bluetooth.le.ScanCallback))</code> 并传入一个过滤器列表。在该方法调用中，您还必须提供 <code>[ScanCallback](https://developer.android.com/reference/android/bluetooth/le/ScanCallback.html)</code> 的一个实施以便在发现低功耗蓝牙公告时进行报告。</p>
+<p>###<a href=""></a>NFC 增强功能<br>Android 5.0 添加了以下增强功能以实现更广泛和更灵活的 NFC 使用：</p>
+<ul>
+<li>“分享”**菜单中现在提供了 Android Beam。</li>
+<li>您的应用可以通过调用 <code>[invokeBeam()](https://developer.android.com/reference/android/nfc/NfcAdapter.html#invokeBeam(android.app.Activity))</code> 在用户的设备上调用<br>Android Beam 来分享数据。这不需要用户对着另一个具有 NFC 功能的设备手动点按设备即可完成数据传输。</li>
+<li>您可以使用新的 <code>[createTextRecord()](https://developer.android.com/reference/android/nfc/NdefRecord.html#createTextRecord(java.lang.String, java.lang.String))</code> 方法来创建包含<br>UTF-8 文本数据的 NDEF 记录。</li>
+<li>如果您在开发支付应用，则您现在能够通过调用 <code>[registerAidsForService()](https://developer.android.com/reference/android/nfc/cardemulation/CardEmulation.html#registerAidsForService(android.content.ComponentName, java.lang.String, java.util.List&lt;java.lang.String&gt;))</code> 动态注册<br>NFC 应用 ID (AID)。您还可以使用<code>[setPreferredService()](https://developer.android.com/reference/android/nfc/cardemulation/CardEmulation.html#setPreferredService(android.app.Activity, android.content.ComponentName))</code> 设置当某个特定的活动处于前台时应当使用的首选卡仿真服务。</li>
+</ul>
+<p>##<a href=""></a>Project Volta</p>
+<hr>
+<p>除了新功能之前，Android 5.0 还重点对电池寿命进行了改进。可以使用新的 API 和工具来了解并优化您的应用的功耗。</p>
+<p>###<a href=""></a>调度作业<br>Android 5.0 提供了一个新的 <code>[JobScheduler](https://developer.android.com/reference/android/app/job/JobScheduler.html)</code> API，它允许您通过为系统定义要在以后的某个时间或在指定的条件下（例如，当设备在充电时）异步运行的作业来优化电池寿命。作业调度在下列情况下非常有用：</p>
+<ul>
+<li>应用具有您可以推迟的非面向用户的工作。</li>
+<li>应用具有当插入设备时您希望优先执行的工作。</li>
+<li>应用具有需要访问网络或 Wi-Fi 连接的任务。</li>
+<li>应用具有您希望作为一个批次定期运行的许多任务。</li>
+</ul>
+<p>工作单元由一个 <code>[JobInfo](https://developer.android.com/reference/android/app/job/JobInfo.html)</code> 对象进行封装。此对象指定了调度条件。<br>使用 <code>[JobInfo.Builder](https://developer.android.com/reference/android/app/job/JobInfo.Builder.html)</code> 类配置调度的任务应当如何运行。您可以将任务调度为在特定的条件下运行，例如：</p>
+<ul>
+<li>当设备充电时启动</li>
+<li>当设备连接到不限流量网络时启动</li>
+<li>当设备空闲时启动</li>
+<li>在特定的截止期限之前或以最小的延迟完成</li>
+</ul>
+<p>例如，您可以添加如下代码以在不限流量网络上运行您的任务：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;span class=&quot;typ&quot; style=&quot;color: rgb(102, 0, 102);&quot;&gt;JobInfo&lt;/span&gt;&lt;span class=&quot;pln&quot; style=&quot;color: rgb(0, 0, 0);&quot;&gt; uploadTask &lt;/span&gt;&lt;span class=&quot;pun&quot; style=&quot;color: rgb(102, 102, 0);&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;pln&quot; style=&quot;color: rgb(0, 0, 0);&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kwd&quot; style=&quot;color: rgb(0, 0, 136);&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;pln&quot; style=&quot;color: rgb(0, 0, 0);&quot;&gt; &lt;/span&gt;&lt;span class=&quot;typ&quot; style=&quot;color: rgb(102, 0, 102);&quot;&gt;JobInfo&lt;/span&gt;&lt;span class=&quot;pun&quot; style=&quot;color: rgb(102, 102, 0);&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;typ&quot; style=&quot;color: rgb(102, 0, 102);&quot;&gt;Builder&lt;/span&gt;&lt;span class=&quot;pun&quot; style=&quot;color: rgb(102, 102, 0);&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;pln&quot; style=&quot;color: rgb(0, 0, 0);&quot;&gt;mJobId&lt;/span&gt;&lt;span class=&quot;pun&quot; style=&quot;color: rgb(102, 102, 0);&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;pln&quot; style=&quot;color: rgb(0, 0, 0);&quot;&gt;</span><br><span class="line">                                         mServiceComponent &lt;/span&gt;&lt;span class=&quot;com&quot;&gt;/* JobService component */&lt;/span&gt;&lt;span class=&quot;pun&quot; style=&quot;color: rgb(102, 102, 0);&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;pln&quot; style=&quot;color: rgb(0, 0, 0);&quot;&gt;</span><br><span class="line">        &lt;/span&gt;&lt;span class=&quot;pun&quot; style=&quot;color: rgb(102, 102, 0);&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;pln&quot; style=&quot;color: rgb(0, 0, 0);&quot;&gt;setRequiredNetworkCapabilities&lt;/span&gt;&lt;span class=&quot;pun&quot; style=&quot;color: rgb(102, 102, 0);&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;typ&quot; style=&quot;color: rgb(102, 0, 102);&quot;&gt;JobInfo&lt;/span&gt;&lt;span class=&quot;pun&quot; style=&quot;color: rgb(102, 102, 0);&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;typ&quot; style=&quot;color: rgb(102, 0, 102);&quot;&gt;NetworkType&lt;/span&gt;&lt;span class=&quot;pun&quot; style=&quot;color: rgb(102, 102, 0);&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;pln&quot; style=&quot;color: rgb(0, 0, 0);&quot;&gt;UNMETERED&lt;/span&gt;&lt;span class=&quot;pun&quot; style=&quot;color: rgb(102, 102, 0);&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;pln&quot; style=&quot;color: rgb(0, 0, 0);&quot;&gt;</span><br><span class="line">        &lt;/span&gt;&lt;span class=&quot;pun&quot; style=&quot;color: rgb(102, 102, 0);&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;pln&quot; style=&quot;color: rgb(0, 0, 0);&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;pun&quot; style=&quot;color: rgb(102, 102, 0);&quot;&gt;();&lt;/span&gt;&lt;span class=&quot;pln&quot; style=&quot;color: rgb(0, 0, 0);&quot;&gt;</span><br><span class="line">&lt;/span&gt;&lt;span class=&quot;typ&quot; style=&quot;color: rgb(102, 0, 102);&quot;&gt;JobScheduler&lt;/span&gt;&lt;span class=&quot;pln&quot; style=&quot;color: rgb(0, 0, 0);&quot;&gt; jobScheduler &lt;/span&gt;&lt;span class=&quot;pun&quot; style=&quot;color: rgb(102, 102, 0);&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;pln&quot; style=&quot;color: rgb(0, 0, 0);&quot;&gt;</span><br><span class="line">        &lt;/span&gt;&lt;span class=&quot;pun&quot; style=&quot;color: rgb(102, 102, 0);&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;typ&quot; style=&quot;color: rgb(102, 0, 102);&quot;&gt;JobScheduler&lt;/span&gt;&lt;span class=&quot;pun&quot; style=&quot;color: rgb(102, 102, 0);&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;pln&quot; style=&quot;color: rgb(0, 0, 0);&quot;&gt; context&lt;/span&gt;&lt;span class=&quot;pun&quot; style=&quot;color: rgb(102, 102, 0);&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;pln&quot; style=&quot;color: rgb(0, 0, 0);&quot;&gt;getSystemService&lt;/span&gt;&lt;span class=&quot;pun&quot; style=&quot;color: rgb(102, 102, 0);&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;typ&quot; style=&quot;color: rgb(102, 0, 102);&quot;&gt;Context&lt;/span&gt;&lt;span class=&quot;pun&quot; style=&quot;color: rgb(102, 102, 0);&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;pln&quot; style=&quot;color: rgb(0, 0, 0);&quot;&gt;JOB_SCHEDULER_SERVICE&lt;/span&gt;&lt;span class=&quot;pun&quot; style=&quot;color: rgb(102, 102, 0);&quot;&gt;);&lt;/span&gt;&lt;span class=&quot;pln&quot; style=&quot;color: rgb(0, 0, 0);&quot;&gt;</span><br><span class="line">jobScheduler&lt;/span&gt;&lt;span class=&quot;pun&quot; style=&quot;color: rgb(102, 102, 0);&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;pln&quot; style=&quot;color: rgb(0, 0, 0);&quot;&gt;schedule&lt;/span&gt;&lt;span class=&quot;pun&quot; style=&quot;color: rgb(102, 102, 0);&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;pln&quot; style=&quot;color: rgb(0, 0, 0);&quot;&gt;uploadTask&lt;/span&gt;&lt;span class=&quot;pun&quot; style=&quot;color: rgb(102, 102, 0);&quot;&gt;);&lt;/span&gt;</span><br></pre></td></tr></table></figure>
+<p>如果设备具有稳定的电源（也就是说，它已插入了 2 分钟以上并且电池处于<a href="https://developer.android.com/reference/android/content/Intent.html#ACTION_BATTERY_OKAY" target="_blank" rel="external">健康水平</a>），则系统将运行任何已就绪可运行的已调度作业，即使作业的截止期限尚未到期也是如此。<br>要查看有关如何使用 <code>[JobScheduler](https://developer.android.com/reference/android/app/job/JobScheduler.html)</code> API<br> 的示例，请参考本版本中的 <code>JobSchedulerSample</code> 实施样本。</p>
+<p>###<a href=""></a>用于查询耗电量信息的开发者工具<br>新的 <code>dumpsys batterystats</code> 命令将生成关于设备上耗电量信息的有趣统计数据，该数据按唯一用户 ID (UID) 进行组织。该统计信息包括：</p>
+<ul>
+<li>与电池相关的事件的历史记录</li>
+<li>设备的全局统计信息</li>
+<li>每个 UID 和系统组件的大致用电量</li>
+<li>每个数据包的每个手机应用毫秒数</li>
+<li>系统 UID 汇总统计信息</li>
+<li>应用 UID 汇总统计信息</li>
+</ul>
+<p>可使用 <code>--help</code> 选项了解用于对输出进行自定义的各种选项。例如，要输出自设备上次充电后给定应用包的耗电量统计信息，请运行以下命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;span class=&quot;pln&quot; style=&quot;color: rgb(0, 0, 0);&quot;&gt;$ adb shell dumpsys batterystats &lt;/span&gt;&lt;span class=&quot;pun&quot; style=&quot;color: rgb(102, 102, 0);&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;pln&quot; style=&quot;color: rgb(0, 0, 0);&quot;&gt;charged &lt;/span&gt;&lt;span class=&quot;pun&quot; style=&quot;color: rgb(102, 102, 0);&quot;&gt;&lt;&lt;/span&gt;&lt;span class=&quot;kwd&quot; style=&quot;color: rgb(0, 0, 136);&quot;&gt;package&lt;/span&gt;&lt;span class=&quot;pun&quot; style=&quot;color: rgb(102, 102, 0);&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;pln&quot; style=&quot;color: rgb(0, 0, 0);&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pun&quot; style=&quot;color: rgb(102, 102, 0);&quot;&gt;&gt;&lt;/span&gt;</span><br></pre></td></tr></table></figure>
+<p>您可以对 <code>dumpsys</code> 命令的输出使用 <a href="https://github.com/google/battery-historian" target="_blank" rel="external">Battery<br> Historian</a> 工具从日志中生成与电量相关的事件的 HTML 可视形式。此信息使您可以更轻松地了解和诊断任何与电池相关的问题。</p>
+<p>##<a href=""></a>办公场所和教育环境中的 Android</p>
+<hr>
+<p>###<a href=""></a>托管配置<br>Android 5.0 提供了用于在企业环境内运行应用的新功能。如果用户具有现有的个人帐户，则<a href="https://developer.android.com/guide/topics/admin/device-admin.html" target="_blank" rel="external">设备管理员</a>可以启动托管配置流程来向设备添加一个共存但单独的“托管配置文件”**。与托管配置文件关联的应用将与非托管应用一起出现在用户的启动器、“最近用过”屏幕以及通知中。<br>要启动托管配置流程，请在 <code>[Intent](https://developer.android.com/reference/android/content/Intent.html)</code> 中发送 <code>[ACTION_PROVISION_MANAGED_PROFILE](https://developer.android.com/reference/android/app/admin/DevicePolicyManager.html#ACTION_PROVISION_MANAGED_PROFILE)</code>。如果调用成功，则系统将触发<code>[onProfileProvisioningComplete()](https://developer.android.com/reference/android/app/admin/DeviceAdminReceiver.html#onProfileProvisioningComplete(android.content.Context, android.content.Intent))</code> 回调。然后，您可以调用 <code>[setProfileEnabled()](https://developer.android.com/reference/android/app/admin/DevicePolicyManager.html#setProfileEnabled(android.content.ComponentName))</code> 来启用此托管配置文件。<br>默认情况下，在托管配置文件中只会启用一小部分应用。您可以通过调用 <code>[enableSystemApp()](https://developer.android.com/reference/android/app/admin/DevicePolicyManager.html#enableSystemApp(android.content.ComponentName, android.content.Intent))</code> 在托管配置文件中安装额外的应用。<br>如果您在开发启动器应用，则可以使用新的 <code>[LauncherApps](https://developer.android.com/reference/android/content/pm/LauncherApps.html)</code> 类来获取当前用户的可启动活动的列表以及任何关联的托管配置文件。您的启动器可以通过向图标绘图添加一个工作标记，使托管应用更加惹人注目。要检索带标记的图标，请调用<code>[getUserBadgedIcon()](https://developer.android.com/reference/android/content/pm/PackageManager.html#getUserBadgedIcon(android.graphics.drawable.Drawable, android.os.UserHandle))</code>。<br>要查看如何使用此新功能，请参考本版本中的 <code>BasicManagedProfile</code> 实施样本。</p>
+<p>###<a href=""></a>设备所有者<br>Android 5.0 引入了部署设备所有者应用的功能。“设备所有者”**是一类特殊的<a href="https://developer.android.com/guide/topics/admin/device-admin.html" target="_blank" rel="external">设备管理员</a>，具有在设备上创建和移除辅助用户以及配置全局设置的额外能力。您的设备所有者应用可以使用 <code>[DevicePolicyManager](https://developer.android.com/reference/android/app/admin/DevicePolicyManager.html)</code> 类中的方法来对托管设备上的配置、安全性和应用进行精细控制。一个设备在任一时刻只能有一个处于活动状态的设备所有者。<br>要部署并激活设备所有者，您必须在设备处于未配置状态时执行从编程应用到设备的 NFC 数据传输。此数据传输发送的信息与<a href="https://developer.android.com/intl/zh-cn/about/versions/android-5.0.html#ManagedProvisioning" target="_blank" rel="external">托管配置</a>中描述的配置<br> intent 中的信息相同。</p>
+<p>###<a href=""></a>屏幕固定<br>Android 5.0 引入了一个新的屏幕固定 API，它允许您暂时防止用户离开您的任务或被通知打扰。例如，如果您在开发一个教育应用以在 Android 或单用途或资讯服务应用上支持高风险评估需求，则可以使用此功能。一旦您的应用激活了屏幕固定，则用户将无法看到通知、访问其他应用或者返回到主屏幕，直到您的应用退出该模式。<br>有两种方法用来激活屏幕固定：</p>
+<ul>
+<li><strong>手动</strong>：用户可以在“设置”&gt;“安全性”&gt;“屏幕固定”**中启用屏幕固定，并通过在“最近用过”屏幕上点触屏幕固定图标来选择他们要固定的任务。</li>
+<li><strong>以编程方式</strong>：要以编程方式激活屏幕固定，请在您的应用中调用 <code>[startLockTask()](https://developer.android.com/reference/android/app/Activity.html#startLockTask())</code>。如果请求方应用不是设备所有者，则会提示用户确认。设备所有者应用可以调用 <code>[setLockTaskPackages()](https://developer.android.com/reference/android/app/admin/DevicePolicyManager.html#setLockTaskPackages(android.content.ComponentName, java.lang.String[]))</code> 方法来使应用成为可固定的，不需要经历用户确认步骤。</li>
+</ul>
+<p>当任务锁定处于活动状态时，会发生以下行为：</p>
+<ul>
+<li>状态栏为空，并且用户通知和状态信息被隐藏。</li>
+<li>首页和“最近的应用”按钮被隐藏。</li>
+<li>其他应用无法启动新活动。</li>
+<li>当前应用可以启动新活动，只要这样做不会创建新任务即可。</li>
+<li>当屏幕固定是由设备所有者调用的时，用户将保持锁定到您的应用，直到该应用调用 <code>[stopLockTask()](https://developer.android.com/reference/android/app/Activity.html#stopLockTask())</code>。</li>
+<li>如果屏幕固定是由设备所有者之外另一应用或者是由用户直接调用的活动时，用户可以通过同时按住“返回”和“最近”按钮退出。</li>
+</ul>
+<p>##<a href=""></a>打印框架</p>
+<hr>
+<p>###<a href=""></a>使用位图来呈现 PDF 文件<br>您现在可以使用新的 <code>[PdfRenderer](https://developer.android.com/reference/android/graphics/pdf/PdfRenderer.html)</code> 类将<br> PDF 文档页呈现为位图图片以便打印。您必须指定系统将可打印内容写入其中的一个可查找的（也就是说，可以随机访问内容）<code>[ParcelFileDescriptor](https://developer.android.com/reference/android/os/ParcelFileDescriptor.html)</code>。您的应用可以通过 <code>[openPage()](https://developer.android.com/reference/android/graphics/pdf/PdfRenderer.html#openPage(int))</code> 获取页面进行呈现，然后调用 <code>[render()](https://developer.android.com/reference/android/graphics/pdf/PdfRenderer.Page.html#render(android.graphics.Bitmap, android.graphics.Rect, android.graphics.Matrix, int))</code> 将已打开的 <code>[PdfRenderer.Page](https://developer.android.com/reference/android/graphics/pdf/PdfRenderer.Page.html)</code> 转变为位图。如果您只希望将文档的一部分转变为位图图片（例如，要实施<a href="http://en.wikipedia.org/wiki/Tiled_rendering" target="_blank" rel="external">平铺渲染</a>以放大文档），则还可以设置其他参数。<br>有关如何使用新 API 的示例，请参阅 <code>PdfRendererBasic</code> 样本。</p>
+<p>##<a href=""></a>系统</p>
+<hr>
+<p>###<a href=""></a>应用使用情况统计信息<br>您现在可以通过新的 <code>[android.app.usage](https://developer.android.com/reference/android/app/usage/package-summary.html)</code> API<br> 访问 Android 设备上的应用使用情况历史记录。此 API 提供了比被弃用的<code>[getRecentTasks()](https://developer.android.com/reference/android/app/ActivityManager.html#getRecentTasks(int, int))</code> 方法更详细的使用情况信息。要使用此<br> API，必须先在您的清单中声明<code>&quot;android.permission.PACKAGE_USAGE_STATS&quot;</code> 权限。用户还必须通过“设置”&gt;“安全性”&gt;“应用”**使用“使用情况访问”启用对此应用的访问权限。<br>系统将以每个应用为单位收集使用情况数据，并按每天、每周、每月和每年时间间隔对数据进行汇总。系统保留此数据的最大持续时间如下所述：</p>
+<ul>
+<li>每天数据：7 天</li>
+<li>每周数据：4 周</li>
+<li>每月数据：6 个月</li>
+<li>每年数据：2 年</li>
+</ul>
+<p>对于每个应用，系统将记录以下数据：</p>
+<ul>
+<li>上次使用应用的时间</li>
+<li>应用在该时间间隔内（按天、周、月或年）处于前台的总时间长度</li>
+<li>组件（由程序包和活动名称予以标识）在一天中移动到前台或后台时的时间戳捕获</li>
+<li>设备配置更改时（例如当设备配置因为旋转而更改时）的时间戳捕获</li>
+</ul>
+<p>##<a href=""></a>测试和辅助功能</p>
+<hr>
+<p>###<a href=""></a>测试和辅助功能改进<br>Android 5.0 对测试和辅助功能增加了以下支持：</p>
+<ul>
+<li>新的 <code>[getWindowAnimationFrameStats()](https://developer.android.com/reference/android/app/UiAutomation.html#getWindowAnimationFrameStats())</code> 和 <code>[getWindowContentFrameStats()](https://developer.android.com/reference/android/app/UiAutomation.html#getWindowContentFrameStats(int))</code> 方法将捕获窗口动画和内容的帧统计信息。这些方法允许您编写仪器测试来评估某个应用是否在以足够的刷新频率来呈现帧以提供流畅的用户体验。</li>
+<li>新的 <code>[executeShellCommand()](https://developer.android.com/reference/android/app/UiAutomation.html#executeShellCommand(java.lang.String))</code> 方法允许您通过仪器测试执行<br>shell 命令。命令执行类似于从连接到设备的主机运行 <code>adb shell</code>，允许您使用基于 shell 的工具，例如 <code>dumpsys</code>、<code>am</code> <code>content</code> 和 <code>pm</code>。</li>
+<li>使用辅助功能 API（例如 <a href="https://developer.android.com/tools/help/uiautomator/index.html" target="_blank" rel="external"><code>UiAutomator</code></a>）的辅助服务和测试工具现在可以检索有视力的用户可以与之进行互动的屏幕上窗口的属性的详细信息。要检索 <code>[AccessibilityWindowInfo](https://developer.android.com/reference/android/view/accessibility/AccessibilityWindowInfo.html)</code> 对象的列表，请调用新的 <code>[getWindows()](https://developer.android.com/reference/android/accessibilityservice/AccessibilityService.html#getWindows())</code> 方法。</li>
+<li>新的 <code>[AccessibilityNodeInfo.AccessibilityAction](https://developer.android.com/reference/android/view/accessibility/AccessibilityNodeInfo.AccessibilityAction.html)</code> 类允许您定义可以对 <code>[AccessibilityNodeInfo](https://developer.android.com/reference/android/view/accessibility/AccessibilityNodeInfo.html)</code> 执行的标准或自定义操作。新的 <code>[AccessibilityNodeInfo.AccessibilityAction](https://developer.android.com/reference/android/view/accessibility/AccessibilityNodeInfo.AccessibilityAction.html)</code> 类替换了以前在 <code>[AccessibilityNodeInfo](https://developer.android.com/reference/android/view/accessibility/AccessibilityNodeInfo.html)</code> 中提供的与操作相关的<br>API。</li>
+<li>Android 5.0 对您的应用中的文本到语音合成提供了更细粒度的控制。新的 <code>[Voice](https://developer.android.com/reference/android/speech/tts/Voice.html)</code> 类允许您的应用使用与特定区域设置、质量和延迟评级以及特定于文本到语音引擎的参数关联的语音配置文件。</li>
+</ul>
+<p>##<a href=""></a>IME</p>
+<hr>
+<p>###<a href=""></a>更轻松地在输入语言之间切换<br>从 Android 5.0 开始，用户可以更轻松地在该平台支持的所有<a href="https://developer.android.com/guide/topics/text/creating-input-method.html" target="_blank" rel="external">输入法编辑器 (IME)</a> 之间进行切换。执行指定的切换操作（通常是触摸软键盘上的一个地球图标）将循环经过所有此类<br> IME。此行为更改是由 <code>[shouldOfferSwitchingToNextInputMethod()](https://developer.android.com/reference/android/view/inputmethod/InputMethodManager.html#shouldOfferSwitchingToNextInputMethod(android.os.IBinder))</code>方法实施的。<br>此外，框架现在还将检查下一个 IME 究竟是否包括切换机制（并因此检查该 IME 是否支持切换到它之后的 IME）。具有切换机制的 IME 不会切换到没有切换机制的 IME。此行为更改是由 <code>[switchToNextInputMethod()](https://developer.android.com/reference/android/view/inputmethod/InputMethodManager.html#switchToNextInputMethod(android.os.IBinder, boolean))</code> 方法实施的。<br>要查看有关如何使用更新的 IME 切换 API 的示例，请参考本版本中更新的软键盘实施样本。要详细了解如何实施 IME 切换，请参阅<a href="https://developer.android.com/guide/topics/text/creating-input-method.html" target="_blank" rel="external">创建输入法</a>。</p>
+<p>##<a href=""></a>清单声明</p>
+<hr>
+<p>###<a href=""></a>声明必需的功能<br><a href="https://developer.android.com/guide/topics/manifest/uses-feature-element.html" target="_blank" rel="external">``</a> 元素中现在支持下列值，因此，您可以确保您的应用仅安装在提供了您的应用所需功能的设备上。</p>
+<ul>
+<li><code>[FEATURE_AUDIO_OUTPUT](https://developer.android.com/reference/android/content/pm/PackageManager.html#FEATURE_AUDIO_OUTPUT)</code></li>
+<li><code>[FEATURE_CAMERA_CAPABILITY_MANUAL_POST_PROCESSING](https://developer.android.com/reference/android/content/pm/PackageManager.html#FEATURE_CAMERA_CAPABILITY_MANUAL_POST_PROCESSING)</code></li>
+<li><code>[FEATURE_CAMERA_CAPABILITY_MANUAL_SENSOR](https://developer.android.com/reference/android/content/pm/PackageManager.html#FEATURE_CAMERA_CAPABILITY_MANUAL_SENSOR)</code></li>
+<li><code>[FEATURE_CAMERA_CAPABILITY_RAW](https://developer.android.com/reference/android/content/pm/PackageManager.html#FEATURE_CAMERA_CAPABILITY_RAW)</code></li>
+<li><code>[FEATURE_CAMERA_LEVEL_FULL](https://developer.android.com/reference/android/content/pm/PackageManager.html#FEATURE_CAMERA_LEVEL_FULL)</code></li>
+<li><code>[FEATURE_GAMEPAD](https://developer.android.com/reference/android/content/pm/PackageManager.html#FEATURE_GAMEPAD)</code></li>
+<li><code>[FEATURE_LIVE_TV](https://developer.android.com/reference/android/content/pm/PackageManager.html#FEATURE_LIVE_TV)</code></li>
+<li><code>[FEATURE_MANAGED_USERS](https://developer.android.com/reference/android/content/pm/PackageManager.html#FEATURE_MANAGED_USERS)</code></li>
+<li><code>[FEATURE_LEANBACK](https://developer.android.com/reference/android/content/pm/PackageManager.html#FEATURE_LEANBACK)</code></li>
+<li><code>[FEATURE_OPENGLES_EXTENSION_PACK](https://developer.android.com/reference/android/content/pm/PackageManager.html#FEATURE_OPENGLES_EXTENSION_PACK)</code></li>
+<li><code>[FEATURE_SECURELY_REMOVES_USERS](https://developer.android.com/reference/android/content/pm/PackageManager.html#FEATURE_SECURELY_REMOVES_USERS)</code></li>
+<li><code>[FEATURE_SENSOR_AMBIENT_TEMPERATURE](https://developer.android.com/reference/android/content/pm/PackageManager.html#FEATURE_SENSOR_AMBIENT_TEMPERATURE)</code></li>
+<li><code>[FEATURE_SENSOR_HEART_RATE_ECG](https://developer.android.com/reference/android/content/pm/PackageManager.html#FEATURE_SENSOR_HEART_RATE_ECG)</code></li>
+<li><code>[FEATURE_SENSOR_RELATIVE_HUMIDITY](https://developer.android.com/reference/android/content/pm/PackageManager.html#FEATURE_SENSOR_RELATIVE_HUMIDITY)</code></li>
+<li><code>[FEATURE_VERIFIED_BOOT](https://developer.android.com/reference/android/content/pm/PackageManager.html#FEATURE_VERIFIED_BOOT)</code></li>
+<li><code>[FEATURE_WEBVIEW](https://developer.android.com/reference/android/content/pm/PackageManager.html#FEATURE_WEBVIEW)</code></li>
+</ul>
+<p>###<a href=""></a>用户权限<br><a href="https://developer.android.com/guide/topics/manifest/uses-permission-element.html" target="_blank" rel="external">``</a> 元素中现在支持以下权限来声明您的应用访问特定<br> API 时所需的权限。</p>
+<ul>
+<li><code>[BIND_DREAM_SERVICE](https://developer.android.com/reference/android/Manifest.permission.html#BIND_DREAM_SERVICE)</code>：当针对<br>API 级别 21 和更高级别时，<a href="https://developer.android.com/about/versions/android-4.2.html#Daydream" target="_blank" rel="external">Daydream</a> 服务需要此权限来确保只有系统可以绑定到它。</li>
+<li></li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>Title:</span><a href="/2015/04/09/Android 5.0 API新增和改进/">Android 5.0 API新增和改进</a></p>
+        <p><span>Author:</span><a href="/" title="Back to Homepage">offbye</a></p>
+        <p><span>Created:</span>2015-04-09, 14:11:00</p>
+        <p><span>Updated:</span>2016-05-13, 00:38:35</p>
+
+        <p>
+            <span>Full URL:</span><a class="post-url" href="/2015/04/09/Android 5.0 API新增和改进/" title="Android 5.0 API新增和改进">http://offbye.com/2015/04/09/Android 5.0 API新增和改进/</a>
+            <span class="copy-path" data-clipboard-text="From http://offbye.com/2015/04/09/Android 5.0 API新增和改进/　　By offbye" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>License:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"CC BY-NC-SA 4.0"</a> Keep Link &amp; Author if Distribute.
+        </p>
+        
+        <p><span>CSDN原文:</span> <a href="http://blog.csdn.net/offbye/article/details/44959337" target="_blank" title="Android 5.0 API新增和改进">http://blog.csdn.net/offbye/article/details/44959337</a> </p>
+        <p><span>CSDN PV:</span>664</p>
+        
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2015/04/16/前端工程化：在gulp中顺序执行任务/">
+                    前端工程化：在gulp中顺序执行任务
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2015/03/31/JavaScript的计时器的工作原理/">
+                    JavaScript的计时器的工作原理
+                </a>
+            </div>
+        
+    </nav>
+
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="Hide"  title="Show or Hide Table of Contents">
+<script>
+    var valueHide = "Hide";
+    var valueShow = "Show";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"Android 5.0 API新增和改进　| offbye　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="2015/04/09/Android 5.0 API新增和改进/" data-title="Android 5.0 API新增和改进" data-url="http://offbye.com/2015/04/09/Android 5.0 API新增和改进/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"offbye"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+    <!-- 多说公共JS代码 end -->
+</div>
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2015/04/16/前端工程化：在gulp中顺序执行任务/" title="Pre: 前端工程化：在gulp中顺序执行任务">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2015/03/31/JavaScript的计时器的工作原理/" title="Next: JavaScript的计时器的工作原理">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/05/13/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/12/YAML文件语法简介/">YAML文件语法简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/11/iOS-Sandbox-swift/">iOS App沙盒模型文件目录详解Swift版</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/06/iOS App沙盒模型文件目录详解Swift版/">iOS App沙盒模型文件目录详解Swift版</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/05/Swift iOS实现把PCM语音转成MP3格式/">Swift iOS实现把PCM语音转成MP3格式</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/04/RESTFUL API 安全设计/">RESTFUL API 安全设计</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/04/关于 Token，你应该知道的十件事/">关于 Token，你应该知道的十件事</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/04/程序员的成长和代码行数的关系/">程序员的成长和代码行数的关系</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/04/从JavaAndroid到Swift iOS开发：语言与框架对比/">从JavaAndroid到Swift iOS开发：语言与框架对比</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/26/Android开发常用开源框架推荐/">Android开发常用开源框架推荐</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/22/Swift Modules for React Native/">Swift Modules for React Native</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/15/Android官方MVP架构示例项目解析/">Android官方MVP架构示例项目解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/15/使用swift开发Cordova插件/">使用swift开发Cordova插件</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/14/Swift语言中的@available 和 #available/">Swift语言中的@available 和</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/31/Android volley 使用OkHttp3.0/">Android volley 使用OkHttp3.0</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/28/What's new in Swift 2.2/">What's new in Swift 2.2</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/16/java8新特性介绍/">java8新特性介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/15/Swift异常处理：throw和rethrow/">Swift异常处理：throw和rethrow</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/14/Swift iOS- 手势检测详解/">Swift iOS- 手势检测详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/11/Swift化零为整：Reduce 详解/">Swift化零为整：Reduce 详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/11/Swift2.1关键字 @noescape介绍/">Swift2.1关键字 @noescape介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/11/理解Swift中map 和 flatMap对集合的作用/">理解Swift中map 和 flatMap对集合的作用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/09/移动端专用数据库Realm介绍/">移动端专用数据库Realm介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/09/安装Xcode插件包管理器Alcatraz报错解决办法/">安装Xcode插件包管理器Alcatraz报错解决办法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/09/Android最佳实践 —— 详细谈谈如何减小APK体积/">Android最佳实践 —— 详细谈谈如何减小APK体积</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/05/iOS开发如何通过UMeng的错误分析解决crash问题/">iOS开发如何通过UMeng的错误分析解决crash问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/04/常见移动设备的 CSS3 Media Query 整理（iPhoneiPadGalaxy）/">常见移动设备的 CSS3 Media Query 整理（iPhoneiPadGalaxy）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/04/我在MDCC 2015的演讲PPT《HTML5移动应用多端开发架构实践》分享/">我在MDCC 2015的演讲PPT《HTML5移动应用多端开发架构实践》分享</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/01/深入理解iOS开发中的BitCode功能/">深入理解iOS开发中的BitCode功能</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/01/iOS swift动画和特效专题/">iOS swift动画和特效专题</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/29/Swift iOS项目archive操作会报错误built without full bitcode解决方法/">Swift iOS项目archive操作会报错误built without full bitcode解决方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/26/GCD 和延时调用/">GCD 和延时调用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/26/Swift - 多线程实现方式（3） - Grand Central Dispatch（GCD）/">Swift - 多线程实现方式（3） - Grand Central Dispatch（GCD）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/25/iOS 9开发小技巧：LayoutGuide，Storyboard Reference/">iOS 9开发小技巧：LayoutGuide，Storyboard Reference</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/25/Storyboard的爱与恨/">Storyboard的爱与恨</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/25/Swift iOS tableView static cell动态计算高度/">Swift iOS tableView static cell动态计算高度</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/24/5 个顶级 Android 开源库/">5 个顶级 Android 开源库</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/19/Swift高阶函数介绍（闭包、Map、Filter、Reduce）/">Swift高阶函数介绍（闭包、Map、Filter、Reduce）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/18/iOS Swift判断代码运行在模拟器上/">iOS Swift判断代码运行在模拟器上</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/17/iOS 开发 UI 搭建心得（一）—— 驾驭 StoryBoard  代码示例：httpsgithub.comjohnluiSwift-On-iOSblobmasterDifferen/">iOS 开发 UI 搭建心得（一）—— 驾驭 StoryBoard  代码示例：httpsgithub.comjohnluiSwift-On-iOSblobmasterDifferen</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/16/使用命令行统计代码行数/">使用命令行统计代码行数</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/03/HTTP 2.0的那些事/">HTTP 2.0的那些事</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/02/浅谈 RxAndroid + Retrofit + Databinding/">浅谈 RxAndroid + Retrofit + Databinding</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/28/2016这些Android技术会很火/">2016这些Android技术会很火</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/27/使用CodePush实时更新 React Native 和 Cordova 应用/">使用CodePush实时更新 React Native 和 Cordova 应用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/20/理解Swift中Optional类型－有和无的哲学/">理解Swift中Optional类型－有和无的哲学</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/19/其实你不知道MultiDex到底有多坑/">其实你不知道MultiDex到底有多坑</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/19/Android MultiDex分包变形记/">Android MultiDex分包变形记</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/14/Swift iOS项目最佳实践汇总/">Swift iOS项目最佳实践汇总</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/11/饿了么移动APP的架构演进/">饿了么移动APP的架构演进</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/30/Android 开发最佳实践/">Android 开发最佳实践</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/29/RxAndroid和RxJava的资料分享/">RxAndroid和RxJava的资料分享</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/28/技术人如何才能不焦虑/">技术人如何才能不焦虑</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/26/云栖社区12篇实战经验所组成的“近战”系列分享/">云栖社区12篇实战经验所组成的“近战”系列分享</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/26/程序员晋升攻略/">程序员晋升攻略</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/25/Xcode7.2版本carthage包管理器兼容问题解决/">Xcode7.2版本carthage包管理器兼容问题解决</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/14/2015年Android开发新技术盘点/">2015年Android开发新技术盘点</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/10/Android中Touch事件分析--解决HorizontalScrollView滑动和按钮事件触发问题/">Android中Touch事件分析--解决HorizontalScrollView滑动和按钮事件触发问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/03/Android动态加载黑科技 动态创建Activity模式/">Android动态加载黑科技 动态创建Activity模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/01/Android注解支持Support Annotations详解/">Android注解支持Support Annotations详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/27/Android Studio 2.0 Instant Run即时运行功能实现分析/">Android Studio 2.0 Instant Run即时运行功能实现分析</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/25/Android应用性能剖析全攻略/">Android应用性能剖析全攻略</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/24/自动生成Android不同分辨率下的图片/">自动生成Android不同分辨率下的图片</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/24/Android Studio 2.0 Preview发布,附下载地址，支持即时运行和GPU Profiler/">Android Studio 2.0 Preview发布,附下载地址，支持即时运行和GPU Profiler</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/17/React Native Android端10个最常见问题/">React Native Android端10个最常见问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/13/使用Javascript ES6进行开发的思考/">使用Javascript ES6进行开发的思考</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/13/安装包立减1M--微信Android资源混淆打包工具/">安装包立减1M--微信Android资源混淆打包工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/11/Ionic 2.0 Alpha版本发布了/">Ionic 2.0 Alpha版本发布了</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/10/美团Android资源混淆保护实践/">美团Android资源混淆保护实践</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/10/Android开发中的armeabi和armeabi-v7a介绍/">Android开发中的armeabi和armeabi-v7a介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/06/在CordovaActivity中添加原生View组件/">在CordovaActivity中添加原生View组件</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/05/技术贴：开源飞控那些事/">技术贴：开源飞控那些事</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/03/Android常用开源框架Proguard混淆解决方案/">Android常用开源框架Proguard混淆解决方案</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/03/美团Android DEX自动拆包及动态加载简介/">美团Android DEX自动拆包及动态加载简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/02/Google基于Dart的新移动开发框架Flutter介绍/">Google基于Dart的新移动开发框架Flutter介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/29/通过SharedPreferences实现进程间数据共享的问题详解/">通过SharedPreferences实现进程间数据共享的问题详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/26/Android修改TitleBar标题栏详解/">Android修改TitleBar标题栏详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/23/异步JavaScript的进化/">异步JavaScript的进化</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/21/Android Service创建USB HOST通信/">Android Service创建USB HOST通信</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/21/Android 热敏打印机打印二维码/">Android 热敏打印机打印二维码</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/13/基于webpack搭建前端工程解决方案探索/">基于webpack搭建前端工程解决方案探索</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/11/理解Flux架构/">理解Flux架构</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/09/Mac Yosemite系统 brew 报错的解决办法/">Mac Yosemite系统 brew 报错的解决办法</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/30/微信公众平台接入经验分享，纯干货/">微信公众平台接入经验分享，纯干货</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/28/使用Kotlin进行Android开发/">使用Kotlin进行Android开发</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/23/Umeng推送消息的坑，Android Service的androidexported详解/">Umeng推送消息的坑，Android Service的androidexported详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/22/自动生成Android屏幕适配的dimens.xml/">自动生成Android屏幕适配的dimens.xml</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/21/iOS9系统开始对企业发布App进行严格限制/">iOS9系统开始对企业发布App进行严格限制</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/16/sed 简明教程/">sed 简明教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/15/Gradle, 基于DSL的新一代Java构建工具/">Gradle, 基于DSL的新一代Java构建工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/15/Gradle常用命令和原理说明/">Gradle常用命令和原理说明</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/09/大势所趋！十大令人振奋的移动端APP设计趋势/">大势所趋！十大令人振奋的移动端APP设计趋势</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/02/Android微信智能心跳方案/">Android微信智能心跳方案</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/01/深入浅出学Spring Data JPA/">深入浅出学Spring Data JPA</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/29/在Mac上制作树莓派SD镜像/">在Mac上制作树莓派SD镜像</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/26/Git从远程的分支获取最新的版本到本地/">Git从远程的分支获取最新的版本到本地</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/25/Spring Data JPA 常用注解 @Query、@NamedQuery/">Spring Data JPA 常用注解 @Query、@NamedQuery</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/24/树莓派做 wifi 热点/">树莓派做 wifi 热点</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/23/树莓派把一个python脚本作为服务运行，配置开机自动启动/">树莓派把一个python脚本作为服务运行，配置开机自动启动</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/22/INSTALLING OPERATING SYSTEM IMAGES ON MAC OS/">INSTALLING OPERATING SYSTEM IMAGES ON MAC OS</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/18/基于Volley，Gson封装支持JWT无状态安全验证和数据防篡改的GsonRequest网络请求类/">基于Volley，Gson封装支持JWT无状态安全验证和数据防篡改的GsonRequest网络请求类</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/16/如何快速构建基于Spring4.0的Rest API（攻略）/">如何快速构建基于Spring4.0的Rest API（攻略）</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/16/Spring MVC 4 常用注解汇总/">Spring MVC 4 常用注解汇总</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/13/JSON Web Token JWT 简介/">JSON Web Token JWT 简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/13/NodeJs使用json web token验证REST服务/">NodeJs使用json web token验证REST服务</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/13/一个Spring Boot， JWT，AugularJS接口安全验证的简单例子/">一个Spring Boot， JWT，AugularJS接口安全验证的简单例子</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/11/基于Spring Boot，Security和JWB的REST接口的无状态认证/">基于Spring Boot，Security和JWB的REST接口的无状态认证</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/08/Spring Boot和JPA开发的一些坑/">Spring Boot和JPA开发的一些坑</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/06/Android ORM数据库框架对比/">Android ORM数据库框架对比</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/06/最流行的开源飞控项目ArduPilot Mega（APM）介绍及发展历史/">最流行的开源飞控项目ArduPilot Mega（APM）介绍及发展历史</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/06/使用Spring Boot快速构建应用/">使用Spring Boot快速构建应用</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/04/CSS 的黑科技/">CSS 的黑科技</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/31/The Future of JavaScript MVC Frameworks/">The Future of JavaScript MVC Frameworks</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/31/Raspberry Pi Camera Streaming to VLC Player/">Raspberry Pi Camera Streaming to VLC Player</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/29/linux下解压缩.tar.xz方法/">linux下解压缩.tar.xz方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/28/树莓派摄像头视频直播技术汇总/">树莓派摄像头视频直播技术汇总</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/28/Python高效率编程的8条箴言/">Python高效率编程的8条箴言</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/28/如何使用Android Studio提高App质量/">如何使用Android Studio提高App质量</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/27/树莓派遥控船项目计划/">树莓派遥控船项目计划</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/24/人人都能玩航拍 手把手教你装4轴/">人人都能玩航拍 手把手教你装4轴</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/24/树莓派的PWM脉宽调制功能介绍/">树莓派的PWM脉宽调制功能介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/23/python字符串连接/">python字符串连接</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/23/Android Studio上方便使用butterknife注解框架的偷懒插件Android Butterknife Zelezny/">Android Studio上方便使用butterknife注解框架的偷懒插件Android Butterknife Zelezny</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/23/Python的Lambda函数与排序/">Python的Lambda函数与排序</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/22/TypeScript 1.5正式发布，此版本是Visual Studio 2015更新的一部分，支持大量ES6新特性/">TypeScript 1.5正式发布，此版本是Visual Studio 2015更新的一部分，支持大量ES6新特性</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/20/iWeb峰会（HTML5峰会）2015年7月19日上海站会后感想/">iWeb峰会（HTML5峰会）2015年7月19日上海站会后感想</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/16/说说React,Flux,Reray和GraghQL/">说说React,Flux,Reray和GraghQL</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/16/ReactEurope Conf 参会感想/">ReactEurope Conf 参会感想</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/15/Android Studio Gradle项目中添加JNI so文件/">Android Studio Gradle项目中添加JNI so文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/15/mac os使用lsusb命令和连接未知的Android设备/">mac os使用lsusb命令和连接未知的Android设备</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/15/HTML5 HybridApp开发上手指引/">HTML5 HybridApp开发上手指引</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/15/Facebook的Web开发三板斧：React.js、Relay和GraphQL/">Facebook的Web开发三板斧：React.js、Relay和GraphQL</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/15/Flux再进化：Introducing Relay and GraphQL（译）/">Flux再进化：Introducing Relay and GraphQL（译）</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/14/为什么要造轮子？/">为什么要造轮子？</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/10/那些争议最大的编程观点/">那些争议最大的编程观点</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/10/Angular vs. React - the tie breaker/">Angular vs. React - the tie breaker</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/09/android：ToolBar详解（手把手教程）/">android：ToolBar详解（手把手教程）</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/08/Android Support Library更新到v22.1之AppCompat新特性/">Android Support Library更新到v22.1之AppCompat新特性</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/08/用Material Design设计App谷歌官方文档翻译/">用Material Design设计App谷歌官方文档翻译</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/07/Pure Android/">Pure Android</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/07/Material Design in Action — 哔哩哔哩动画 Android 客户端/">Material Design in Action — 哔哩哔哩动画 Android 客户端</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/07/Android Studio 批量打包，apk重命名/">Android Studio 批量打包，apk重命名</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/06/Android Studio Android studio 多渠道打包超简洁版/">Android Studio Android studio 多渠道打包超简洁版</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/06/Eclipse Android项目导入Android Studio时常见的编译错误及解决办法/">Eclipse Android项目导入Android Studio时常见的编译错误及解决办法</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/01/HTML5本地存储——IndexedDB（一：基本使用）/">HTML5本地存储——IndexedDB（一：基本使用）</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/15/SASS基础——十个常见的Mixins/">SASS基础——十个常见的Mixins</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/15/python 中的mixin特性/">python 中的mixin特性</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/10/Mac上通过Linux命令行批量查找和替换文本/">Mac上通过Linux命令行批量查找和替换文本</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/09/产品经理经常犯的十大顶级错误/">产品经理经常犯的十大顶级错误</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/09/ES6新特性概览/">ES6新特性概览</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/09/ES6 JavaScript Promise的感性认知/">ES6 JavaScript Promise的感性认知</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/06/机器学习的11个开源项目/">机器学习的11个开源项目</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/06/实现Instagram的Material Design概念设计/">实现Instagram的Material Design概念设计</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/04/18/2015年移动Web／HybridApp开发技能列表/">2015年移动Web／HybridApp开发技能列表</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/04/16/前端工程化：在gulp中顺序执行任务/">前端工程化：在gulp中顺序执行任务</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/04/09/Android 5.0 API新增和改进/">Android 5.0 API新增和改进</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/31/JavaScript的计时器的工作原理/">JavaScript的计时器的工作原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/31/ 浏览器原理  Repaint 、Reflow 的基本认识和优化/">浏览器原理  Repaint 、Reflow 的基本认识和优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/23/前端性能优化（JavaScript补充篇）/">前端性能优化（JavaScript补充篇）</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/18/Android 开发资源汇总/">Android 开发资源汇总</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/17/NodeJS+Express模块的跨域访问控制问题/">NodeJS+Express模块的跨域访问控制问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/07/Android手机平板两不误，使用Fragment实现兼容手机和平板的程序/">Android手机平板两不误，使用Fragment实现兼容手机和平板的程序</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/05/用树莓派制作一款只有刷脸才能开的保险柜/">用树莓派制作一款只有刷脸才能开的保险柜</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/02/28/腾讯移动Web整体解决方案--Spirit/">腾讯移动Web整体解决方案--Spirit</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/02/27/惊艳的基于nodejs的实时Web开发框架Meteor介绍/">惊艳的基于nodejs的实时Web开发框架Meteor介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/02/26/使用gulp压缩并合并AngularJS代码/">使用gulp压缩并合并AngularJS代码</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/01/28/移动前端开发之viewport的深入理解/">移动前端开发之viewport的深入理解</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/01/23/Hybrid Android App中通过js访问Shared Preferences的问题/">Hybrid Android App中通过js访问Shared Preferences的问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/01/07/Android编码规范及性能优化整理/">Android编码规范及性能优化整理</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/01/05/CSS中如何让 height100%; 起作用/">CSS中如何让 height100%; 起作用</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/29/AngularJS风格指南/">AngularJS风格指南</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/18/基于git的源代码管理模型——git flow/">基于git的源代码管理模型——git flow</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/18/Git的最佳实践git-flow/">Git的最佳实践git-flow</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/03/Android TVGoogle ADT1开发者版初体验/">Android TVGoogle ADT1开发者版初体验</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/02/GoogleIO 2013 Android快速联网框架Volley介绍/">GoogleIO 2013 Android快速联网框架Volley介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/27/Android MVVM框架RoboBinding初探/">Android MVVM框架RoboBinding初探</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/25/Android和iOS在新版本中助力HTML5/">Android和iOS在新版本中助力HTML5</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/23/香蕉派和树莓派的不同点及GPIO引脚定义/">香蕉派和树莓派的不同点及GPIO引脚定义</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/19/软件架构师应该知道的 97 件事笔记/">软件架构师应该知道的 97 件事笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/18/参加PyCon2014有感/">参加PyCon2014有感</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/14/Raspberry Pi VPN Gateway/">Raspberry Pi VPN Gateway</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/11/HTML5 终于定稿，八年后我们再一次谈谈怎么改变世界/">HTML5 终于定稿，八年后我们再一次谈谈怎么改变世界</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/06/Mac下查看某个命令的路径/">Mac下查看某个命令的路径</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/05/singleTop和singleTask有什么区别？ Activity 四种加载模式详解）/">singleTop和singleTask有什么区别？ Activity 四种加载模式详解）</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/05/2014年国内常用移动客户端推送服务介绍和比较/">2014年国内常用移动客户端推送服务介绍和比较</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/10/31/一篇文章读懂开源web引擎Crosswalk/">一篇文章读懂开源web引擎Crosswalk</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/10/30/AngularJs $broadcast $emit $on 事件触发controller间的值传递/">AngularJs $broadcast $emit $on 事件触发controller间的值传递</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/10/30/细嗅Promise/">细嗅Promise</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/10/28/从2014年D2前端技术论坛看前端发展趋势/">从2014年D2前端技术论坛看前端发展趋势</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/10/28/涛哥的Python脚本工具箱之生成带Logo的二维码/">涛哥的Python脚本工具箱之生成带Logo的二维码</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/10/22/mongodb适用和不适用的应用场景/">mongodb适用和不适用的应用场景</a></li><li class="post-list-item"><a class="post-list-link" href="/2009/12/07/Centos 5.3上Asterisk安装及配置/">Centos 5.3上Asterisk安装及配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2009/12/07/rsh服务配置文档/">rsh服务配置文档</a></li><li class="post-list-item"><a class="post-list-link" href="/2009/12/07/centos 5.3中用yum安装MPlayer/">centos 5.3中用yum安装MPlayer</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2015-2016 offbye
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="A fast, simple &amp; powerful blog framework">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="Another simple and elegant theme for Hexo">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >Site Visitors: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">Page Hits: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.1.22/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 9;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="Back to Top"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" title="Comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="Go to Bottom"><i class="fa fa-arrow-down"></i></a>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

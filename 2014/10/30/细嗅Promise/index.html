@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  
+  <title>细嗅Promise | offbye</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="细嗅Promise">
+<meta property="og:type" content="article">
+<meta property="og:title" content="细嗅Promise">
+<meta property="og:url" content="http://offbye.com/2014/10/30/细嗅Promise/index.html">
+<meta property="og:site_name" content="offbye">
+<meta property="og:description" content="细嗅Promise">
+<meta property="og:updated_time" content="2016-05-12T16:38:43.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="细嗅Promise">
+<meta name="twitter:description" content="细嗅Promise">
+  
+    <link rel="alternative" href="/atom.xml" title="offbye" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+      <link href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css" rel="stylesheet">
+  
+  
+  
+      <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+      <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+  
+  <script src="//cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.9/clipboard.min.js"></script>
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false,
+          fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+          scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.0.9/scrollreveal.min.js"
+      }
+  </script>
+
+  
+      <script>
+          yiliaConfig.rootUrl = "/";
+      </script>
+  
+
+  
+  
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">offbye</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">关注移动架构，Android，HTML5，iOS技术前沿</p>
+        
+                
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>Menu</li>
+                        <li>Tags</li>
+                        
+                        <li>Friends</li>
+                        
+                        
+                        <li>About Me</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:offbye@gmail.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/offbye" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="http://blog.csdn.net/offbye" title="CSDN"></a>
+                            
+                                <a class="fa StackOverflow" target="_blank" href="#offbye" title="StackOverflow"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sandbox/">Sandbox</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/YAML/">YAML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/swift/">swift</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注移动端</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">offbye</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">offbye</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">关注移动架构，Android，HTML5，iOS技术前沿</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:offbye@gmail.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/offbye" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="http://blog.csdn.net/offbye" title="CSDN"></a>
+                            
+                                <a class="fa StackOverflow" target="_blank" href="#offbye" title="StackOverflow"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
+</nav>
+      <div class="body-wrap"><article id="post-细嗅Promise" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/10/30/细嗅Promise/" class="article-date">
+      <time datetime="2014-10-30T00:37:00.000Z" itemprop="datePublished">2014-10-30</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      细嗅Promise
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/javascript/">javascript</a><a class="article-category-link" href="/categories/javascript/promise/">promise</a>
+    </div>
+
+
+        
+
+        
+        <div style="display:block; clear:both;">
+          <span>CSDN原文:<a href="http://blog.csdn.net/offbye/article/details/40613943" target="_blank" title="细嗅Promise">http://blog.csdn.net/offbye/article/details/40613943</a> </span>
+          <span style="float:right;margin-right:1em"> CSDN阅读数:663</span>
+        </div>
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>原文<a href="http://www.cnblogs.com/hustskyking/p/promise.html" target="_blank" rel="external">http://www.cnblogs.com/hustskyking/p/promise.html</a><br>Ajax 出现的时候，刮来了一阵异步之风，现在 Nodejs 火爆，又一阵异步狂风刮了过来。需求是越来越苛刻，用户对性能的要求也是越来越高，随之而来的是页面异步操作指数般增长，如果不能恰当的控制代码逻辑，我们就会陷入无穷的回调地狱中。<br>ECMAScript 6 已经将异步操作纳入了规范，现代浏览器也内置了 Promise 对象供我们进行异步编程，那么此刻，还在等啥？赶紧学习学习 Promise 的内部原理吧！</p>
+<p>###<a href="http://www.cnblogs.com/hustskyking/p/promise.html#promise_1" target="_blank" rel="external"></a>第一章 了解 Promise</p>
+<p>####<a href="http://www.cnblogs.com/hustskyking/p/promise.html#_2" target="_blank" rel="external"></a>一、场景再现<br>由于 javascript 的单线程性质，我们必须等待上一个事件执行完成才能处理下一步，如下：<br>    // DOM ready之后执行<br>    $(document).ready(function(){<br>        // 获取模板<br>        $.get(url, function(tpl){<br>            // 获取数据<br>            $.get(url2, function(data){<br>                // 构建 DOMString<br>                makeHtml(tpl, data, function(str){<br>                    // 插入到 DOM 中<br>                    $(obj).html(str);<br>                });<br>            });<br>        });<br>    });<br>为了减少首屏数据的加载，我们将一些模板和所有数据都放在服务器端，当用户操作某个按钮时，需要将模板和数据拼接起来插入到 DOM 中，这个过程还必须在 DOMReady 之后才能执行。这种情况是十分常见的，如果异步操作再多一些，整个代码的缩进让人看着很不舒服，为了优雅地处理这个问题，ECMAScript 6 引入了 Promise 的概念，目前一些现代浏览器已经支持这些新东西了！</p>
+<p>####<a href="http://www.cnblogs.com/hustskyking/p/promise.html#_3" target="_blank" rel="external"></a>二、模型<br>为了让代码流程更加清晰，我们假想着能够按照下面的流程来跑程序：<br>    new Promise(ready).then(getTpl).then(getData).then(makeHtml).resolve();<br>先将要事务按照执行顺序依次 push 到事务队列中，push 完了之后再通过 resolve 函数启动整个流程。<br>整个流程的操作模型如下：<br>    promise(ok).then(ok_1).then(ok_2).then(ok_3).reslove(value)——+<br>             |         |          |          |                       |<br>             |         |          |          |        +=======+      |<br>             |         |          |          |        |       |      |<br>             |         |          |          |        |       |      |<br>             +———|———-|———-|——–→  ok() ←——+<br>                       |          |          |        |   ↓   |<br>                       |          |          |        |   ↓   |<br>                       +———-|———-|——–→ ok_1()|<br>                                  |          |        |   ↓   |<br>                                  |          |        |   ↓   |<br>                                  +———-|——–→ ok_2()|<br>                                             |        |   ↓   |<br>                                             |        |   ↓   |<br>                                             +——–→ ok_3()—–+<br>                                                      |       |    |<br>                                                      |       |    ↓<br>    @ Created By Barret Lee                           +=======+   exit<br>在 resolve 之前，promise 的每一个 then 都会将回调函数压入队列，resolve 后，将 resolve 的值送给队列的第一个函数，第一个函数执行完毕后，将执行结果再送入下一个函数，依次执行完队列。一连串下来，一气呵成，没有丝毫间断。</p>
+<p>####<a href="http://www.cnblogs.com/hustskyking/p/promise.html#_4" target="_blank" rel="external"></a>三、简单的封装<br>如果了解 Promise，可以移步下方，看看对 Promise 的封装：<br>Github: <a href="https://github.com/barretlee/myPromise" target="_blank" rel="external">https://github.com/barretlee/myPromise</a><br>DEMO: <a href="http://barretlee.github.io/myPromise/index.html" target="_blank" rel="external">http://barretlee.github.io/myPromise/index.html</a><br>如果还不是很了解，可以往下阅读全文，了解一二。</p>
+<p>###<a href="http://www.cnblogs.com/hustskyking/p/promise.html#promise_2" target="_blank" rel="external"></a>第二章 Promise 原理</p>
+<p>####<a href="http://www.cnblogs.com/hustskyking/p/promise.html#promise_3" target="_blank" rel="external"></a>一、什么是 Promise ？<br>那么，什么是 Promise ？<br>Promise 可以简单理解为一个事务，这个事务存在三种状态：</p>
+<ol>
+<li>已经完成了 resolved</li>
+<li>因为某种原因被中断了 rejected</li>
+<li>还在等待上一个事务结束 pending</li>
+</ol>
+<p>上文中我们举了一个栗子，获取模板和数据之后再将拼合的数据插入到 DOM 中，这里我们将整个程序分解成多个事务：<br>    事务一：     获取模板<br>                   ↓<br>    事务二：     获取数据<br>                   ↓<br>    事务三： 拼合之后插入到 DOM<br>在事务一结束之前，也就是模板代码从服务器拉取过来之前，事务二和事务三都处于 pending 状态，他们必须等待上一个事务结束。而事务一结束之后会将自身状态标记为 resolved，并把该事务中处理的结果移交给事务二继续处理（当然，这里如果没有数据返回，事务二就不会获得上一个事务的数据），依次类推，直到最后一个事务操作结束。<br>在事务操作的过程中，若遇到错误，比如事务一获取数据存在跨域问题，那事务就会操作失败，此时它会将自身的状态标记为 rejected，由于后续事务都是承接前一事务的，前一事务已经宣告工程已经玩不成了，那么后续的所有事务都会将自己标记为 rejected，其标记理由（reason）就是出错事务的报错信息（这个报错信息可以使用 try…catch 来捕获，也可以通过程序自身来捕获，如 ajax 的 onerror 事件、ajax 返回的状态码为 404 等）。<br><strong>小结：Promise 就是一个事务的管理器。他的作用就是将各种内嵌回调的事务用流水形式表达，其目的是为了简化编程，让代码逻辑更加清晰。</strong><br>由于整个程序的实现比较难理解，对于 Promise，我们将分为两部分阐述：</p>
+<ul>
+<li>无错误传递的 Promise，也就是事务不会因为任何原因中断，事务队列中的事项都会被依次处理，此过程中 Promise 只有 pending 和 resolved 两种状态，没有 rejected 状态。</li>
+<li>包含错误的 Promise，每个事务的处理都必须使用容错机制来获取结果，一旦出错，就会将错误信息传递给下一个事务，如果错误信息会影响下一个事务，则下一个事务也会 rejected，如果不会，下一个事务可以正常执行，依次类推。</li>
+</ul>
+<p>####<a href="http://www.cnblogs.com/hustskyking/p/promise.html#promise-promise" target="_blank" rel="external"></a>二、无错误传递的 Promise（简化版的<br> Promise）<br>首先，我们需要用一个变量（status）来标记事务的状态，然后将事务（affair）也保存到 Promise 对象中。<br>    var Promise = function(affair){<br>        this.state = “pending”;<br>        this.affair = affair || function(o) { return o; };<br>        this.allAffairs = [];<br>    };<br>Promise 有两个重要的方法，一个是 then，另一个是 resolve：</p>
+<ul>
+<li>then，将事务添加到事务队列（allAffairs）中</li>
+<li>resolve，开启流程，让整个操作从第一个事务开始执行</li>
+</ul>
+<p>在操作事务之前，我们会先把各种事务依次放入事务队列中，这里会用到 then 方法：<br>    Promise.prototype.then = function (nextAffair){<br>        var promise = new Promise();<br>        if (this.state == ‘resloved’){<br>            // 如果当前状态是已完成，则这个事务将会被立即执行<br>            return this._fire(promise, nextAffair);<br>        }else{<br>            // 否则将会被加入队列中<br>            return this._push(promise, nextAffair);<br>        }<br>    };<br>如果整个操作已经完成了，那 then 方法送进的事务会被立即执行，<br>    Promise.prototype._fire = function (nextPromise, nextAffair){<br>        var nextResult = nextAffair(this.result);<br>        if (nextResult instanceof Promise){<br>            nextResult.then(function(obj){<br>                nextPromise.resolve(obj);<br>            });<br>        }else{<br>            nextPromise.resolve(nextResult);<br>        }<br>        return nextPromise;<br>    };<br>    被立即执行之后会返回一个结果，这个结果会被传递到下一个事务中作为原料，但是这里需要考虑两种情况：</p>
+<ol>
+<li>异步，如果这个结果也是一个 Promise，则需要等待这个 Promise 执行完毕再将最终的结果传到下一个事务中。</li>
+<li>同步，如果这个结果不是 Promise，则直接将结果传递给下一个事务。</li>
+</ol>
+<p>第一种情况还是比较常见的，比如我们在一个事务中有一个子事务队列需要处理，此时必须等待子事务完成才能回到主事务队列中。<br>    Promise.prototype.resolve = function (obj){<br>        if (this.state != ‘pending’) {<br>            throw ‘流程已完成，不能再次开启流程！’;<br>        }<br>        this.state = ‘resloved’;<br>        // 执行该事务，并将执行结果寄存到 Promise 管理器上<br>        this.result = this.affair(obj);<br>        for (var i = 0, len = this.allAffairs.length; i &lt; len; ++i){<br>            // 往后执行事务<br>            var affair = this.allAffairs[i];<br>            this._fire(affair.promise, affair.affair);<br>        }<br>        return this;<br>    };<br>resolve 接受一个参数，这个数据是交给第一个事务来处理的，因为第一个事务的启动可能需要点原料，这个数据就是原料，它也可以是空。该事物处理完毕之后，将操作结果（result）寄存在 Promise 对象上，方便引用，然后将结果（result）作为原料送入下一个事务。依次类推。<br>我们看到 then 方法中还调用了一个 _push ，这个方法的作用是将事务推进事务管理器（Promise）。<br>    Promise.prototype._push = function (nextPromise, nextAffair){<br>        this.allAffairs.push({<br>            promise: nextPromise,<br>            affair: nextAffair<br>        });<br>        return nextPromise;<br>    };<br>以上操作，我们就实现了一个简单的事务管理器，可以测试下下面的代码：<br>    // 初始化事务管理器<br>    var promise = new Promise(function(data){<br>        console.log(data);<br>        return 1;<br>    });// 添加事务<br>    promise.then(function(data){<br>        console.log(data);<br>        return 2;<br>    }).then(function(data){<br>        console.log(data);<br>        return 3;<br>    }).then(function(data){<br>        console.log(data);<br>        console.log(“end”);<br>    });// 启动事务<br>    promise.resolve(“start”);<br>可以看到依次输出的结果为：</p>
+<pre><code>&gt; start&gt; 1
+&gt; 2
+&gt; 3
+&gt; end
+</code></pre><p>由于上述实现十分简陋，链式调用没做太好的处理，请读者自行完善：）<br>下面是一个异步操作演示：<br>    var promise = new Promise(function(data){<br>        console.log(data);<br>        return “end”;<br>    });<br>    promise.then(function(data){<br>        // 这里需要返回一个 Promise，让主事务切换到子事务处理<br>        return (function(data){<br>            // 创建一个子事务<br>            var promise = new Promise();<br>            setTimeout(function(){<br>                console.log(data);<br>                // 一秒之后才启动子事务，模拟异步延时<br>                promise.resolve();<br>            }, 1000);<br>            return promise;<br>        })(data);<br>    });<br>    promise.resolve(“start”);<br>    可以看到依次输出的结果为：</p>
+<pre><code>&gt; start&gt; end （1s之后输出）
+</code></pre><p>将函数写的稍微好看点：<br>    function delay(data){<br>        // 创建一个子事务<br>        var promise = new Promise();<br>        setTimeout(function(){<br>            console.log(data);<br>            // 一秒之后才启动子事务，模拟异步延时<br>            promise.resolve();<br>        }, 1000);<br>        return promise;<br>    }// 主事务<br>    var promise = new Promise(function(data){<br>        console.log(data);<br>        return “end”;<br>    });<br>    promise.then(delay);<br>    promise.resolve(“start”);</p>
+<p>####三、包含错误传递的 Promise<br>真的很羡慕你能看到这么详细的文章，当然，后面会更加精彩！<br>没有错误处理的 Promise 只能算是一个半成品，虽说可以通过在最外层加一个 try..catch 来捕获错误，但没法具体定位是哪个事务发生的错误。并且这里的错误不仅仅包含 JavaScript Error，还有诸如 ajax 返回的 data code 不是 200 的情况等。<br>先看一个浏览器内置 Promise 的实例（该代码可在现代浏览器下运行）：<br>    new Promise(function(resolve, reject){<br>        resolve(“start”);<br>    }).then(function(data){<br>        console.log(data);<br>        throw “error”;<br>    }).catch(function(err){<br>        console.log(err);<br>        return “end”;<br>    }).then(function(data){<br>        console.log(data)<br>    });<br>    Promise 的回调和 then 方法都是接受两个参数：<br>    new Promise(function(resolve, reject){<br>        // …<br>    });</p>
+<pre><code>promise.then(
+    function(value){/* code here */}, 
+    function(reason){/* code here */}
+);
+</code></pre><p>事务处理过程中，如果有值返回，则作为 value，传入到 resolve 函数中，若有错误产生，则作为 reason 传入到 reject 函数中处理。<br>在初始化 Promise 对象时，若传入的回调中没有执行 resolve 或者 reject，这需要我们主动去启动事务队列。<br>    promise.resolve();<br>    promise.reject();<br>上面两种都是可以启动一个队列的。这里跟第二章第二节的 resolve 函数用法类似。Promise 对象还提供了 catch 函数，起用法等价于下面所示：<br>    promise.catch();// 等价于<br>    promise.then(null, function(reason){});<br>还有两个 API：<br>    promise.all();<br>    promise.race();<br>后续再讲。先看看这个有错误处理的 Promise 是如何实现的。<br>    function Promise(resolver){<br>        this.status = “pending”;<br>        this.value = null;<br>        this.handlers = [];<br>        this._doPromise.call(this, resolver);<br>    }<br>_doPromise 方法在实例化 Promise 函数时就执行。如果送入的回调函数 resolver 中已经 resolve 或者 reject 了，程序就已经启动了，所以在实例化的时候就开始判断。<br>    _doPromise: function(resolver){<br>        var called = false, self = this;<br>        try{<br>            resolver(function(value){<br>                // 如果没有 call 则继续，并标记 called 为 true<br>                !called &amp;&amp; (called = !0, self.resolve(value));<br>            }, function(reason){<br>                // 同上<br>                !called &amp;&amp; (called = !0, self.reject(reason));<br>            });<br>        } catch(e) {<br>            // 同上，捕获错误，传递错误到下一个 then 事务<br>            !called &amp;&amp; (called = !0, self.reject(e));<br>        }<br>    },<br>只要 resolve 或者 reject 就会标记程序 called 为 true，表示程序已经启动了。<br>    resolve: function(value) {<br>        try{<br>            if(this === value){<br>                throw new TypeError(‘流程已完成，不能再次开启流程！’);<br>            } else {<br>                // 如果还有子事务队列，继续执行<br>                value &amp;&amp; value.then &amp;&amp; this._doPromise(value.then);<br>            }<br>            // 执行完了之后标记为完成<br>            this.status = “fulfilled”;<br>            this.value = value;<br>            this._dequeue();<br>        } catch(e) {<br>            this.reject(e);<br>        }<br>    },<br>    reject: function(reason) {<br>        // 标记状态为出错<br>        this.status = “rejected”;<br>        this.value = reason;<br>        this._dequeue();<br>    },<br>可以看到，每次 resolve 的时候都会用一个 try..catch 包裹来捕获未知错误。<br>    _dequeue: function(){<br>        var handler;<br>        // 执行事务，直到队列为空<br>        while (this.handlers.length) {<br>            handler = this.handlers.shift();<br>            this._handle(handler.thenPromise, handler.onFulfilled, handler.onRejected);<br>        }<br>    },<br>无论是 resolve 还是 reject 都会让程序往后奔流，直到结束所有事务，所以这两个方法中都有 _dequeue 函数。<br>    _handle: function(thenPromise, onFulfilled, onRejected){<br>        var self = this;</p>
+<pre><code>    setTimeout(function() {
+        // 判断下次操作采用哪个函数，reject 还是 resolve
+        var callback = self.status == “fulfilled” 
+                       ? onFulfilled 
+                       : onRejected;
+        // 只有是函数才会继续回调
+        if (typeof callback === ‘function’) {
+            try {
+                self.resolve.call(thenPromise, callback(self.value));
+            } catch(e) {
+                self.reject.call(thenPromise, e);
+            }
+            return;
+        }
+        // 否则就将 value 传递给下一个事务了
+        self.status == “fulfilled”
+                        ? self.resolve.call(thenPromise, self.value) 
+                        : self.reject.call(thenPromise, self.value);
+    }, 1);
+},
+</code></pre><p>这个函数跟上一节提到的 _fire 类似，如果 callback 是 function，就会进入子事务队列，处理完了之后退回到主事务队列。最后一个 then 方法，将事务推进队列。<br>    then: function(onFulfilled, onRejected){<br>        var thenPromise = new Promise(function() {});</p>
+<pre><code>    if (this.status == “pending”) {
+        this.handlers.push({
+            thenPromise: thenPromise,
+            onFulfilled: onFulfilled,
+            onRejected: onRejected
+        });
+    } else {
+        this._handle(thenPromise, onFulfilled, onRejected);
+    }
+
+    return thenPromise;
+}
+</code></pre><p>如果第二节没有理解清楚，这一节也会让人头疼，这一部分讲的比较粗糙。</p>
+<p>###<a href="http://www.cnblogs.com/hustskyking/p/promise.html#_5" target="_blank" rel="external"></a>第三章 异步编程</p>
+<p>####<a href="http://www.cnblogs.com/hustskyking/p/promise.html#jquery-defferred" target="_blank" rel="external"></a>一、jQuery 中的 Defferred<br> 对象<br>或许你在面试的时候，有面试官问你：</p>
+<blockquote>
+<p><code>$.ajax()</code> 执行后返回的结果是什么？<br>在 jQuery1.5 版本就已经引入了 Defferred 对象，当时为了引入这个东西，整个 jQuery 都被重构了。Defferred 跟 Promise 类似，它表示一个还未完成任务的对象，而 Promise 确切的说，是一个代表未知值的对象。<br>    $.ajax({<br>        url: url<br>    }).done(function(data, status, xhr){<br>        //…<br>    }).fail(function(){<br>        //…<br>    });<br>回忆下第二章第一节中的 Promise，是不是如出一辙，只是 jQuery 还提供了更多的语法糖：<br>    $.ajax({<br>        url: url,<br>        success: function(data){<br>            //…<br>        },<br>        error: funtion(){<br>            //…<br>        }<br>    });<br>他允许将 done 和 fail 两个函数的回调放在 ajax 初始化的参数 success 和 fail 上，其原理还是一样的，同样，还有这样的东西：<br>    $.when(taskOne, taskTwo).done(function () {<br>        console.log(“都执行完毕后才会输出我！”);<br>    }).fail(function(){<br>        console.log(“只要有一个失败，就会输出我！”)<br>    });<br>    当 taskOne 和 taskTwo 都完成之后才执行 done 回调，这个浏览器内置的 Promise 也有对应的函数：<br>    Promise.all([true, Promise.resolve(1), …]).then(function(value){<br>        //….<br>    });<br>浏览器内置的 Promise 还提供了一个 API：<br>    Promise.race([true, Promise.resolve(1), …]).then(function(value){<br>        //….<br>    }, function(reason){<br>        //…<br>    });<br>只要 race 参数中有一个 resolve 或者 reject，then 回调就会出发。</p>
+<p>####<a href="http://www.cnblogs.com/hustskyking/p/promise.html#_6" target="_blank" rel="external"></a>二、基于事件响应的异步模型<br><a href="http://weibo.com/shyvo" target="_blank" rel="external">@朴灵</a> 写的 <a href="https://github.com/JacksonTian/eventproxy" target="_blank" rel="external">EventProxy</a> 就是基于事件响应的异步模型，按理说，这个实现的逻辑是最清晰的，不过代码量稍微多一点。<br>    function taskA(){<br>        setTimeout(function(){<br>            var result = “A”;<br>            E.emit(“taskA”, result);<br>        }, 1000);<br>    }function taskB(){<br>        setTimeout(function(){<br>            var result = “B”;<br>            E.emit(“taskB”, result);<br>        }, 1000);<br>    }</p>
+</blockquote>
+<pre><code>E.all([“taskA”, “taskB”], function(A, B){
+    return A + B;
+});
+</code></pre><p>我没有看他的源码，但是想想，应该是这个逻辑。只需要在消息中心管理各个 emit 以及消息注册。这里的错误处理值得思考下。<br>在半年前，也写过一篇关于异步编程的文章：<a href="http://www.cnblogs.com/hustskyking/p/javascript-asynchronous-programming.html" target="_blank" rel="external">JavaScript异步编程原理</a>，感兴趣的可以去读一读。</p>
+<p>###<a href="http://www.cnblogs.com/hustskyking/p/promise.html#_7" target="_blank" rel="external"></a>第四章 小结</p>
+<p>####<a href="http://www.cnblogs.com/hustskyking/p/promise.html#_8" target="_blank" rel="external"></a>一、小结<br>文章比较长，阅读了好几天别人写的东西，自己提笔还是比较轻松的，本文大概花费了 6 个小时撰写。<br>本文主要解说了 Promise 的应用场景和实现原理，如果你能够顺畅的读完全文并且之处文中的一些错误，说明你已经悟到了：）<br>Promise 使用起来不难，但是理解其原理还是有点偏头痛的，所以下面列举的几篇相关阅读也建议读者点进去看看。</p>
+<p>####<a href="http://www.cnblogs.com/hustskyking/p/promise.html#_9" target="_blank" rel="external"></a>二、相关阅读</p>
+<ul>
+<li><a href="http://www.html5rocks.com/zh/tutorials/es6/promises/" target="_blank" rel="external">JavaScript Promises</a></li>
+<li><a href="http://mweb.baidu.com/p/promise-introduction.html" target="_blank" rel="external">Promise 初探</a></li>
+<li><a href="http://mweb.baidu.com/p/javascript-async-0.html" target="_blank" rel="external">JavaScript中的异步梳理（0）</a></li>
+<li><a href="http://mweb.baidu.com/p/javascript-async-2-promises-a.html" target="_blank" rel="external">JavaScript中的异步梳理（2）——使用Promises/A</a></li>
+<li><a href="http://www.web-tinker.com/article/20154.html" target="_blank" rel="external">jQuery的Deferred对象</a></li>
+<li><a href="http://blog.qivhou.com/translation/2013/08/20/promise-deferred-objects-in-javascript-pt2-practical-use/" target="_blank" rel="external">JavaScript中的Promise和Deferred对象<br>第二部分：实战</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise" target="_blank" rel="external">MDN</a></li>
+<li><a href="http://www.cnblogs.com/hustskyking/p/javascript-asynchronous-programming.html" target="_blank" rel="external">JavaScript异步编程原理</a></li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>Title:</span><a href="/2014/10/30/细嗅Promise/">细嗅Promise</a></p>
+        <p><span>Author:</span><a href="/" title="Back to Homepage">offbye</a></p>
+        <p><span>Created:</span>2014-10-30, 08:37:00</p>
+        <p><span>Updated:</span>2016-05-13, 00:38:43</p>
+
+        <p>
+            <span>Full URL:</span><a class="post-url" href="/2014/10/30/细嗅Promise/" title="细嗅Promise">http://offbye.com/2014/10/30/细嗅Promise/</a>
+            <span class="copy-path" data-clipboard-text="From http://offbye.com/2014/10/30/细嗅Promise/　　By offbye" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>License:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"CC BY-NC-SA 4.0"</a> Keep Link &amp; Author if Distribute.
+        </p>
+        
+        <p><span>CSDN原文:</span> <a href="http://blog.csdn.net/offbye/article/details/40613943" target="_blank" title="细嗅Promise">http://blog.csdn.net/offbye/article/details/40613943</a> </p>
+        <p><span>CSDN PV:</span>663</p>
+        
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2014/10/30/AngularJs $broadcast $emit $on 事件触发controller间的值传递/">
+                    AngularJs $broadcast $emit $on 事件触发controller间的值传递
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2014/10/28/从2014年D2前端技术论坛看前端发展趋势/">
+                    从2014年D2前端技术论坛看前端发展趋势
+                </a>
+            </div>
+        
+    </nav>
+
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="Hide"  title="Show or Hide Table of Contents">
+<script>
+    var valueHide = "Hide";
+    var valueShow = "Show";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"细嗅Promise　| offbye　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="2014/10/30/细嗅Promise/" data-title="细嗅Promise" data-url="http://offbye.com/2014/10/30/细嗅Promise/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"offbye"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+    <!-- 多说公共JS代码 end -->
+</div>
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2014/10/30/AngularJs $broadcast $emit $on 事件触发controller间的值传递/" title="Pre: AngularJs $broadcast $emit $on 事件触发controller间的值传递">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2014/10/28/从2014年D2前端技术论坛看前端发展趋势/" title="Next: 从2014年D2前端技术论坛看前端发展趋势">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/05/13/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/12/YAML文件语法简介/">YAML文件语法简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/11/iOS-Sandbox-swift/">iOS App沙盒模型文件目录详解Swift版</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/06/iOS App沙盒模型文件目录详解Swift版/">iOS App沙盒模型文件目录详解Swift版</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/05/Swift iOS实现把PCM语音转成MP3格式/">Swift iOS实现把PCM语音转成MP3格式</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/04/RESTFUL API 安全设计/">RESTFUL API 安全设计</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/04/关于 Token，你应该知道的十件事/">关于 Token，你应该知道的十件事</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/04/程序员的成长和代码行数的关系/">程序员的成长和代码行数的关系</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/04/从JavaAndroid到Swift iOS开发：语言与框架对比/">从JavaAndroid到Swift iOS开发：语言与框架对比</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/26/Android开发常用开源框架推荐/">Android开发常用开源框架推荐</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/22/Swift Modules for React Native/">Swift Modules for React Native</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/15/Android官方MVP架构示例项目解析/">Android官方MVP架构示例项目解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/15/使用swift开发Cordova插件/">使用swift开发Cordova插件</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/14/Swift语言中的@available 和 #available/">Swift语言中的@available 和</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/31/Android volley 使用OkHttp3.0/">Android volley 使用OkHttp3.0</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/28/What's new in Swift 2.2/">What's new in Swift 2.2</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/16/java8新特性介绍/">java8新特性介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/15/Swift异常处理：throw和rethrow/">Swift异常处理：throw和rethrow</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/14/Swift iOS- 手势检测详解/">Swift iOS- 手势检测详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/11/Swift化零为整：Reduce 详解/">Swift化零为整：Reduce 详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/11/Swift2.1关键字 @noescape介绍/">Swift2.1关键字 @noescape介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/11/理解Swift中map 和 flatMap对集合的作用/">理解Swift中map 和 flatMap对集合的作用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/09/移动端专用数据库Realm介绍/">移动端专用数据库Realm介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/09/安装Xcode插件包管理器Alcatraz报错解决办法/">安装Xcode插件包管理器Alcatraz报错解决办法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/09/Android最佳实践 —— 详细谈谈如何减小APK体积/">Android最佳实践 —— 详细谈谈如何减小APK体积</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/05/iOS开发如何通过UMeng的错误分析解决crash问题/">iOS开发如何通过UMeng的错误分析解决crash问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/04/常见移动设备的 CSS3 Media Query 整理（iPhoneiPadGalaxy）/">常见移动设备的 CSS3 Media Query 整理（iPhoneiPadGalaxy）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/04/我在MDCC 2015的演讲PPT《HTML5移动应用多端开发架构实践》分享/">我在MDCC 2015的演讲PPT《HTML5移动应用多端开发架构实践》分享</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/01/深入理解iOS开发中的BitCode功能/">深入理解iOS开发中的BitCode功能</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/01/iOS swift动画和特效专题/">iOS swift动画和特效专题</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/29/Swift iOS项目archive操作会报错误built without full bitcode解决方法/">Swift iOS项目archive操作会报错误built without full bitcode解决方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/26/GCD 和延时调用/">GCD 和延时调用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/26/Swift - 多线程实现方式（3） - Grand Central Dispatch（GCD）/">Swift - 多线程实现方式（3） - Grand Central Dispatch（GCD）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/25/iOS 9开发小技巧：LayoutGuide，Storyboard Reference/">iOS 9开发小技巧：LayoutGuide，Storyboard Reference</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/25/Storyboard的爱与恨/">Storyboard的爱与恨</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/25/Swift iOS tableView static cell动态计算高度/">Swift iOS tableView static cell动态计算高度</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/24/5 个顶级 Android 开源库/">5 个顶级 Android 开源库</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/19/Swift高阶函数介绍（闭包、Map、Filter、Reduce）/">Swift高阶函数介绍（闭包、Map、Filter、Reduce）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/18/iOS Swift判断代码运行在模拟器上/">iOS Swift判断代码运行在模拟器上</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/17/iOS 开发 UI 搭建心得（一）—— 驾驭 StoryBoard  代码示例：httpsgithub.comjohnluiSwift-On-iOSblobmasterDifferen/">iOS 开发 UI 搭建心得（一）—— 驾驭 StoryBoard  代码示例：httpsgithub.comjohnluiSwift-On-iOSblobmasterDifferen</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/16/使用命令行统计代码行数/">使用命令行统计代码行数</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/03/HTTP 2.0的那些事/">HTTP 2.0的那些事</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/02/浅谈 RxAndroid + Retrofit + Databinding/">浅谈 RxAndroid + Retrofit + Databinding</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/28/2016这些Android技术会很火/">2016这些Android技术会很火</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/27/使用CodePush实时更新 React Native 和 Cordova 应用/">使用CodePush实时更新 React Native 和 Cordova 应用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/20/理解Swift中Optional类型－有和无的哲学/">理解Swift中Optional类型－有和无的哲学</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/19/其实你不知道MultiDex到底有多坑/">其实你不知道MultiDex到底有多坑</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/19/Android MultiDex分包变形记/">Android MultiDex分包变形记</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/14/Swift iOS项目最佳实践汇总/">Swift iOS项目最佳实践汇总</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/11/饿了么移动APP的架构演进/">饿了么移动APP的架构演进</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/30/Android 开发最佳实践/">Android 开发最佳实践</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/29/RxAndroid和RxJava的资料分享/">RxAndroid和RxJava的资料分享</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/28/技术人如何才能不焦虑/">技术人如何才能不焦虑</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/26/云栖社区12篇实战经验所组成的“近战”系列分享/">云栖社区12篇实战经验所组成的“近战”系列分享</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/26/程序员晋升攻略/">程序员晋升攻略</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/25/Xcode7.2版本carthage包管理器兼容问题解决/">Xcode7.2版本carthage包管理器兼容问题解决</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/14/2015年Android开发新技术盘点/">2015年Android开发新技术盘点</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/10/Android中Touch事件分析--解决HorizontalScrollView滑动和按钮事件触发问题/">Android中Touch事件分析--解决HorizontalScrollView滑动和按钮事件触发问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/03/Android动态加载黑科技 动态创建Activity模式/">Android动态加载黑科技 动态创建Activity模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/01/Android注解支持Support Annotations详解/">Android注解支持Support Annotations详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/27/Android Studio 2.0 Instant Run即时运行功能实现分析/">Android Studio 2.0 Instant Run即时运行功能实现分析</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/25/Android应用性能剖析全攻略/">Android应用性能剖析全攻略</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/24/自动生成Android不同分辨率下的图片/">自动生成Android不同分辨率下的图片</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/24/Android Studio 2.0 Preview发布,附下载地址，支持即时运行和GPU Profiler/">Android Studio 2.0 Preview发布,附下载地址，支持即时运行和GPU Profiler</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/17/React Native Android端10个最常见问题/">React Native Android端10个最常见问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/13/使用Javascript ES6进行开发的思考/">使用Javascript ES6进行开发的思考</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/13/安装包立减1M--微信Android资源混淆打包工具/">安装包立减1M--微信Android资源混淆打包工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/11/Ionic 2.0 Alpha版本发布了/">Ionic 2.0 Alpha版本发布了</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/10/美团Android资源混淆保护实践/">美团Android资源混淆保护实践</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/10/Android开发中的armeabi和armeabi-v7a介绍/">Android开发中的armeabi和armeabi-v7a介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/06/在CordovaActivity中添加原生View组件/">在CordovaActivity中添加原生View组件</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/05/技术贴：开源飞控那些事/">技术贴：开源飞控那些事</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/03/Android常用开源框架Proguard混淆解决方案/">Android常用开源框架Proguard混淆解决方案</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/03/美团Android DEX自动拆包及动态加载简介/">美团Android DEX自动拆包及动态加载简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/02/Google基于Dart的新移动开发框架Flutter介绍/">Google基于Dart的新移动开发框架Flutter介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/29/通过SharedPreferences实现进程间数据共享的问题详解/">通过SharedPreferences实现进程间数据共享的问题详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/26/Android修改TitleBar标题栏详解/">Android修改TitleBar标题栏详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/23/异步JavaScript的进化/">异步JavaScript的进化</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/21/Android Service创建USB HOST通信/">Android Service创建USB HOST通信</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/21/Android 热敏打印机打印二维码/">Android 热敏打印机打印二维码</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/13/基于webpack搭建前端工程解决方案探索/">基于webpack搭建前端工程解决方案探索</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/11/理解Flux架构/">理解Flux架构</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/09/Mac Yosemite系统 brew 报错的解决办法/">Mac Yosemite系统 brew 报错的解决办法</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/30/微信公众平台接入经验分享，纯干货/">微信公众平台接入经验分享，纯干货</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/28/使用Kotlin进行Android开发/">使用Kotlin进行Android开发</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/23/Umeng推送消息的坑，Android Service的androidexported详解/">Umeng推送消息的坑，Android Service的androidexported详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/22/自动生成Android屏幕适配的dimens.xml/">自动生成Android屏幕适配的dimens.xml</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/21/iOS9系统开始对企业发布App进行严格限制/">iOS9系统开始对企业发布App进行严格限制</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/16/sed 简明教程/">sed 简明教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/15/Gradle, 基于DSL的新一代Java构建工具/">Gradle, 基于DSL的新一代Java构建工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/15/Gradle常用命令和原理说明/">Gradle常用命令和原理说明</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/09/大势所趋！十大令人振奋的移动端APP设计趋势/">大势所趋！十大令人振奋的移动端APP设计趋势</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/02/Android微信智能心跳方案/">Android微信智能心跳方案</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/01/深入浅出学Spring Data JPA/">深入浅出学Spring Data JPA</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/29/在Mac上制作树莓派SD镜像/">在Mac上制作树莓派SD镜像</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/26/Git从远程的分支获取最新的版本到本地/">Git从远程的分支获取最新的版本到本地</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/25/Spring Data JPA 常用注解 @Query、@NamedQuery/">Spring Data JPA 常用注解 @Query、@NamedQuery</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/24/树莓派做 wifi 热点/">树莓派做 wifi 热点</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/23/树莓派把一个python脚本作为服务运行，配置开机自动启动/">树莓派把一个python脚本作为服务运行，配置开机自动启动</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/22/INSTALLING OPERATING SYSTEM IMAGES ON MAC OS/">INSTALLING OPERATING SYSTEM IMAGES ON MAC OS</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/18/基于Volley，Gson封装支持JWT无状态安全验证和数据防篡改的GsonRequest网络请求类/">基于Volley，Gson封装支持JWT无状态安全验证和数据防篡改的GsonRequest网络请求类</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/16/如何快速构建基于Spring4.0的Rest API（攻略）/">如何快速构建基于Spring4.0的Rest API（攻略）</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/16/Spring MVC 4 常用注解汇总/">Spring MVC 4 常用注解汇总</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/13/JSON Web Token JWT 简介/">JSON Web Token JWT 简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/13/NodeJs使用json web token验证REST服务/">NodeJs使用json web token验证REST服务</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/13/一个Spring Boot， JWT，AugularJS接口安全验证的简单例子/">一个Spring Boot， JWT，AugularJS接口安全验证的简单例子</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/11/基于Spring Boot，Security和JWB的REST接口的无状态认证/">基于Spring Boot，Security和JWB的REST接口的无状态认证</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/08/Spring Boot和JPA开发的一些坑/">Spring Boot和JPA开发的一些坑</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/06/Android ORM数据库框架对比/">Android ORM数据库框架对比</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/06/最流行的开源飞控项目ArduPilot Mega（APM）介绍及发展历史/">最流行的开源飞控项目ArduPilot Mega（APM）介绍及发展历史</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/06/使用Spring Boot快速构建应用/">使用Spring Boot快速构建应用</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/04/CSS 的黑科技/">CSS 的黑科技</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/31/The Future of JavaScript MVC Frameworks/">The Future of JavaScript MVC Frameworks</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/31/Raspberry Pi Camera Streaming to VLC Player/">Raspberry Pi Camera Streaming to VLC Player</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/29/linux下解压缩.tar.xz方法/">linux下解压缩.tar.xz方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/28/树莓派摄像头视频直播技术汇总/">树莓派摄像头视频直播技术汇总</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/28/Python高效率编程的8条箴言/">Python高效率编程的8条箴言</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/28/如何使用Android Studio提高App质量/">如何使用Android Studio提高App质量</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/27/树莓派遥控船项目计划/">树莓派遥控船项目计划</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/24/人人都能玩航拍 手把手教你装4轴/">人人都能玩航拍 手把手教你装4轴</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/24/树莓派的PWM脉宽调制功能介绍/">树莓派的PWM脉宽调制功能介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/23/python字符串连接/">python字符串连接</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/23/Android Studio上方便使用butterknife注解框架的偷懒插件Android Butterknife Zelezny/">Android Studio上方便使用butterknife注解框架的偷懒插件Android Butterknife Zelezny</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/23/Python的Lambda函数与排序/">Python的Lambda函数与排序</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/22/TypeScript 1.5正式发布，此版本是Visual Studio 2015更新的一部分，支持大量ES6新特性/">TypeScript 1.5正式发布，此版本是Visual Studio 2015更新的一部分，支持大量ES6新特性</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/20/iWeb峰会（HTML5峰会）2015年7月19日上海站会后感想/">iWeb峰会（HTML5峰会）2015年7月19日上海站会后感想</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/16/说说React,Flux,Reray和GraghQL/">说说React,Flux,Reray和GraghQL</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/16/ReactEurope Conf 参会感想/">ReactEurope Conf 参会感想</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/15/Android Studio Gradle项目中添加JNI so文件/">Android Studio Gradle项目中添加JNI so文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/15/mac os使用lsusb命令和连接未知的Android设备/">mac os使用lsusb命令和连接未知的Android设备</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/15/HTML5 HybridApp开发上手指引/">HTML5 HybridApp开发上手指引</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/15/Facebook的Web开发三板斧：React.js、Relay和GraphQL/">Facebook的Web开发三板斧：React.js、Relay和GraphQL</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/15/Flux再进化：Introducing Relay and GraphQL（译）/">Flux再进化：Introducing Relay and GraphQL（译）</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/14/为什么要造轮子？/">为什么要造轮子？</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/10/那些争议最大的编程观点/">那些争议最大的编程观点</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/10/Angular vs. React - the tie breaker/">Angular vs. React - the tie breaker</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/09/android：ToolBar详解（手把手教程）/">android：ToolBar详解（手把手教程）</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/08/Android Support Library更新到v22.1之AppCompat新特性/">Android Support Library更新到v22.1之AppCompat新特性</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/08/用Material Design设计App谷歌官方文档翻译/">用Material Design设计App谷歌官方文档翻译</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/07/Pure Android/">Pure Android</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/07/Material Design in Action — 哔哩哔哩动画 Android 客户端/">Material Design in Action — 哔哩哔哩动画 Android 客户端</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/07/Android Studio 批量打包，apk重命名/">Android Studio 批量打包，apk重命名</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/06/Android Studio Android studio 多渠道打包超简洁版/">Android Studio Android studio 多渠道打包超简洁版</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/06/Eclipse Android项目导入Android Studio时常见的编译错误及解决办法/">Eclipse Android项目导入Android Studio时常见的编译错误及解决办法</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/01/HTML5本地存储——IndexedDB（一：基本使用）/">HTML5本地存储——IndexedDB（一：基本使用）</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/15/SASS基础——十个常见的Mixins/">SASS基础——十个常见的Mixins</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/15/python 中的mixin特性/">python 中的mixin特性</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/10/Mac上通过Linux命令行批量查找和替换文本/">Mac上通过Linux命令行批量查找和替换文本</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/09/产品经理经常犯的十大顶级错误/">产品经理经常犯的十大顶级错误</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/09/ES6新特性概览/">ES6新特性概览</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/09/ES6 JavaScript Promise的感性认知/">ES6 JavaScript Promise的感性认知</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/06/机器学习的11个开源项目/">机器学习的11个开源项目</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/06/实现Instagram的Material Design概念设计/">实现Instagram的Material Design概念设计</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/04/18/2015年移动Web／HybridApp开发技能列表/">2015年移动Web／HybridApp开发技能列表</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/04/16/前端工程化：在gulp中顺序执行任务/">前端工程化：在gulp中顺序执行任务</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/04/09/Android 5.0 API新增和改进/">Android 5.0 API新增和改进</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/31/JavaScript的计时器的工作原理/">JavaScript的计时器的工作原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/31/ 浏览器原理  Repaint 、Reflow 的基本认识和优化/">浏览器原理  Repaint 、Reflow 的基本认识和优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/23/前端性能优化（JavaScript补充篇）/">前端性能优化（JavaScript补充篇）</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/18/Android 开发资源汇总/">Android 开发资源汇总</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/17/NodeJS+Express模块的跨域访问控制问题/">NodeJS+Express模块的跨域访问控制问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/07/Android手机平板两不误，使用Fragment实现兼容手机和平板的程序/">Android手机平板两不误，使用Fragment实现兼容手机和平板的程序</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/05/用树莓派制作一款只有刷脸才能开的保险柜/">用树莓派制作一款只有刷脸才能开的保险柜</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/02/28/腾讯移动Web整体解决方案--Spirit/">腾讯移动Web整体解决方案--Spirit</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/02/27/惊艳的基于nodejs的实时Web开发框架Meteor介绍/">惊艳的基于nodejs的实时Web开发框架Meteor介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/02/26/使用gulp压缩并合并AngularJS代码/">使用gulp压缩并合并AngularJS代码</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/01/28/移动前端开发之viewport的深入理解/">移动前端开发之viewport的深入理解</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/01/23/Hybrid Android App中通过js访问Shared Preferences的问题/">Hybrid Android App中通过js访问Shared Preferences的问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/01/07/Android编码规范及性能优化整理/">Android编码规范及性能优化整理</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/01/05/CSS中如何让 height100%; 起作用/">CSS中如何让 height100%; 起作用</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/29/AngularJS风格指南/">AngularJS风格指南</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/18/基于git的源代码管理模型——git flow/">基于git的源代码管理模型——git flow</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/18/Git的最佳实践git-flow/">Git的最佳实践git-flow</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/03/Android TVGoogle ADT1开发者版初体验/">Android TVGoogle ADT1开发者版初体验</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/02/GoogleIO 2013 Android快速联网框架Volley介绍/">GoogleIO 2013 Android快速联网框架Volley介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/27/Android MVVM框架RoboBinding初探/">Android MVVM框架RoboBinding初探</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/25/Android和iOS在新版本中助力HTML5/">Android和iOS在新版本中助力HTML5</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/23/香蕉派和树莓派的不同点及GPIO引脚定义/">香蕉派和树莓派的不同点及GPIO引脚定义</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/19/软件架构师应该知道的 97 件事笔记/">软件架构师应该知道的 97 件事笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/18/参加PyCon2014有感/">参加PyCon2014有感</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/14/Raspberry Pi VPN Gateway/">Raspberry Pi VPN Gateway</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/11/HTML5 终于定稿，八年后我们再一次谈谈怎么改变世界/">HTML5 终于定稿，八年后我们再一次谈谈怎么改变世界</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/06/Mac下查看某个命令的路径/">Mac下查看某个命令的路径</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/05/singleTop和singleTask有什么区别？ Activity 四种加载模式详解）/">singleTop和singleTask有什么区别？ Activity 四种加载模式详解）</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/05/2014年国内常用移动客户端推送服务介绍和比较/">2014年国内常用移动客户端推送服务介绍和比较</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/10/31/一篇文章读懂开源web引擎Crosswalk/">一篇文章读懂开源web引擎Crosswalk</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/10/30/AngularJs $broadcast $emit $on 事件触发controller间的值传递/">AngularJs $broadcast $emit $on 事件触发controller间的值传递</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/10/30/细嗅Promise/">细嗅Promise</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/10/28/从2014年D2前端技术论坛看前端发展趋势/">从2014年D2前端技术论坛看前端发展趋势</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/10/28/涛哥的Python脚本工具箱之生成带Logo的二维码/">涛哥的Python脚本工具箱之生成带Logo的二维码</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/10/22/mongodb适用和不适用的应用场景/">mongodb适用和不适用的应用场景</a></li><li class="post-list-item"><a class="post-list-link" href="/2009/12/07/Centos 5.3上Asterisk安装及配置/">Centos 5.3上Asterisk安装及配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2009/12/07/rsh服务配置文档/">rsh服务配置文档</a></li><li class="post-list-item"><a class="post-list-link" href="/2009/12/07/centos 5.3中用yum安装MPlayer/">centos 5.3中用yum安装MPlayer</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2015-2016 offbye
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="A fast, simple &amp; powerful blog framework">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="Another simple and elegant theme for Hexo">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >Site Visitors: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">Page Hits: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.1.22/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 9;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="Back to Top"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" title="Comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="Go to Bottom"><i class="fa fa-arrow-down"></i></a>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
