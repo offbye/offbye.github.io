@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://offbye.com/"/>
-  <updated>2016-05-12T07:53:32.000Z</updated>
+  <updated>2016-05-12T08:10:48.000Z</updated>
   <id>http://offbye.com/</id>
   
   <author>
@@ -20,11 +20,11 @@
     <link href="http://offbye.com/2016/05/12/YAML%E6%96%87%E4%BB%B6%E8%AF%AD%E6%B3%95%E7%AE%80%E4%BB%8B/"/>
     <id>http://offbye.com/2016/05/12/YAML文件语法简介/</id>
     <published>2016-05-12T07:46:53.000Z</published>
-    <updated>2016-05-12T07:53:32.000Z</updated>
+    <updated>2016-05-12T08:10:48.000Z</updated>
     
     <content type="html">&lt;p&gt;YAML是一种利于人们读写的数据格式. 现在很多系统例如Spring,Ansible,RoR等都支持YAML配置文件，YAML由于其良好的可读性，越来月流行。此外在大多数变成语言中有使用 YAML 的库.&lt;/p&gt;
 &lt;p&gt;这个页面提供一个正确的 YAML 语法的基本概述, 它被用来描述一个 playbooks(我们的配置管理语言).&lt;/p&gt;
-&lt;p&gt;基本的 YAML&lt;br&gt;对于 Ansible, 每一个 YAML 文件都是从一个列表开始. 列表中的每一项都是一个键值对, 通常它们被称为一个 “哈希” 或 “字典”. 所以, 我们需要知道如何在 YAML 中编写列表和字典.&lt;/p&gt;
+&lt;p&gt;#基本的YAML&lt;br&gt;对于 Ansible, 每一个 YAML 文件都是从一个列表开始. 列表中的每一项都是一个键值对, 通常它们被称为一个 “哈希” 或 “字典”. 所以, 我们需要知道如何在 YAML 中编写列表和字典.&lt;/p&gt;
 &lt;p&gt;YAML 还有一个小的怪癖. 所有的 YAML 文件(无论和 Ansible 有没有关系)开始行都应该是 —. 这是 YAML 格式的一部分, 表明一个文件的开始.&lt;/p&gt;
 &lt;p&gt;列表中的所有成员都开始于相同的缩进级别, 并且使用一个 “- “ 作为开头(一个横杠和一个空格):&lt;/p&gt;
 &lt;hr&gt;
@@ -52,6 +52,8 @@
     
     </summary>
     
+    
+      <category term="YAML" scheme="http://offbye.com/tags/YAML/"/>
     
   </entry>
   
