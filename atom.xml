@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://offbye.com/"/>
-  <updated>2016-05-12T02:03:07.000Z</updated>
+  <updated>2016-05-12T07:53:32.000Z</updated>
   <id>http://offbye.com/</id>
   
   <author>
@@ -16,36 +16,80 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>YAML文件语法简介</title>
+    <link href="http://offbye.com/2016/05/12/YAML%E6%96%87%E4%BB%B6%E8%AF%AD%E6%B3%95%E7%AE%80%E4%BB%8B/"/>
+    <id>http://offbye.com/2016/05/12/YAML文件语法简介/</id>
+    <published>2016-05-12T07:46:53.000Z</published>
+    <updated>2016-05-12T07:53:32.000Z</updated>
+    
+    <content type="html">&lt;p&gt;YAML是一种利于人们读写的数据格式. 现在很多系统例如Spring,Ansible,RoR等都支持YAML配置文件，YAML由于其良好的可读性，越来月流行。此外在大多数变成语言中有使用 YAML 的库.&lt;/p&gt;
+&lt;p&gt;这个页面提供一个正确的 YAML 语法的基本概述, 它被用来描述一个 playbooks(我们的配置管理语言).&lt;/p&gt;
+&lt;p&gt;基本的 YAML&lt;br&gt;对于 Ansible, 每一个 YAML 文件都是从一个列表开始. 列表中的每一项都是一个键值对, 通常它们被称为一个 “哈希” 或 “字典”. 所以, 我们需要知道如何在 YAML 中编写列表和字典.&lt;/p&gt;
+&lt;p&gt;YAML 还有一个小的怪癖. 所有的 YAML 文件(无论和 Ansible 有没有关系)开始行都应该是 —. 这是 YAML 格式的一部分, 表明一个文件的开始.&lt;/p&gt;
+&lt;p&gt;列表中的所有成员都开始于相同的缩进级别, 并且使用一个 “- “ 作为开头(一个横杠和一个空格):&lt;/p&gt;
+&lt;hr&gt;
+&lt;h1 id=&quot;一个美味水果的列表&quot;&gt;&lt;a href=&quot;#一个美味水果的列表&quot; class=&quot;headerlink&quot; title=&quot;一个美味水果的列表&quot;&gt;&lt;/a&gt;一个美味水果的列表&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;Apple&lt;/li&gt;
+&lt;li&gt;Orange&lt;/li&gt;
+&lt;li&gt;Strawberry&lt;/li&gt;
+&lt;li&gt;Mango&lt;br&gt;一个字典是由一个简单的 键: 值 的形式组成(这个冒号后面必须是一个空格):&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;---&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;# 一位职工的记录&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;name: Example Developer&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;job: Developer&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;skill: Elite&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;字典也可以使用缩进形式来表示, 如果你喜欢这样的话:&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;---&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;# 一位职工的记录&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;name: Example Developer, job: Developer, skill: Elite&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;Ansible并不是太多的使用这种格式, 但是你可以通过以下格式来指定一个布尔值(true/fase):&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;---&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;create_key: yes&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;needs_agent: no&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;knows_oop: True&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;likes_emacs: TRUE&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;uses_cvs: false&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;让我们把目前所学到的 YAML 例子组合在一起. 这些在 Ansible 中什么也干不了, 但这些格式将会给你感觉:&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;---&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;# 一位职工记录&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;name: Example Developer&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;job: Developer&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;skill: Elite&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;employed: True&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;foods:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    - Apple&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    - Orange&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    - Strawberry&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    - Mango&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;languages:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    ruby: Elite&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    python: Elite&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    dotnet: Lame&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;这就是你开始编写 Ansible playbooks 所需要知道的所有 YAML 语法.&lt;/p&gt;
+&lt;p&gt;Gotchas&lt;br&gt;尽管 YAML 通常是友好的, 但是下面将会导致一个 YAML 语法错误:&lt;/p&gt;
+&lt;p&gt;foo: somebody said I should put a colon here: so I did&lt;br&gt;你需要使用引号来包裹任何包含冒号的哈希值, 像这样:&lt;/p&gt;
+&lt;p&gt;foo: “somebody said I should put a colon here: so I did”&lt;br&gt;然后这个冒号将会被结尾.&lt;/p&gt;
+&lt;p&gt;此外, Ansible 使用 “” 来引用变量. 如果一个值以 “{” 开头, YAML 将认为它是一个字典, 所以我们必须引用它, 像这样:&lt;/p&gt;
+&lt;p&gt;foo: ““&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      YAML是一种利于人们读写的数据格式. 现在很多系统例如Spring等都支持YAML配置文件，YAML由于其良好的可读性，越来月流行。此外在大多数变成语言中有使用 YAML 的库. 
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>iOS App沙盒模型文件目录详解Swift版</title>
     <link href="http://offbye.com/2016/05/11/iOS-Sandbox-swift/"/>
     <id>http://offbye.com/2016/05/11/iOS-Sandbox-swift/</id>
     <published>2016-05-11T10:25:25.000Z</published>
-    <updated>2016-05-12T02:03:07.000Z</updated>
+    <updated>2016-05-12T07:59:07.000Z</updated>
     
     <content type="html">&lt;p&gt;本文会比较全面的介绍iOS App沙盒模型的文件夹及其使用场景，以及通过Swift取得这些文件夹的方法&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;iOS 中的沙盒机制介绍&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;iOS 中的沙盒机制（SandBox）是一种安全体系。&lt;br&gt;每个iOS 应用程序都有一个单独的文件系统（存储空间），而且只能在对应的文件系统中进行操作，此区域被称为沙盒。所有的非代码文件都要保存在此，例如属性文件 plist、文本文件、图像、图标、媒体资源等。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;iPhone沙箱模型的四个文件夹介绍和功能&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;1、Documents 目录：您应该将所有de应用程序数据文件写入到这个目录下。这个目录用于存储用户数据或其它应该定期备份的信息。用户自己保存的文件在documents文件里&lt;/p&gt;
-&lt;p&gt;2、AppName.app 目录：这是应用程序的程序包目录，包含应用程序的本身。由于应用程序必须经过签名，所以您在运行时不能对这个目录中的内容进行修改，否则可能会使应用程序无法启动。&lt;/p&gt;
-&lt;p&gt;3、Library 目录：这个目录下有两个子目录：Caches 和 Preferences&lt;br&gt;Preferences 目录：包含应用程序的偏好设置文件。您不应该直接创建偏好设置文件，而是应该使用NSUserDefaults类来取得和设置应用程序的偏好.&lt;br&gt;Caches 目录：用于存放应用程序专用的支持文件，保存应用程序再次启动过程中需要的信息。&lt;/p&gt;
-&lt;p&gt;4、tmp 目录：这个目录用于存放临时文件，保存应用程序再次启动过程中不需要的信息。&lt;/p&gt;
-&lt;p&gt;补充1：对于上述描述可以这样举例理解，一个记事本应用，用户写的东西需要保存起来，这些东西是用户自行生成的，则需要放在 Documents 目录里。一个新闻应用，如果需要从服务器下载东西展示给用户看，下载的东西就放在 Library/Caches 目录里。苹果审核对这个要求很严格，主要原因是 iCloud 的同步问题。&lt;br&gt;补充2：如果想知道真机或者模拟器 App 沙盒路径，可通过在项目中执行下述代码打印获取：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;获取这些目录路径的方法&lt;br&gt;1，获取Home目录路径的函数：&lt;br&gt;let homeDir = NSHomeDirectory()&lt;br&gt;2，获取Documents目录路径的方法：&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;let paths =  NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.NSDocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;let   documentPath = paths[0]&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h1 id=&quot;iOS-中的沙盒机制介绍&quot;&gt;&lt;a href=&quot;#iOS-中的沙盒机制介绍&quot; class=&quot;headerlink&quot; title=&quot;iOS 中的沙盒机制介绍&quot;&gt;&lt;/a&gt;iOS 中的沙盒机制介绍&lt;/h1&gt;&lt;p&gt;iOS 中的沙盒机制（SandBox）是一种安全体系。&lt;br&gt;每个iOS 应用程序都有一个单独的文件系统（存储空间），而且只能在对应的文件系统中进行操作，此区域被称为沙盒。所有的非代码文件都要保存在此，例如属性文件 plist、文本文件、图像、图标、媒体资源等。&lt;/p&gt;
+&lt;h1 id=&quot;iPhone沙箱模型的四个文件夹介绍和功能&quot;&gt;&lt;a href=&quot;#iPhone沙箱模型的四个文件夹介绍和功能&quot; class=&quot;headerlink&quot; title=&quot;iPhone沙箱模型的四个文件夹介绍和功能&quot;&gt;&lt;/a&gt;iPhone沙箱模型的四个文件夹介绍和功能&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Documents 目录：您应该将所有de应用程序数据文件写入到这个目录下。这个目录用于存储用户数据或其它应该定期备份的信息。用户自己保存的文件在documents文件里&lt;/p&gt;
 &lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;3，获取Caches目录路径的方法：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;let paths =  NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.CachesDirectory,NSSearchPathDomainMask.UserDomainMask, true)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;let   cachePath = paths[0]&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;4，获取tmp目录路径的方法：&lt;br&gt;let tmpDir = NSTemporaryDirectory();&lt;br&gt;5，获取应用程序程序包中资源文件路径的方法：&lt;br&gt;程序包（NSBundle）&lt;br&gt;iOS 应用都是通过 bundle 进行封装的，可以狭隘地将 bundle 理解为上述沙盒中的 AppName.app 文件。在 Finder 中，会把 bundle 当做一个文件显示从而防止用户误操作导致程序文件损坏，但其实内部是一个目录，包含了图像、媒体资源、编译好的代码、nib 文件等，这个目录称为 main bundle。&lt;br&gt;Cocoa 提供了 NSBundle 类封装了 bundle 操作。&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;AppName.app 目录：这是应用程序的程序包目录，包含应用程序的本身。由于应用程序必须经过签名，所以您在运行时不能对这个目录中的内容进行修改，否则可能会使应用程序无法启动。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Library 目录：这个目录下有两个子目录：Caches 和 Preferences&lt;br&gt;Preferences 目录：包含应用程序的偏好设置文件。您不应该直接创建偏好设置文件，而是应该使用NSUserDefaults类来取得和设置应用程序的偏好.&lt;br&gt;Caches 目录：用于存放应用程序专用的支持文件，保存应用程序再次启动过程中需要的信息。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;tmp 目录：这个目录用于存放临时文件，保存应用程序再次启动过程中不需要的信息。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;补充1：对于上述描述可以这样举例理解，一个记事本应用，用户写的东西需要保存起来，这些东西是用户自行生成的，则需要放在 Documents 目录里。一个新闻应用，如果需要从服务器下载东西展示给用户看，下载的东西就放在 Library/Caches 目录里。苹果审核对这个要求很严格，主要原因是 iCloud 的同步问题。&lt;br&gt;补充2：如果想知道真机或者模拟器 App 沙盒路径，可通过在项目中执行下述代码打印获取：&lt;/p&gt;
+&lt;h1 id=&quot;获取这些目录路径的方法&quot;&gt;&lt;a href=&quot;#获取这些目录路径的方法&quot; class=&quot;headerlink&quot; title=&quot;获取这些目录路径的方法&quot;&gt;&lt;/a&gt;获取这些目录路径的方法&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;获取Home目录路径的函数：&lt;br&gt;let homeDir = NSHomeDirectory()&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;获取Documents目录路径的方法：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;let paths =  NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.NSDocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;let   documentPath = paths[0]&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;获取Caches目录路径的方法：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;let paths =  NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.CachesDirectory,NSSearchPathDomainMask.UserDomainMask, true)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;let   cachePath = paths[0]&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;获取tmp目录路径的方法：&lt;br&gt;let tmpDir = NSTemporaryDirectory();&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;获取应用程序程序包中资源文件路径的方法：&lt;br&gt;程序包（NSBundle）&lt;br&gt;iOS 应用都是通过 bundle 进行封装的，可以狭隘地将 bundle 理解为上述沙盒中的 AppName.app 文件。在 Finder 中，会把 bundle 当做一个文件显示从而防止用户误操作导致程序文件损坏，但其实内部是一个目录，包含了图像、媒体资源、编译好的代码、nib 文件等，这个目录称为 main bundle。&lt;br&gt;Cocoa 提供了 NSBundle 类封装了 bundle 操作。&lt;/li&gt;
+&lt;/ol&gt;
 &lt;p&gt;通过NSBundle可以获取各种资源文件，注意在Build Phases - Copy Bundle Rresources下面需要有这个资源文件，有些类型的文件不会自动加在这里&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;let path = NSBundle.mainBundle().pathForResource(&amp;quot;20160504182134006&amp;quot;, ofType: &amp;quot;pcm&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;代码中的mainBundle类方法用于返回一个代表应用程序包的对象。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;NSFileManager文件管理介绍&lt;br&gt;使用 FileManager 可以对沙盒中的目录、文件进行操作。&lt;/li&gt;
-&lt;/ul&gt;
+&lt;h1 id=&quot;NSFileManager文件管理介绍&quot;&gt;&lt;a href=&quot;#NSFileManager文件管理介绍&quot; class=&quot;headerlink&quot; title=&quot;NSFileManager文件管理介绍&quot;&gt;&lt;/a&gt;NSFileManager文件管理介绍&lt;/h1&gt;&lt;p&gt;使用 FileManager 可以对沙盒中的目录、文件进行操作。&lt;/p&gt;
 &lt;p&gt;例子：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;var fm: NSFileManager = NSFileManager.defaultManager()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;if !fm.fileExistsAtPath(self.dataFilePath()) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    //下面是对该文件进行制定路径的保存&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    fm.createDirectoryAtPath(self.dataFilePath(), withIntermediateDirectories: true, attributes: nil, error: nil)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        //取得一个目录下得所有文件名&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    var files: [AnyObject] = fm.subpathsAtPath(self.dataFilePath())&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        //读取某个文件&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    var data: NSData = fm.contentsAtPath(self.dataFilePath())&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        //或者&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    var data: NSData = NSData.dataWithContentOfPath(self.dataFilePath())&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
 </content>
     
