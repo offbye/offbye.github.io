@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>offbye</title>
+  <subtitle>关注移动架构，Android，HTML5，iOS技术前沿</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://offbye.com/"/>
+  <updated>2016-05-12T02:03:07.000Z</updated>
+  <id>http://offbye.com/</id>
+  
+  <author>
+    <name>offbye</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>iOS App沙盒模型文件目录详解Swift版</title>
+    <link href="http://offbye.com/2016/05/11/iOS-Sandbox-swift/"/>
+    <id>http://offbye.com/2016/05/11/iOS-Sandbox-swift/</id>
+    <published>2016-05-11T10:25:25.000Z</published>
+    <updated>2016-05-12T02:03:07.000Z</updated>
+    
+    <content type="html">&lt;p&gt;本文会比较全面的介绍iOS App沙盒模型的文件夹及其使用场景，以及通过Swift取得这些文件夹的方法&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;iOS 中的沙盒机制介绍&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;iOS 中的沙盒机制（SandBox）是一种安全体系。&lt;br&gt;每个iOS 应用程序都有一个单独的文件系统（存储空间），而且只能在对应的文件系统中进行操作，此区域被称为沙盒。所有的非代码文件都要保存在此，例如属性文件 plist、文本文件、图像、图标、媒体资源等。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;iPhone沙箱模型的四个文件夹介绍和功能&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;1、Documents 目录：您应该将所有de应用程序数据文件写入到这个目录下。这个目录用于存储用户数据或其它应该定期备份的信息。用户自己保存的文件在documents文件里&lt;/p&gt;
+&lt;p&gt;2、AppName.app 目录：这是应用程序的程序包目录，包含应用程序的本身。由于应用程序必须经过签名，所以您在运行时不能对这个目录中的内容进行修改，否则可能会使应用程序无法启动。&lt;/p&gt;
+&lt;p&gt;3、Library 目录：这个目录下有两个子目录：Caches 和 Preferences&lt;br&gt;Preferences 目录：包含应用程序的偏好设置文件。您不应该直接创建偏好设置文件，而是应该使用NSUserDefaults类来取得和设置应用程序的偏好.&lt;br&gt;Caches 目录：用于存放应用程序专用的支持文件，保存应用程序再次启动过程中需要的信息。&lt;/p&gt;
+&lt;p&gt;4、tmp 目录：这个目录用于存放临时文件，保存应用程序再次启动过程中不需要的信息。&lt;/p&gt;
+&lt;p&gt;补充1：对于上述描述可以这样举例理解，一个记事本应用，用户写的东西需要保存起来，这些东西是用户自行生成的，则需要放在 Documents 目录里。一个新闻应用，如果需要从服务器下载东西展示给用户看，下载的东西就放在 Library/Caches 目录里。苹果审核对这个要求很严格，主要原因是 iCloud 的同步问题。&lt;br&gt;补充2：如果想知道真机或者模拟器 App 沙盒路径，可通过在项目中执行下述代码打印获取：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;获取这些目录路径的方法&lt;br&gt;1，获取Home目录路径的函数：&lt;br&gt;let homeDir = NSHomeDirectory()&lt;br&gt;2，获取Documents目录路径的方法：&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;let paths =  NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.NSDocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;let   documentPath = paths[0]&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;3，获取Caches目录路径的方法：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;let paths =  NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.CachesDirectory,NSSearchPathDomainMask.UserDomainMask, true)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;let   cachePath = paths[0]&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;4，获取tmp目录路径的方法：&lt;br&gt;let tmpDir = NSTemporaryDirectory();&lt;br&gt;5，获取应用程序程序包中资源文件路径的方法：&lt;br&gt;程序包（NSBundle）&lt;br&gt;iOS 应用都是通过 bundle 进行封装的，可以狭隘地将 bundle 理解为上述沙盒中的 AppName.app 文件。在 Finder 中，会把 bundle 当做一个文件显示从而防止用户误操作导致程序文件损坏，但其实内部是一个目录，包含了图像、媒体资源、编译好的代码、nib 文件等，这个目录称为 main bundle。&lt;br&gt;Cocoa 提供了 NSBundle 类封装了 bundle 操作。&lt;/p&gt;
+&lt;p&gt;通过NSBundle可以获取各种资源文件，注意在Build Phases - Copy Bundle Rresources下面需要有这个资源文件，有些类型的文件不会自动加在这里&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;let path = NSBundle.mainBundle().pathForResource(&amp;quot;20160504182134006&amp;quot;, ofType: &amp;quot;pcm&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;代码中的mainBundle类方法用于返回一个代表应用程序包的对象。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;NSFileManager文件管理介绍&lt;br&gt;使用 FileManager 可以对沙盒中的目录、文件进行操作。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;例子：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;var fm: NSFileManager = NSFileManager.defaultManager()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;if !fm.fileExistsAtPath(self.dataFilePath()) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    //下面是对该文件进行制定路径的保存&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    fm.createDirectoryAtPath(self.dataFilePath(), withIntermediateDirectories: true, attributes: nil, error: nil)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        //取得一个目录下得所有文件名&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    var files: [AnyObject] = fm.subpathsAtPath(self.dataFilePath())&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        //读取某个文件&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    var data: NSData = fm.contentsAtPath(self.dataFilePath())&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        //或者&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    var data: NSData = NSData.dataWithContentOfPath(self.dataFilePath())&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      本文会比较全面的介绍iOS App沙盒模型的文件夹及其使用场景，以及通过Swift取得这些文件夹的方法。iOS 中的沙盒机制（SandBox）是一种安全体系。每个iOS 应用程序都有一个单独的文件系统（存储空间），而且只能在对应的文件系统中进行操作，此区域被称为沙盒。所有的非代码文件都要保存在此，例如属性文件 plist、文本文件、图像、图标、媒体资源等。
+    
+    </summary>
+    
+    
+      <category term="Sandbox" scheme="http://offbye.com/tags/Sandbox/"/>
+    
+      <category term="swift" scheme="http://offbye.com/tags/swift/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://offbye.com/2016/05/11/hello-world/"/>
+    <id>http://offbye.com/2016/05/11/hello-world/</id>
+    <published>2016-05-11T06:49:59.000Z</published>
+    <updated>2016-05-11T06:49:59.000Z</updated>
+    
+    <content type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&quot;https://hexo.io/docs/troubleshooting.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&quot;https://github.com/hexojs/hexo/issues&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&quot;Quick-Start&quot;&gt;&lt;a href=&quot;#Quick-Start&quot; class=&quot;headerlink&quot; title=&quot;Quick Start&quot;&gt;&lt;/a&gt;Quick Start&lt;/h2&gt;&lt;h3 id=&quot;Create-a-new-post&quot;&gt;&lt;a href=&quot;#Create-a-new-post&quot; class=&quot;headerlink&quot; title=&quot;Create a new post&quot;&gt;&lt;/a&gt;Create a new post&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo new &lt;span class=&quot;string&quot;&gt;&quot;My New Post&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/writing.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Writing&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Run-server&quot;&gt;&lt;a href=&quot;#Run-server&quot; class=&quot;headerlink&quot; title=&quot;Run server&quot;&gt;&lt;/a&gt;Run server&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo server&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/server.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Server&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Generate-static-files&quot;&gt;&lt;a href=&quot;#Generate-static-files&quot; class=&quot;headerlink&quot; title=&quot;Generate static files&quot;&gt;&lt;/a&gt;Generate static files&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo generate&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/generating.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Generating&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Deploy-to-remote-sites&quot;&gt;&lt;a href=&quot;#Deploy-to-remote-sites&quot; class=&quot;headerlink&quot; title=&quot;Deploy to remote sites&quot;&gt;&lt;/a&gt;Deploy to remote sites&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo deploy&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/deployment.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Deployment&lt;/a&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
+    
+    </summary>
+    
+    
+  </entry>
+  
+</feed>
