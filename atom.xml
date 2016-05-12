@@ -16,33 +16,6 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Hello World</title>
-    <link href="http://offbye.com/2016/05/13/hello-world/"/>
-    <id>http://offbye.com/2016/05/13/hello-world/</id>
-    <published>2016-05-12T16:23:41.000Z</published>
-    <updated>2016-05-12T16:23:41.000Z</updated>
-    
-    <content type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&quot;https://hexo.io/docs/troubleshooting.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&quot;https://github.com/hexojs/hexo/issues&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&quot;Quick-Start&quot;&gt;&lt;a href=&quot;#Quick-Start&quot; class=&quot;headerlink&quot; title=&quot;Quick Start&quot;&gt;&lt;/a&gt;Quick Start&lt;/h2&gt;&lt;h3 id=&quot;Create-a-new-post&quot;&gt;&lt;a href=&quot;#Create-a-new-post&quot; class=&quot;headerlink&quot; title=&quot;Create a new post&quot;&gt;&lt;/a&gt;Create a new post&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo new &lt;span class=&quot;string&quot;&gt;&quot;My New Post&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/writing.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Writing&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;Run-server&quot;&gt;&lt;a href=&quot;#Run-server&quot; class=&quot;headerlink&quot; title=&quot;Run server&quot;&gt;&lt;/a&gt;Run server&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo server&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/server.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Server&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;Generate-static-files&quot;&gt;&lt;a href=&quot;#Generate-static-files&quot; class=&quot;headerlink&quot; title=&quot;Generate static files&quot;&gt;&lt;/a&gt;Generate static files&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo generate&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/generating.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Generating&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;Deploy-to-remote-sites&quot;&gt;&lt;a href=&quot;#Deploy-to-remote-sites&quot; class=&quot;headerlink&quot; title=&quot;Deploy to remote sites&quot;&gt;&lt;/a&gt;Deploy to remote sites&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo deploy&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/deployment.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Deployment&lt;/a&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
     <title>YAML文件语法简介</title>
     <link href="http://offbye.com/2016/05/12/YAML%E6%96%87%E4%BB%B6%E8%AF%AD%E6%B3%95%E7%AE%80%E4%BB%8B/"/>
     <id>http://offbye.com/2016/05/12/YAML文件语法简介/</id>
@@ -1400,6 +1373,57 @@ return ac
       <category term="Swift" scheme="http://offbye.com/categories/Swift/"/>
     
       <category term="reduce" scheme="http://offbye.com/categories/Swift/reduce/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Swift2.1关键字 @noescape介绍</title>
+    <link href="http://offbye.com/2016/03/11/Swift2.1%E5%85%B3%E9%94%AE%E5%AD%97%20@noescape%E4%BB%8B%E7%BB%8D/"/>
+    <id>http://offbye.com/2016/03/11/Swift2.1关键字 @noescape介绍/</id>
+    <published>2016-03-11T03:12:00.000Z</published>
+    <updated>2016-05-12T16:40:05.000Z</updated>
+    
+    <content type="html">&lt;p&gt;@noescape优化编译器编译，swift 2.1引入。&lt;br&gt;函数如果有一个一个参数是closure的话，可以在前面加一个关键字@noescape表示在函数return前closure生命周期结束，可以优化编译。(closure 是引用类型, 可以引用到别的地方,如下:)&lt;br&gt;    class A{&lt;br&gt;        var b: (Void -&amp;gt; Void)!&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    func lalala(a: (Void-&amp;gt;Void)){
+        self.b = a//引用到属性b了
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;像上面的情况lalala的参数a是不能在前面标记@noescape&lt;br&gt;    class A{&lt;br&gt;        var b: (Void -&amp;gt; Void)!&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    func aa(@noescape a: (Void-&amp;gt;Void)){
+        self.b = a//会报错，报类型不一样
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;而没有引用到外层的closure可以加@noescape例如&lt;br&gt;    class A{&lt;br&gt;        var b: (Void -&amp;gt; Void)!&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    func aa(@noescapea: (Void-&amp;gt;Void)){
+        a()//不会报错,这个不会再外部再次被调用
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;@noescape 还有个特性就是标记了 @noescape的closure可以免去写引用self。swift的普通closure使用self时都需要。这个可以例外。因为他相当于一个同步的调用，不会产生循环引用，所以不用特意强调self&lt;br&gt;    class A{&lt;br&gt;        var b: (Void -&amp;gt; Void)!&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    var k = 0//用来调用的
+
+    func aa(@noescape a: (Void-&amp;gt;Void)){
+        a()
+    }
+
+    func bb(){
+        aa { () -&amp;gt; Void in
+            k = 1//一般的closure都是要self.k = 1,@noescape则不需要
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;讨论：啥时候会用到@noescape？现在很多函数式编程，比如有个排序，需要一个比较的closure作为参数，这种closure都会是同步调用完毕获得返回值。这种可以放一个@noescape在前面，可优化内存，引用self不必写self。其他的closure在外部引用着等待将来回掉用的则不能@noescape，因为它会escape。总体来说这个@noescape没啥卵用，但是有些人会用，可能会吓到你。比如我昨天就看到一个用了这个的，这个基本可以无视。&lt;a href=&quot;https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Closures.html#//apple_ref/doc/uid/TP40014097-CH11-ID546&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;苹果文档链接&lt;/a&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+       Swift2.1关键字 @noescape介绍 
+    
+    </summary>
+    
+      <category term="Swift" scheme="http://offbye.com/categories/Swift/"/>
+    
+      <category term="noescape" scheme="http://offbye.com/categories/Swift/noescape/"/>
     
     
   </entry>
