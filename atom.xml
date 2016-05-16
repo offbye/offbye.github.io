@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://offbye.com/"/>
-  <updated>2016-05-12T16:23:41.000Z</updated>
+  <updated>2016-05-16T01:58:40.000Z</updated>
   <id>http://offbye.com/</id>
   
   <author>
@@ -14,6 +14,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CTCC2016中国云计算技术大会参会感想</title>
+    <link href="http://offbye.com/2016/05/16/CTCC2016%E4%B8%AD%E5%9B%BD%E4%BA%91%E8%AE%A1%E7%AE%97%E6%8A%80%E6%9C%AF%E5%A4%A7%E4%BC%9A%E5%8F%82%E4%BC%9A%E6%84%9F%E6%83%B3/"/>
+    <id>http://offbye.com/2016/05/16/CTCC2016中国云计算技术大会参会感想/</id>
+    <published>2016-05-16T01:41:05.000Z</published>
+    <updated>2016-05-16T01:58:40.000Z</updated>
+    
+    <content type="html">&lt;p&gt;上个周末有幸参加了中国云计算技术大会，感谢CSDN组织这场规模和层次都很高的技术盛会，更感谢CSDN提供的博客专家赠票。在回南京的高铁上趁热先把参会感想写了，过几天再给公司的小伙伴分享。&lt;/p&gt;
+&lt;p&gt;参加这次大会最直观的印象是云计算现在已经发展到了一个立等可用的程度。青云的可视化在线网络编排系统让人印象深刻，只需要通过鼠标拖曳，就可以在几分钟内完成一个包含2台云主机，网络负载均衡器和nat转发的私有云系统。青云在现场进行了云网络编排比赛活动。青云主机和带宽费用比阿里云要高一点。&lt;/p&gt;
+&lt;p&gt;周五的全体大会规模很大，演讲者都是大公司云计算部门的老大，演讲都很精彩，可以了解很多大公司在云计算方面的最新发展情况。目前云计算在各大公司都已经有了大规模的实际应用，并开始对外提供服务。&lt;br&gt;周六我主要参加了的container峰会，因为最近公司在准备用docker。感觉在容器化技术领域Docker已经成了主角，由于其轻量化的特点，docker已经在业界广泛使用。与普遍认为的观念不同，docker并不是虚拟机的替代品，而是进程的替代品。演讲中介绍对docker的最佳实践是无状态和不可变，即不要修改docker镜象的配置，也不要在docker里面存储数据。多数演讲更关注docker相关的网络编排方面的框架和工具，并介绍很多好的实践和经验。&lt;br&gt;周日的演讲包括spark峰会，Openstack峰会和Amazon AMS峰会，我只参加了Spark峰会，感觉人特别多，座位都没有了，很多人站着听，还在记笔记，好勤奋的感觉，看来现在Spark很热门，已经是大数据分析的事实标准了。我在spark方面没有实际经验，仅限于了解，因此不好对演讲内容做评论，但感觉有些讲师的演讲技巧不够好。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      上个周末有幸参加了中国云计算技术大会，趁热先把参会感想写了
+    
+    </summary>
+    
+    
+      <category term="云计算" scheme="http://offbye.com/tags/%E4%BA%91%E8%AE%A1%E7%AE%97/"/>
+    
+      <category term="CTCC2016" scheme="http://offbye.com/tags/CTCC2016/"/>
+    
+      <category term="docker" scheme="http://offbye.com/tags/docker/"/>
+    
+      <category term="spark" scheme="http://offbye.com/tags/spark/"/>
+    
+  </entry>
   
   <entry>
     <title>YAML文件语法简介</title>
@@ -1373,57 +1402,6 @@ return ac
       <category term="Swift" scheme="http://offbye.com/categories/Swift/"/>
     
       <category term="reduce" scheme="http://offbye.com/categories/Swift/reduce/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Swift2.1关键字 @noescape介绍</title>
-    <link href="http://offbye.com/2016/03/11/Swift2.1%E5%85%B3%E9%94%AE%E5%AD%97%20@noescape%E4%BB%8B%E7%BB%8D/"/>
-    <id>http://offbye.com/2016/03/11/Swift2.1关键字 @noescape介绍/</id>
-    <published>2016-03-11T03:12:00.000Z</published>
-    <updated>2016-05-12T16:40:05.000Z</updated>
-    
-    <content type="html">&lt;p&gt;@noescape优化编译器编译，swift 2.1引入。&lt;br&gt;函数如果有一个一个参数是closure的话，可以在前面加一个关键字@noescape表示在函数return前closure生命周期结束，可以优化编译。(closure 是引用类型, 可以引用到别的地方,如下:)&lt;br&gt;    class A{&lt;br&gt;        var b: (Void -&amp;gt; Void)!&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;    func lalala(a: (Void-&amp;gt;Void)){
-        self.b = a//引用到属性b了
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;像上面的情况lalala的参数a是不能在前面标记@noescape&lt;br&gt;    class A{&lt;br&gt;        var b: (Void -&amp;gt; Void)!&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;    func aa(@noescape a: (Void-&amp;gt;Void)){
-        self.b = a//会报错，报类型不一样
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;而没有引用到外层的closure可以加@noescape例如&lt;br&gt;    class A{&lt;br&gt;        var b: (Void -&amp;gt; Void)!&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;    func aa(@noescapea: (Void-&amp;gt;Void)){
-        a()//不会报错,这个不会再外部再次被调用
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;@noescape 还有个特性就是标记了 @noescape的closure可以免去写引用self。swift的普通closure使用self时都需要。这个可以例外。因为他相当于一个同步的调用，不会产生循环引用，所以不用特意强调self&lt;br&gt;    class A{&lt;br&gt;        var b: (Void -&amp;gt; Void)!&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;    var k = 0//用来调用的
-
-    func aa(@noescape a: (Void-&amp;gt;Void)){
-        a()
-    }
-
-    func bb(){
-        aa { () -&amp;gt; Void in
-            k = 1//一般的closure都是要self.k = 1,@noescape则不需要
-        }
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;讨论：啥时候会用到@noescape？现在很多函数式编程，比如有个排序，需要一个比较的closure作为参数，这种closure都会是同步调用完毕获得返回值。这种可以放一个@noescape在前面，可优化内存，引用self不必写self。其他的closure在外部引用着等待将来回掉用的则不能@noescape，因为它会escape。总体来说这个@noescape没啥卵用，但是有些人会用，可能会吓到你。比如我昨天就看到一个用了这个的，这个基本可以无视。&lt;a href=&quot;https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Closures.html#//apple_ref/doc/uid/TP40014097-CH11-ID546&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;苹果文档链接&lt;/a&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-       Swift2.1关键字 @noescape介绍 
-    
-    </summary>
-    
-      <category term="Swift" scheme="http://offbye.com/categories/Swift/"/>
-    
-      <category term="noescape" scheme="http://offbye.com/categories/Swift/noescape/"/>
     
     
   </entry>
