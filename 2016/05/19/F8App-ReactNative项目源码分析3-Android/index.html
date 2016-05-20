@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  
+  <title>F8App-ReactNative项目源码分析3-Android | offbye</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="近期开始研究Facebook f8app项目，目标是理解Facebook官方React Native f8app的整体技术架构，给公司目前几个的React Native项目开发提供官方经验借鉴，并对原生开发和React Native开发进行框架层面的融合。本文分析f8app android代码的结构和技术实现，阅读本文的前提是熟悉Android开发。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="F8App-ReactNative项目源码分析3-Android">
+<meta property="og:url" content="http://offbye.com/2016/05/19/F8App-ReactNative项目源码分析3-Android/index.html">
+<meta property="og:site_name" content="offbye">
+<meta property="og:description" content="近期开始研究Facebook f8app项目，目标是理解Facebook官方React Native f8app的整体技术架构，给公司目前几个的React Native项目开发提供官方经验借鉴，并对原生开发和React Native开发进行框架层面的融合。本文分析f8app android代码的结构和技术实现，阅读本文的前提是熟悉Android开发。">
+<meta property="og:image" content="http://o79096vir.bkt.clouddn.com/667c005f394c5c8cf85833ca5c5718f3.png">
+<meta property="og:updated_time" content="2016-05-20T14:59:26.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="F8App-ReactNative项目源码分析3-Android">
+<meta name="twitter:description" content="近期开始研究Facebook f8app项目，目标是理解Facebook官方React Native f8app的整体技术架构，给公司目前几个的React Native项目开发提供官方经验借鉴，并对原生开发和React Native开发进行框架层面的融合。本文分析f8app android代码的结构和技术实现，阅读本文的前提是熟悉Android开发。">
+<meta name="twitter:image" content="http://o79096vir.bkt.clouddn.com/667c005f394c5c8cf85833ca5c5718f3.png">
+  
+    <link rel="alternative" href="/atom.xml" title="offbye" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+      <link href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css" rel="stylesheet">
+  
+  
+  
+      <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+      <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+  
+  <script src="//cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.9/clipboard.min.js"></script>
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false,
+          fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+          scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.0.9/scrollreveal.min.js"
+      }
+  </script>
+
+  
+      <script>
+          yiliaConfig.rootUrl = "/";
+      </script>
+  
+
+  
+  
+      <script>
+          var _hmt = _hmt || [];
+          (function() {
+              var hm = document.createElement("script");
+              hm.src = "//hm.baidu.com/hm.js?ada9f801b315490172f77a2a30e9ec7a";
+              var s = document.getElementsByTagName("script")[0]; 
+              s.parentNode.insertBefore(hm, s);
+          })();
+      </script>
+  
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">offbye</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">关注移动架构，Android，HTML5，iOS技术前沿</p>
+        
+                
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>Menu</li>
+                        <li>Tags</li>
+                        
+                        <li>Friends</li>
+                        
+                        
+                        <li>About Me</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:offbye@gmail.com" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" href="http://weibo.com/offbye" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/offbye" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa 简书" target="_blank" href="http://www.jianshu.com/users/e0b1c6b05db0" title="简书"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="http://blog.csdn.net/offbye" title="CSDN"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CTCC2016/">CTCC2016</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/F8App/">F8App</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ReactNative/">ReactNative</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sandbox/">Sandbox</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/YAML/">YAML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/f8app/">f8app</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spark/">spark</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/swift/">swift</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/云计算/">云计算</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注移动端</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">offbye</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">offbye</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">关注移动架构，Android，HTML5，iOS技术前沿</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:offbye@gmail.com" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" href="http://weibo.com/offbye" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/offbye" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa 简书" target="_blank" href="http://www.jianshu.com/users/e0b1c6b05db0" title="简书"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="http://blog.csdn.net/offbye" title="CSDN"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
+</nav>
+      <div class="body-wrap"><article id="post-F8App-ReactNative项目源码分析3-Android" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/05/19/F8App-ReactNative项目源码分析3-Android/" class="article-date">
+      <time datetime="2016-05-19T02:16:34.000Z" itemprop="datePublished">2016-05-19</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      F8App-ReactNative项目源码分析3-Android
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>近期开始研究Facebook f8app项目，目标是理解Facebook官方React Native f8app的整体技术架构，给公司目前几个的React Native项目开发提供官方经验借鉴，并对原生开发和React Native开发进行框架层面的融合。<br>本文分析f8app android代码的结构和技术实现，阅读本文的前提是熟悉Android开发。<br><a id="more"></a></p>
+<h2 id="f8app-android代码结构分析"><a href="#f8app-android代码结构分析" class="headerlink" title="f8app android代码结构分析"></a>f8app android代码结构分析</h2><p>ReactNative项目Android相关的代码都在android目录下，可以直接使用Android Studio打开这个目录方便查看和修改。android目录结构如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">├── F8v2.iml</span><br><span class="line">├── app</span><br><span class="line">│   ├── app.iml</span><br><span class="line">│   ├── build.gradle</span><br><span class="line">│   ├── proguard-rules.pro</span><br><span class="line">│   ├── react.gradle</span><br><span class="line">│   └── src</span><br><span class="line">│       └── main</span><br><span class="line">│           ├── AndroidManifest.xml</span><br><span class="line">│           ├── java</span><br><span class="line">│           │   └── com</span><br><span class="line">│           │       └── facebook</span><br><span class="line">│           │           └── f8</span><br><span class="line">│           │               └── MainActivity.java</span><br><span class="line">│           └── res</span><br><span class="line">│               ├── mipmap-hdpi</span><br><span class="line">│               │   ├── ic_launcher.png</span><br><span class="line">│               │   └── ic_notification.png</span><br><span class="line">│               ├── mipmap-mdpi</span><br><span class="line">│               │   ├── ic_launcher.png</span><br><span class="line">│               │   └── ic_notification.png</span><br><span class="line">│               ├── mipmap-xhdpi</span><br><span class="line">│               │   ├── ic_launcher.png</span><br><span class="line">│               │   └── ic_notification.png</span><br><span class="line">│               ├── mipmap-xxhdpi</span><br><span class="line">│               │   ├── ic_launcher.png</span><br><span class="line">│               │   └── ic_notification.png</span><br><span class="line">│               ├── mipmap-xxxhdpi</span><br><span class="line">│               │   ├── ic_launcher.png</span><br><span class="line">│               │   └── ic_notification.png</span><br><span class="line">│               ├── raw</span><br><span class="line">│               │   └── third_party_notices.html</span><br><span class="line">│               └── values</span><br><span class="line">│                   ├── strings.xml</span><br><span class="line">│                   └── styles.xml</span><br><span class="line">├── build.gradle</span><br><span class="line">├── gradle</span><br><span class="line">│   └── wrapper</span><br><span class="line">│       ├── gradle-wrapper.jar</span><br><span class="line">│       └── gradle-wrapper.properties</span><br><span class="line">├── gradle.properties</span><br><span class="line">├── gradlew</span><br><span class="line">├── gradlew.bat</span><br><span class="line">├── local.properties</span><br><span class="line">└── settings.gradle</span><br></pre></td></tr></table></figure></p>
+<p>在android Studio下显示如下：<br>￼<br><img src="http://o79096vir.bkt.clouddn.com/667c005f394c5c8cf85833ca5c5718f3.png" alt="as文件结构"></p>
+<h2 id="MainActivity-代码分析"><a href="#MainActivity-代码分析" class="headerlink" title="MainActivity 代码分析"></a>MainActivity 代码分析</h2><p>通过AndroidManifest.xml可以知道App的页面入口Activity是android/app/src/main/java/com/facebook/f8/MainActivity.java，代码比较简单，继承了ReactActivity,关键的方法是getJSBundleFile，可以看到使用了CodePush推送更新技术，返回了一个bundle文件，分析代码可知默认的bundle文件是index.android.bundle。<br><a href="http://microsoft.github.io/code-push//docs/getting-started.html" target="_blank" rel="external">CodePush</a>是微软提供的一个开发者服务，支持对React Native和Cordova App在不重新安装App的前提下热更新App，是目前很流行的一种App热部署技术。<br>getPackages方法初始化了CodePush，初始了ReactNativePushNotificationPackage推送服务，初始化了用到的一些RN第三方包：</p>
+<ul>
+<li>FBSDKPackage是Android Facebook SDK的React Native封装，让React Native App能够使用Facebook的接口，提供了Facebook用户登录token，分享等功能;</li>
+<li>LinearGradientPackage是一个渐变UI控件；</li>
+<li>RNSharePackage是个分享插件，提供了通过Android Intent.ACTION_SEND分享文字和链接的简单分享功能；</li>
+<li>RNSendIntentPackage是一个发送Android Intent的插件，提供了通过Intent拨打电话，发送短信，在系统日历添加事件提醒等功能。</li>
+<li>ReactNativePushNotificationPackage是一个本地和远程通知推送插件，可以接受Google GCM推送的消息，并在状态栏上显示。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">ReactActivity</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> CodePush _codePush;</span><br><span class="line">  <span class="keyword">private</span> ReactNativePushNotificationPackage _pushNotification;</span><br><span class="line">  <span class="keyword">private</span> CallbackManager mCallbackManager;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> String <span class="title">getJSBundleFile</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>._codePush.getBundleUrl(<span class="string">"index.android.bundle"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * Returns the name of the main component registered from JavaScript.</span><br><span class="line">     * This is used to schedule rendering of the component.</span><br><span class="line">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> String <span class="title">getMainComponentName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"F8v2"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * Returns whether dev mode should be enabled.</span><br><span class="line">     * This enables e.g. the dev menu.</span><br><span class="line">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">boolean</span> <span class="title">getUseDeveloperSupport</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> BuildConfig.DEBUG;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">   <span class="comment">/**</span><br><span class="line">   * A list of packages used by the app. If the app uses additional views</span><br><span class="line">   * or modules besides the default ones, add more packages here.</span><br><span class="line">   */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> List&lt;ReactPackage&gt; <span class="title">getPackages</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>._codePush = <span class="keyword">new</span> CodePush(<span class="string">"qwfkzzq7Y8cSrkiuU7aRCkIP7XYLEJ6b-AFoe"</span>, <span class="keyword">this</span>, BuildConfig.DEBUG);</span><br><span class="line">      <span class="keyword">this</span>._pushNotification = <span class="keyword">new</span> ReactNativePushNotificationPackage(<span class="keyword">this</span>);</span><br><span class="line">      mCallbackManager = <span class="keyword">new</span> CallbackManager.Factory().create();</span><br><span class="line"></span><br><span class="line">      <span class="keyword">return</span> Arrays.&lt;ReactPackage&gt;asList(</span><br><span class="line">        <span class="keyword">new</span> MainReactPackage(),</span><br><span class="line">        <span class="keyword">new</span> FBSDKPackage(mCallbackManager),</span><br><span class="line">        <span class="keyword">new</span> LinearGradientPackage(),</span><br><span class="line">        <span class="keyword">new</span> RNSharePackage(),</span><br><span class="line">        <span class="keyword">new</span> RNSendIntentPackage(),</span><br><span class="line">        <span class="keyword">this</span>._codePush.getReactPackage(),</span><br><span class="line">        <span class="keyword">this</span>._pushNotification</span><br><span class="line">      );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        FacebookSdk.sdkInitialize(getApplicationContext());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onActivityResult</span><span class="params">(<span class="keyword">int</span> requestCode, <span class="keyword">int</span> resultCode, Intent data)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">super</span>.onActivityResult(requestCode, resultCode, data);</span><br><span class="line">      mCallbackManager.onActivityResult(requestCode, resultCode, data);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onNewIntent</span> <span class="params">(Intent intent)</span> </span>&#123;</span><br><span class="line">     <span class="keyword">super</span>.onNewIntent(intent);</span><br><span class="line">     _pushNotification.newIntent(intent);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onResume</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">super</span>.onResume();</span><br><span class="line">      AppEventsLogger.activateApp(getApplicationContext());</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onPause</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">super</span>.onPause();</span><br><span class="line">      AppEventsLogger.deactivateApp(getApplicationContext());</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onStop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">super</span>.onStop();</span><br><span class="line">      AppEventsLogger.onContextStop();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以查看settings.gradle,发现f8app Android引用了5个子工程，子工程源码放在../node_modules目录下。</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">rootProject.name = <span class="string">'F8v2'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">include</span> <span class="string">':app'</span>, <span class="string">':react-native-linear-gradient'</span></span><br><span class="line"><span class="keyword">include</span> <span class="string">':app'</span>, <span class="string">':react-native-code-push'</span></span><br><span class="line"><span class="keyword">include</span> <span class="string">':react-native-push-notification'</span></span><br><span class="line"><span class="keyword">include</span> <span class="string">':react-native-share'</span>, <span class="string">':app'</span></span><br><span class="line"><span class="keyword">include</span> <span class="string">':react-native-fbsdk'</span></span><br><span class="line"><span class="keyword">include</span> <span class="string">':react-native-send-intent'</span>, <span class="string">':app'</span></span><br><span class="line">project(<span class="string">':react-native-linear-gradient'</span>).projectDir = new File(rootProject.projectDir, <span class="string">'../node_modules/react-native-linear-gradient/android'</span>)</span><br><span class="line">project(<span class="string">':react-native-code-push'</span>).projectDir = new File(rootProject.projectDir, <span class="string">'../node_modules/react-native-code-push/android/app'</span>)</span><br><span class="line">project(<span class="string">':react-native-push-notification'</span>).projectDir = file(<span class="string">'../node_modules/react-native-push-notification/RNPushNotificationAndroid'</span>)</span><br><span class="line">project(<span class="string">':react-native-share'</span>).projectDir = new File(rootProject.projectDir, <span class="string">'../node_modules/react-native-share/android'</span>)</span><br><span class="line">project(<span class="string">':react-native-fbsdk'</span>).projectDir = new File(settingsDir, <span class="string">'../node_modules/react-native-fbsdk/Android'</span>)</span><br><span class="line">project(<span class="string">':react-native-send-intent'</span>).projectDir = new File(rootProject.projectDir, <span class="string">'../node_modules/react-native-send-intent'</span>)</span><br></pre></td></tr></table></figure>
+<p>可以看到，可以通在settings.gradle引入工程的方法增加新的自定义RN插件。实际上，这些插件是通过rnpm install命令安装的。<a href="https://github.com/rnpm/rnpm" target="_blank" rel="external">React Native Package Manager (RNPM)</a> 是一个简化React Native插件安装体验的工具。<br>下面我们分析react-native-linear-gradient插件看看插件是如何实现的。</p>
+<h2 id="React-Native-android-插件实现分析"><a href="#React-Native-android-插件实现分析" class="headerlink" title="React Native android 插件实现分析"></a>React Native android 插件实现分析</h2><p>LinearGradientView是一个典型的原生UI插件，可以先看看官方的文档<a href="https://github.com/facebook/react-native/blob/master/docs/NativeComponentsAndroid.md" target="_blank" rel="external">NativeComponentsAndroid</a>， 我感觉这个文档有点过时，没有提到ReactPackage。ReactPackage接口是现在RN插件的主入口。LinearGradientPackage实现了ReactPackage接口<br>ReactPackage接口代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * Main interface for providing additional capabilities to the catalyst framework by couple of</span><br><span class="line"> * different means:</span><br><span class="line"> * 1) Registering new native modules</span><br><span class="line"> * 2) Registering new JS modules that may be accessed from native modules or from other parts of the</span><br><span class="line"> * native code (requiring JS modules from the package doesn't mean it will automatically be included</span><br><span class="line"> * as a part of the JS bundle, so there should be a corresponding piece of code on JS side that will</span><br><span class="line"> * require implementation of that JS module so that it gets bundled)</span><br><span class="line"> * 3) Registering custom native views (view managers) and custom event types</span><br><span class="line"> * 4) Registering natively packaged assets/resources (e.g. images) exposed to JS</span><br><span class="line"> *</span><br><span class="line"> * TODO(6788500, 6788507): Implement support for adding custom views, events and resources</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ReactPackage</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span><br><span class="line">   * <span class="doctag">@param</span> reactContext react application context that can be used to create modules</span><br><span class="line">   * <span class="doctag">@return</span> list of native modules to register with the newly created catalyst instance</span><br><span class="line">   */</span></span><br><span class="line">  <span class="function">List&lt;NativeModule&gt; <span class="title">createNativeModules</span><span class="params">(ReactApplicationContext reactContext)</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span><br><span class="line">   * <span class="doctag">@return</span> list of JS modules to register with the newly created catalyst instance.</span><br><span class="line">   *</span><br><span class="line">   * IMPORTANT: Note that only modules that needs to be accessible from the native code should be</span><br><span class="line">   * listed here. Also listing a native module here doesn't imply that the JS implementation of it</span><br><span class="line">   * will be automatically included in the JS bundle.</span><br><span class="line">   */</span></span><br><span class="line">  List&lt;Class&lt;? extends JavaScriptModule&gt;&gt; createJSModules();</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span><br><span class="line">   * <span class="doctag">@return</span> a list of view managers that should be registered with &#123;<span class="doctag">@link</span> UIManagerModule&#125;</span><br><span class="line">   */</span></span><br><span class="line">  <span class="function">List&lt;ViewManager&gt; <span class="title">createViewManagers</span><span class="params">(ReactApplicationContext reactContext)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>LinearGradientPackage类主要实现了createViewManagers方法，返回了一个LinearGradientManager实例，代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LinearGradientPackage</span> <span class="keyword">implements</span> <span class="title">ReactPackage</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;NativeModule&gt; <span class="title">createNativeModules</span><span class="params">(ReactApplicationContext reactContext)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Collections.emptyList();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> List&lt;Class&lt;? extends JavaScriptModule&gt;&gt; createJSModules() &#123;</span><br><span class="line">        <span class="keyword">return</span> Collections.emptyList();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;ViewManager&gt; <span class="title">createViewManagers</span><span class="params">(ReactApplicationContext reactContext)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Arrays.&lt;ViewManager&gt;asList(</span><br><span class="line">            <span class="keyword">new</span> LinearGradientManager());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>下面看LinearGradientManager类，包含了一个LinearGradientView实例，LinearGradientView是渐变View的具体实现，通过@ReactProp注解可以在js层设置渐变View的一些属性，例如渐变颜色，渐变开始和结束位置等的。代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LinearGradientManager</span> <span class="keyword">extends</span> <span class="title">SimpleViewManager</span>&lt;<span class="title">LinearGradientView</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String REACT_CLASS = <span class="string">"BVLinearGradient"</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String PROP_COLORS = <span class="string">"colors"</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String PROP_LOCATIONS = <span class="string">"locations"</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String PROP_START_POS = <span class="string">"start"</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String PROP_END_POS = <span class="string">"end"</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String PROP_BORDER_RADIUS = <span class="string">"borderRadius"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> REACT_CLASS;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> LinearGradientView <span class="title">createViewInstance</span><span class="params">(ThemedReactContext context)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> LinearGradientView(context);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ReactProp</span>(name=PROP_COLORS)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setColors</span><span class="params">(LinearGradientView gradientView, ReadableArray colors)</span> </span>&#123;</span><br><span class="line">        gradientView.setColors(colors);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ReactProp</span>(name=PROP_LOCATIONS)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setLocations</span><span class="params">(LinearGradientView gradientView, ReadableArray locations)</span> </span>&#123;</span><br><span class="line">        gradientView.setLocations(locations);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ReactProp</span>(name=PROP_START_POS)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setStartPosition</span><span class="params">(LinearGradientView gradientView, ReadableArray startPos)</span> </span>&#123;</span><br><span class="line">        gradientView.setStartPosition(startPos);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ReactProp</span>(name=PROP_END_POS)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setEndPosition</span><span class="params">(LinearGradientView gradientView, ReadableArray endPos)</span> </span>&#123;</span><br><span class="line">        gradientView.setEndPosition(endPos);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// temporary solution until following issue is resolved:</span></span><br><span class="line">    <span class="comment">// https://github.com/facebook/react-native/issues/3198</span></span><br><span class="line">    <span class="meta">@ReactProp</span>(name=PROP_BORDER_RADIUS, defaultFloat = <span class="number">0f</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setBorderRadius</span><span class="params">(LinearGradientView gradientView, <span class="keyword">float</span> borderRadius)</span> </span>&#123;</span><br><span class="line">        gradientView.setBorderRadius(PixelUtil.toPixelFromDIP(borderRadius));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="CodePush-热更新技术介绍"><a href="#CodePush-热更新技术介绍" class="headerlink" title="CodePush 热更新技术介绍"></a>CodePush 热更新技术介绍</h2><p>f8app使用了CodePush技术热更新App，可以先看下微软官方的文档<a href="http://microsoft.github.io/code-push/docs/react-native.html" target="_blank" rel="external">React Native Client SDK</a>。<br>CodePush提供了对React Native App的热更新能力，目前只能对js bundle进行热更新，如果原生代码修改了是不能热更新的，只能通过重新安装App的方式升级。<br>CodePush的一个问题是是对React Native版本的兼容性，由于React Native版本更新很快，CodePush是由微软而不是Facebook维护的，所以对React Native0.18以前的版本支持有各种兼容问题，具体参考<a href="http://microsoft.github.io/code-push/docs/react-native.html#link-1" target="_blank" rel="external">文档</a>。<br>CodePush的具体配置可以参考<a href="http://bbs.reactnative.cn/topic/725/code-push-%E7%83%AD%E6%9B%B4%E6%96%B0%E4%BD%BF%E7%94%A8%E8%AF%A6%E7%BB%86%E8%AF%B4%E6%98%8E%E5%92%8C%E6%95%99%E7%A8%8B/2" target="_blank" rel="external">这篇文章</a>,配置需要注意的事项还是挺多的，我参考这篇文章配置成功了，本文不做详细介绍。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文分析了f8app android代码结构，以react-native-linear-gradient插件为例子分析了React Native插件的结构，介绍了CodePush热更新技术，通过本文可以对f8app有比较初步的认识。<br>下篇文章将分析React Native js代码，这块是f8app的核心实现，代码量比较大。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>Title:</span><a href="/2016/05/19/F8App-ReactNative项目源码分析3-Android/">F8App-ReactNative项目源码分析3-Android</a></p>
+        <p><span>Author:</span><a href="/" title="Back to Homepage">offbye</a></p>
+        <p><span>Created:</span>2016-05-19, 10:16:34</p>
+        <p><span>Updated:</span>2016-05-20, 22:59:26</p>
+
+        <p>
+            <span>Full URL:</span><a class="post-url" href="/2016/05/19/F8App-ReactNative项目源码分析3-Android/" title="F8App-ReactNative项目源码分析3-Android">http://offbye.com/2016/05/19/F8App-ReactNative项目源码分析3-Android/</a>
+            <span class="copy-path" data-clipboard-text="From http://offbye.com/2016/05/19/F8App-ReactNative项目源码分析3-Android/　　By offbye" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>License:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"CC BY-NC-SA 4.0"</a> Keep Link &amp; Author if Distribute.
+        </p>
+        
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/05/18/F8App-ReactNative项目源码分析2-服务器端/">
+                    F8App-ReactNative项目源码分析2-服务器端
+                </a>
+            </div>
+        
+    </nav>
+
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#f8app-android代码结构分析"><span class="toc-number">1.</span> <span class="toc-text">f8app android代码结构分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MainActivity-代码分析"><span class="toc-number">2.</span> <span class="toc-text">MainActivity 代码分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#React-Native-android-插件实现分析"><span class="toc-number">3.</span> <span class="toc-text">React Native android 插件实现分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CodePush-热更新技术介绍"><span class="toc-number">4.</span> <span class="toc-text">CodePush 热更新技术介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">5.</span> <span class="toc-text">总结</span></a></li></ol>
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="Hide"  title="Show or Hide Table of Contents">
+<script>
+    var valueHide = "Hide";
+    var valueShow = "Show";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"F8App-ReactNative项目源码分析3-Android　| offbye　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="2016/05/19/F8App-ReactNative项目源码分析3-Android/" data-title="F8App-ReactNative项目源码分析3-Android" data-url="http://offbye.com/2016/05/19/F8App-ReactNative项目源码分析3-Android/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"offbye"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+    <!-- 多说公共JS代码 end -->
+</div>
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="Back to Homepage"><i class="fa fa-home"></i></a>
+        
+
+        <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/05/18/F8App-ReactNative项目源码分析2-服务器端/" title="Next: F8App-ReactNative项目源码分析2-服务器端">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/05/19/F8App-ReactNative项目源码分析3-Android/">F8App-ReactNative项目源码分析3-Android</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/18/F8App-ReactNative项目源码分析2-服务器端/">F8App-ReactNative项目源码分析2-服务器端</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/17/F8App-ReactNative项目源码分析1-初体验/">F8App-ReactNative项目源码分析1-初体验</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/16/CTCC2016中国云计算技术大会参会感想/">CTCC2016中国云计算技术大会参会感想</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/12/YAML文件语法简介/">YAML文件语法简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/11/iOS-Sandbox-swift/">iOS App沙盒模型文件目录详解Swift版</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/06/iOS App沙盒模型文件目录详解Swift版/">iOS App沙盒模型文件目录详解Swift版</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/05/Swift iOS实现把PCM语音转成MP3格式/">Swift iOS实现把PCM语音转成MP3格式</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/04/RESTFUL API 安全设计/">RESTFUL API 安全设计</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/04/关于 Token，你应该知道的十件事/">关于 Token，你应该知道的十件事</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/04/程序员的成长和代码行数的关系/">程序员的成长和代码行数的关系</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/04/从JavaAndroid到Swift iOS开发：语言与框架对比/">从JavaAndroid到Swift iOS开发：语言与框架对比</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/26/Android开发常用开源框架推荐/">Android开发常用开源框架推荐</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/22/Swift Modules for React Native/">Swift Modules for React Native</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/15/Android官方MVP架构示例项目解析/">Android官方MVP架构示例项目解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/15/使用swift开发Cordova插件/">使用swift开发Cordova插件</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/14/Swift语言中的@available 和 #available/">Swift语言中的@available 和</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/31/Android volley 使用OkHttp3.0/">Android volley 使用OkHttp3.0</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/28/What's new in Swift 2.2/">What's new in Swift 2.2</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/16/java8新特性介绍/">java8新特性介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/15/Swift异常处理：throw和rethrow/">Swift异常处理：throw和rethrow</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/14/Swift iOS- 手势检测详解/">Swift iOS- 手势检测详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/11/Swift化零为整：Reduce 详解/">Swift化零为整：Reduce 详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/11/Swift2.1关键字 @noescape介绍/">Swift2.1关键字 @noescape介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/11/理解Swift中map 和 flatMap对集合的作用/">理解Swift中map 和 flatMap对集合的作用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/09/移动端专用数据库Realm介绍/">移动端专用数据库Realm介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/09/安装Xcode插件包管理器Alcatraz报错解决办法/">安装Xcode插件包管理器Alcatraz报错解决办法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/09/Android最佳实践 —— 详细谈谈如何减小APK体积/">Android最佳实践 —— 详细谈谈如何减小APK体积</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/05/iOS开发如何通过UMeng的错误分析解决crash问题/">iOS开发如何通过UMeng的错误分析解决crash问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/04/常见移动设备的 CSS3 Media Query 整理（iPhoneiPadGalaxy）/">常见移动设备的 CSS3 Media Query 整理（iPhoneiPadGalaxy）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/04/我在MDCC 2015的演讲PPT《HTML5移动应用多端开发架构实践》分享/">我在MDCC 2015的演讲PPT《HTML5移动应用多端开发架构实践》分享</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/01/深入理解iOS开发中的BitCode功能/">深入理解iOS开发中的BitCode功能</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/01/iOS swift动画和特效专题/">iOS swift动画和特效专题</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/29/Swift iOS项目archive操作会报错误built without full bitcode解决方法/">Swift iOS项目archive操作会报错误built without full bitcode解决方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/26/GCD 和延时调用/">GCD 和延时调用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/26/Swift - 多线程实现方式（3） - Grand Central Dispatch（GCD）/">Swift - 多线程实现方式（3） - Grand Central Dispatch（GCD）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/25/iOS 9开发小技巧：LayoutGuide，Storyboard Reference/">iOS 9开发小技巧：LayoutGuide，Storyboard Reference</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/25/Storyboard的爱与恨/">Storyboard的爱与恨</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/25/Swift iOS tableView static cell动态计算高度/">Swift iOS tableView static cell动态计算高度</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/24/5 个顶级 Android 开源库/">5 个顶级 Android 开源库</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/19/Swift高阶函数介绍（闭包、Map、Filter、Reduce）/">Swift高阶函数介绍（闭包、Map、Filter、Reduce）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/18/iOS Swift判断代码运行在模拟器上/">iOS Swift判断代码运行在模拟器上</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/17/iOS 开发 UI 搭建心得（一）—— 驾驭 StoryBoard  代码示例：httpsgithub.comjohnluiSwift-On-iOSblobmasterDifferen/">iOS 开发 UI 搭建心得（一）—— 驾驭 StoryBoard  代码示例：httpsgithub.comjohnluiSwift-On-iOSblobmasterDifferen</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/16/使用命令行统计代码行数/">使用命令行统计代码行数</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/03/HTTP 2.0的那些事/">HTTP 2.0的那些事</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/02/浅谈 RxAndroid + Retrofit + Databinding/">浅谈 RxAndroid + Retrofit + Databinding</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/28/2016这些Android技术会很火/">2016这些Android技术会很火</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/27/使用CodePush实时更新 React Native 和 Cordova 应用/">使用CodePush实时更新 React Native 和 Cordova 应用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/20/理解Swift中Optional类型－有和无的哲学/">理解Swift中Optional类型－有和无的哲学</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/19/其实你不知道MultiDex到底有多坑/">其实你不知道MultiDex到底有多坑</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/19/Android MultiDex分包变形记/">Android MultiDex分包变形记</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/14/Swift iOS项目最佳实践汇总/">Swift iOS项目最佳实践汇总</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/11/饿了么移动APP的架构演进/">饿了么移动APP的架构演进</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/30/Android 开发最佳实践/">Android 开发最佳实践</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/29/RxAndroid和RxJava的资料分享/">RxAndroid和RxJava的资料分享</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/28/技术人如何才能不焦虑/">技术人如何才能不焦虑</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/26/云栖社区12篇实战经验所组成的“近战”系列分享/">云栖社区12篇实战经验所组成的“近战”系列分享</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/26/程序员晋升攻略/">程序员晋升攻略</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/25/Xcode7.2版本carthage包管理器兼容问题解决/">Xcode7.2版本carthage包管理器兼容问题解决</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/14/2015年Android开发新技术盘点/">2015年Android开发新技术盘点</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/10/Android中Touch事件分析--解决HorizontalScrollView滑动和按钮事件触发问题/">Android中Touch事件分析--解决HorizontalScrollView滑动和按钮事件触发问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/03/Android动态加载黑科技 动态创建Activity模式/">Android动态加载黑科技 动态创建Activity模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/01/Android注解支持Support Annotations详解/">Android注解支持Support Annotations详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/27/Android Studio 2.0 Instant Run即时运行功能实现分析/">Android Studio 2.0 Instant Run即时运行功能实现分析</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/25/Android应用性能剖析全攻略/">Android应用性能剖析全攻略</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/24/自动生成Android不同分辨率下的图片/">自动生成Android不同分辨率下的图片</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/24/Android Studio 2.0 Preview发布,附下载地址，支持即时运行和GPU Profiler/">Android Studio 2.0 Preview发布,附下载地址，支持即时运行和GPU Profiler</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/17/React Native Android端10个最常见问题/">React Native Android端10个最常见问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/13/使用Javascript ES6进行开发的思考/">使用Javascript ES6进行开发的思考</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/13/安装包立减1M--微信Android资源混淆打包工具/">安装包立减1M--微信Android资源混淆打包工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/11/Ionic 2.0 Alpha版本发布了/">Ionic 2.0 Alpha版本发布了</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/10/美团Android资源混淆保护实践/">美团Android资源混淆保护实践</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/10/Android开发中的armeabi和armeabi-v7a介绍/">Android开发中的armeabi和armeabi-v7a介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/06/在CordovaActivity中添加原生View组件/">在CordovaActivity中添加原生View组件</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/05/技术贴：开源飞控那些事/">技术贴：开源飞控那些事</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/03/Android常用开源框架Proguard混淆解决方案/">Android常用开源框架Proguard混淆解决方案</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/03/美团Android DEX自动拆包及动态加载简介/">美团Android DEX自动拆包及动态加载简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/02/Google基于Dart的新移动开发框架Flutter介绍/">Google基于Dart的新移动开发框架Flutter介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/29/通过SharedPreferences实现进程间数据共享的问题详解/">通过SharedPreferences实现进程间数据共享的问题详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/26/Android修改TitleBar标题栏详解/">Android修改TitleBar标题栏详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/23/异步JavaScript的进化/">异步JavaScript的进化</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/21/Android Service创建USB HOST通信/">Android Service创建USB HOST通信</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/21/Android 热敏打印机打印二维码/">Android 热敏打印机打印二维码</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/13/基于webpack搭建前端工程解决方案探索/">基于webpack搭建前端工程解决方案探索</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/11/理解Flux架构/">理解Flux架构</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/09/Mac Yosemite系统 brew 报错的解决办法/">Mac Yosemite系统 brew 报错的解决办法</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/30/微信公众平台接入经验分享，纯干货/">微信公众平台接入经验分享，纯干货</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/28/使用Kotlin进行Android开发/">使用Kotlin进行Android开发</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/23/Umeng推送消息的坑，Android Service的androidexported详解/">Umeng推送消息的坑，Android Service的androidexported详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/22/自动生成Android屏幕适配的dimens.xml/">自动生成Android屏幕适配的dimens.xml</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/21/iOS9系统开始对企业发布App进行严格限制/">iOS9系统开始对企业发布App进行严格限制</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/16/sed 简明教程/">sed 简明教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/15/Gradle, 基于DSL的新一代Java构建工具/">Gradle, 基于DSL的新一代Java构建工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/15/Gradle常用命令和原理说明/">Gradle常用命令和原理说明</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/09/大势所趋！十大令人振奋的移动端APP设计趋势/">大势所趋！十大令人振奋的移动端APP设计趋势</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/02/Android微信智能心跳方案/">Android微信智能心跳方案</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/01/深入浅出学Spring Data JPA/">深入浅出学Spring Data JPA</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/29/在Mac上制作树莓派SD镜像/">在Mac上制作树莓派SD镜像</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/26/Git从远程的分支获取最新的版本到本地/">Git从远程的分支获取最新的版本到本地</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/25/Spring Data JPA 常用注解 @Query、@NamedQuery/">Spring Data JPA 常用注解 @Query、@NamedQuery</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/24/树莓派做 wifi 热点/">树莓派做 wifi 热点</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/23/树莓派把一个python脚本作为服务运行，配置开机自动启动/">树莓派把一个python脚本作为服务运行，配置开机自动启动</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/22/INSTALLING OPERATING SYSTEM IMAGES ON MAC OS/">INSTALLING OPERATING SYSTEM IMAGES ON MAC OS</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/18/基于Volley，Gson封装支持JWT无状态安全验证和数据防篡改的GsonRequest网络请求类/">基于Volley，Gson封装支持JWT无状态安全验证和数据防篡改的GsonRequest网络请求类</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/16/如何快速构建基于Spring4.0的Rest API（攻略）/">如何快速构建基于Spring4.0的Rest API（攻略）</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/16/Spring MVC 4 常用注解汇总/">Spring MVC 4 常用注解汇总</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/13/JSON Web Token JWT 简介/">JSON Web Token JWT 简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/13/NodeJs使用json web token验证REST服务/">NodeJs使用json web token验证REST服务</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/13/一个Spring Boot， JWT，AugularJS接口安全验证的简单例子/">一个Spring Boot， JWT，AugularJS接口安全验证的简单例子</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/11/基于Spring Boot，Security和JWB的REST接口的无状态认证/">基于Spring Boot，Security和JWB的REST接口的无状态认证</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/08/Spring Boot和JPA开发的一些坑/">Spring Boot和JPA开发的一些坑</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/06/Android ORM数据库框架对比/">Android ORM数据库框架对比</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/06/最流行的开源飞控项目ArduPilot Mega（APM）介绍及发展历史/">最流行的开源飞控项目ArduPilot Mega（APM）介绍及发展历史</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/06/使用Spring Boot快速构建应用/">使用Spring Boot快速构建应用</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/04/CSS 的黑科技/">CSS 的黑科技</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/31/The Future of JavaScript MVC Frameworks/">The Future of JavaScript MVC Frameworks</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/31/Raspberry Pi Camera Streaming to VLC Player/">Raspberry Pi Camera Streaming to VLC Player</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/29/linux下解压缩.tar.xz方法/">linux下解压缩.tar.xz方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/28/树莓派摄像头视频直播技术汇总/">树莓派摄像头视频直播技术汇总</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/28/Python高效率编程的8条箴言/">Python高效率编程的8条箴言</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/28/如何使用Android Studio提高App质量/">如何使用Android Studio提高App质量</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/27/树莓派遥控船项目计划/">树莓派遥控船项目计划</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/24/人人都能玩航拍 手把手教你装4轴/">人人都能玩航拍 手把手教你装4轴</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/24/树莓派的PWM脉宽调制功能介绍/">树莓派的PWM脉宽调制功能介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/23/python字符串连接/">python字符串连接</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/23/Android Studio上方便使用butterknife注解框架的偷懒插件Android Butterknife Zelezny/">Android Studio上方便使用butterknife注解框架的偷懒插件Android Butterknife Zelezny</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/23/Python的Lambda函数与排序/">Python的Lambda函数与排序</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/22/TypeScript 1.5正式发布，此版本是Visual Studio 2015更新的一部分，支持大量ES6新特性/">TypeScript 1.5正式发布，此版本是Visual Studio 2015更新的一部分，支持大量ES6新特性</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/20/iWeb峰会（HTML5峰会）2015年7月19日上海站会后感想/">iWeb峰会（HTML5峰会）2015年7月19日上海站会后感想</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/16/说说React,Flux,Reray和GraghQL/">说说React,Flux,Reray和GraghQL</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/16/ReactEurope Conf 参会感想/">ReactEurope Conf 参会感想</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/15/Android Studio Gradle项目中添加JNI so文件/">Android Studio Gradle项目中添加JNI so文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/15/mac os使用lsusb命令和连接未知的Android设备/">mac os使用lsusb命令和连接未知的Android设备</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/15/HTML5 HybridApp开发上手指引/">HTML5 HybridApp开发上手指引</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/15/Facebook的Web开发三板斧：React.js、Relay和GraphQL/">Facebook的Web开发三板斧：React.js、Relay和GraphQL</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/15/Flux再进化：Introducing Relay and GraphQL（译）/">Flux再进化：Introducing Relay and GraphQL（译）</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/14/为什么要造轮子？/">为什么要造轮子？</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/10/那些争议最大的编程观点/">那些争议最大的编程观点</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/10/Angular vs. React - the tie breaker/">Angular vs. React - the tie breaker</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/09/android：ToolBar详解（手把手教程）/">android：ToolBar详解（手把手教程）</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/08/Android Support Library更新到v22.1之AppCompat新特性/">Android Support Library更新到v22.1之AppCompat新特性</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/08/用Material Design设计App谷歌官方文档翻译/">用Material Design设计App谷歌官方文档翻译</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/07/Pure Android/">Pure Android</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/07/Material Design in Action — 哔哩哔哩动画 Android 客户端/">Material Design in Action — 哔哩哔哩动画 Android 客户端</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/07/Android Studio 批量打包，apk重命名/">Android Studio 批量打包，apk重命名</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/06/Android Studio Android studio 多渠道打包超简洁版/">Android Studio Android studio 多渠道打包超简洁版</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/06/Eclipse Android项目导入Android Studio时常见的编译错误及解决办法/">Eclipse Android项目导入Android Studio时常见的编译错误及解决办法</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/01/HTML5本地存储——IndexedDB（一：基本使用）/">HTML5本地存储——IndexedDB（一：基本使用）</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/15/SASS基础——十个常见的Mixins/">SASS基础——十个常见的Mixins</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/15/python 中的mixin特性/">python 中的mixin特性</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/10/Mac上通过Linux命令行批量查找和替换文本/">Mac上通过Linux命令行批量查找和替换文本</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/09/产品经理经常犯的十大顶级错误/">产品经理经常犯的十大顶级错误</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/09/ES6新特性概览/">ES6新特性概览</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/09/ES6 JavaScript Promise的感性认知/">ES6 JavaScript Promise的感性认知</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/06/机器学习的11个开源项目/">机器学习的11个开源项目</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/06/实现Instagram的Material Design概念设计/">实现Instagram的Material Design概念设计</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/04/18/2015年移动Web／HybridApp开发技能列表/">2015年移动Web／HybridApp开发技能列表</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/04/16/前端工程化：在gulp中顺序执行任务/">前端工程化：在gulp中顺序执行任务</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/04/09/Android 5.0 API新增和改进/">Android 5.0 API新增和改进</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/31/JavaScript的计时器的工作原理/">JavaScript的计时器的工作原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/31/ 浏览器原理  Repaint 、Reflow 的基本认识和优化/">浏览器原理  Repaint 、Reflow 的基本认识和优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/23/前端性能优化（JavaScript补充篇）/">前端性能优化（JavaScript补充篇）</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/18/Android 开发资源汇总/">Android 开发资源汇总</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/17/NodeJS+Express模块的跨域访问控制问题/">NodeJS+Express模块的跨域访问控制问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/07/Android手机平板两不误，使用Fragment实现兼容手机和平板的程序/">Android手机平板两不误，使用Fragment实现兼容手机和平板的程序</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/05/用树莓派制作一款只有刷脸才能开的保险柜/">用树莓派制作一款只有刷脸才能开的保险柜</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/02/28/腾讯移动Web整体解决方案--Spirit/">腾讯移动Web整体解决方案--Spirit</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/02/27/惊艳的基于nodejs的实时Web开发框架Meteor介绍/">惊艳的基于nodejs的实时Web开发框架Meteor介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/02/26/使用gulp压缩并合并AngularJS代码/">使用gulp压缩并合并AngularJS代码</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/01/28/移动前端开发之viewport的深入理解/">移动前端开发之viewport的深入理解</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/01/23/Hybrid Android App中通过js访问Shared Preferences的问题/">Hybrid Android App中通过js访问Shared Preferences的问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/01/07/Android编码规范及性能优化整理/">Android编码规范及性能优化整理</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/01/05/CSS中如何让 height100%; 起作用/">CSS中如何让 height100%; 起作用</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/29/AngularJS风格指南/">AngularJS风格指南</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/18/基于git的源代码管理模型——git flow/">基于git的源代码管理模型——git flow</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/18/Git的最佳实践git-flow/">Git的最佳实践git-flow</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/03/Android TVGoogle ADT1开发者版初体验/">Android TVGoogle ADT1开发者版初体验</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/02/GoogleIO 2013 Android快速联网框架Volley介绍/">GoogleIO 2013 Android快速联网框架Volley介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/27/Android MVVM框架RoboBinding初探/">Android MVVM框架RoboBinding初探</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/25/Android和iOS在新版本中助力HTML5/">Android和iOS在新版本中助力HTML5</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/23/香蕉派和树莓派的不同点及GPIO引脚定义/">香蕉派和树莓派的不同点及GPIO引脚定义</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/19/软件架构师应该知道的 97 件事笔记/">软件架构师应该知道的 97 件事笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/18/参加PyCon2014有感/">参加PyCon2014有感</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/14/Raspberry Pi VPN Gateway/">Raspberry Pi VPN Gateway</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/11/HTML5 终于定稿，八年后我们再一次谈谈怎么改变世界/">HTML5 终于定稿，八年后我们再一次谈谈怎么改变世界</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/06/Mac下查看某个命令的路径/">Mac下查看某个命令的路径</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/05/singleTop和singleTask有什么区别？ Activity 四种加载模式详解）/">singleTop和singleTask有什么区别？ Activity 四种加载模式详解）</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/05/2014年国内常用移动客户端推送服务介绍和比较/">2014年国内常用移动客户端推送服务介绍和比较</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/10/31/一篇文章读懂开源web引擎Crosswalk/">一篇文章读懂开源web引擎Crosswalk</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/10/30/AngularJs $broadcast $emit $on 事件触发controller间的值传递/">AngularJs $broadcast $emit $on 事件触发controller间的值传递</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/10/30/细嗅Promise/">细嗅Promise</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/10/28/从2014年D2前端技术论坛看前端发展趋势/">从2014年D2前端技术论坛看前端发展趋势</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/10/28/涛哥的Python脚本工具箱之生成带Logo的二维码/">涛哥的Python脚本工具箱之生成带Logo的二维码</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/10/22/mongodb适用和不适用的应用场景/">mongodb适用和不适用的应用场景</a></li><li class="post-list-item"><a class="post-list-link" href="/2009/12/07/Centos 5.3上Asterisk安装及配置/">Centos 5.3上Asterisk安装及配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2009/12/07/rsh服务配置文档/">rsh服务配置文档</a></li><li class="post-list-item"><a class="post-list-link" href="/2009/12/07/centos 5.3中用yum安装MPlayer/">centos 5.3中用yum安装MPlayer</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2015-2016 offbye
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="A fast, simple &amp; powerful blog framework">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="Another simple and elegant theme for Hexo">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >Site Visitors: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">Page Hits: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.1.22/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 9;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="Back to Top"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" title="Comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="Go to Bottom"><i class="fa fa-arrow-down"></i></a>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
