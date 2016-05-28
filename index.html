@@ -176,7 +176,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CTCC2016/">CTCC2016</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/F8App/">F8App</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ReactNative/">ReactNative</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sandbox/">Sandbox</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/YAML/">YAML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/f8app/">f8app</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spark/">spark</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/swift/">swift</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/云计算/">云计算</a></li></ul>
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CTCC2016/">CTCC2016</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/F8App/">F8App</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IPA/">IPA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ReactNative/">ReactNative</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sandbox/">Sandbox</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/YAML/">YAML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/biplist/">biplist</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/f8app/">f8app</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS打包/">iOS打包</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spark/">spark</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/swift/">swift</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/云计算/">云计算</a></li></ul>
                     </div>
                 </section>
                 
@@ -260,6 +260,187 @@
     <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-jenkins-xcodebuild命令行打包iOS项目问题汇总" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/05/28/jenkins-xcodebuild命令行打包iOS项目问题汇总/" class="article-date">
+      <time datetime="2016-05-28T14:17:37.000Z" itemprop="datePublished">2016-05-28</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/28/jenkins-xcodebuild命令行打包iOS项目问题汇总/">jenkins-xcodebuild命令行打包iOS项目问题汇总</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>这几天折腾了jenkins对iOS swift项目的持续集成，碰到了很多问题，记录下吧</p>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+        <p class="article-more-link">
+          <a href="/2016/05/28/jenkins-xcodebuild命令行打包iOS项目问题汇总/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Python读取iOS安装包IPA中的信息" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/05/27/Python读取iOS安装包IPA中的信息/" class="article-date">
+      <time datetime="2016-05-27T13:32:36.000Z" itemprop="datePublished">2016-05-27</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/27/Python读取iOS安装包IPA中的信息/">Python读取iOS安装包IPA中的信息和图片</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>最近需要对所有的iOS和Android工程通过jenkins持续集成，软件的编译、打包、企业分发版的ipa发布都需要自动化。在做ipa自动化发布时，需要拿到一个app里面相关的信息，比如显示名称、版本号、bundle identifier等等。<br>然后在Jenkins构建任务中通过增加Python脚本针对每个版本生成IPA,plist和包含itms安装链接的网页。</p>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IPA/">IPA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/biplist/">biplist</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS打包/">iOS打包</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2016/05/27/Python读取iOS安装包IPA中的信息/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-F8App-ReactNative项目源码分析4-js篇" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/05/23/F8App-ReactNative项目源码分析4-js篇/" class="article-date">
+      <time datetime="2016-05-23T02:42:12.000Z" itemprop="datePublished">2016-05-23</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/23/F8App-ReactNative项目源码分析4-js篇/">F8App-ReactNative项目源码分析4-js篇</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>本文开始分析f8app核心js部分的源码，这篇文章将非常难理解，原因了Redux框架引入了很多新概念，使用了大量函数式编程思想，建议先把后面的参考文章仔细过一遍，确保理解后再看本文。React Native的理念是Learn once,write anywhere, Android和iOS App端的js代码是放在一起的，以便最大限度的复用业务逻辑，UI部分的可以根据平台特性各自实现，React native分别渲染成安卓和iOS的原生UI界面，对于两个平台UI组件的细微差异和完全不同的UI组件2种情况，react native提供了不同的处理方式。<br>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+        <p class="article-more-link">
+          <a href="/2016/05/23/F8App-ReactNative项目源码分析4-js篇/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
   
     <article id="post-F8App-ReactNative项目源码分析3-Android" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -679,195 +860,6 @@
       
         <p class="article-more-link">
           <a href="/2016/05/06/iOS App沙盒模型文件目录详解Swift版/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Swift iOS实现把PCM语音转成MP3格式" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/05/05/Swift iOS实现把PCM语音转成MP3格式/" class="article-date">
-      <time datetime="2016-05-05T10:46:00.000Z" itemprop="datePublished">2016-05-05</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/05/Swift iOS实现把PCM语音转成MP3格式/">Swift iOS实现把PCM语音转成MP3格式</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-               Swift iOS实现把PCM语音转成MP3格式 
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/swift/">swift</a><a class="article-category-link" href="/categories/swift/mp3/">mp3</a><a class="article-category-link" href="/categories/swift/mp3/lame/">lame</a>
-    </div>
-
-
-      
-      
-        <p class="article-more-link">
-          <a href="/2016/05/05/Swift iOS实现把PCM语音转成MP3格式/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-RESTFUL API 安全设计" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/05/04/RESTFUL API 安全设计/" class="article-date">
-      <time datetime="2016-05-04T06:22:00.000Z" itemprop="datePublished">2016-05-04</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/04/RESTFUL API 安全设计/">RESTFUL API 安全设计</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-               RESTFUL API 安全设计 
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/REST/">REST</a><a class="article-category-link" href="/categories/REST/安全/">安全</a>
-    </div>
-
-
-      
-      
-        <p class="article-more-link">
-          <a href="/2016/05/04/RESTFUL API 安全设计/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-关于 Token，你应该知道的十件事" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/05/04/关于 Token，你应该知道的十件事/" class="article-date">
-      <time datetime="2016-05-04T06:16:00.000Z" itemprop="datePublished">2016-05-04</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/04/关于 Token，你应该知道的十件事/">关于 Token，你应该知道的十件事</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-               关于 Token，你应该知道的十件事 
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/token/">token</a><a class="article-category-link" href="/categories/token/oauth/">oauth</a><a class="article-category-link" href="/categories/token/oauth/jwt/">jwt</a>
-    </div>
-
-
-      
-      
-        <p class="article-more-link">
-          <a href="/2016/05/04/关于 Token，你应该知道的十件事/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>
