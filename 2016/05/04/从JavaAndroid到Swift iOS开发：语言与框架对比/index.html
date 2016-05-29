@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://offbye.com/2016/05/04/从JavaAndroid到Swift iOS开发：语言与框架对比/index.html">
 <meta property="og:site_name" content="offbye">
 <meta property="og:description" content="从JavaAndroid到Swift iOS开发：语言与框架对比">
-<meta property="og:updated_time" content="2016-05-12T16:40:00.000Z">
+<meta property="og:updated_time" content="2016-05-29T13:35:06.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从JavaAndroid到Swift iOS开发：语言与框架对比">
 <meta name="twitter:description" content="从JavaAndroid到Swift iOS开发：语言与框架对比">
@@ -121,13 +121,13 @@
                 <div class="tips-box hide">
                     <div class="tips-arrow"></div>
                     <ul class="tips-inner">
-                        <li>Menu</li>
-                        <li>Tags</li>
+                        <li>菜单</li>
+                        <li>标签</li>
                         
-                        <li>Friends</li>
+                        <li>友情链接</li>
                         
                         
-                        <li>About Me</li>
+                        <li>关于我</li>
                         
                     </ul>
                 </div>
@@ -253,7 +253,7 @@
             </nav>
         </header>                
     </div>
-    <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
       <div class="body-wrap"><article id="post-从JavaAndroid到Swift iOS开发：语言与框架对比" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -300,40 +300,199 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>本文是我在『移动前线』微信群2016年4月28日的<a href="http://mp.weixin.qq.com/s?__biz=MzA3ODg4MDk0Ng==&amp;mid=2651112156&amp;idx=1&amp;sn=8dfaa630e8bc6ef66b4263bffd2d29dc&amp;scene=1&amp;srcid=0429FvoQr642MP2BZ5cSMynm&amp;from=singlemessage&amp;isappinstalled=0#wechat_redirect" target="_blank" rel="external">分享总结</a>整理。<br>我从2009年开始做Android开发，开始接触Swift是在2014年底，当时组里曾经做过一个Demo App，感觉技术还不够成熟没有正式发布。2016年初我们正式使用swift开发上线了销售助手App产品，积累了比较丰富的swift项目实战经验，开源框架都是用的swift版本，大量使用了面向协议和函数式编程。iOS App开发人员基本都是以前安卓版本的开发人员，同时维护安卓和iOS 2个版本，效率很高。<br>今天分享的主题是Java/Android开发人员如何快速上手Swift iOS开发。主要内容如下：</p>
+        <p>本文是我在『移动前线』微信群2016年4月28日的<a href="http://mp.weixin.qq.com/s?__biz=MzA3ODg4MDk0Ng==&amp;mid=2651112156&amp;idx=1&amp;sn=8dfaa630e8bc6ef66b4263bffd2d29dc&amp;scene=1&amp;srcid=0429FvoQr642MP2BZ5cSMynm&amp;from=singlemessage&amp;isappinstalled=0#wechat_redirect" target="_blank" rel="external">分享总结</a>整理。<br>我从2009年开始做Android开发，开始接触Swift是在2014年底，当时组里曾经做过一个Demo App，感觉技术还不够成熟没有正式发布。2016年初我们正式使用swift开发上线了销售助手App产品，积累了比较丰富的swift项目实战经验，开源框架都是用的swift版本，大量使用了面向协议和函数式编程。iOS App开发人员基本都是以前安卓版本的开发人员，同时维护安卓和iOS 2个版本，效率很高。</p>
+<p>今天分享的主题是Java/Android开发人员如何快速上手Swift iOS开发。主要内容如下：</p>
 <ol>
-<li>WhyFrom Java/Android to Swift</li>
+<li>Why From Java/Android to Swift</li>
 <li>Swift语言为什么值得学习？</li>
-<li>Javavs Swift语法比较</li>
+<li>Java vs. Swift语法比较</li>
 <li>Android和iOS UI开发比较</li>
-<li>Androidvs Swift iOS框架比较</li>
+<li>Android vs. Swift iOS框架比较</li>
 <li>开发工具比较</li>
 </ol>
-<p>##1、Why FromJava/Android to Swift<br>成本和效率方面，由于目前同业务的Android和iOS App产品功能一致，由一个团队开发可以降低业务同步和沟通成本，避免安卓和iOS两个团队带来的产品功能差异和沟通成本。<br>Swift语法更接近Java，相对Objective C上手容易，我2012年曾经带过iOS项目，学过oc，因为无法忍受oc奇怪的语法最后放弃了，但这次学习swift iOS过程还是挺顺畅的，学习的主要门槛反而是Xcode IB的使用。<br>Whynot React Native？<br>ReactNative我们也要项目在用。但RN思想和语法的学习曲线有些陡，很多有Web开发经验的人都不一定喜欢。另外很多安卓开发者并没有学习过js，学习React Native成本会比较高。学习React Native最终还是要对原生开发有一定的了解。最后，在一些功能复杂的App，React Native用户体验比不上原生 。</p>
-<p>Whynot HTML5 Hybrid App？<br>用户体验不够好，对于不熟悉Web开发的工程师学习成本比较高。<br>2014年我们用ionic框架做过混合App，在iOS上效果可以，但在安卓低端机上比较卡，影响用户体验。</p>
-<p>##2、Swift语言为什么值得学习？<br>Swift是现在Apple主推的语言，2014年新推出的语言，比Scala等“新”语言还要年轻10岁。2015年秋已经开源。目前在linux上可用，最近已经支持Android NDK；在树莓派上有SwiftyGPIO库，可以通过GPIO控制一些硬件。<br>ObjectC is old and ugly，oc是1983年苹果推出的，过于陈旧和臃肿。<br>Swift语法类似Scala，Javascript ES6， Java，OC， C++， Python，这个我是按照语法相似度排序的。<br>Swift支持多范式编程：面向协议，面向对象和函数式编程 。<br>最后，我们还可以通过Swift学习函数式编程思想，这块Java8才支持。</p>
-<p>##3、Java vs. Swift语法比较<br>l 基础语法<br>l 函数<br>l struct和class<br>l Enum<br>l Interface vsProtocol<br>l MultiThread</p>
-<p>3.1基础语法</p>
-<p>Java<br>Swift<br>static final 常量<br>Java语言没有，Guava库提供<br>Java支持自增++，自减—<br>逻辑控制和C基本一致<br>Java有main方法<br>Java需要;做行结束符<br>var 变量，let常量<br>可选型Optional，通过if let解包<br>Swift不建议使用，3.0版本将不支持自增<br>逻辑控制语句更现代<br>Swift没有main方法<br>Swift不需要行结束符<br>Swift的switch 语法和Java及C++很像，但是它没有break，他命中一个case后会自动退出switch。对于几个不同case同样处理的情况，可以case后面连续几个condition，用逗号隔开。<br>for循环和Java也基本一样，不过也是不需要括号。for循环中，..&lt;的用法比较方便。下划线符号_（替代循环中的变量）能够忽略具体的值，并且不提供循环遍历时对值的访问。for-in则有点类似与Java中for each循环。<br>Swift 2.2中trycatch和do while和java差异很大</p>
-<p>3.2函数和闭包<br>Swift函数的定义和Java很不一样，Swift函数的定义形如 func foo(arg: Type) -&gt;Return Type:<br>Swift中函数是一等公民，可以作为返回值和参数；Swift支持闭包，Java8才支持lambda闭包。<br>Swift支持元组，Swift函数可以通过返回元组支持多个返回值。<br>Swift函数可以嵌套，即一个函数内部还可以定义函数，Java不支持。<br>Swift函数可以接收不定参数，跟Java基本类似<br>Swift函数参数可以带默认值，和Python类似，Java函数不可以带有默认值。<br>常用的函数式编程方法map,reduce, flatMap,filter,sort，相对于理解抽象的函数式编程概念，我觉得开始时先用好这些函数更重要。</p>
-<p>3.3struct vs. class<br>struct是值类，class是引用类型，Java语言没有struct，但c/c++/c#语言都有。<br>Swift开发推荐使用struct，而不是class。Swift语言实现包括几百个struct，只有几个class。<br>Swift类构造方法是init()，析构方法是deinit()，类方法调用跟Java基本一样。<br>self相当于Java中的this，传入生命周期不一致的闭包时需要声明为weak。</p>
-<p>3.4 Enum枚举<br>Android开发谷歌官方不建议使用Enum，影响性能。<br>Swift的Enum和Java类似，本质是一个类，里面可以包含函数。<br>SwiftEnum语法更简单。<br>SwiftEnum支持扩展extension。</p>
-<p>3.5 Interface vs. Protocol</p>
-<p><strong>Java Interface </strong><br><strong>Swift Protocol</strong><br>•        可以继承<br>•        Interface不能带有具体实现的方法，Java8以后才可以<br>•        implements</p>
-<p>•        可以继承<br>•        protocol可以带有具体实现的方法<br>•        extension更强大</p>
-<p>Extension扩展就是向一个已有的类、结构体或枚举类型添加新功能（functionality）。这包括在没有权限获取原始源代码的情况下扩展类型的能力（即逆向建模）。扩展和 Objective-C 中的分类（categories）类似。<br>Swift 中的扩展可以：<br>l  添加计算型属性和计算静态属性<br>l  定义实例方法和类型方法<br>l  提供新的构造器<br>l  定义下标<br>l  定义和使用新的嵌套类型<br>l  使一个已有类型符合某个接口<br>需要注意的是扩展方法的作用域问题，这里不展开讨论。<br>3.6 MultiThread多线程<br><strong>Java Android</strong><br><strong>Swift iOS</strong><br>•        Thread,Runnable<br>•        Java 5  Concurrency包<br>•        Android多线程扩展<br>•        AsyncTask,Looper,HandleThread,IntentService…<br>•        NSThread<br>•        GCD<br>•        NSOperation，NSOperationQueue</p>
+<h2 id="1、Why-FromJava-Android-to-Swift"><a href="#1、Why-FromJava-Android-to-Swift" class="headerlink" title="1、Why FromJava/Android to Swift"></a>1、Why FromJava/Android to Swift</h2><h3 id="成本和效率"><a href="#成本和效率" class="headerlink" title="成本和效率"></a>成本和效率</h3><p>由于目前同业务的Android和iOS App产品功能一致，由一个团队开发可以降低业务同步和沟通成本，避免安卓和iOS两个团队带来的产品功能差异和沟通成本。</p>
+<p>Swift语法更接近Java，相对Objective C上手容易，我2012年曾经带过iOS项目，学过oc，因为无法忍受oc奇怪的语法最后放弃了，但这次学习swift iOS过程还是挺顺畅的，学习的主要门槛反而是Xcode IB的使用。</p>
+<h3 id="Why-not-React-Native？"><a href="#Why-not-React-Native？" class="headerlink" title="Why not React Native？"></a>Why not React Native？</h3><p>ReactNative我们也要项目在用。但RN思想和语法的学习曲线有些陡，很多有Web开发经验的人都不一定喜欢。另外很多安卓开发者并没有学习过js，学习React Native成本会比较高。学习React Native最终还是要对原生开发有一定的了解。最后，在一些功能复杂的App，React Native用户体验比不上原生 。</p>
+<h3 id="Why-not-HTML5-Hybrid-App？"><a href="#Why-not-HTML5-Hybrid-App？" class="headerlink" title="Why not HTML5 Hybrid App？"></a>Why not HTML5 Hybrid App？</h3><p>用户体验不够好，对于不熟悉Web开发的工程师学习成本比较高。<br>2014年我们用ionic框架做过混合App，在iOS上效果可以，但在安卓低端机上比较卡，影响用户体验。</p>
+<h2 id="2、Swift语言为什么值得学习？"><a href="#2、Swift语言为什么值得学习？" class="headerlink" title="2、Swift语言为什么值得学习？"></a>2、Swift语言为什么值得学习？</h2><p>Swift是现在Apple主推的语言，2014年新推出的语言，比Scala等“新”语言还要年轻10岁。2015年秋已经开源。目前在linux上可用，最近已经支持Android NDK；在树莓派上有SwiftyGPIO库，可以通过GPIO控制一些硬件。<br>ObjectC is old and ugly，oc是1983年苹果推出的，过于陈旧和臃肿。<br>Swift语法类似Scala，Javascript ES6， Java，OC， C++， Python，这个我是按照语法相似度排序的。<br>Swift支持多范式编程：面向协议，面向对象和函数式编程 。<br>最后，我们还可以通过Swift学习函数式编程思想，这块Java8才支持。</p>
+<h2 id="3、Java-vs-Swift语法比较"><a href="#3、Java-vs-Swift语法比较" class="headerlink" title="3、Java vs. Swift语法比较"></a>3、Java vs. Swift语法比较</h2><ul>
+<li>基础语法</li>
+<li>函数</li>
+<li>struct和class</li>
+<li>Enum</li>
+<li>Interface vsProtocol</li>
+<li>MultiThread</li>
+</ul>
+<h3 id="3-1基础语法"><a href="#3-1基础语法" class="headerlink" title="3.1基础语法"></a>3.1基础语法</h3><table>
+<thead>
+<tr>
+<th>Java</th>
+<th>Swift</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>static final 常量</td>
+<td>var 变量，let常量</td>
+</tr>
+<tr>
+<td>Java语言没有，Guava库提供</td>
+<td>可选型Optional，通过if let解包</td>
+</tr>
+<tr>
+<td>Java支持自增++，自减—</td>
+<td>Swift不建议使用，3.0版本将不支持自增</td>
+</tr>
+<tr>
+<td>逻辑控制和C基本一致</td>
+<td>逻辑控制语句更现代</td>
+</tr>
+<tr>
+<td>Java有main方法</td>
+<td>Swift没有main方法</td>
+</tr>
+<tr>
+<td>Java需要;做行结束符</td>
+<td>Swift不需要行结束符</td>
+</tr>
+</tbody>
+</table>
+<p>Swift的switch 语法和Java及C++很像，但是它没有break，他命中一个case后会自动退出switch。对于几个不同case同样处理的情况，可以case后面连续几个condition，用逗号隔开。<br>for循环和Java也基本一样，不过也是不需要括号。for循环中，..&lt;的用法比较方便。下划线符号_（替代循环中的变量）能够忽略具体的值，并且不提供循环遍历时对值的访问。for-in则有点类似与Java中for each循环。<br>Swift 2.2中trycatch和do while和java差异很大</p>
+<h3 id="3-2-函数和闭包"><a href="#3-2-函数和闭包" class="headerlink" title="3.2 函数和闭包"></a>3.2 函数和闭包</h3><p>Swift函数的定义和Java很不一样，Swift函数的定义形如 func foo(arg: Type) -&gt;Return Type:<br>Swift中函数是一等公民，可以作为返回值和参数；Swift支持闭包，Java8才支持lambda闭包。<br>Swift支持元组，Swift函数可以通过返回元组支持多个返回值。<br>Swift函数可以嵌套，即一个函数内部还可以定义函数，Java不支持。<br>Swift函数可以接收不定参数，跟Java基本类似<br>Swift函数参数可以带默认值，和Python类似，Java函数不可以带有默认值。<br>常用的函数式编程方法map,reduce, flatMap,filter,sort，相对于理解抽象的函数式编程概念，我觉得开始时先用好这些函数更重要。</p>
+<h3 id="3-3-struct-vs-class"><a href="#3-3-struct-vs-class" class="headerlink" title="3.3 struct vs. class"></a>3.3 struct vs. class</h3><p>struct是值类，class是引用类型，Java语言没有struct，但c/c++/c#语言都有。<br>Swift开发推荐使用struct，而不是class。Swift语言实现包括几百个struct，只有几个class。<br>Swift类构造方法是init()，析构方法是deinit()，类方法调用跟Java基本一样。<br>self相当于Java中的this，传入生命周期不一致的闭包时需要声明为weak。</p>
+<h3 id="3-4-Enum枚举"><a href="#3-4-Enum枚举" class="headerlink" title="3.4 Enum枚举"></a>3.4 Enum枚举</h3><p>Android开发谷歌官方不建议使用Enum，影响性能。<br>Swift的Enum和Java类似，本质是一个类，里面可以包含函数。<br>SwiftEnum语法更简单。<br>SwiftEnum支持扩展extension。</p>
+<h3 id="3-5-Interface-vs-Protocol"><a href="#3-5-Interface-vs-Protocol" class="headerlink" title="3.5 Interface vs. Protocol"></a>3.5 Interface vs. Protocol</h3><table>
+<thead>
+<tr>
+<th><strong>Java Interface </strong></th>
+<th><strong>Swift Protocol</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>可以继承</td>
+<td>可以继承</td>
+</tr>
+<tr>
+<td>Interface不能带有具体实现的方法，Java8以后才可以</td>
+<td>protocol可以带有具体实现的方法</td>
+</tr>
+<tr>
+<td>implements</td>
+<td>extension更强大</td>
+</tr>
+</tbody>
+</table>
+<p>Extension扩展就是向一个已有的类、结构体或枚举类型添加新功能（functionality）。这包括在没有权限获取原始源代码的情况下扩展类型的能力（即逆向建模）。扩展和 Objective-C 中的分类（categories）类似。<br>Swift 中的扩展可以：</p>
+<ul>
+<li>添加计算型属性和计算静态属性</li>
+<li>定义实例方法和类型方法</li>
+<li>提供新的构造器</li>
+<li>定义下标</li>
+<li>定义和使用新的嵌套类型</li>
+<li>使一个已有类型符合某个接口<br>需要注意的是扩展方法的作用域问题，这里不展开讨论。<h3 id="3-6-MultiThread多线程"><a href="#3-6-MultiThread多线程" class="headerlink" title="3.6 MultiThread多线程"></a>3.6 MultiThread多线程</h3></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th><strong>Java Android</strong></th>
+<th><strong>Swift iOS</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Thread,Runnable</td>
+<td>NSThread</td>
+</tr>
+<tr>
+<td>Java 5  Concurrency包</td>
+<td>GCD</td>
+</tr>
+<tr>
+<td>Android多线程扩展</td>
+<td>NSOperation，NSOperationQueue</td>
+</tr>
+<tr>
+<td>AsyncTask,Looper,HandleThread,IntentService…</td>
+</tr>
+</tbody>
+</table>
 <p>iOS的多线程相对Java来说比较简单，GCD一天时间基本就能够弄明白。Java的Concurrency包就比较复杂了。</p>
-<p>##4、Android，iOS UI开发比较</p>
-<p><strong>Java Android</strong><br><strong>Swift iOS</strong><br>•        Xml  layout布局<br>•        直接写xml代码，可视化辅助开发<br>•        Android可以用Java添加和实现view<br>•        Intent页面跳转<br>•        Java自定义view,可以在Activity和layout中使用，可视化支持不够好</p>
-<p>•        Xib &amp;  StoryBoard<br>•        AutoLayout和SizeClass，IB自动生成，代码合并困难；<br>•        很多团队只好用代码实现UI界面<br>•        Segue连线跳转<br>•        自定义View可以使用IBDesignable  &amp;  runtime attributes</p>
+<h2 id="4、Android，iOS-UI开发比较"><a href="#4、Android，iOS-UI开发比较" class="headerlink" title="4、Android，iOS UI开发比较"></a>4、Android，iOS UI开发比较</h2><table>
+<thead>
+<tr>
+<th style="text-align:right"><strong>Java Android</strong></th>
+<th><strong>Swift iOS</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">Xml  layout布局</td>
+<td>Xib &amp;  StoryBoard</td>
+</tr>
+<tr>
+<td style="text-align:right">直接写xml代码，可视化辅助开发</td>
+<td>AutoLayout和SizeClass，IB自动生成，代码合并困难；</td>
+</tr>
+<tr>
+<td style="text-align:right">Android可以用Java添加和实现view</td>
+<td>很多团队只好用代码实现UI界面</td>
+</tr>
+<tr>
+<td style="text-align:right">Intent页面跳转</td>
+<td>Segue连线跳转</td>
+</tr>
+<tr>
+<td style="text-align:right">Java自定义view,可以在Activity和layout中使用，可视化支持不够好</td>
+<td>自定义View可以使用IBDesignable  &amp;  runtime attributes</td>
+</tr>
+</tbody>
+</table>
 <p>iOS开发苹果官方建议使用Storyboard开发UI，好处是比较直观，通过看界面可以更好的理解和维护App。现在Xcode7版本对AutoLayout和SizeClasses的支持越来越好，多分辨率适配变得简单，建议大家放弃使用frame代码写界面的传统做法。<br>当然，Storyboard也有下面的弊端：<br>界面主要依靠IB生成，Xib代码难以维护，Xcode打开Storyboard或Xib就会对文件产生修改，即使我们没有做实际的修改，git也会显示文件修改了。<br>多人协助，同时修改导致冲突，合并困难。<br>Storyboard中包含页面多了后会占用了太多内存，导致Xcode卡顿和崩溃。<br>错误定位困难，错误提示不清晰，新手难以定位错误。例如不小心删掉了IBOutlet会很难定位。</p>
-<p>Storyboard UI 开发实践<br>按照业务模块分成多个Storyboard，每人负责的模块避免交叉。<br>每个storyboard不要超过10个页面，可以通过Refactor  Storyboard功能重新划分。<br>用Container在一个storyboard复用UI模块，用xib在多个storyboard复用UI模块。<br>复杂的输入表单，建议用SwiftyForm框架写代码。</p>
-<p>##5、Android vs Swift iOS框架比较<br>Swift框架现在已经很多了，Swift也可以使用OC开源框架，但不推荐使用。我们主要对比介绍项目常用的网络请求框架，JSON解析和图片缓存框架<br>网络请求框架<br><strong>Java Android</strong><br><strong>Swift iOS</strong><br>•        Retrofit<br>•        OKHTTP<br>•        Volley<br>•<br>•        Retrofit  + RxAndroid</p>
-<p>•        Moya<br>•        Alamofire<br>•        AFNetworking<br>•<br>•        Moya +  RxSwift</p>
+<h3 id="Storyboard-UI-开发实践"><a href="#Storyboard-UI-开发实践" class="headerlink" title="Storyboard UI 开发实践"></a>Storyboard UI 开发实践</h3><p>按照业务模块分成多个Storyboard，每人负责的模块避免交叉。<br>每个storyboard不要超过10个页面，可以通过Refactor  Storyboard功能重新划分。<br>用Container在一个storyboard复用UI模块，用xib在多个storyboard复用UI模块。<br>复杂的输入表单，建议用SwiftyForm框架写代码。</p>
+<h2 id="5、Android-vs-Swift-iOS框架比较"><a href="#5、Android-vs-Swift-iOS框架比较" class="headerlink" title="5、Android vs Swift iOS框架比较"></a>5、Android vs Swift iOS框架比较</h2><p>Swift框架现在已经很多了，Swift也可以使用OC开源框架，但不推荐使用。我们主要对比介绍项目常用的网络请求框架，JSON解析和图片缓存框架</p>
+<h3 id="网络请求框架"><a href="#网络请求框架" class="headerlink" title="网络请求框架"></a>网络请求框架</h3><table>
+<thead>
+<tr>
+<th><strong>Java Android</strong></th>
+<th><strong>Swift iOS</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Retrofit</td>
+<td>Moya</td>
+</tr>
+<tr>
+<td>OKHTTP</td>
+<td>Alamofire</td>
+</tr>
+<tr>
+<td>Volley</td>
+<td>AFNetworking</td>
+</tr>
+<tr>
+<td>Retrofit  + RxAndroid</td>
+<td>Moya +  RxSwift</td>
+</tr>
+</tbody>
+</table>
 <p>在Android开发现在一般使用OKHTTP，Retrofit和Volley等网络框架进行开发，iOS开发oc时代使用AFNetworking库开发，swift开发推荐使用Alamofire和Moya库。<br>Moya 对Alamofire网络请求库进行了封装，开发不需要写网络模型，管理等。使代码更加简洁。Moya可以代替自己编写的网络抽象层APIManager。Moya提供了一些很好的特性：<br>编译期检查API接口调用的正确性<br>通过enum枚举类型清晰的定义不同API的接口<br>把接口测试stub作为一等公民，让单元测试变得很简单。<br>支持ReactiveX扩展，方便和RxSwift集成。</p>
-<p>目前App基本都是使用JSON作为报文协议，Android开发我们一般使用Gson进行解析，在Swift开发中，对比了ObjectMapper，Argo+Curry，SwiftyJson后，我们决定使用ObjectMapper作为JSON解析框架。ObjectMapper支持的特性如下：<br>支持把对象转换成JSON，把JSON转换成类对象<br>支持嵌套的对象（单一对象，对象列表集合和字典）<br>支持自定义的转换函数<br>支持结构体struct<br>支持Realm和Alamofire集成，AlamofireObjectMapper<br>使用例子：<br>let user = Mapper<user>().map(JSONString)<br>    let JSONString = Mapper().toJSONString(user, prettyPrint: true)<br>Realm是iOS开发比较流行的针对移动端设计的数据库，代替sqlite，也有Android版本<br>图片缓存框架，Android开发常用Glide和Fresco，OC开发一般用SDWebImage，Swift开发推荐用HanekeSwift。</user></p>
-<p>##6、开发工具比较<br>Android目前主流的开发工具是Android Studio，2014年以前是Eclipse ADT。<br>iOS开发一直使用Xcode。对于Java/Android开发人员来说，Xcode上手较难，特别是Interface Builder，Xib和视图代码直接通过连线来生成事件方法，比较挑战开发习惯，并且出现问题定位困难。而Android开发者习惯手写xml界面代码。<br>与Android Studio相比，Xcode速度快，但不够稳定，一天崩溃几次很正常。<br>模拟器方面，Android的Emulator是虚拟机，启动和安装速度比较慢，iOS是Simulator，速度快，但有些功能不能模拟。都推荐使用真机进行开发。</p>
-<p>包管理器&amp;构建工具对比<br>Android开发早期用Ant做一些任务处理，后面有些团队借鉴Java EE项目的做法用Maven，AndroidStudio出现后谷歌推荐用Gradle。Android的构建工具比iOS功能要强大很多。<br>iOS开发早期用CocoaPods，现在推荐用Carthage，未来Apple官方推出Swift3.0后会推广官方的Swift Package Manager。<br>最后介绍下Xcode包管理器Alcatraz，主要提供Xcode插件，模板和色彩模式，相比Android Studio，目前插件还很比较少。</p>
+<p>目前App基本都是使用JSON作为报文协议，Android开发我们一般使用Gson进行解析，在Swift开发中，对比了ObjectMapper，Argo+Curry，SwiftyJson后，我们* 决定使用ObjectMapper作为JSON解析框架。ObjectMapper支持的特性如下：</p>
+<ul>
+<li>支持把对象转换成JSON，把JSON转换成类对象</li>
+<li>支持嵌套的对象（单一对象，对象列表集合和字典）</li>
+<li>支持自定义的转换函数</li>
+<li>支持结构体struct</li>
+<li>支持Realm和Alamofire集成，AlamofireObjectMapper<br>使用例子：</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> user = Mapper&lt;User&gt;().map(JSONString)</span><br><span class="line"><span class="keyword">let</span> JSONString = Mapper().toJSONString(user, prettyPrint: <span class="literal">true</span>)</span><br></pre></td></tr></table></figure>
+<p>Realm是iOS开发比较流行的针对移动端设计的数据库，代替sqlite，也有Android版本<br>图片缓存框架，Android开发常用Glide和Fresco，OC开发一般用SDWebImage，Swift开发推荐用HanekeSwift。</p>
+<h2 id="6、开发工具比较"><a href="#6、开发工具比较" class="headerlink" title="6、开发工具比较"></a>6、开发工具比较</h2><p>Android目前主流的开发工具是Android Studio，2014年以前是Eclipse ADT。</p>
+<p>iOS开发一直使用Xcode。对于Java/Android开发人员来说，Xcode上手较难，特别是Interface Builder，Xib和视图代码直接通过连线来生成事件方法，比较挑战开发习惯，并且出现问题定位困难。而Android开发者习惯手写xml界面代码。</p>
+<p>与Android Studio相比，Xcode速度快，但不够稳定，一天崩溃几次很正常。</p>
+<p>模拟器方面，Android的Emulator是虚拟机，启动和安装速度比较慢，iOS是Simulator，速度快，但有些功能不能模拟。都推荐使用真机进行开发。</p>
+<h3 id="包管理器-amp-构建工具对比"><a href="#包管理器-amp-构建工具对比" class="headerlink" title="包管理器&amp;构建工具对比"></a>包管理器&amp;构建工具对比</h3><p>Android开发早期用Ant做一些任务处理，后面有些团队借鉴Java EE项目的做法用Maven，AndroidStudio出现后谷歌推荐用Gradle。Android的构建工具比iOS功能要强大很多。<br>iOS开发早期用CocoaPods，现在推荐用Carthage，未来Apple官方推出Swift3.0后会推广官方的Swift Package Manager。<br>最后介绍下Xcode包管理器Alcatraz，主要提供Xcode插件，模板和色彩模式，相比Android Studio，目前插件还很比较少。</p>
 
       
     </div>
@@ -342,18 +501,18 @@
   
     
     <div class="copyright">
-        <p><span>Title:</span><a href="/2016/05/04/从JavaAndroid到Swift iOS开发：语言与框架对比/">从JavaAndroid到Swift iOS开发：语言与框架对比</a></p>
-        <p><span>Author:</span><a href="/" title="Back to Homepage">offbye</a></p>
-        <p><span>Created:</span>2016-05-04, 10:48:00</p>
-        <p><span>Updated:</span>2016-05-13, 00:40:00</p>
+        <p><span>本文标题:</span><a href="/2016/05/04/从JavaAndroid到Swift iOS开发：语言与框架对比/">从JavaAndroid到Swift iOS开发：语言与框架对比</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">offbye</a></p>
+        <p><span>发布时间:</span>2016-05-04, 10:48:00</p>
+        <p><span>最后更新:</span>2016-05-29, 21:35:06</p>
 
         <p>
-            <span>Full URL:</span><a class="post-url" href="/2016/05/04/从JavaAndroid到Swift iOS开发：语言与框架对比/" title="从JavaAndroid到Swift iOS开发：语言与框架对比">http://offbye.com/2016/05/04/从JavaAndroid到Swift iOS开发：语言与框架对比/</a>
-            <span class="copy-path" data-clipboard-text="From http://offbye.com/2016/05/04/从JavaAndroid到Swift iOS开发：语言与框架对比/　　By offbye" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2016/05/04/从JavaAndroid到Swift iOS开发：语言与框架对比/" title="从JavaAndroid到Swift iOS开发：语言与框架对比">http://offbye.com/2016/05/04/从JavaAndroid到Swift iOS开发：语言与框架对比/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://offbye.com/2016/05/04/从JavaAndroid到Swift iOS开发：语言与框架对比/　　作者: offbye" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
-            <span>License:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"CC BY-NC-SA 4.0"</a> Keep Link &amp; Author if Distribute.
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
         </p>
         
         <p><span>CSDN原文:</span> <a href="http://blog.csdn.net/offbye/article/details/51313067" target="_blank" title="从JavaAndroid到Swift iOS开发：语言与框架对比">http://blog.csdn.net/offbye/article/details/51313067</a> </p>
@@ -385,8 +544,8 @@
 </article>
 
     <div id="toc" class="toc-article">
-    <strong class="toc-title">Contents</strong>
-    
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、Why-FromJava-Android-to-Swift"><span class="toc-number">1.</span> <span class="toc-text">1、Why FromJava/Android to Swift</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#成本和效率"><span class="toc-number">1.1.</span> <span class="toc-text">成本和效率</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Why-not-React-Native？"><span class="toc-number">1.2.</span> <span class="toc-text">Why not React Native？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Why-not-HTML5-Hybrid-App？"><span class="toc-number">1.3.</span> <span class="toc-text">Why not HTML5 Hybrid App？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、Swift语言为什么值得学习？"><span class="toc-number">2.</span> <span class="toc-text">2、Swift语言为什么值得学习？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、Java-vs-Swift语法比较"><span class="toc-number">3.</span> <span class="toc-text">3、Java vs. Swift语法比较</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1基础语法"><span class="toc-number">3.1.</span> <span class="toc-text">3.1基础语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-函数和闭包"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 函数和闭包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-struct-vs-class"><span class="toc-number">3.3.</span> <span class="toc-text">3.3 struct vs. class</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-Enum枚举"><span class="toc-number">3.4.</span> <span class="toc-text">3.4 Enum枚举</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-Interface-vs-Protocol"><span class="toc-number">3.5.</span> <span class="toc-text">3.5 Interface vs. Protocol</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-6-MultiThread多线程"><span class="toc-number">3.6.</span> <span class="toc-text">3.6 MultiThread多线程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4、Android，iOS-UI开发比较"><span class="toc-number">4.</span> <span class="toc-text">4、Android，iOS UI开发比较</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Storyboard-UI-开发实践"><span class="toc-number">4.1.</span> <span class="toc-text">Storyboard UI 开发实践</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5、Android-vs-Swift-iOS框架比较"><span class="toc-number">5.</span> <span class="toc-text">5、Android vs Swift iOS框架比较</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#网络请求框架"><span class="toc-number">5.1.</span> <span class="toc-text">网络请求框架</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6、开发工具比较"><span class="toc-number">6.</span> <span class="toc-text">6、开发工具比较</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#包管理器-amp-构建工具对比"><span class="toc-number">6.1.</span> <span class="toc-text">包管理器&构建工具对比</span></a></li></ol></li></ol>
 </div>
 <style>
     .left-col .switch-btn {
@@ -397,10 +556,10 @@
     }
 </style>
 
-<input type="button" id="tocButton" value="Hide"  title="Show or Hide Table of Contents">
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 <script>
-    var valueHide = "Hide";
-    var valueShow = "Show";
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
 
     if ($(".left-col").is(":hidden")) {
         $("#tocButton").attr("value", valueShow);
@@ -483,15 +642,15 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2016/05/04/程序员的成长和代码行数的关系/" title="Pre: 程序员的成长和代码行数的关系">
+            <a href="/2016/05/04/程序员的成长和代码行数的关系/" title="上一篇: 程序员的成长和代码行数的关系">
                 <i class="fa fa-angle-left"></i>
             </a>
         
 
-        <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2016/04/26/Android开发常用开源框架推荐/" title="Next: Android开发常用开源框架推荐">
+            <a href="/2016/04/26/Android开发常用开源框架推荐/" title="下一篇: Android开发常用开源框架推荐">
                 <i class="fa fa-angle-right"></i>
             </a>
         
@@ -515,14 +674,14 @@
                 2015-2016 offbye
             </div>
             <div class="footer-right">
-                <a href="http://hexo.io/" target="_blank" title="A fast, simple &amp; powerful blog framework">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="Another simple and elegant theme for Hexo">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
             </div>
         </div>
         
             <div class="visit">
                 
                     <span id="busuanzi_container_site_pv" style='display:none'>
-                        <span id="site-visit" >Site Visitors: 
+                        <span id="site-visit" >本站到访数: 
                             <span id="busuanzi_value_site_uv"></span>
                         </span>
                     </span>
@@ -532,7 +691,7 @@
                 
                 
                     <span id="busuanzi_container_page_pv" style='display:none'>
-                        <span id="page-visit">Page Hits: 
+                        <span id="page-visit">本页阅读量: 
                             <span id="busuanzi_value_page_pv"></span>
                         </span>
                     </span>
@@ -565,9 +724,9 @@
 
 
 <div class="scroll" id="scroll">
-    <a href="#" title="Back to Top"><i class="fa fa-arrow-up"></i></a>
-    <a href="#comments" title="Comments"><i class="fa fa-comments-o"></i></a>
-    <a href="#footer" title="Go to Bottom"><i class="fa fa-arrow-down"></i></a>
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
 </div>
 
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
