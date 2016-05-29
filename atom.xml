@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://offbye.com/"/>
-  <updated>2016-05-29T15:27:10.000Z</updated>
+  <updated>2016-05-29T15:38:49.000Z</updated>
   <id>http://offbye.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://offbye.com/2016/05/29/%E5%8D%87%E7%BA%A7CocoaPods-1-0-0%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%B1%87%E6%80%BB/"/>
     <id>http://offbye.com/2016/05/29/升级CocoaPods-1-0-0问题解决汇总/</id>
     <published>2016-05-29T13:51:28.000Z</published>
-    <updated>2016-05-29T15:27:10.000Z</updated>
+    <updated>2016-05-29T15:38:49.000Z</updated>
     
     <content type="html">&lt;p&gt;昨天晚上升级了CocosPads1.0, 只是安装成功了，现在项目里面运行pod install又发现了几个问题，昨天折腾的太晚了。今天继续折腾吧。&lt;br&gt;今天终于彻底搞定了CocosPods1.0，包括安装，运行和一个开源项目PodFile的1.0升级。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;运行&lt;code&gt;pod install&lt;/code&gt;时发现CocoaPods 提示有1.0版本了，于是打算升级一下。&lt;br&gt;CocoaPods 1.0.0 is available.&lt;br&gt;To update use: &lt;code&gt;gem install cocoapods&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;结果就出现了下面的错误，分析了下原因是/usr/bin/xcodeproj目录路径错了，网上搜了下解决问题，使用&lt;code&gt;sudo gem install -n /usr/local/bin cocoapods --pre&lt;/code&gt; 命令顺利安装成功。&lt;/p&gt;
@@ -36,7 +36,7 @@
 &lt;p&gt;我偷懒注释了一些不需要的代码，运行&lt;code&gt;pod install&lt;/code&gt;, Xcode打开Edhita.xcworkspace, 就能编译通过了。效果如下&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;http://o79096vir.bkt.clouddn.com/62edd018f93265892317424aaef3ae86.png&quot; alt=&quot;Edhiha&quot;&gt;&lt;/p&gt;
 &lt;p&gt;这次CocoaPods 1.0的升级体验还真是坑啊，经历了4年半的开发才发布1.0版本啊，不知道该说什么好了。&lt;br&gt;珍爱生命，新项目拥抱Carthage吧。但也不能不用CocoaPods啊，那么多开源项目都用了啊，还是暂时先不要升级1.0了。&lt;/p&gt;
-&lt;p&gt;[本文独立博客地址](&lt;a href=&quot;http://www.offbye.com/2016/05/29/%E5%8D%87%E7%BA%A7CocoaPods-1-0-0%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%B1%87%E6%80%BB/）&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.offbye.com/2016/05/29/%E5%8D%87%E7%BA%A7CocoaPods-1-0-0%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%B1%87%E6%80%BB/）&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.offbye.com/2016/05/29/%E5%8D%87%E7%BA%A7CocoaPods-1-0-0%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%B1%87%E6%80%BB/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;本文独立博客地址&lt;/a&gt;&lt;/p&gt;
 </content>
     
     <summary type="html">
