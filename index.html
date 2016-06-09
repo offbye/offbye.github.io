@@ -125,13 +125,13 @@
                 <div class="tips-box hide">
                     <div class="tips-arrow"></div>
                     <ul class="tips-inner">
-                        <li>Menu</li>
-                        <li>Tags</li>
+                        <li>菜单</li>
+                        <li>标签</li>
                         
-                        <li>Friends</li>
+                        <li>友情链接</li>
                         
                         
-                        <li>About Me</li>
+                        <li>关于我</li>
                         
                     </ul>
                 </div>
@@ -257,9 +257,186 @@
             </nav>
         </header>                
     </div>
-    <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-Facebook-F8App-ReactNative项目源码分析5-iOS篇" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/06/08/Facebook-F8App-ReactNative项目源码分析5-iOS篇/" class="article-date">
+      <time datetime="2016-06-08T13:07:46.000Z" itemprop="datePublished">2016-06-08</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/06/08/Facebook-F8App-ReactNative项目源码分析5-iOS篇/">Facebook F8App-ReactNative项目源码分析5-iOS篇</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>近期开始研究Facebook f8app项目，目标是理解Facebook官方React Native f8app的整体技术架构，给公司目前几个的React Native项目开发提供官方经验借鉴，并对原生开发和React Native开发进行框架层面的融合。<br>本文分析f8app iOS代码的结构和技术实现，阅读本文的前提是对React Native和iOS开发有一定的了解。<br>f8app ios项目使用了CocosPod管理模块，现在RN的最新版本创建的项目默认已经不再使用CocosPods了,直接通过工程引用。f8app还是用了CocosPod，因此我们首先需要在ios目录下运行<code>pod install</code>，安装好依赖的项目，然后用Xcode打开F8v2.xcworkspace工作空间，注意不是打开F8v2.xcodeproj工程文件，我经常犯这个错误，实在不喜欢用CocosPods啊。<br>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+        <p class="article-more-link">
+          <a href="/2016/06/08/Facebook-F8App-ReactNative项目源码分析5-iOS篇/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Swift-iOS中的Nullability-Annotations" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/06/02/Swift-iOS中的Nullability-Annotations/" class="article-date">
+      <time datetime="2016-06-02T06:41:30.000Z" itemprop="datePublished">2016-06-02</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/06/02/Swift-iOS中的Nullability-Annotations/">Swift iOS中的Nullability Annotations</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>今天折腾使用swift开发React Native的插件，遇到一个参数必须标记成nonnull的问题。<br>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+        <p class="article-more-link">
+          <a href="/2016/06/02/Swift-iOS中的Nullability-Annotations/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-React-Native-Package-Manager包管理器介绍" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/06/01/React-Native-Package-Manager包管理器介绍/" class="article-date">
+      <time datetime="2016-06-01T01:59:06.000Z" itemprop="datePublished">2016-06-01</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/06/01/React-Native-Package-Manager包管理器介绍/">React Native Package Manager包管理器介绍</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>React Native Package Manager是为了简化React Native开发而生的包管理器。这个项目的想法来自CocoaPods, fastlane和react-native link。它的目标是让几乎全部可用的模块不需要额外配置就可以使用。<br>RNPM需要一直在版本控制系统的管理下使用，以便保证一切可以回退。<br>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+        <p class="article-more-link">
+          <a href="/2016/06/01/React-Native-Package-Manager包管理器介绍/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
   
     <article id="post-升级CocoaPods-1-0-0问题解决汇总" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -686,195 +863,6 @@
 
 
   
-    <article id="post-CTCC2016中国云计算技术大会参会感想" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/05/16/CTCC2016中国云计算技术大会参会感想/" class="article-date">
-      <time datetime="2016-05-16T01:41:05.000Z" itemprop="datePublished">2016-05-16</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/16/CTCC2016中国云计算技术大会参会感想/">CTCC2016中国云计算技术大会参会感想</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              上个周末有幸参加了中国云计算技术大会，趁热先把参会感想写了
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTCC2016/">CTCC2016</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/">docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spark/">spark</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/云计算/">云计算</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2016/05/16/CTCC2016中国云计算技术大会参会感想/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-YAML文件语法简介" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/05/12/YAML文件语法简介/" class="article-date">
-      <time datetime="2016-05-12T07:46:53.000Z" itemprop="datePublished">2016-05-12</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/12/YAML文件语法简介/">YAML文件语法简介</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              YAML是一种利于人们读写的数据格式. 现在很多系统例如Spring等都支持YAML配置文件，YAML由于其良好的可读性，越来月流行。此外在大多数变成语言中有使用 YAML 的库. 
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/YAML/">YAML</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2016/05/12/YAML文件语法简介/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-iOS-Sandbox-swift" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/05/11/iOS-Sandbox-swift/" class="article-date">
-      <time datetime="2016-05-11T10:25:25.000Z" itemprop="datePublished">2016-05-11</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/11/iOS-Sandbox-swift/">iOS App沙盒模型文件目录详解Swift版</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              本文会比较全面的介绍iOS App沙盒模型的文件夹及其使用场景，以及通过Swift取得这些文件夹的方法。iOS 中的沙盒机制（SandBox）是一种安全体系。每个iOS 应用程序都有一个单独的文件系统（存储空间），而且只能在对应的文件系统中进行操作，此区域被称为沙盒。所有的非代码文件都要保存在此，例如属性文件 plist、文本文件、图像、图标、媒体资源等。
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sandbox/">Sandbox</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/swift/">swift</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2016/05/11/iOS-Sandbox-swift/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -889,14 +877,14 @@
                 2015-2016 offbye
             </div>
             <div class="footer-right">
-                <a href="http://hexo.io/" target="_blank" title="A fast, simple &amp; powerful blog framework">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="Another simple and elegant theme for Hexo">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
             </div>
         </div>
         
             <div class="visit">
                 
                     <span id="busuanzi_container_site_pv" style='display:none'>
-                        <span id="site-visit" >Site Visitors: 
+                        <span id="site-visit" >本站到访数: 
                             <span id="busuanzi_value_site_uv"></span>
                         </span>
                     </span>
@@ -906,7 +894,7 @@
                 
                 
                     <span id="busuanzi_container_page_pv" style='display:none'>
-                        <span id="page-visit">Page Hits: 
+                        <span id="page-visit">本页阅读量: 
                             <span id="busuanzi_value_page_pv"></span>
                         </span>
                     </span>
@@ -939,9 +927,9 @@
 
 
 <div class="scroll" id="scroll">
-    <a href="#" title="Back to Top"><i class="fa fa-arrow-up"></i></a>
-    <a href="#comments" title="Comments"><i class="fa fa-comments-o"></i></a>
-    <a href="#footer" title="Go to Bottom"><i class="fa fa-arrow-down"></i></a>
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
 </div>
 
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
