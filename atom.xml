@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://offbye.com/"/>
-  <updated>2016-06-08T06:56:55.000Z</updated>
+  <updated>2016-06-13T09:31:48.000Z</updated>
   <id>http://offbye.com/</id>
   
   <author>
@@ -14,6 +14,118 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>怎样高效统计Android开源库的方法数</title>
+    <link href="http://offbye.com/2016/06/13/%E6%80%8E%E6%A0%B7%E9%AB%98%E6%95%88%E7%BB%9F%E8%AE%A1Android%E5%BC%80%E6%BA%90%E5%BA%93%E7%9A%84%E6%96%B9%E6%B3%95%E6%95%B0/"/>
+    <id>http://offbye.com/2016/06/13/怎样高效统计Android开源库的方法数/</id>
+    <published>2016-06-13T11:36:11.000Z</published>
+    <updated>2016-06-13T09:31:48.000Z</updated>
+    
+    <content type="html">&lt;p&gt;大家都知道， Android App一直有65k方法数的问题，当然我们可以用multidex的各种方法解决，就是比较麻烦。一般方法数超过65K的原因是引入了太多第三方开源库的原因，那么我们怎么才能知道哪些开源库占用了多少方法呢？以便可以有针对性的减少方法数。&lt;/p&gt;
+&lt;p&gt;今天发现Android Studio有个插件&lt;a href=&quot;http://plugins.jetbrains.com/plugin/8076?pr=androidstudio&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Methods Count&lt;/a&gt;很好的做了这个事情，赞一个啊。直接在Android Studio搜索插件名字并安装，重启Android Studio后打开build.gradle文件，等待一会就可以看各个第三方库的方法数了。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;如下图&lt;br&gt;&lt;img src=&quot;http://www.methodscount.com/images/methods-count-plugin-2.png&quot; alt=&quot;method count&quot;&gt;&lt;/p&gt;
+&lt;p&gt;点击页面右边的蓝色圆圈可以跳到网站&lt;a href=&quot;http://www.methodscount.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.methodscount.com/&lt;/a&gt; 查询开源库及其依赖的库的方法数详情。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://o79096vir.bkt.clouddn.com/5f1cb177b7f2b434bf80f056f526d8d7.png&quot; alt=&quot;methodscountdetail&quot;&gt;&lt;/p&gt;
+&lt;p&gt;如果有人已经查过了某个版本的开源库，网站会缓存结果，立即就会给出结果；没有查过则网站会去分析开源库，并算出方法数，这个过程可能需要等待几分钟。网页给出了方法数统计，依赖的库， 还可以以图表形式展示开源库各个版本的方法数和Dex文件Size变化情况。&lt;br&gt;知道了第三方开源库的方法数，就可以有针对性的对方法数进行优化了。&lt;br&gt;￼￼&lt;/p&gt;
+&lt;p&gt;[本文独立博客地址](&lt;a href=&quot;http://www.offbye.com）&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.offbye.com）&lt;/a&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;大家都知道， Android App一直有65k方法数的问题，当然我们可以用multidex的各种方法解决，就是比较麻烦。一般方法数超过65K的原因是引入了太多第三方开源库的原因，那么我们怎么才能知道哪些开源库占用了多少方法呢？以便可以有针对性的减少方法数。&lt;/p&gt;
+&lt;p&gt;今天发现Android Studio有个插件&lt;a href=&quot;http://plugins.jetbrains.com/plugin/8076?pr=androidstudio&quot;&gt;Android Methods Count&lt;/a&gt;很好的做了这个事情，赞一个啊。直接在Android Studio搜索插件名字并安装，重启Android Studio后打开build.gradle文件，等待一会就可以看各个第三方库的方法数了。&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="Android" scheme="http://offbye.com/tags/Android/"/>
+    
+      <category term="方法数" scheme="http://offbye.com/tags/%E6%96%B9%E6%B3%95%E6%95%B0/"/>
+    
+      <category term="统计" scheme="http://offbye.com/tags/%E7%BB%9F%E8%AE%A1/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>从共享经济的边界看专车市场的未来</title>
+    <link href="http://offbye.com/2016/06/10/%E4%BB%8E%E5%85%B1%E4%BA%AB%E7%BB%8F%E6%B5%8E%E7%9A%84%E8%BE%B9%E7%95%8C%E7%9C%8B%E4%B8%93%E8%BD%A6%E5%B8%82%E5%9C%BA%E7%9A%84%E6%9C%AA%E6%9D%A5/"/>
+    <id>http://offbye.com/2016/06/10/从共享经济的边界看专车市场的未来/</id>
+    <published>2016-06-10T01:57:51.000Z</published>
+    <updated>2016-06-13T09:28:47.000Z</updated>
+    
+    <content type="html">&lt;p&gt;作为一个懒散的业余顺风车司机，最近经常收到专车平台关于突发情况的短信提醒，听说南京出租车司机和专车司机最近有些冲突，原因当然是出租车司机认为专车司机抢了生意，而自己还需要承担每个月七千以上的份子钱，心里当然不爽了。但是，专车不是分享经济吗？只是顺路接单啊，怎么会对出租车的生意造成这么严重的影响呢？原因之一可能是大多数专车司机已经是职业化了，并且感觉司机平台的多单奖励制度也鼓励了专车的职业化行为，需要上班的顺风车肯定不可能在早高峰去接很多单啊，拼车等人，绕路都要花时间，上班迟到是要罚钱的，但职业司机就没有这个问题了。&lt;/p&gt;
+&lt;p&gt;专车市场到底会怎样发展呢？我认为后面专车的车辆产权会由租车公司和出行平台共同拥有；专车司机会职业化，和平台签劳动协议，并经过专业化培训；专车会在交通部门的严格监管下运营；做专车司机的门槛将逐步提高，私家车司机将逐步推出专车行列。对于传统出租车行业来说，未来可能在某些城市被出行平台收编，当然中间肯定需要经过各方的利益博弈。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;分享经济的核心是资源的按需分配，既合理调配又极大化利用闲置资源，毫无疑问，只有在移动互联网时代，供需信息借助技术手段实现透明，共享经济的模式才有可能真正运行起来。因此，在租房领域诞生了Airbnb,在出行领域出现了Uber和滴滴这些互联网独角兽公司。 这些平台的出现，确实给人们带来了极大的便利，解决了供需信息的不对称性和闲置资源的分配问题，但同时也带来了一些新问题，对传统行业的冲击，安全问题和监管问题等。&lt;/p&gt;
+&lt;p&gt;分享经济的优势是盘活闲置的社会资源，提供给更多需要的人，同时获取一定的报酬。但共享经济显然是存在边界的。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;知名 IT 评论人 Keso 在《分享经济的边界》一文中表达了其对分享经济的看法。他认为，“两方面的因素综合作用，将导致分享经济很快就抵达它的边界。其一是受益于分享经济，越来越多的人会更愿意购买资源的使用权，而不是购买资源的所有权，这将导致不再有可供分享的物质资源；其二是人的趋利性导致职业化服务提供将逐渐挤出业余化服务提供，谋生者挤出分享者，在此过程中不断降低成本以最大化收益。”&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;分享经济的边界看上去还是很有道理的。由分享经济的边界，我联想到了科斯的企业的边界。经济学家科斯提出了著名的科斯定理，我们也可以试着用它来分析一下拼车这种共享经济。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;科斯定理(Coase theorem)由罗纳德·科斯（Ronald Coase）提出的一种观点，认为在某些条件下，经济的外部性或曰非效率可以通过当事人的谈判而得到纠正，从而达到社会效益最大化。科斯本人从未将定理写成文字，而其他人如果试图将科斯定理写成文字，则无法避免表达偏差。关于科斯定理，比较流行的说法是：只要财产权是明确的，并且交易成本为零或者很小，那么，无论在开始时将财产权赋予谁，市场均衡的最终结果都是有效率的，实现资源配置的帕雷托最优。&lt;br&gt;科斯认为，企业规模的边界就在企业内部组织一项交易费用的成本等于通过市场开展这项交易的成本之处。所以，企业有扩张的倾向，直至达到这个边界。另一方面，科技和管理的的的提升，有助于降低交易费用，也就是扩大企业的边界。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;对于没有学习过经济学的人来说，上面这段话可能有些抽象，简单来说只要财产权是明确的，并且交易成本为零或者很小，那么，无论在开始时将财产权赋予谁，市场均衡的最终结果都是有效率的。如果我们从这个角度来看共享经济，如果打车的成本足够低，车辆由谁拥有，并不影响最终的出行效率。但是。实际情况不是这样的，对私家车司机来说，做顺风车交易成本还是比较高的，比较典型的是等待成本和绕路成本，还有可能的安全成本，由于拉客带来的负面情绪成本等。&lt;/p&gt;
+&lt;p&gt;先说下等待成本和绕路成本。目前滴滴司机端的推荐算法还只能做到基于附近位置的订单推荐，对于要上班的业余司机来说，这样是远远不够的，首先我不可能掉头去接后面的乘客，也不愿意绕路去接不怎么顺路的乘客，更不可能放着高速公路不走，走城市道路去接中途的乘客，这些事情都会导致上班迟到被罚钱，滴滴并没有给这些业余司机提供激励政策，而是对派单完成率进行考核和惩罚，对于职业专车司机，上面这些问题都不影响，因为他们不用担心上班迟到。并且，滴滴经常有连环奖励活动，早高峰联系完成5单以上，每单都有5元以上的额外奖励，这个奖励估计只有职业专车司机才能拿到。由于企业和个人追逐利润的动机，职业专车司机必然会把业余司机挤出市场，并影响到传统出租车司机的生意。最后留下的业余司机，可能已经不再是为了赚点油费做顺风车的普通司机，而是那些不为赚钱，有其他动机的司机，例如开着保时捷为了搭讪美女而做专车的司机，但各大公司门口拼车挖人的猎头司机等。这就出现了劣币驱逐良币的现象。&lt;/p&gt;
+&lt;p&gt;当专车平台上出现了这些有其它动机的司机后，乘客的安全和隐私方面就会出现问题，最近经常爆出的专车司机性骚扰事件也证明了这一点。当然我们可以把责任推给不良司机，毕竟平台只是提供了出行信息，并且对车辆和司机身份进行了还算完善的线上认证，但这个约束是相对于传统出租车行业是非常脆弱的，一些居心不良的司机可以有一万种方法绕过平台的监管。&lt;/p&gt;
+&lt;p&gt;从业余司机角度看，自己花钱买车主要是为了使用方便和面子，也就是出行的便利性和私密性。由于大量职业化专车司机的存在，必然会提高乘客对司机服务的期望。人性是自私的，在做过几次顺风车司机后尝鲜后，不太缺钱的业余司机很难再忍受一些挑剔的乘客，于是也就不再做顺风车了。很多人会说做顺风车是为了找人聊天，但拼车聊天实在是个弱需求，特别是在早高峰急着上班赶路的时候，司机在开车的时候聊天也会带来驾驶安全问题。&lt;/p&gt;
+&lt;p&gt;上面分析了为什么职业司机会占据打车平台，业余司机会从逐渐从打车平台退出。下面看下专车司机职业化的带来的问题。首先是专车司机的进入门槛太低，导致司机鱼龙混杂，出现各种安全，监管和与传统出租车司机的利益冲突问题。出租车其实是个入门门槛挺低的行业，这年头谁不会开车啊。份子钱就是出租车司机上缴给出租车公司的承包费用，既是前者的主要运营成本，又是后者的主要收入来源。份子钱的存在就是为了提供这个行业的准入门槛，避免非法营运车辆对城市道路的多度占用，同时对出租车司机提供一些服务和管理。由于出租车司机承担了每月6千以上份子钱，而职业化专车司机并不承担份子钱，却同样进行营运，必然严重影响出租车司机的收入，导致出租车司机不满，各地不断出现出租车司机和专车司机的社会冲突。&lt;/p&gt;
+&lt;p&gt;现在的问题是专车司机已经在事实上职业化了，但并没有真正职业化管理起来，打车平台对专车司机管理还停留在身份认证和平台规定约束层面，没有劳动协议，保证金，份子钱，准入培训等更加职业化的管理方法，导致很多问题出现。在职业化运营这点上，神州专车的重运营模式做的挺好，这应该是打车平台的未来发展趋势。&lt;/p&gt;
+&lt;p&gt;总结一下，由于经济上的原因，专车司机会逐渐职业化，业余司机会逐渐被挤出市场，为了解决专车司机职业化带来的一系列问题，由此发展到职业化管理阶段，也就是类似神州专车的B2C重运营模式。在分享经济层面，出行平台解决的是出行信息的不对称性问题，重点是通过移动互联网更有效率地达成出行交易，而不是对车辆资源的分享。在更远的未来，随着大数据和人工智能的发展，自动驾驶技术发展成熟，专车将不再需要司机，实现智能化共享交通网络。目前特斯拉电动车的Autopilot自动驾驶技术已经初步可用了。&lt;/p&gt;
+&lt;p&gt;参考文章&lt;br&gt;&lt;a href=&quot;http://36kr.com/p/5047748.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;如果说“共享经济”是伪命题，那么“专车模式”怎样才靠谱？&lt;/a&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;作为一个懒散的业余顺风车司机，最近经常收到专车平台关于突发情况的短信提醒，听说南京出租车司机和专车司机最近有些冲突，原因当然是出租车司机认为专车司机抢了生意，而自己还需要承担每个月七千以上的份子钱，心里当然不爽了。但是，专车不是分享经济吗？只是顺路接单啊，怎么会对出租车的生意造成这么严重的影响呢？原因之一可能是大多数专车司机已经是职业化了，并且感觉司机平台的多单奖励制度也鼓励了专车的职业化行为，需要上班的顺风车肯定不可能在早高峰去接很多单啊，拼车等人，绕路都要花时间，上班迟到是要罚钱的，但职业司机就没有这个问题了。&lt;/p&gt;
+&lt;p&gt;专车市场到底会怎样发展呢？我认为后面专车的车辆产权会由租车公司和出行平台共同拥有；专车司机会职业化，和平台签劳动协议，并经过专业化培训；专车会在交通部门的严格监管下运营；做专车司机的门槛将逐步提高，私家车司机将逐步推出专车行列。对于传统出租车行业来说，未来可能在某些城市被出行平台收编，当然中间肯定需要经过各方的利益博弈。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="分享经济" scheme="http://offbye.com/tags/%E5%88%86%E4%BA%AB%E7%BB%8F%E6%B5%8E/"/>
+    
+      <category term="专车" scheme="http://offbye.com/tags/%E4%B8%93%E8%BD%A6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>读采铜的精进-如何成为一个很厉害的人有感</title>
+    <link href="http://offbye.com/2016/06/09/%E8%AF%BB%E9%87%87%E9%93%9C%E7%9A%84%E7%B2%BE%E8%BF%9B-%E5%A6%82%E4%BD%95%E6%88%90%E4%B8%BA%E4%B8%80%E4%B8%AA%E5%BE%88%E5%8E%89%E5%AE%B3%E7%9A%84%E4%BA%BA%E6%9C%89%E6%84%9F/"/>
+    <id>http://offbye.com/2016/06/09/读采铜的精进-如何成为一个很厉害的人有感/</id>
+    <published>2016-06-09T14:22:49.000Z</published>
+    <updated>2016-06-11T03:12:01.000Z</updated>
+    
+    <content type="html">&lt;p&gt;采铜的《精进-如何成为一个很厉害的人》确实是一本很好的书，我这个一般情况只在kindle上买书看书的人，在简书上看到这本书的介绍后，感觉非常不错，内容和观点比较适合我现在的状态，于是马上在亚马逊上下单买了一本。现在过去快2周了，大概看完一大半了，好书要慢慢读啊，先写篇读后感总结一下吧，免得后面忘记了。看书是一种输入，写出读书笔记是输出，要把时间放在输出型兴趣上，这是书中的一个观点。以后我每读完一本书都会写篇读书笔记，喜欢大家监督啊。&lt;br&gt;写读书笔记时才发现自己看书的一个严重问题，看完后不记得书的目录结构，只记得一些感兴趣的观点，很多没有共鸣的观点，因为没有掌握书的结构，以后肯定也不会有印象。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;在这本书中，作者采铜提出了一种更有效的提升自我的方法：用持续精确的努力，撬动更大的可能，这便是精进。&lt;br&gt;这本书为大家提供了时间、选择、行动、学习、思维、才能、成功七个方面的精进路径，只要依循书中的方法反复磨练，便可以日益精进，成为一个很厉害的人，找到实现自我的那条成功之道。&lt;br&gt;看上去挺美的啊，但是为什么厉害的人还是很少呢？ 其实道理非常简单，知道不等于能够做到。有了方法，真正达成目标还是需要持续地努力和付出。希望这本书能够让我们的努力更有效果。下面书的目录：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;目录  · · · · · ·&lt;br&gt;第一章    时间之尺&lt;br&gt;——我们应该怎样对待时间&lt;br&gt;一、    活在“全部的现在”&lt;br&gt;（从当下出发，联结过去与未来）&lt;br&gt;二、    对五年后的自己提问&lt;br&gt;（如何解决远期与近期未来的冲突？）&lt;br&gt;三、    我们总是在重复地抓起沙子&lt;br&gt;（把时间花在值得做的事情上）&lt;br&gt;四、    “快”与“慢”的自由切换&lt;br&gt;（为什么我们的时间永远不够用？）&lt;br&gt;第二章    寻找心中的“巴拿马”&lt;br&gt;——如何做出比好更好的选择&lt;br&gt;一、    从终极问题出发&lt;br&gt;（以人生终极目标作为首要原则）&lt;br&gt;二、    逃离隐含假设的牢笼&lt;br&gt;（发现人生中的更多可能选项）&lt;br&gt;三、    克服天性中的选择弱势&lt;br&gt;（选择太多怎么办？）&lt;br&gt;四、    人生是持续而反复的构造&lt;br&gt;（校正选择，做出建设性的改变）&lt;br&gt;第三章    即刻行动&lt;br&gt;——改变一切的核心力量&lt;br&gt;一、    “现在”就是恰当的时机&lt;br&gt;（不管怎样，只要开始就好）&lt;br&gt;二、    精益创业的行动启示&lt;br&gt;（把“未完成”变成“已完成” ）&lt;br&gt;三、    像Photoshop一样分解任务&lt;br&gt;（从工作的核心区开始）&lt;br&gt;四 、 三行而后思&lt;br&gt;（在实践中，通过复盘积累智慧）&lt;br&gt;第四章    怎样的学习，才能够直面现实？&lt;br&gt;——如何成为一个高段位的学习者？&lt;br&gt;一、    找到一切学习的向导&lt;br&gt;（好的学习者，首先要向自己提问）&lt;br&gt;二、    不要只做信息的搬运工&lt;br&gt;（通过解码，深入事物的深层）&lt;br&gt;三、    技能，才是学习的终点&lt;br&gt;（你能够调用的知识有多少？）&lt;br&gt;四、    分离的知识，难以解答真正的现实&lt;br&gt;（让不同的知识发生化学作用）&lt;br&gt;第五章    向未知的无限逼近&lt;br&gt;——修炼思维，成为真正的利器&lt;br&gt;一、    大脑需要“断舍离”&lt;br&gt;（ 简化，是清晰思考的前提 ）&lt;br&gt;二、    迎接“灵光乍现”的时刻&lt;br&gt;（让潜意识为你工作）&lt;br&gt;三、    思考可以有自己的形状&lt;br&gt;（将思维转化为图像 ）&lt;br&gt;四、    世界上没有轻而易举的答案&lt;br&gt;（只有极少数的人能做到周密思考）&lt;br&gt;第六章 努力，是一种需要学习的才能&lt;br&gt;——不断优化你的“努力”方式&lt;br&gt;一、    努力本身就是一种才能&lt;br&gt;（努力需要有效的策略）&lt;br&gt;二、    没有突出的长板就是危险&lt;br&gt;（专注发展自己的优势才能）&lt;br&gt;三、    你是“差不多先生”吗？&lt;br&gt;（绝不苟且，才能做到极致 ）&lt;br&gt;四、    挑战是设计出来的&lt;br&gt;（不断为自己设计“必要的难度”挑战 ）&lt;br&gt;五、    不痛苦地坚持到底&lt;br&gt;（只有深入下去，才能培养起真正的兴趣）&lt;br&gt;第七章 每一个成功者，都是唯一的&lt;br&gt;——创造成功，而不是复制成功&lt;br&gt;一、    “学渣”与“学霸”都不是好选择&lt;br&gt;（做一个主动探索的学习者）&lt;br&gt;二、    从“游乐场”到“荒野求生”&lt;br&gt;（怎样从大学走向社会？）&lt;br&gt;三、    独特性，就是你的核心竞争力&lt;br&gt;（ 请坚持你的与众不同！ ）&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;第一章是时间之尺-我们应该怎样对待时间&quot;&gt;&lt;a href=&quot;#第一章是时间之尺-我们应该怎样对待时间&quot; class=&quot;headerlink&quot; title=&quot;第一章是时间之尺 我们应该怎样对待时间&quot;&gt;&lt;/a&gt;第一章是时间之尺 我们应该怎样对待时间&lt;/h2&gt;&lt;p&gt;一个人如何对待他的时间，决定了他可以成为什么样的人。首先讲了要活在当下，要专注做好当前的事情，不要过去追悔，为未来焦虑。这是我们应该有的人生态度，用曾国藩的话说就是“当读书，则读书，心无着于见客也；当见客，则见客，心无着于读书也。一有着，则私也。灵明无着，物来顺应，未来不迎，当时不杂，既过不恋。”&lt;/p&gt;
+&lt;p&gt;向孩子学习“郑重“的态度，我有一个5岁的女儿，她每天晚上9点左右都画画，其实就是随便涂鸦了，但她真的是很专注，画画的时候从来不三心二意，被打扰了她会不开心，画完后你问她画了什么，她会很认真地讲给你听，尽管画看上去一点都不像。我发现很多大人在专注当下这方面还真的应该想孩子学习，总是自以外高效率，同时做几件事情。记起一个关于活在当下的小故事：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;一个小和尚问得道的师傅：“您得道前后有没有什么变化？”老和尚说：“变化很大。”那到底有什么变化呢，老和尚告诉小和尚：“在得道之前，我每天砍柴、挑水、做饭。得道之后，我每天砍柴、挑水、做饭。”小和尚不理解：“师傅，这不是一样吗？”老和尚说：“不一样，在得道之前，我每天砍柴的时候想着挑水，挑水的时候想着做饭，做饭的时候又想着砍柴。得道之后，我每天砍柴的时候只想着砍柴，挑水的时候只想着挑水，做饭的时候只想着做饭。”&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;专注当下确实能让我在生活中保持平和的心态，保持客观的态度，不把自己的节奏弄乱。&lt;/p&gt;
+&lt;p&gt;然后介绍了时间的视角： 积极过去视角，消极过去视角，享乐主义视角，宿命论视角和未来视角。我用这套方法检讨了一下自己，发现我这几年总是在消极过去视角和未来视角之间切换：有时会后悔自己错失了太多机会，导致情绪很低落；有时又一直想着未来的事情，对未来报太多希望，以至于影响到现在的状态。斯坦福大学心理学家津巴多的建议是不要维持单一的时间视角，我以后要注意采用享乐主义视角和积极过去视角调整状态。&lt;/p&gt;
+&lt;p&gt;对五年后的自己提问，如何解决远期未来和近期未来的冲突？&lt;/p&gt;
+&lt;p&gt;对于人生计划而言，五年确实是一个合适的时间，读完大学需要四年，多数工作从新手到熟手甚至专家五年时间也够了。在我从事的互联网行业，五年时间足够诞生一个互联网巨头公司了，也足够淘汰或兴起一种编程语言或技术平台。发现五年前的自己，确实没有想清楚五年后要做什么，对未来的期望太高了，这是应该是现在没有达到应有的高度的一个重要原因，所幸随着年龄的增长，对自己的认识越来越清楚了，五年后的人生状态也基本上有头绪了。&lt;br&gt;五年设想可以让我们用情景化，具象化的方式来构想远期未来，使未来鲜活生动起来，这样就有利于去实施。由于五年的时间跨度足够长，我们就不会把可行性，便利性作为主要判断依据，而是从长期价值出发。&lt;br&gt;解决远期未来和近期未来的冲突可以采用两个策略：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;使远期未来的目标更加具体化、情境化和可实施&lt;/li&gt;
+&lt;li&gt;降低近期未来中的“非期望行为“的便利性，主动增加挑战的难度&lt;br&gt;比如如果总是想玩游戏，就把游戏删除掉，虽然你后面还会下载回来玩，但由于玩游戏的成本提高了，玩的次数是能够显著减少的。我在大学里曾经这样做过，记得当时为了考研，反复删除了很多次魔兽冰封王座游戏，还是很有效果的。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;我们总是在重复地抓起沙子，把时间花在值得做的事情上。&lt;br&gt;什么是值得做的事情？作者提供了2个角度：一个是当下给我带来的收益大小，二是收益随时间衰减的程度，作者称为“收益半衰期“。收益半衰期是让我的印象深刻的一个词。要多做收益半衰期长的事情，而不要太在意当前收益的大小。对我来说，写技术博客，写文章，参加开源项目，做技术演讲这些事情的收益半衰期都是比较长的，要坚持去做好。&lt;br&gt;作者给出一个长半衰期事件指南。收益半衰期是一个有效的思维工具，就像一把时间之尺，可以丈量出有长远价值的事物。&lt;br&gt;第一章最后作者提到了为什么要多读经典和互联网时代的信息碎片化问题，用时间之尺的方法，可以有效的过滤掉噪音信息。&lt;/p&gt;
+&lt;h2 id=&quot;第二章-寻找心中的“巴拿马“-如何做出比好更好的选择&quot;&gt;&lt;a href=&quot;#第二章-寻找心中的“巴拿马“-如何做出比好更好的选择&quot; class=&quot;headerlink&quot; title=&quot;第二章 寻找心中的“巴拿马“ 如何做出比好更好的选择&quot;&gt;&lt;/a&gt;第二章 寻找心中的“巴拿马“ 如何做出比好更好的选择&lt;/h2&gt;&lt;p&gt;[本文独立博客地址](）&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;采铜的《精进-如何成为一个很厉害的人》确实是一本很好的书，我这个一般情况只在kindle上买书看书的人，在简书上看到这本书的介绍后，感觉非常不错，内容和观点比较适合我现在的状态，于是马上在亚马逊上下单买了一本。现在过去快2周了，大概看完一大半了，好书要慢慢读啊，先写篇读后感总结一下吧，免得后面忘记了。看书是一种输入，写出读书笔记是输出，要把时间放在输出型兴趣上，这是书中的一个观点。以后我每读完一本书都会写篇读书笔记，喜欢大家监督啊。&lt;br&gt;写读书笔记时才发现自己看书的一个严重问题，看完后不记得书的目录结构，只记得一些感兴趣的观点，很多没有共鸣的观点，因为没有掌握书的结构，以后肯定也不会有印象。&lt;br&gt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Facebook F8App-ReactNative项目源码分析5-iOS篇</title>
@@ -799,283 +911,6 @@ app.use(&amp;apos;/api&amp;apos;,// 首先检查 token；expressJwt({secret:secr
       <category term="oauth" scheme="http://offbye.com/categories/token/oauth/"/>
     
       <category term="jwt" scheme="http://offbye.com/categories/token/oauth/jwt/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>程序员的成长和代码行数的关系</title>
-    <link href="http://offbye.com/2016/05/04/%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E6%88%90%E9%95%BF%E5%92%8C%E4%BB%A3%E7%A0%81%E8%A1%8C%E6%95%B0%E7%9A%84%E5%85%B3%E7%B3%BB/"/>
-    <id>http://offbye.com/2016/05/04/程序员的成长和代码行数的关系/</id>
-    <published>2016-05-04T04:39:00.000Z</published>
-    <updated>2016-05-12T16:40:00.000Z</updated>
-    
-    <content type="html">&lt;p&gt;这篇文章很有价值，看了这个文章后马上针对一个架构问题做了决定，在2种方案里面选了只增加线性复杂度的那个。&lt;br&gt;在2011年John D. Cook写了一篇&lt;a href=&quot;http://www.johndcook.com/blog/2011/11/22/norris-number/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;博客&lt;/a&gt;，其中提到：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;我的朋友Clift Norris发现了一个基本常数，我称之为Norris常数，一个未经培训的程序员在他或她遇到瓶颈之前能写出的平均代码量。Clift估计这个值是1500行。超过这个数以后，代码会变得如此混乱，以至于本人都无法轻而易举的进行调试和修改。&lt;br&gt;我还不了解足够多的初级程序员来验证这一结果，不过我自己认识到，程序员生涯的下一个瓶颈将发生在20,000行。我把Norris常数改成2,000那样正好变成十倍。&lt;br&gt;在我离开大学之后的第一份工作中，我和我的同事一样（和我差不多年纪）反复遇到了20,000行的瓶颈。在梦工厂我们有950个程序给动画师使用，行数统计显示多的一些基本在20,000 至25,000行。超过这个数的话即再多的努力也无法增加新特性了。&lt;br&gt;在1996年年中的时候我负责编写&lt;a href=&quot;http://www.teamten.com/lawrence/oscar/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;梦工厂的照明工具&lt;/a&gt;（和另外两个程序员），我知道这将远远超过20,000行代码。我改变了我的编程方法并且这个工具一年后以大约200,000行的代码量成功交付。 （这个工具计划于2013年退役，在16年时间里它被每天使用并用来拍摄了21部电影。）我因为写了好几个行数在10万到20万的程序，我很确定我遇到了下一个瓶颈，我已经能够能感觉到它。&lt;br&gt;特别难的部分是和一些没有像你一样打破了好几道瓶颈的人讨论技术。打破这些瓶颈意味着做出不同的取舍，特别是一些短期内看起来不合理但以后会有所帮助决定。这很难去争论，短期内的优点是显而易见的，但我无法说服任何人说从现在起一年内可能有人会做出一个看似无害但是会破坏现有代码的改动。&lt;br&gt;Edsger Dijkstra 在1969年&lt;a href=&quot;http://www.cs.utexas.edu/users/EWD/ewd02xx/EWD249.PDF&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;写道&lt;/a&gt;：&lt;br&gt;一个一岁多的孩子会以一定的速度匍匐前进，比如说每小时一英里。但每小时一千英里的速度就是一架超音速喷气机。就物体的移动能力而言这两者是没有可比性的，任何其中一个可以到的但是另一个不能做到，反之亦然。&lt;br&gt;一个Clift 所指的初级程序员，学会了爬行，接着蹒跚学步，然后行走，然后慢跑，然后再跑步，最后冲刺，他认为，“以这样加速度前进我可以赶上超音速喷气机的速度！“但他跑进了2,000行的极限，因为他的技能不会再按比例增加。他必须改变移动方式，比如开车去获得更快的速度。然后，他就学会了开车，开始很慢，然后越来越快，但有进入到了20000行极限。驾驶汽车的技术不会变成开喷气式飞机。&lt;br&gt;我的朋友&lt;a href=&quot;http://www.plunk.org/~grantham/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Brad Grantham&lt;/a&gt;用新手程序员用“蛮力”解决问题来说明了这一点。我认为这是正确的：当代码是在2,000行以下，你可以写任何混乱肮脏的代码并依靠你的记忆拯救你。深思熟虑的类和包分解会让你的代规模达到20,000行。&lt;br&gt;突破这个瓶颈的关键是什么？对我而言，就是让事情保持简单。除非现在就非常需要，否则完全拒绝添加任何新特性或者新代码。我已经在&lt;a href=&quot;http://www.teamten.com/lawrence/writings/every_line_is_a_potential_bug.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Every Line Is a Potential Bug&lt;/a&gt;中提高了这一点（在&lt;a href=&quot;http://www.teamten.com/lawrence/writings/plan03.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Simple is Good&lt;/a&gt;之前还是一知半解）。梦工厂的首席特效架构师是这么理解的：&lt;br&gt;对我而言，照明工具成功的地方在于他选择了一系列容易使用和维护的小功能并且强大到足够成为一个非常棒的照明工具。&lt;br&gt;作为一名技术领导我明白我主要的贡献是对那些同事觉得非常重要但不能证明其合理的需求说“不”。但真正的诀窍是知道什么需求增加了线性的复杂度（只和自身相关）和指数级复杂度（和别的需求有关联）。两者都因该去避免，但后者需要更令人信服的理由。&lt;br&gt;举个例子，在2012年，Linux内核有&lt;a href=&quot;http://www.h-online.com/open/news/item/Linux-kernel-exceeds-15-million-lines-of-code-1409952.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;1500万行代码&lt;/a&gt;。其中75％是具有线性复杂度的（驱动，文件系统和处理器结构相关的代码）。你可能有许多视屏驱动，但他们之间没有任何（或很少）的交互。剩下的则有更多的依赖关系。&lt;br&gt;Dijkstra觉得很难去教授这些先进的方法，因为他们只对那些2万行或者20万行的程序才有意义。任何的类或者规范必须限制其示例在几百行以内，暴力方法在这里也同样适用。你真的需要范例给你显示30,000行代码然后证实因为程序上手并不是非常复杂所以新功能能够很容易的被添加。但这实际上是不可能的。.&lt;br&gt;我不知道做出什么改变来突破20万行的瓶颈。我最近已经切换到了更纯粹的函数式风格并减少了可变状态，也许这些能让我有所突破。&lt;br&gt;而且我很想知道到代码量达到2000万行的时候会变成什么样子。&lt;br&gt;在三百万到四百万行代码左右似乎有一道无形的墙，无论多少人（数以百计）或多少年（数十年）花在上面增长率将会显著降低。－&lt;a href=&quot;https://plus.google.com/u/0/107919048662113456495/posts/AyGGqF9mLdB&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Dan Wexler&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-</content>
-    
-    <summary type="html">
-    
-       程序员的成长和代码行数的关系 
-    
-    </summary>
-    
-      <category term="架构" scheme="http://offbye.com/categories/%E6%9E%B6%E6%9E%84/"/>
-    
-      <category term="架构师" scheme="http://offbye.com/categories/%E6%9E%B6%E6%9E%84/%E6%9E%B6%E6%9E%84%E5%B8%88/"/>
-    
-      <category term="复杂度" scheme="http://offbye.com/categories/%E6%9E%B6%E6%9E%84/%E6%9E%B6%E6%9E%84%E5%B8%88/%E5%A4%8D%E6%9D%82%E5%BA%A6/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>从JavaAndroid到Swift iOS开发：语言与框架对比</title>
-    <link href="http://offbye.com/2016/05/04/%E4%BB%8EJavaAndroid%E5%88%B0Swift%20iOS%E5%BC%80%E5%8F%91%EF%BC%9A%E8%AF%AD%E8%A8%80%E4%B8%8E%E6%A1%86%E6%9E%B6%E5%AF%B9%E6%AF%94/"/>
-    <id>http://offbye.com/2016/05/04/从JavaAndroid到Swift iOS开发：语言与框架对比/</id>
-    <published>2016-05-04T02:48:00.000Z</published>
-    <updated>2016-05-29T13:35:06.000Z</updated>
-    
-    <content type="html">&lt;p&gt;本文是我在『移动前线』微信群2016年4月28日的&lt;a href=&quot;http://mp.weixin.qq.com/s?__biz=MzA3ODg4MDk0Ng==&amp;amp;mid=2651112156&amp;amp;idx=1&amp;amp;sn=8dfaa630e8bc6ef66b4263bffd2d29dc&amp;amp;scene=1&amp;amp;srcid=0429FvoQr642MP2BZ5cSMynm&amp;amp;from=singlemessage&amp;amp;isappinstalled=0#wechat_redirect&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;分享总结&lt;/a&gt;整理。&lt;br&gt;我从2009年开始做Android开发，开始接触Swift是在2014年底，当时组里曾经做过一个Demo App，感觉技术还不够成熟没有正式发布。2016年初我们正式使用swift开发上线了销售助手App产品，积累了比较丰富的swift项目实战经验，开源框架都是用的swift版本，大量使用了面向协议和函数式编程。iOS App开发人员基本都是以前安卓版本的开发人员，同时维护安卓和iOS 2个版本，效率很高。&lt;/p&gt;
-&lt;p&gt;今天分享的主题是Java/Android开发人员如何快速上手Swift iOS开发。主要内容如下：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Why From Java/Android to Swift&lt;/li&gt;
-&lt;li&gt;Swift语言为什么值得学习？&lt;/li&gt;
-&lt;li&gt;Java vs. Swift语法比较&lt;/li&gt;
-&lt;li&gt;Android和iOS UI开发比较&lt;/li&gt;
-&lt;li&gt;Android vs. Swift iOS框架比较&lt;/li&gt;
-&lt;li&gt;开发工具比较&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&quot;1、Why-FromJava-Android-to-Swift&quot;&gt;&lt;a href=&quot;#1、Why-FromJava-Android-to-Swift&quot; class=&quot;headerlink&quot; title=&quot;1、Why FromJava/Android to Swift&quot;&gt;&lt;/a&gt;1、Why FromJava/Android to Swift&lt;/h2&gt;&lt;h3 id=&quot;成本和效率&quot;&gt;&lt;a href=&quot;#成本和效率&quot; class=&quot;headerlink&quot; title=&quot;成本和效率&quot;&gt;&lt;/a&gt;成本和效率&lt;/h3&gt;&lt;p&gt;由于目前同业务的Android和iOS App产品功能一致，由一个团队开发可以降低业务同步和沟通成本，避免安卓和iOS两个团队带来的产品功能差异和沟通成本。&lt;/p&gt;
-&lt;p&gt;Swift语法更接近Java，相对Objective C上手容易，我2012年曾经带过iOS项目，学过oc，因为无法忍受oc奇怪的语法最后放弃了，但这次学习swift iOS过程还是挺顺畅的，学习的主要门槛反而是Xcode IB的使用。&lt;/p&gt;
-&lt;h3 id=&quot;Why-not-React-Native？&quot;&gt;&lt;a href=&quot;#Why-not-React-Native？&quot; class=&quot;headerlink&quot; title=&quot;Why not React Native？&quot;&gt;&lt;/a&gt;Why not React Native？&lt;/h3&gt;&lt;p&gt;ReactNative我们也要项目在用。但RN思想和语法的学习曲线有些陡，很多有Web开发经验的人都不一定喜欢。另外很多安卓开发者并没有学习过js，学习React Native成本会比较高。学习React Native最终还是要对原生开发有一定的了解。最后，在一些功能复杂的App，React Native用户体验比不上原生 。&lt;/p&gt;
-&lt;h3 id=&quot;Why-not-HTML5-Hybrid-App？&quot;&gt;&lt;a href=&quot;#Why-not-HTML5-Hybrid-App？&quot; class=&quot;headerlink&quot; title=&quot;Why not HTML5 Hybrid App？&quot;&gt;&lt;/a&gt;Why not HTML5 Hybrid App？&lt;/h3&gt;&lt;p&gt;用户体验不够好，对于不熟悉Web开发的工程师学习成本比较高。&lt;br&gt;2014年我们用ionic框架做过混合App，在iOS上效果可以，但在安卓低端机上比较卡，影响用户体验。&lt;/p&gt;
-&lt;h2 id=&quot;2、Swift语言为什么值得学习？&quot;&gt;&lt;a href=&quot;#2、Swift语言为什么值得学习？&quot; class=&quot;headerlink&quot; title=&quot;2、Swift语言为什么值得学习？&quot;&gt;&lt;/a&gt;2、Swift语言为什么值得学习？&lt;/h2&gt;&lt;p&gt;Swift是现在Apple主推的语言，2014年新推出的语言，比Scala等“新”语言还要年轻10岁。2015年秋已经开源。目前在linux上可用，最近已经支持Android NDK；在树莓派上有SwiftyGPIO库，可以通过GPIO控制一些硬件。&lt;br&gt;ObjectC is old and ugly，oc是1983年苹果推出的，过于陈旧和臃肿。&lt;br&gt;Swift语法类似Scala，Javascript ES6， Java，OC， C++， Python，这个我是按照语法相似度排序的。&lt;br&gt;Swift支持多范式编程：面向协议，面向对象和函数式编程 。&lt;br&gt;最后，我们还可以通过Swift学习函数式编程思想，这块Java8才支持。&lt;/p&gt;
-&lt;h2 id=&quot;3、Java-vs-Swift语法比较&quot;&gt;&lt;a href=&quot;#3、Java-vs-Swift语法比较&quot; class=&quot;headerlink&quot; title=&quot;3、Java vs. Swift语法比较&quot;&gt;&lt;/a&gt;3、Java vs. Swift语法比较&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;基础语法&lt;/li&gt;
-&lt;li&gt;函数&lt;/li&gt;
-&lt;li&gt;struct和class&lt;/li&gt;
-&lt;li&gt;Enum&lt;/li&gt;
-&lt;li&gt;Interface vsProtocol&lt;/li&gt;
-&lt;li&gt;MultiThread&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;3-1基础语法&quot;&gt;&lt;a href=&quot;#3-1基础语法&quot; class=&quot;headerlink&quot; title=&quot;3.1基础语法&quot;&gt;&lt;/a&gt;3.1基础语法&lt;/h3&gt;&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Java&lt;/th&gt;
-&lt;th&gt;Swift&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;static final 常量&lt;/td&gt;
-&lt;td&gt;var 变量，let常量&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Java语言没有，Guava库提供&lt;/td&gt;
-&lt;td&gt;可选型Optional，通过if let解包&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Java支持自增++，自减—&lt;/td&gt;
-&lt;td&gt;Swift不建议使用，3.0版本将不支持自增&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;逻辑控制和C基本一致&lt;/td&gt;
-&lt;td&gt;逻辑控制语句更现代&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Java有main方法&lt;/td&gt;
-&lt;td&gt;Swift没有main方法&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Java需要;做行结束符&lt;/td&gt;
-&lt;td&gt;Swift不需要行结束符&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;Swift的switch 语法和Java及C++很像，但是它没有break，他命中一个case后会自动退出switch。对于几个不同case同样处理的情况，可以case后面连续几个condition，用逗号隔开。&lt;br&gt;for循环和Java也基本一样，不过也是不需要括号。for循环中，..&amp;lt;的用法比较方便。下划线符号_（替代循环中的变量）能够忽略具体的值，并且不提供循环遍历时对值的访问。for-in则有点类似与Java中for each循环。&lt;br&gt;Swift 2.2中trycatch和do while和java差异很大&lt;/p&gt;
-&lt;h3 id=&quot;3-2-函数和闭包&quot;&gt;&lt;a href=&quot;#3-2-函数和闭包&quot; class=&quot;headerlink&quot; title=&quot;3.2 函数和闭包&quot;&gt;&lt;/a&gt;3.2 函数和闭包&lt;/h3&gt;&lt;p&gt;Swift函数的定义和Java很不一样，Swift函数的定义形如 func foo(arg: Type) -&amp;gt;Return Type:&lt;br&gt;Swift中函数是一等公民，可以作为返回值和参数；Swift支持闭包，Java8才支持lambda闭包。&lt;br&gt;Swift支持元组，Swift函数可以通过返回元组支持多个返回值。&lt;br&gt;Swift函数可以嵌套，即一个函数内部还可以定义函数，Java不支持。&lt;br&gt;Swift函数可以接收不定参数，跟Java基本类似&lt;br&gt;Swift函数参数可以带默认值，和Python类似，Java函数不可以带有默认值。&lt;br&gt;常用的函数式编程方法map,reduce, flatMap,filter,sort，相对于理解抽象的函数式编程概念，我觉得开始时先用好这些函数更重要。&lt;/p&gt;
-&lt;h3 id=&quot;3-3-struct-vs-class&quot;&gt;&lt;a href=&quot;#3-3-struct-vs-class&quot; class=&quot;headerlink&quot; title=&quot;3.3 struct vs. class&quot;&gt;&lt;/a&gt;3.3 struct vs. class&lt;/h3&gt;&lt;p&gt;struct是值类，class是引用类型，Java语言没有struct，但c/c++/c#语言都有。&lt;br&gt;Swift开发推荐使用struct，而不是class。Swift语言实现包括几百个struct，只有几个class。&lt;br&gt;Swift类构造方法是init()，析构方法是deinit()，类方法调用跟Java基本一样。&lt;br&gt;self相当于Java中的this，传入生命周期不一致的闭包时需要声明为weak。&lt;/p&gt;
-&lt;h3 id=&quot;3-4-Enum枚举&quot;&gt;&lt;a href=&quot;#3-4-Enum枚举&quot; class=&quot;headerlink&quot; title=&quot;3.4 Enum枚举&quot;&gt;&lt;/a&gt;3.4 Enum枚举&lt;/h3&gt;&lt;p&gt;Android开发谷歌官方不建议使用Enum，影响性能。&lt;br&gt;Swift的Enum和Java类似，本质是一个类，里面可以包含函数。&lt;br&gt;SwiftEnum语法更简单。&lt;br&gt;SwiftEnum支持扩展extension。&lt;/p&gt;
-&lt;h3 id=&quot;3-5-Interface-vs-Protocol&quot;&gt;&lt;a href=&quot;#3-5-Interface-vs-Protocol&quot; class=&quot;headerlink&quot; title=&quot;3.5 Interface vs. Protocol&quot;&gt;&lt;/a&gt;3.5 Interface vs. Protocol&lt;/h3&gt;&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;&lt;strong&gt;Java Interface &lt;/strong&gt;&lt;/th&gt;
-&lt;th&gt;&lt;strong&gt;Swift Protocol&lt;/strong&gt;&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;可以继承&lt;/td&gt;
-&lt;td&gt;可以继承&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Interface不能带有具体实现的方法，Java8以后才可以&lt;/td&gt;
-&lt;td&gt;protocol可以带有具体实现的方法&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;implements&lt;/td&gt;
-&lt;td&gt;extension更强大&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;Extension扩展就是向一个已有的类、结构体或枚举类型添加新功能（functionality）。这包括在没有权限获取原始源代码的情况下扩展类型的能力（即逆向建模）。扩展和 Objective-C 中的分类（categories）类似。&lt;br&gt;Swift 中的扩展可以：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;添加计算型属性和计算静态属性&lt;/li&gt;
-&lt;li&gt;定义实例方法和类型方法&lt;/li&gt;
-&lt;li&gt;提供新的构造器&lt;/li&gt;
-&lt;li&gt;定义下标&lt;/li&gt;
-&lt;li&gt;定义和使用新的嵌套类型&lt;/li&gt;
-&lt;li&gt;使一个已有类型符合某个接口&lt;br&gt;需要注意的是扩展方法的作用域问题，这里不展开讨论。&lt;h3 id=&quot;3-6-MultiThread多线程&quot;&gt;&lt;a href=&quot;#3-6-MultiThread多线程&quot; class=&quot;headerlink&quot; title=&quot;3.6 MultiThread多线程&quot;&gt;&lt;/a&gt;3.6 MultiThread多线程&lt;/h3&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;&lt;strong&gt;Java Android&lt;/strong&gt;&lt;/th&gt;
-&lt;th&gt;&lt;strong&gt;Swift iOS&lt;/strong&gt;&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;Thread,Runnable&lt;/td&gt;
-&lt;td&gt;NSThread&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Java 5  Concurrency包&lt;/td&gt;
-&lt;td&gt;GCD&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Android多线程扩展&lt;/td&gt;
-&lt;td&gt;NSOperation，NSOperationQueue&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;AsyncTask,Looper,HandleThread,IntentService…&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;iOS的多线程相对Java来说比较简单，GCD一天时间基本就能够弄明白。Java的Concurrency包就比较复杂了。&lt;/p&gt;
-&lt;h2 id=&quot;4、Android，iOS-UI开发比较&quot;&gt;&lt;a href=&quot;#4、Android，iOS-UI开发比较&quot; class=&quot;headerlink&quot; title=&quot;4、Android，iOS UI开发比较&quot;&gt;&lt;/a&gt;4、Android，iOS UI开发比较&lt;/h2&gt;&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&quot;text-align:right&quot;&gt;&lt;strong&gt;Java Android&lt;/strong&gt;&lt;/th&gt;
-&lt;th&gt;&lt;strong&gt;Swift iOS&lt;/strong&gt;&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:right&quot;&gt;Xml  layout布局&lt;/td&gt;
-&lt;td&gt;Xib &amp;amp;  StoryBoard&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:right&quot;&gt;直接写xml代码，可视化辅助开发&lt;/td&gt;
-&lt;td&gt;AutoLayout和SizeClass，IB自动生成，代码合并困难；&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:right&quot;&gt;Android可以用Java添加和实现view&lt;/td&gt;
-&lt;td&gt;很多团队只好用代码实现UI界面&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:right&quot;&gt;Intent页面跳转&lt;/td&gt;
-&lt;td&gt;Segue连线跳转&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:right&quot;&gt;Java自定义view,可以在Activity和layout中使用，可视化支持不够好&lt;/td&gt;
-&lt;td&gt;自定义View可以使用IBDesignable  &amp;amp;  runtime attributes&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;iOS开发苹果官方建议使用Storyboard开发UI，好处是比较直观，通过看界面可以更好的理解和维护App。现在Xcode7版本对AutoLayout和SizeClasses的支持越来越好，多分辨率适配变得简单，建议大家放弃使用frame代码写界面的传统做法。&lt;br&gt;当然，Storyboard也有下面的弊端：&lt;br&gt;界面主要依靠IB生成，Xib代码难以维护，Xcode打开Storyboard或Xib就会对文件产生修改，即使我们没有做实际的修改，git也会显示文件修改了。&lt;br&gt;多人协助，同时修改导致冲突，合并困难。&lt;br&gt;Storyboard中包含页面多了后会占用了太多内存，导致Xcode卡顿和崩溃。&lt;br&gt;错误定位困难，错误提示不清晰，新手难以定位错误。例如不小心删掉了IBOutlet会很难定位。&lt;/p&gt;
-&lt;h3 id=&quot;Storyboard-UI-开发实践&quot;&gt;&lt;a href=&quot;#Storyboard-UI-开发实践&quot; class=&quot;headerlink&quot; title=&quot;Storyboard UI 开发实践&quot;&gt;&lt;/a&gt;Storyboard UI 开发实践&lt;/h3&gt;&lt;p&gt;按照业务模块分成多个Storyboard，每人负责的模块避免交叉。&lt;br&gt;每个storyboard不要超过10个页面，可以通过Refactor  Storyboard功能重新划分。&lt;br&gt;用Container在一个storyboard复用UI模块，用xib在多个storyboard复用UI模块。&lt;br&gt;复杂的输入表单，建议用SwiftyForm框架写代码。&lt;/p&gt;
-&lt;h2 id=&quot;5、Android-vs-Swift-iOS框架比较&quot;&gt;&lt;a href=&quot;#5、Android-vs-Swift-iOS框架比较&quot; class=&quot;headerlink&quot; title=&quot;5、Android vs Swift iOS框架比较&quot;&gt;&lt;/a&gt;5、Android vs Swift iOS框架比较&lt;/h2&gt;&lt;p&gt;Swift框架现在已经很多了，Swift也可以使用OC开源框架，但不推荐使用。我们主要对比介绍项目常用的网络请求框架，JSON解析和图片缓存框架&lt;/p&gt;
-&lt;h3 id=&quot;网络请求框架&quot;&gt;&lt;a href=&quot;#网络请求框架&quot; class=&quot;headerlink&quot; title=&quot;网络请求框架&quot;&gt;&lt;/a&gt;网络请求框架&lt;/h3&gt;&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;&lt;strong&gt;Java Android&lt;/strong&gt;&lt;/th&gt;
-&lt;th&gt;&lt;strong&gt;Swift iOS&lt;/strong&gt;&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;Retrofit&lt;/td&gt;
-&lt;td&gt;Moya&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;OKHTTP&lt;/td&gt;
-&lt;td&gt;Alamofire&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Volley&lt;/td&gt;
-&lt;td&gt;AFNetworking&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Retrofit  + RxAndroid&lt;/td&gt;
-&lt;td&gt;Moya +  RxSwift&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;在Android开发现在一般使用OKHTTP，Retrofit和Volley等网络框架进行开发，iOS开发oc时代使用AFNetworking库开发，swift开发推荐使用Alamofire和Moya库。&lt;br&gt;Moya 对Alamofire网络请求库进行了封装，开发不需要写网络模型，管理等。使代码更加简洁。Moya可以代替自己编写的网络抽象层APIManager。Moya提供了一些很好的特性：&lt;br&gt;编译期检查API接口调用的正确性&lt;br&gt;通过enum枚举类型清晰的定义不同API的接口&lt;br&gt;把接口测试stub作为一等公民，让单元测试变得很简单。&lt;br&gt;支持ReactiveX扩展，方便和RxSwift集成。&lt;/p&gt;
-&lt;p&gt;目前App基本都是使用JSON作为报文协议，Android开发我们一般使用Gson进行解析，在Swift开发中，对比了ObjectMapper，Argo+Curry，SwiftyJson后，我们* 决定使用ObjectMapper作为JSON解析框架。ObjectMapper支持的特性如下：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;支持把对象转换成JSON，把JSON转换成类对象&lt;/li&gt;
-&lt;li&gt;支持嵌套的对象（单一对象，对象列表集合和字典）&lt;/li&gt;
-&lt;li&gt;支持自定义的转换函数&lt;/li&gt;
-&lt;li&gt;支持结构体struct&lt;/li&gt;
-&lt;li&gt;支持Realm和Alamofire集成，AlamofireObjectMapper&lt;br&gt;使用例子：&lt;/li&gt;
-&lt;/ul&gt;
-&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;let&lt;/span&gt; user = Mapper&amp;lt;User&amp;gt;().map(JSONString)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;let&lt;/span&gt; JSONString = Mapper().toJSONString(user, prettyPrint: &lt;span class=&quot;literal&quot;&gt;true&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;Realm是iOS开发比较流行的针对移动端设计的数据库，代替sqlite，也有Android版本&lt;br&gt;图片缓存框架，Android开发常用Glide和Fresco，OC开发一般用SDWebImage，Swift开发推荐用HanekeSwift。&lt;/p&gt;
-&lt;h2 id=&quot;6、开发工具比较&quot;&gt;&lt;a href=&quot;#6、开发工具比较&quot; class=&quot;headerlink&quot; title=&quot;6、开发工具比较&quot;&gt;&lt;/a&gt;6、开发工具比较&lt;/h2&gt;&lt;p&gt;Android目前主流的开发工具是Android Studio，2014年以前是Eclipse ADT。&lt;/p&gt;
-&lt;p&gt;iOS开发一直使用Xcode。对于Java/Android开发人员来说，Xcode上手较难，特别是Interface Builder，Xib和视图代码直接通过连线来生成事件方法，比较挑战开发习惯，并且出现问题定位困难。而Android开发者习惯手写xml界面代码。&lt;/p&gt;
-&lt;p&gt;与Android Studio相比，Xcode速度快，但不够稳定，一天崩溃几次很正常。&lt;/p&gt;
-&lt;p&gt;模拟器方面，Android的Emulator是虚拟机，启动和安装速度比较慢，iOS是Simulator，速度快，但有些功能不能模拟。都推荐使用真机进行开发。&lt;/p&gt;
-&lt;h3 id=&quot;包管理器-amp-构建工具对比&quot;&gt;&lt;a href=&quot;#包管理器-amp-构建工具对比&quot; class=&quot;headerlink&quot; title=&quot;包管理器&amp;amp;构建工具对比&quot;&gt;&lt;/a&gt;包管理器&amp;amp;构建工具对比&lt;/h3&gt;&lt;p&gt;Android开发早期用Ant做一些任务处理，后面有些团队借鉴Java EE项目的做法用Maven，AndroidStudio出现后谷歌推荐用Gradle。Android的构建工具比iOS功能要强大很多。&lt;br&gt;iOS开发早期用CocoaPods，现在推荐用Carthage，未来Apple官方推出Swift3.0后会推广官方的Swift Package Manager。&lt;br&gt;最后介绍下Xcode包管理器Alcatraz，主要提供Xcode插件，模板和色彩模式，相比Android Studio，目前插件还很比较少。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-       从JavaAndroid到Swift iOS开发：语言与框架对比 
-    
-    </summary>
-    
-      <category term="Android" scheme="http://offbye.com/categories/Android/"/>
-    
-      <category term="Swift" scheme="http://offbye.com/categories/Android/Swift/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Android开发常用开源框架推荐</title>
-    <link href="http://offbye.com/2016/04/26/Android%E5%BC%80%E5%8F%91%E5%B8%B8%E7%94%A8%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E6%8E%A8%E8%8D%90/"/>
-    <id>http://offbye.com/2016/04/26/Android开发常用开源框架推荐/</id>
-    <published>2016-04-26T06:49:00.000Z</published>
-    <updated>2016-05-12T16:40:00.000Z</updated>
-    
-    <content type="html">&lt;p&gt;目前我们在Android开发中，不可避免地要用到大量的开源项目，本文对常用的开源项目进行一些推荐。&lt;/p&gt;
-&lt;p&gt;首先是如何选择开源项目？建议优先选择github上比较活跃的开源项目，尽量避免从网页上零散的拷贝代码。选择开源项目的原则有下面这些：&lt;br&gt;´ Stars, Issues, Pull Requests&lt;br&gt;´ 文档和Demo，典型用户&lt;br&gt;´ 弄清楚原理&lt;br&gt;´ 结合实际业务场景&lt;/p&gt;
-&lt;p&gt;推荐Android开源项目汇总，基本上常见UI效果都能找到&lt;br&gt;&lt;a href=&quot;https://github.com/Trinea/android-open-project&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/Trinea/android-open-project&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;下面我把常用的框架分为下面几类，分别推荐&lt;br&gt;UI框架和自定义控件&lt;br&gt;网络请求框架&lt;br&gt;图片缓存框架&lt;br&gt;数据存储框架&lt;br&gt;事件总线框架&lt;br&gt;插件化和热部署&lt;/p&gt;
-&lt;p&gt;##1、UI框架和自定义控件&lt;br&gt;´ View注入框架&lt;br&gt;´ Butter Knife专注于Android 系统View 的注入框架，结合Android Studio插件使用&lt;br&gt;´ 下拉刷新和加载更多&lt;br&gt;´ Android-PullToRefresh,android-Ultra-Pull-to-Refresh,Android-PullToRefreshRecyclerView&lt;br&gt;´ 侧边栏菜单&lt;br&gt;´ 推荐官方Design支持库自带的&lt;br&gt;´ SlidingMenu，通过拖动屏幕边缘滑出菜单，支持屏幕左右划出，支持菜单 Zoom、Scale、Slide Up 三种动画样式出现&lt;br&gt;´ base-adapter-helper&lt;br&gt;´ 对传统的BaseAdapter ViewHolder 模式的一个封装，主要功能就是简化书写 AbsListView 的 Adapter 的代码，如 ListView，GridView&lt;br&gt;MPAndroidChart图表库&lt;/p&gt;
-&lt;p&gt;##2、网络请求框架&lt;br&gt;目前推荐使用Volley + OKHTTP，&lt;br&gt;参考我们自己的脚手架项目，新安卓项目要求使用。&lt;/p&gt;
-&lt;p&gt;##3、图片缓存框架&lt;br&gt;推荐使用谷歌官方建议的Glide，备选Facebook的Freso&lt;/p&gt;
-&lt;p&gt;##4、数据存储框架&lt;br&gt;无特殊需求推荐使用DBFlow ORM框架。&lt;/p&gt;
-&lt;p&gt;##5、事件总线框架&lt;br&gt;推荐使用EventBus。&lt;br&gt;手机App项目根据需求决定是否用EventBus；安卓平板项目，主要基于Fragment实现UI，需要使用EventBus。&lt;/p&gt;
-&lt;p&gt;##6、插件化和热部署&lt;br&gt;这块我们只进行了一些实验，没有实际部署。&lt;br&gt;插件化推荐DroidPlugin&lt;br&gt;热部署推荐androidFix&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-       Android开发常用开源框架推荐 
-    
-    </summary>
-    
-      <category term="android开发" scheme="http://offbye.com/categories/android%E5%BC%80%E5%8F%91/"/>
-    
-      <category term="开源框架" scheme="http://offbye.com/categories/android%E5%BC%80%E5%8F%91/%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6/"/>
-    
-      <category term="开源项目" scheme="http://offbye.com/categories/android%E5%BC%80%E5%8F%91/%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/"/>
     
     
   </entry>
