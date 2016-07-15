@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://offbye.com/"/>
-  <updated>2016-07-01T11:06:52.000Z</updated>
+  <updated>2016-07-09T02:38:53.000Z</updated>
   <id>http://offbye.com/</id>
   
   <author>
@@ -16,17 +16,191 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Android OkHttp3使用http2问题记录</title>
+    <link href="http://offbye.com/2016/07/09/Android-OkHttp3%E4%BD%BF%E7%94%A8http2%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/"/>
+    <id>http://offbye.com/2016/07/09/Android-OkHttp3使用http2问题记录/</id>
+    <published>2016-07-09T01:52:52.000Z</published>
+    <updated>2016-07-09T02:38:53.000Z</updated>
+    
+    <content type="html">&lt;p&gt;Android Okhttp3使用http2.0协议的接口时，发现一个问题，打印错误Log &lt;code&gt;E/NativeCrypto: ssl=0xd25d4000 cert_verify_callback x509_store_ctx&lt;/code&gt;,Google上没有查到相关的信息，毕竟现在http2用的还很少。经查看Android源码，排查发现这只是个LOG，不是错误，可以放心的用http2了。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;测试http2发现android打印了下面的LOG&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;07-08 14:33:57.182 13670-13697/com.qianmi.shine I/System.out: [CDS]connect[shineapi2.qianmi.com/120.55.247.77:443] tm:20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;07-08 14:33:57.187 13670-13697/com.qianmi.shine E/Posix: [Posix_connect Debug]Process com.qianmi.shine :443&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;07-08 14:33:57.251 13670-13697/com.qianmi.shine D/libc-netbsd: [getaddrinfo]: hostname=shineapi2.qianmi.com; servname=(null); cache_mode=(null), netid=0; mark=0&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;07-08 14:33:57.252 13670-13697/com.qianmi.shine D/libc-netbsd: [getaddrinfo]: ai_addrlen=0; ai_canonname=(null); ai_flags=4; ai_family=0&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;07-08 14:33:57.300 13670-13697/com.qianmi.shine E/NativeCrypto: ssl=0xd25d4000 cert_verify_callback x509_store_ctx=0xdec78080 arg=0x0&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;07-08 14:33:57.301 13670-13697/com.qianmi.shine E/NativeCrypto: ssl=0xd25d4000 cert_verify_callback calling verifyCertificateChain authMethod=ECDHE_RSA&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;07-08 14:33:57.431 13670-13697/com.qianmi.shine I/System.out: gba_cipher_suite:TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;到github上找下相关的Android源码，&lt;br&gt;&lt;a href=&quot;https://github.com/ACSOP/android_libcore/blob/88e2ca00cc0c161d9aa3e512b8ae58b3091dbf87/luni/src/main/native/org_apache_harmony_xnet_provider_jsse_NativeCrypto.cpp&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/ACSOP/android_libcore/blob/88e2ca00cc0c161d9aa3e512b8ae58b3091dbf87/luni/src/main/native/org_apache_harmony_xnet_provider_jsse_NativeCrypto.cpp&lt;/a&gt;&lt;br&gt;&lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;35&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;36&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;/**&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; * Verify the X509 certificate via SSL_CTX_set_cert_verify_callback&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; */&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;static int cert_verify_callback(X509_STORE_CTX* x509_store_ctx, void* arg __attribute__ ((unused)))&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    /* Get the correct index to the SSLobject stored into X509_STORE_CTX. */&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    SSL* ssl = reinterpret_cast&amp;lt;SSL*&amp;gt;(X509_STORE_CTX_get_ex_data(x509_store_ctx,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            SSL_get_ex_data_X509_STORE_CTX_idx()));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    JNI_TRACE(&quot;ssl=%p cert_verify_callback x509_store_ctx=%p arg=%p&quot;, ssl, x509_store_ctx, arg);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    AppData* appData = toAppData(ssl);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    JNIEnv* env = appData-&amp;gt;env;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    if (env == NULL) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        LOGE(&quot;AppData-&amp;gt;env missing in cert_verify_callback&quot;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        JNI_TRACE(&quot;ssl=%p cert_verify_callback =&amp;gt; 0&quot;, ssl);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        return 0;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    jobject sslHandshakeCallbacks = appData-&amp;gt;sslHandshakeCallbacks;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    jclass cls = env-&amp;gt;GetObjectClass(sslHandshakeCallbacks);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    jmethodID methodID&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        = env-&amp;gt;GetMethodID(cls, &quot;verifyCertificateChain&quot;, &quot;([[BLjava/lang/String;)V&quot;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    jobjectArray objectArray = getCertificateBytes(env, x509_store_ctx-&amp;gt;untrusted);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    const char* authMethod = SSL_authentication_method(ssl);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    JNI_TRACE(&quot;ssl=%p cert_verify_callback calling verifyCertificateChain authMethod=%s&quot;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;              ssl, authMethod);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    jstring authMethodString = env-&amp;gt;NewStringUTF(authMethod);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    env-&amp;gt;CallVoidMethod(sslHandshakeCallbacks, methodID, objectArray, authMethodString);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    int result = (env-&amp;gt;ExceptionCheck()) ? 0 : 1;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    JNI_TRACE(&quot;ssl=%p cert_verify_callback =&amp;gt; %d&quot;, ssl, result);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    return result;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;JNI_TRACE其实就是个封装了LOG的宏，定义如下：&lt;/p&gt;
+&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;#&lt;span class=&quot;meta-keyword&quot;&gt;ifdef&lt;/span&gt; WITH_JNI_TRACE&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;#&lt;span class=&quot;meta-keyword&quot;&gt;define&lt;/span&gt; JNI_TRACE(...) \&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        ((void)LOG(LOG_INFO, LOG_TAG &lt;span class=&quot;string&quot;&gt;&quot;-jni&quot;&lt;/span&gt;, __VA_ARGS__));     \&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;/*&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        ((void)printf(&quot;I/&quot; LOG_TAG &quot;-jni:&quot;));         \&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        ((void)printf(__VA_ARGS__));          \&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        ((void)printf(&quot;\n&quot;))&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;*/&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;#&lt;span class=&quot;meta-keyword&quot;&gt;else&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;#&lt;span class=&quot;meta-keyword&quot;&gt;define&lt;/span&gt; JNI_TRACE(...) ((void)0)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;#&lt;span class=&quot;meta-keyword&quot;&gt;endif&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;但是最后还是有一点疑惑，源码打印的LOG是info级别的，但手机上logcat打印出的error log，这也是我为什么会注意到的原因，目前只能认为是手机和源码的代码不同了。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Android Okhttp3使用http2.0协议的接口时，发现一个问题，打印错误Log &lt;code&gt;E/NativeCrypto: ssl=0xd25d4000 cert_verify_callback x509_store_ctx&lt;/code&gt;,Google上没有查到相关的信息，毕竟现在http2用的还很少。经查看Android源码，排查发现这只是个LOG，不是错误，可以放心的用http2了。&lt;/p&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Android Volley整合升级OkHttp3.3问题</title>
+    <link href="http://offbye.com/2016/07/07/Android-Volley%E6%95%B4%E5%90%88%E5%8D%87%E7%BA%A7OkHttp3-3%E9%97%AE%E9%A2%98/"/>
+    <id>http://offbye.com/2016/07/07/Android-Volley整合升级OkHttp3-3问题/</id>
+    <published>2016-07-07T04:38:57.000Z</published>
+    <updated>2016-07-08T11:15:55.000Z</updated>
+    
+    <content type="html">&lt;p&gt;我们以前的Android项目网络框架是基于Volley和OKHttp2。现在由于Aliyun SDK升级和整合React Native模块的原因，它们现在都是用了OkHttp3，因此需要统一升级到最新稳定版本OkHttp3.3。&lt;br&gt;参考了网上的一些资料，主要是有下面几个问题:首先是’org.apache.http’在Android6.0版本已经去掉了，因此需要用’org.apache.http.legacy’代替下。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;OkHttp3Stack是参考了下面的Gist代码实现的，评论里面说不支持https。但是我实际测试过是支持https和http2的。&lt;br&gt;&lt;a href=&quot;https://gist.github.com/alashow/c96c09320899e4caa06b&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://gist.github.com/alashow/c96c09320899e4caa06b&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;在app/gradle.settings的android块增加下面代码&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;useLibrary &amp;apos;org.apache.http.legacy&amp;apos;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;另外一种方法是不再使用org.apache.http相关的类，参考&lt;a href=&quot;http://blog.csdn.net/qq_28656671/article/details/50608239&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://blog.csdn.net/qq_28656671/article/details/50608239&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;最后提醒一下，Volley框架现在已经不再升级了，后面的新项目不建议使用了，推荐使用基于Retrofit和OkHttp3的请求框架，老项目升级成本有点高，就不折腾了。&lt;/p&gt;
+&lt;h2 id=&quot;参考文章&quot;&gt;&lt;a href=&quot;#参考文章&quot; class=&quot;headerlink&quot; title=&quot;参考文章&quot;&gt;&lt;/a&gt;参考文章&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.jianshu.com/p/b022eed6b427&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.jianshu.com/p/b022eed6b427&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://blog.csdn.net/qq_28656671/article/details/50608239&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://blog.csdn.net/qq_28656671/article/details/50608239&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://blog.csdn.net/android_ls/article/details/50493581&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://blog.csdn.net/android_ls/article/details/50493581&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/square/okhttp/blob/master/CHANGELOG.md&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/square/okhttp/blob/master/CHANGELOG.md&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://gist.github.com/alashow/c96c09320899e4caa06b&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://gist.github.com/alashow/c96c09320899e4caa06b&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.cnblogs.com/richiewang/p/5140040.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.cnblogs.com/richiewang/p/5140040.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/mcxiaoke/android-volley&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/mcxiaoke/android-volley&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;http://www.offbye.com&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;本文独立博客地址&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;我们以前的Android项目网络框架是基于Volley和OKHttp2。现在由于Aliyun SDK升级和整合React Native模块的原因，它们现在都是用了OkHttp3，因此需要统一升级到最新稳定版本OkHttp3.3。&lt;br&gt;参考了网上的一些资料，主要是有下面几个问题:首先是’org.apache.http’在Android6.0版本已经去掉了，因此需要用’org.apache.http.legacy’代替下。&lt;br&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>安卓旧项目使用Small框架进行插件化改造的问题汇总</title>
+    <link href="http://offbye.com/2016/07/05/%E5%AE%89%E5%8D%93%E6%97%A7%E9%A1%B9%E7%9B%AE%E4%BD%BF%E7%94%A8Small%E6%A1%86%E6%9E%B6%E8%BF%9B%E8%A1%8C%E6%8F%92%E4%BB%B6%E5%8C%96%E6%94%B9%E9%80%A0%E7%9A%84%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/"/>
+    <id>http://offbye.com/2016/07/05/安卓旧项目使用Small框架进行插件化改造的问题汇总/</id>
+    <published>2016-07-05T07:28:18.000Z</published>
+    <updated>2016-07-15T04:46:11.000Z</updated>
+    
+    <content type="html">&lt;p&gt;我们团队投入3个人用了接近2周的时间把一个10万行安卓代码的旧项目（电商系统管理台App），使用Small框架做了插件化改造，解除业务模块之间的耦合，以便为后面功能的快速迭代和多团队多技术栈并行开发做好基础架构，期间遇到了一些坑，但最后在大家的努力下基本都得到了解决，也感谢Small的作者光亮对我们提出的issue的快速响应。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h2 id=&quot;Small的应用场景&quot;&gt;&lt;a href=&quot;#Small的应用场景&quot; class=&quot;headerlink&quot; title=&quot;Small的应用场景&quot;&gt;&lt;/a&gt;Small的应用场景&lt;/h2&gt;&lt;p&gt;开发时：让你完全透明的像开发普通工程一样完成插件开发&lt;br&gt;编译时：自动化的帮助你分离各个公共库、业务模块插件（插件仅保留自身的代码跟资源，达到最小化）&lt;br&gt;运行时：运用最少量的Hook无缝的将各个插件并入宿主，让代码跟资源完全融合，自由调用&lt;br&gt;所以撇开开发者不用关注的(2)来说，Small的目的就是要做到保证开发者「畅快开发」的体验，以及App使用者「顺畅使用」的体验。&lt;/p&gt;
+&lt;p&gt;插件化方案有很多，很难有统一的形态，各有各的适用场景。如果你需要分发你的插件给别人使用，Small无法满足；如果你想利用插件化拆分、重组自己的应用，我认为Small在这方面已经走在了前面，并且将不断完善，做到极致。&lt;/p&gt;
+&lt;h2 id=&quot;插件化的工程（开发）结构&quot;&gt;&lt;a href=&quot;#插件化的工程（开发）结构&quot; class=&quot;headerlink&quot; title=&quot;插件化的工程（开发）结构&quot;&gt;&lt;/a&gt;插件化的工程（开发）结构&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/wequick/Small/issues/118&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;关于工程（开发）结构的讨论&lt;/a&gt;&lt;br&gt;1.依赖管理：Small使用同一个ClassLoader加载不同的插件，因此不同插件中的依赖在运行时对其他插件和宿主都是可见的，所以依赖的管理一定要收敛，统一管理，避免各自引入。&lt;br&gt;2.插件之间的通信：插件的开发一般都是多team并行的，插件之间应避免直接调用来减少耦合&lt;br&gt;3.资源的使用：由于small的特性，runtime各插件的资源也是可以相互访问的，但在开发上需要组织和统一管理好，包括命名和安全的使用资源。&lt;/p&gt;
+&lt;h2 id=&quot;老项目集成Small插件的官方建议&quot;&gt;&lt;a href=&quot;#老项目集成Small插件的官方建议&quot; class=&quot;headerlink&quot; title=&quot;老项目集成Small插件的官方建议&quot;&gt;&lt;/a&gt;老项目集成Small插件的官方建议&lt;/h2&gt;&lt;h3 id=&quot;基本原则&quot;&gt;&lt;a href=&quot;#基本原则&quot; class=&quot;headerlink&quot; title=&quot;基本原则&quot;&gt;&lt;/a&gt;基本原则&lt;/h3&gt;&lt;p&gt;宿主中不要放业务逻辑。只做加载插件以及调起主插件的操作。&lt;/p&gt;
+&lt;h3 id=&quot;重构步骤&quot;&gt;&lt;a href=&quot;#重构步骤&quot; class=&quot;headerlink&quot; title=&quot;重构步骤&quot;&gt;&lt;/a&gt;重构步骤&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;拆lib.&lt;em&gt; - 公共模块插件&lt;br&gt;把各个第三方库拆出来做成一个个`lib.&lt;/em&gt;`插件模块，包括统计、地图、网络、图片等库。&lt;br&gt;把老项目积累的业务公共代码(utils)分离出来封装成一个lib.utils插件&lt;br&gt;把基础的样式、主题分离出来封装成一个lib.style插件&lt;/li&gt;
+&lt;li&gt;拆app.&lt;em&gt; - 业务模块插件&lt;br&gt;把业务模块拆成`app.&lt;/em&gt;&lt;code&gt;模块，他们可以依赖&lt;/code&gt;lib.&lt;em&gt;&lt;code&gt;模块，显示调用&lt;/code&gt;lib.&lt;/em&gt;`中的各个API&lt;br&gt;相对独立的业务模块先拆，比如“详情页”、“关于我们”，如果剩下的业务不好拆，先放一个插件里&lt;br&gt;如果都不好拆，先把全部业务做成一个app.main主插件&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;插件之间的通信&quot;&gt;&lt;a href=&quot;#插件之间的通信&quot; class=&quot;headerlink&quot; title=&quot;插件之间的通信&quot;&gt;&lt;/a&gt;插件之间的通信&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/wequick/Small/issues/120&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;插件之间的通信/互调&lt;/a&gt;&lt;br&gt;目前的插件之间的通信仅限于Small.openUri()，用来调起其它插件的页面。&lt;/p&gt;
+&lt;p&gt;但有些时候，我们还是需要操作一下其它插件。 比如说在跳转到另一个插件的页面之前，需要查询一下对方插件的一个状态。&lt;br&gt;我觉得应该借助v4包的LocalBroadcastManager来实现&lt;/p&gt;
+&lt;h2 id=&quot;老项目集成Small插件化遇到的坑&quot;&gt;&lt;a href=&quot;#老项目集成Small插件化遇到的坑&quot; class=&quot;headerlink&quot; title=&quot;老项目集成Small插件化遇到的坑&quot;&gt;&lt;/a&gt;老项目集成Small插件化遇到的坑&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;插件中通过startActivityForResult获取不到数据问题。如果启动的Activity是SingleTask启动模式，有这个问题。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;插件lib2依赖插件lib1，导致同时依赖lib1和lib2的插件app1编译时出现找不到类的情况。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;一个lib依赖另一个lib，buildLib时出现Duplicate package错误&lt;br&gt;一个lib依赖另一个lib，buildLib时出现下面的错误，目前还没有找到解决吧，clean工程和cleanLib都做了，但还不行，只好把依赖去掉了才行。原因未知&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;如果插件用到了百度地图等，需要把相关的功能放在一个插件下面，注意那些很大的.so是放在插件里面的&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Small插件中是支持aar引用的，实际使用过了&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Small的插件限制了包名，因此已有代码复制过来会有改变。特别要注意layout文件中自定义控件包名的改动，能够通过编译但运行时会找不到类。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;通过assembleRelease单独编译一个插件出现下面的错误，但有的电脑能正常单独编译插件，原因未知，已经提issue。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;下午2:30:54: Executing external task &amp;apos;assembleRelease&amp;apos;...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Configuration on demand is an incubating feature.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Incremental java compilation is an incubating feature.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;FAILURE: Build failed with an exception.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;* What went wrong:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;A problem occurred configuring project &amp;apos;:app.me&amp;apos;.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;gt; Could not find property &amp;apos;android&amp;apos; on project &amp;apos;:app&amp;apos;.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;* Try:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;BUILD FAILED&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;第三方SDK的meta，Service等需要在宿主App的manifest中声明，例如百度地图SDK的定位Service。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;lib.utils删除资源后出现编译错误，解决办法是删除public.txt，重新编译lib和bundle&lt;/li&gt;
+&lt;li&gt;老代码一些业务上耦合比较紧的页面不容易拆开，可以作为一个模块存在，我们最后拆成了6个大模块。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;参考文章&quot;&gt;&lt;a href=&quot;#参考文章&quot; class=&quot;headerlink&quot; title=&quot;参考文章&quot;&gt;&lt;/a&gt;参考文章&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/wequick/Small/issues/198&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/wequick/Small/issues/198&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.offbye.com&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;本文独立博客地址&lt;/a&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;我们团队投入3个人用了接近2周的时间把一个10万行安卓代码的旧项目（电商系统管理台App），使用Small框架做了插件化改造，解除业务模块之间的耦合，以便为后面功能的快速迭代和多团队多技术栈并行开发做好基础架构，期间遇到了一些坑，但最后在大家的努力下基本都得到了解决，也感谢Small的作者光亮对我们提出的issue的快速响应。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Android" scheme="http://offbye.com/tags/Android/"/>
+    
+      <category term="Small框架" scheme="http://offbye.com/tags/Small%E6%A1%86%E6%9E%B6/"/>
+    
+      <category term="插件化" scheme="http://offbye.com/tags/%E6%8F%92%E4%BB%B6%E5%8C%96/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JWT安全验证常见疑问解答</title>
+    <link href="http://offbye.com/2016/07/04/JWT%E5%AE%89%E5%85%A8%E9%AA%8C%E8%AF%81%E5%B8%B8%E8%A7%81%E7%96%91%E9%97%AE%E8%A7%A3%E7%AD%94/"/>
+    <id>http://offbye.com/2016/07/04/JWT安全验证常见疑问解答/</id>
+    <published>2016-07-04T05:49:14.000Z</published>
+    <updated>2016-07-05T04:21:37.000Z</updated>
+    
+    <content type="html">&lt;p&gt;最近做基于&lt;a href=&quot;http://samnewman.io/patterns/architectural/bff/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;BFF架构&lt;/a&gt;的分布式移动端API接口的系统设计。工作过程中发现有些工程师对JWT安全验证的认识存在一些偏差，重复讲解实在太麻烦了，在这里把关于JWT常见的一些疑问统一回答下吧。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;什么是JWT？&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://tools.ietf.org/html/rfc7519&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;JSON Web Token (JWT)&lt;/a&gt;是一种基于 token 的认证方案。&lt;br&gt;JSON Web Tokens are an open, industry standard &lt;a href=&quot;https://tools.ietf.org/html/rfc7519&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;RFC 7519&lt;/a&gt; method for representing claims securely between two parties.&lt;br&gt;简单的说，JWT就是一种Token的编码算法，服务器端负责根据一个密码和算法生成Token，然后发给客户端，客户端只负责后面每次请求都在HTTP header里面带上这个Token，服务器负责验证这个Token是不是合法的，有没有过期等，并可以解析出subject和claim里面的数据。&lt;/p&gt;
+&lt;p&gt;注意JWT里面的数据是BASE64编码的，没有加密，因此不要放如敏感数据。&lt;/p&gt;
+&lt;p&gt;可以通过&lt;a href=&quot;https://jwt.io/这个网站对JWT&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://jwt.io/这个网站对JWT&lt;/a&gt; Token进行解析。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;一个JWT token 看起来是这样的:&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjEzODY4OTkxMzEsImlzcyI6ImppcmE6MTU0ODk1OTUiLCJxc2giOiI4MDYzZmY0Y2ExZTQxZGY3YmM5MGM4YWI2ZDBmNjIwN2Q0OTFjZjZkYWQ3YzY2ZWE3OTdiNDYxNGI3MTkyMmU5IiwiaWF0IjoxMzg2ODk4OTUxfQ.uKqU9dTB6gKwG6jQCuXYAiMNdfNRw98Hw_IWuA5MaMo&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;可以简化为下面这样的结构:&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;base64url_encode(Header) + &amp;apos;.&amp;apos; + base64url_encode(Claims) + &amp;apos;.&amp;apos; + base64url_encode(Signature)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;为什么用JWT？&lt;/p&gt;
+&lt;p&gt;JWT只通过算法实现对Token合法性的验证，不依赖数据库，Memcached的等存储系统，因此可以做到跨服务器验证，只要密钥和算法相同，不同服务器程序生成的Token可以互相验证。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;JWT Token需要持久化在Memcached中吗？&lt;br&gt;不应该这样做，这样就背离了JWT通过算法验证的初心。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;在退出登录时怎样实现JWT Token失效呢？&lt;br&gt;退出登录， 只要客户端端把Token丢弃就可以了，服务器端不需要废弃Token。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;怎样保持客户端长时间保持登录状态？&lt;/p&gt;
+&lt;p&gt;服务器端提供刷新Token的接口， 客户端负责按一定的逻辑刷新服务器Token。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;服务器端是否应该从JWT中取出userid用于业务查询？&lt;/p&gt;
+&lt;p&gt;REST API是无状态的，意味着服务器端每次请求都是独立的，即不依赖以前请求的结果，因此也不应该依赖JWT token做业务查询， 应该在请求报文中单独加个userid 字段。&lt;br&gt;为了做用户水平越权的检查，可以在业务层判断传入的userid和从JWT token中解析出的userid是否一致， 有些业务可能会允许查不同用户的数据。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;JWT 在Java项目中如何实现？&lt;/p&gt;
+&lt;p&gt;生成Token&lt;/p&gt;
+&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;String token = Jwts.builder().setSubject(userId)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        .setExpiration(&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; Date(System.currentTimeMillis() + Constant.TOKEN_EXP_TIME))&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        .claim(&lt;span class=&quot;string&quot;&gt;&quot;roles&quot;&lt;/span&gt;, Constant.USER_TYPE_EMP).setIssuedAt(&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; Date())&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        .signWith(SignatureAlgorithm.HS256, Constant.JWT_SECRET).compact();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;loginResponse.setToken(token);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;验证JWT Token&lt;/p&gt;
+&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;span class=&quot;keyword&quot;&gt;final&lt;/span&gt; String authHeader = request.getHeader(&lt;span class=&quot;string&quot;&gt;&quot;Authorization&quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (authHeader == &lt;span class=&quot;keyword&quot;&gt;null&lt;/span&gt; || !authHeader.startsWith(&lt;span class=&quot;string&quot;&gt;&quot;Bearer &quot;&lt;/span&gt;)) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   log.debug(&lt;span class=&quot;string&quot;&gt;&quot;no Authorization &quot;&lt;/span&gt;, e);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125; &lt;span class=&quot;keyword&quot;&gt;else&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;try&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;final&lt;/span&gt; String token = authHeader.substring(&lt;span class=&quot;number&quot;&gt;7&lt;/span&gt;); &lt;span class=&quot;comment&quot;&gt;// The part after &quot;Bearer &quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        log.debug(&lt;span class=&quot;string&quot;&gt;&quot;token &quot;&lt;/span&gt; + token);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;final&lt;/span&gt; Claims claims = Jwts.parser().setSigningKey(Constant.JWT_SECRET)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                .parseClaimsJws(token).getBody();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        log.debug(claims.toString());&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125; &lt;span class=&quot;keyword&quot;&gt;catch&lt;/span&gt; (Exception e) &amp;#123; &lt;span class=&quot;comment&quot;&gt;//包含超时，签名错误等异常&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        log.debug(&lt;span class=&quot;string&quot;&gt;&quot;JWT Exception&quot;&lt;/span&gt;, e);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;注意客户端发送的Authorization HTTP HEADER格式是 “Bearer YOUR_JWT_TOKEN”,这是OAuth的规范规定的。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.offbye.com&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;本文独立博客地址&lt;/a&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近做基于&lt;a href=&quot;http://samnewman.io/patterns/architectural/bff/&quot;&gt;BFF架构&lt;/a&gt;的分布式移动端API接口的系统设计。工作过程中发现有些工程师对JWT安全验证的认识存在一些偏差，重复讲解实在太麻烦了，在这里把关于JWT常见的一些疑问统一回答下吧。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;什么是JWT？&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://tools.ietf.org/html/rfc7519&quot;&gt;JSON Web Token (JWT)&lt;/a&gt;是一种基于 token 的认证方案。&lt;br&gt;JSON Web Tokens are an open, industry standard &lt;a href=&quot;https://tools.ietf.org/html/rfc7519&quot;&gt;RFC 7519&lt;/a&gt; method for representing claims securely between two parties.&lt;br&gt;简单的说，JWT就是一种Token的编码算法，服务器端负责根据一个密码和算法生成Token，然后发给客户端，客户端只负责后面每次请求都在HTTP header里面带上这个Token，服务器负责验证这个Token是不是合法的，有没有过期等，并可以解析出subject和claim里面的数据。&lt;/p&gt;
+&lt;p&gt;注意JWT里面的数据是BASE64编码的，没有加密，因此不要放如敏感数据。&lt;/p&gt;
+&lt;p&gt;可以通过&lt;a href=&quot;https://jwt.io/这个网站对JWT&quot;&gt;https://jwt.io/这个网站对JWT&lt;/a&gt; Token进行解析。&lt;/p&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>如何做一场像TED一样精彩的技术演讲</title>
     <link href="http://offbye.com/2016/06/29/%E5%A6%82%E4%BD%95%E5%81%9A%E4%B8%80%E5%9C%BA%E5%83%8FTed%E4%B8%80%E6%A0%B7%E7%B2%BE%E5%BD%A9%E7%9A%84%E6%8A%80%E6%9C%AF%E6%BC%94%E8%AE%B2/"/>
     <id>http://offbye.com/2016/06/29/如何做一场像Ted一样精彩的技术演讲/</id>
     <published>2016-06-29T01:33:55.000Z</published>
-    <updated>2016-07-01T11:06:52.000Z</updated>
+    <updated>2016-07-04T05:44:01.000Z</updated>
     
     <content type="html">&lt;p&gt;最近几个月由于准备演讲的原因，反复看了几遍《像TED一样演讲》这本书，并看了大量的TED演讲，感触颇深，学到了很多演讲的技巧和误区。最近我在南京软件开发者大会和全球移动技术大会做了2场还算精彩的技术演讲，大量应用了书中的一些思想，演讲现场听众的反馈情况还不错。参加技术大会演讲是成为技术大牛的重要道路之一，那么我们怎样才能做一场精彩而不枯燥的技术演讲呢？&lt;/p&gt;
 &lt;p&gt;我们先分析下技术演讲和典型的TED演讲的差别。首先是演讲内容和面对的观众不同。技术演讲的内容一般都有一定的技术门槛，很多时候外行是不容易有较深入的理解的，听众有着明显的局限性，一般都是某个领域的技术和业务人员，同时听众的专业能力差别还有比较大的，专家、一般水平和新手的听众人数一般是金字塔分布，因此需要照顾不同水平的人对内容的接受度和想法。TED演讲的观众则比较广泛，演讲需要简洁生动，具备传播属性。然后是演讲时间长度不一样，典型的TED演讲的时间一般是6-18分钟，技术演讲的时间一般是40分钟，因此TED演讲是更困难的，因为你需要在更短的时间内抓住听众的注意力，让听众接受你的观点。技术演讲由于时间相对较长，可以进行一些比较深入的探讨，但是也需要考虑到听众的注意力，需要在演讲过程中想办法活跃气氛。&lt;/p&gt;
 &lt;p&gt;接下来我从演讲主题选择，演讲内容设计和PPT制作，如何做个好的开场，如何做好演讲时间控制等方面，详细探讨下如何一场精彩的技术演讲。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;首先要有一个好的技术演讲主题，什么是好的主题呢？ 好的主题首先意味着你对这个主题要有热情，要有特别的见解。例如你比多数人更早的关注一门新技术，有热情把它介绍给更多的人；你在某个技术领域有着丰富的实践经验，想和别人分享；你对某个技术领域研究比较深入，做了个开源项目，想让更多的人知道和使用等。一定要挖掘出自己和演讲主题之间独特而有意义的连接点，这样才可以激发自己对演讲主题的热情，然后你才能用热情感染观众。&lt;/p&gt;
-&lt;p&gt;演讲主题需要主题明确，范围清晰，逻辑严密。要对演讲的内容保持节制，主题无关的内容不要轻易加入到PPT中。主题不宜太大太宽泛，范围需要清楚明确，最好能做到让人看到题目就能知道大概是讲哪方面的内容。演讲主题太大是新手最容易犯的错误之一，总想做自己演讲中塞入太多的东西，导致主题不明确，没有重点，让人最后听完感觉不知道都讲了些什么。&lt;/p&gt;
-&lt;p&gt;另外需要注意的是，特别干货的技术内容并不太适合拿来做一场精彩的演讲，更适合作为文章发表。例如现场介绍和推导某个算法，大量复杂代码的讲解等。除非你有高超的演讲技巧，并且台下的观众都很专业，否则很难把这类主题讲精彩。现在的一些技术大会由于观众水平参差不齐，技术背景和经验都不一样，一般来说，太干货的内容并不容易受到多数人的欢迎，反而有催眠效果。&lt;/p&gt;
+&lt;p&gt;演讲主题需要主题明确，范围清晰，逻辑严密。要对演讲的内容保持节制，主题无关的内容不要轻易加入到PPT中。主题不宜太大太宽泛，范围需要清楚明确，最好能做到让人看到题目就能知道大概是讲哪方面的内容。演讲主题太大是新手最容易犯的错误之一，总想做自己演讲中塞入太多的东西，导致主题不明确，没有重点，让人听完后感觉不记得都讲了些什么。&lt;/p&gt;
+&lt;p&gt;另外需要注意的是，特别干货的技术内容并不太适合拿来做一场精彩的演讲，更适合作为文章发表。例如现场介绍和推导某个算法，大量复杂代码的讲解等。除非你有高超的演讲技巧，并且台下的观众都很专业，否则很难把这类主题讲精彩。现在的一些技术大会由于观众水平参差不齐，技术背景和经验都不一样，因此太干货的内容并不容易受到多数人的欢迎，反而有催眠效果。&lt;/p&gt;
 &lt;p&gt;你对自己的演讲主题必须有深刻地认识，包括涉及的每个技术细节都需要很清楚，这样才能有足够的信心做好演讲，深入浅出地讲出来，也才能比较优雅地面对观众的提问。我参加的每场演讲都会把涉及的每个技术细节都弄清楚，演讲PPT不允许出现任何细节错误，并对观众可能提出的问题进行事先准备。&lt;/p&gt;
 &lt;p&gt;定好主题后，需要从观众的角度看待这个主题，也就是换位思考，如果你是观众你会不会想听这个主题？你想从这场演讲了解到些什么？怎样才能引起观众的兴趣，激发观众的共鸣？&lt;/p&gt;
 &lt;p&gt;然后可以针对主题做个信息视图了，信息视图就是你演讲内容的层次结构图，一般可以是层次结构图或流程图，相对传统的目录结构，用信息视图可以更好帮你理清演讲的内容逻辑。可以用Powerpoint的SmartArt功能，流程图软件或思维导图软件制作信息视图。在演讲中需要尽早的把信息视图讲给观众，以便让大家对你的演讲有整体的认识，也可以在最后演讲总结时把信息视图总结给大家，我一般是在介绍完演讲主题后就讲解本次演讲的信息视图或目录结构。因为观众基本上都是技术人员，思维逻辑性一般都比较强，因此演讲内容之间需要用强逻辑关联起来，并在演讲过程中注意强调当前演讲的层次，这样能够让人感觉演讲内容很连贯，很有逻辑，也有助于观众保持清晰的思路跟上你的演讲节奏。&lt;/p&gt;
@@ -670,198 +844,6 @@
       <category term="ReactNative" scheme="http://offbye.com/tags/ReactNative/"/>
     
       <category term="f8app" scheme="http://offbye.com/tags/f8app/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>F8App-ReactNative项目源码分析1-初体验</title>
-    <link href="http://offbye.com/2016/05/17/F8App-ReactNative%E9%A1%B9%E7%9B%AE%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%901-%E5%88%9D%E4%BD%93%E9%AA%8C/"/>
-    <id>http://offbye.com/2016/05/17/F8App-ReactNative项目源码分析1-初体验/</id>
-    <published>2016-05-17T13:15:46.000Z</published>
-    <updated>2016-05-20T15:05:46.000Z</updated>
-    
-    <content type="html">&lt;p&gt;近期开始研究Facebook f8app项目，目标是理解Facebook官方React Native f8app的整体技术架构，给公司目前几个的React Native项目开发提供官方经验借鉴，并对原生开发和React Native开发进行框架层面的融合。&lt;br&gt;我目前的技术情况是熟悉Android，Swift iOS，Node.js，MongoDB和JavaScript移动端开发，了解Objective C,React.js和React Native,但缺少实际开发经验，对Parse，GraphQL只是听说过。所以只能一步一步折腾了。本文将介绍f8app的实际上手经验，如何把f8app在Mac上run起来。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;首先是阅读秋百万的&lt;a href=&quot;http://f8-app.liaohuqiu.net/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;构建 F8 App / React Native 开发指南&lt;/a&gt; 对项目有个整体了解。&lt;br&gt;然后到git上clone代码按说明运行起来，这一步遇到了坑，原因是官方的安装过程有错误，少了react-native start这个命令。&lt;/p&gt;
-&lt;p&gt;iOS启动后会报错，运行 react-native start就可以了&lt;br&gt;  &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;2016-05-17 11:34:12.357 [fatal][tid:main] Cannot find entry file index.ios.js in any of the roots: [&amp;quot;/Users/zhangxitao/work/github/f8app&amp;quot;]&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;h2 id=&quot;项目依赖-Requirements&quot;&gt;&lt;a href=&quot;#项目依赖-Requirements&quot; class=&quot;headerlink&quot; title=&quot;项目依赖 Requirements&quot;&gt;&lt;/a&gt;项目依赖 Requirements&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;&lt;a href=&quot;http://facebook.github.io/react-native/docs/getting-started.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;React Native&lt;/a&gt; (follow iOS and Android guides)&lt;ul&gt;
-&lt;li&gt;Xcode 7.3 +&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://cocoapods.org&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;CocoaPods&lt;/a&gt; (only for iOS)&lt;ul&gt;
-&lt;li&gt;Version 1.0+ recommended (&lt;code&gt;gem install cocoapods --pre&lt;/code&gt;)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://www.mongodb.org/downloads&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;MongoDB&lt;/a&gt; (needed to run Parse Server locally)&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&quot;修改后的安装过程&quot;&gt;&lt;a href=&quot;#修改后的安装过程&quot; class=&quot;headerlink&quot; title=&quot;修改后的安装过程&quot;&gt;&lt;/a&gt;修改后的安装过程&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Clone the repo&lt;/strong&gt;&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ git clone https://github.com/fbsamples/f8app.git&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ cd f8app&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Install dependencies&lt;/strong&gt; (npm v3+):&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ npm install&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ (cd ios; pod install)        # only for iOS version&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Make sure MongoDB is running:&lt;/strong&gt;&lt;br&gt;先下载mongodb或直接通过&lt;code&gt;brew install mongodb&lt;/code&gt; 命令安装。Mongodb不熟悉的需要先学习下mongodb的常用命令，和mysql有些类似。&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ lsof -iTCP:27017 -sTCP:LISTEN&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$  mongod   --dbpath  YOURDATAPATH/mongodata/ &amp;amp;  #启动mongodb&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;NOTE: if installed with &lt;a href=&quot;http://brew.sh/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Homebrew&lt;/a&gt; run &lt;code&gt;brew info mongo&lt;/code&gt; and&lt;br&gt;check out the Caveats section.&lt;/p&gt;
-&lt;p&gt;If you prefer to use an external MongoDB server, set &lt;code&gt;DATABASE_URI&lt;/code&gt;:&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ export DATABASE_URI=mongodb://example-mongo-hosting.com:1337/my-awesome-database&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Start Parse/GraphQL servers:&lt;/strong&gt;&lt;/p&gt;
-&lt;figure class=&quot;highlight ruby&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ npm start&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ react-native start&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Import sample data&lt;/strong&gt; (the local Parse Server should be running):  并验证一下数据是否导入正确。&lt;/p&gt;
-&lt;figure class=&quot;highlight ruby&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ npm run import-data&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ mongo&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;MongoDB shell &lt;span class=&quot;symbol&quot;&gt;version:&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;2.6&lt;/span&gt;.&lt;span class=&quot;number&quot;&gt;5&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;connecting &lt;span class=&quot;symbol&quot;&gt;to:&lt;/span&gt; test&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;gt; show databases&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;admin  (empty)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;dev    &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;.&lt;span class=&quot;number&quot;&gt;07&lt;/span&gt;8GB&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;local  &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;.&lt;span class=&quot;number&quot;&gt;07&lt;/span&gt;8GB&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;gt; use dev&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;switched to db dev&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;gt; show collections&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Agenda&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;FAQ&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Maps&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Notification&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Page&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Speakers&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Survey&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;_Installation&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;_SCHEMA&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;system.indexes&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;gt; db.FAQ.find()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;#会查到很多数据&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;Make sure everything works by visiting:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Parse Dashboard: &lt;a href=&quot;http://localhost:8080/dashboard&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://localhost:8080/dashboard&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Graph&lt;em&gt;i&lt;/em&gt;QL: &lt;a href=&quot;http://localhost:8080/graphql?query=query+%7B%0A++schedule+%7B%0A++++title%0A++++speakers+%7B%0A++++++name%0A++++++title%0A++++%7D%0A++++location+%7B%0A++++++name%0A++++%7D%0A++%7D%0A%7D&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://localhost:8080/graphql&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Running on Android&lt;/strong&gt;:&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ react-native run-android&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ adb reverse tcp:8081 tcp:8081   # required to ensure the Android app can&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ adb reverse tcp:8080 tcp:8080   # access the Packager and GraphQL server&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Running on iOS:&lt;/strong&gt;&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ react-native run-ios&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&quot;实际运行效果&quot;&gt;&lt;a href=&quot;#实际运行效果&quot; class=&quot;headerlink&quot; title=&quot;实际运行效果&quot;&gt;&lt;/a&gt;实际运行效果&lt;/h2&gt;&lt;p&gt;这样安卓和iOS模拟器应该都跑起来了。实际效果如下：&lt;br&gt;&lt;img src=&quot;http://o79096vir.bkt.clouddn.com/static/images/f8app/f8app3.png?imageView2/2/w/1000&quot; alt=&quot;f8app运行效果&quot;&gt;&lt;/p&gt;
-&lt;p&gt;下篇文章开始分析f8app的服务器端结构。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;近期开始研究Facebook f8app项目，目标是理解Facebook官方React Native f8app的整体技术架构，给公司目前几个的React Native项目开发提供官方经验借鉴，并对原生开发和React Native开发进行框架层面的融合。&lt;br&gt;我目前的技术情况是熟悉Android，Swift iOS，Node.js，MongoDB和JavaScript移动端开发，了解Objective C,React.js和React Native,但缺少实际开发经验，对Parse，GraphQL只是听说过。所以只能一步一步折腾了。本文将介绍f8app的实际上手经验，如何把f8app在Mac上run起来。&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="F8App" scheme="http://offbye.com/tags/F8App/"/>
-    
-      <category term="ReactNative" scheme="http://offbye.com/tags/ReactNative/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>CTCC2016中国云计算技术大会参会感想</title>
-    <link href="http://offbye.com/2016/05/16/CTCC2016%E4%B8%AD%E5%9B%BD%E4%BA%91%E8%AE%A1%E7%AE%97%E6%8A%80%E6%9C%AF%E5%A4%A7%E4%BC%9A%E5%8F%82%E4%BC%9A%E6%84%9F%E6%83%B3/"/>
-    <id>http://offbye.com/2016/05/16/CTCC2016中国云计算技术大会参会感想/</id>
-    <published>2016-05-16T01:41:05.000Z</published>
-    <updated>2016-05-16T01:58:40.000Z</updated>
-    
-    <content type="html">&lt;p&gt;上个周末有幸参加了中国云计算技术大会，感谢CSDN组织这场规模和层次都很高的技术盛会，更感谢CSDN提供的博客专家赠票。在回南京的高铁上趁热先把参会感想写了，过几天再给公司的小伙伴分享。&lt;/p&gt;
-&lt;p&gt;参加这次大会最直观的印象是云计算现在已经发展到了一个立等可用的程度。青云的可视化在线网络编排系统让人印象深刻，只需要通过鼠标拖曳，就可以在几分钟内完成一个包含2台云主机，网络负载均衡器和nat转发的私有云系统。青云在现场进行了云网络编排比赛活动。青云主机和带宽费用比阿里云要高一点。&lt;/p&gt;
-&lt;p&gt;周五的全体大会规模很大，演讲者都是大公司云计算部门的老大，演讲都很精彩，可以了解很多大公司在云计算方面的最新发展情况。目前云计算在各大公司都已经有了大规模的实际应用，并开始对外提供服务。&lt;br&gt;周六我主要参加了的container峰会，因为最近公司在准备用docker。感觉在容器化技术领域Docker已经成了主角，由于其轻量化的特点，docker已经在业界广泛使用。与普遍认为的观念不同，docker并不是虚拟机的替代品，而是进程的替代品。演讲中介绍对docker的最佳实践是无状态和不可变，即不要修改docker镜象的配置，也不要在docker里面存储数据。多数演讲更关注docker相关的网络编排方面的框架和工具，并介绍很多好的实践和经验。&lt;br&gt;周日的演讲包括spark峰会，Openstack峰会和Amazon AMS峰会，我只参加了Spark峰会，感觉人特别多，座位都没有了，很多人站着听，还在记笔记，好勤奋的感觉，看来现在Spark很热门，已经是大数据分析的事实标准了。我在spark方面没有实际经验，仅限于了解，因此不好对演讲内容做评论，但感觉有些讲师的演讲技巧不够好。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      上个周末有幸参加了中国云计算技术大会，趁热先把参会感想写了
-    
-    </summary>
-    
-    
-      <category term="云计算" scheme="http://offbye.com/tags/%E4%BA%91%E8%AE%A1%E7%AE%97/"/>
-    
-      <category term="CTCC2016" scheme="http://offbye.com/tags/CTCC2016/"/>
-    
-      <category term="docker" scheme="http://offbye.com/tags/docker/"/>
-    
-      <category term="spark" scheme="http://offbye.com/tags/spark/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>YAML文件语法简介</title>
-    <link href="http://offbye.com/2016/05/12/YAML%E6%96%87%E4%BB%B6%E8%AF%AD%E6%B3%95%E7%AE%80%E4%BB%8B/"/>
-    <id>http://offbye.com/2016/05/12/YAML文件语法简介/</id>
-    <published>2016-05-12T07:46:53.000Z</published>
-    <updated>2016-05-12T16:23:41.000Z</updated>
-    
-    <content type="html">&lt;p&gt;YAML是一种利于人们读写的数据格式. 现在很多系统例如Spring,Ansible,RoR等都支持YAML配置文件，YAML由于其良好的可读性，越来月流行。此外在大多数变成语言中有使用 YAML 的库.&lt;/p&gt;
-&lt;p&gt;这个页面提供一个正确的 YAML 语法的基本概述, 它被用来描述一个 playbooks(我们的配置管理语言).&lt;/p&gt;
-&lt;p&gt;#基本的YAML&lt;br&gt;对于 Ansible, 每一个 YAML 文件都是从一个列表开始. 列表中的每一项都是一个键值对, 通常它们被称为一个 “哈希” 或 “字典”. 所以, 我们需要知道如何在 YAML 中编写列表和字典.&lt;/p&gt;
-&lt;p&gt;YAML 还有一个小的怪癖. 所有的 YAML 文件(无论和 Ansible 有没有关系)开始行都应该是 —. 这是 YAML 格式的一部分, 表明一个文件的开始.&lt;/p&gt;
-&lt;p&gt;列表中的所有成员都开始于相同的缩进级别, 并且使用一个 “- “ 作为开头(一个横杠和一个空格):&lt;/p&gt;
-&lt;hr&gt;
-&lt;h1 id=&quot;一个美味水果的列表&quot;&gt;&lt;a href=&quot;#一个美味水果的列表&quot; class=&quot;headerlink&quot; title=&quot;一个美味水果的列表&quot;&gt;&lt;/a&gt;一个美味水果的列表&lt;/h1&gt;&lt;ul&gt;
-&lt;li&gt;Apple&lt;/li&gt;
-&lt;li&gt;Orange&lt;/li&gt;
-&lt;li&gt;Strawberry&lt;/li&gt;
-&lt;li&gt;Mango&lt;br&gt;一个字典是由一个简单的 键: 值 的形式组成(这个冒号后面必须是一个空格):&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;---&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;# 一位职工的记录&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;name: Example Developer&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;job: Developer&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;skill: Elite&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;字典也可以使用缩进形式来表示, 如果你喜欢这样的话:&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;---&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;# 一位职工的记录&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;name: Example Developer, job: Developer, skill: Elite&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;Ansible并不是太多的使用这种格式, 但是你可以通过以下格式来指定一个布尔值(true/fase):&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;---&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;create_key: yes&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;needs_agent: no&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;knows_oop: True&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;likes_emacs: TRUE&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;uses_cvs: false&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;让我们把目前所学到的 YAML 例子组合在一起. 这些在 Ansible 中什么也干不了, 但这些格式将会给你感觉:&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;---&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;# 一位职工记录&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;name: Example Developer&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;job: Developer&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;skill: Elite&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;employed: True&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;foods:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    - Apple&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    - Orange&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    - Strawberry&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    - Mango&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;languages:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    ruby: Elite&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    python: Elite&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    dotnet: Lame&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;这就是你开始编写 Ansible playbooks 所需要知道的所有 YAML 语法.&lt;/p&gt;
-&lt;p&gt;Gotchas&lt;br&gt;尽管 YAML 通常是友好的, 但是下面将会导致一个 YAML 语法错误:&lt;/p&gt;
-&lt;p&gt;foo: somebody said I should put a colon here: so I did&lt;br&gt;你需要使用引号来包裹任何包含冒号的哈希值, 像这样:&lt;/p&gt;
-&lt;p&gt;foo: “somebody said I should put a colon here: so I did”&lt;br&gt;然后这个冒号将会被结尾.&lt;/p&gt;
-&lt;p&gt;此外, Ansible 使用 “” 来引用变量. 如果一个值以 “{” 开头, YAML 将认为它是一个字典, 所以我们必须引用它, 像这样:&lt;/p&gt;
-&lt;p&gt;foo: ““&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      YAML是一种利于人们读写的数据格式. 现在很多系统例如Spring等都支持YAML配置文件，YAML由于其良好的可读性，越来月流行。此外在大多数变成语言中有使用 YAML 的库. 
-    
-    </summary>
-    
-    
-      <category term="YAML" scheme="http://offbye.com/tags/YAML/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>iOS App沙盒模型文件目录详解Swift版</title>
-    <link href="http://offbye.com/2016/05/11/iOS-Sandbox-swift/"/>
-    <id>http://offbye.com/2016/05/11/iOS-Sandbox-swift/</id>
-    <published>2016-05-11T10:25:25.000Z</published>
-    <updated>2016-05-12T16:23:41.000Z</updated>
-    
-    <content type="html">&lt;p&gt;本文会比较全面的介绍iOS App沙盒模型的文件夹及其使用场景，以及通过Swift取得这些文件夹的方法&lt;/p&gt;
-&lt;h1 id=&quot;iOS-中的沙盒机制介绍&quot;&gt;&lt;a href=&quot;#iOS-中的沙盒机制介绍&quot; class=&quot;headerlink&quot; title=&quot;iOS 中的沙盒机制介绍&quot;&gt;&lt;/a&gt;iOS 中的沙盒机制介绍&lt;/h1&gt;&lt;p&gt;iOS 中的沙盒机制（SandBox）是一种安全体系。&lt;br&gt;每个iOS 应用程序都有一个单独的文件系统（存储空间），而且只能在对应的文件系统中进行操作，此区域被称为沙盒。所有的非代码文件都要保存在此，例如属性文件 plist、文本文件、图像、图标、媒体资源等。&lt;/p&gt;
-&lt;h1 id=&quot;iPhone沙箱模型的四个文件夹介绍和功能&quot;&gt;&lt;a href=&quot;#iPhone沙箱模型的四个文件夹介绍和功能&quot; class=&quot;headerlink&quot; title=&quot;iPhone沙箱模型的四个文件夹介绍和功能&quot;&gt;&lt;/a&gt;iPhone沙箱模型的四个文件夹介绍和功能&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;Documents 目录：您应该将所有de应用程序数据文件写入到这个目录下。这个目录用于存储用户数据或其它应该定期备份的信息。用户自己保存的文件在documents文件里&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;AppName.app 目录：这是应用程序的程序包目录，包含应用程序的本身。由于应用程序必须经过签名，所以您在运行时不能对这个目录中的内容进行修改，否则可能会使应用程序无法启动。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Library 目录：这个目录下有两个子目录：Caches 和 Preferences&lt;br&gt;Preferences 目录：包含应用程序的偏好设置文件。您不应该直接创建偏好设置文件，而是应该使用NSUserDefaults类来取得和设置应用程序的偏好.&lt;br&gt;Caches 目录：用于存放应用程序专用的支持文件，保存应用程序再次启动过程中需要的信息。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;tmp 目录：这个目录用于存放临时文件，保存应用程序再次启动过程中不需要的信息。&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;补充1：对于上述描述可以这样举例理解，一个记事本应用，用户写的东西需要保存起来，这些东西是用户自行生成的，则需要放在 Documents 目录里。一个新闻应用，如果需要从服务器下载东西展示给用户看，下载的东西就放在 Library/Caches 目录里。苹果审核对这个要求很严格，主要原因是 iCloud 的同步问题。&lt;br&gt;补充2：如果想知道真机或者模拟器 App 沙盒路径，可通过在项目中执行下述代码打印获取：&lt;/p&gt;
-&lt;h1 id=&quot;获取这些目录路径的方法&quot;&gt;&lt;a href=&quot;#获取这些目录路径的方法&quot; class=&quot;headerlink&quot; title=&quot;获取这些目录路径的方法&quot;&gt;&lt;/a&gt;获取这些目录路径的方法&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;获取Home目录路径的函数：&lt;br&gt;let homeDir = NSHomeDirectory()&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;获取Documents目录路径的方法：&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;let paths =  NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.NSDocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;let   documentPath = paths[0]&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;获取Caches目录路径的方法：&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;let paths =  NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.CachesDirectory,NSSearchPathDomainMask.UserDomainMask, true)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;let   cachePath = paths[0]&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;获取tmp目录路径的方法：&lt;br&gt;let tmpDir = NSTemporaryDirectory();&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;获取应用程序程序包中资源文件路径的方法：&lt;br&gt;程序包（NSBundle）&lt;br&gt;iOS 应用都是通过 bundle 进行封装的，可以狭隘地将 bundle 理解为上述沙盒中的 AppName.app 文件。在 Finder 中，会把 bundle 当做一个文件显示从而防止用户误操作导致程序文件损坏，但其实内部是一个目录，包含了图像、媒体资源、编译好的代码、nib 文件等，这个目录称为 main bundle。&lt;br&gt;Cocoa 提供了 NSBundle 类封装了 bundle 操作。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;通过NSBundle可以获取各种资源文件，注意在Build Phases - Copy Bundle Rresources下面需要有这个资源文件，有些类型的文件不会自动加在这里&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;let path = NSBundle.mainBundle().pathForResource(&amp;quot;20160504182134006&amp;quot;, ofType: &amp;quot;pcm&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;代码中的mainBundle类方法用于返回一个代表应用程序包的对象。&lt;/p&gt;
-&lt;h1 id=&quot;NSFileManager文件管理介绍&quot;&gt;&lt;a href=&quot;#NSFileManager文件管理介绍&quot; class=&quot;headerlink&quot; title=&quot;NSFileManager文件管理介绍&quot;&gt;&lt;/a&gt;NSFileManager文件管理介绍&lt;/h1&gt;&lt;p&gt;使用 FileManager 可以对沙盒中的目录、文件进行操作。&lt;/p&gt;
-&lt;p&gt;例子：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;var fm: NSFileManager = NSFileManager.defaultManager()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;if !fm.fileExistsAtPath(self.dataFilePath()) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    //下面是对该文件进行制定路径的保存&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    fm.createDirectoryAtPath(self.dataFilePath(), withIntermediateDirectories: true, attributes: nil, error: nil)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        //取得一个目录下得所有文件名&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    var files: [AnyObject] = fm.subpathsAtPath(self.dataFilePath())&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        //读取某个文件&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    var data: NSData = fm.contentsAtPath(self.dataFilePath())&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        //或者&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    var data: NSData = NSData.dataWithContentOfPath(self.dataFilePath())&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      本文会比较全面的介绍iOS App沙盒模型的文件夹及其使用场景，以及通过Swift取得这些文件夹的方法。iOS 中的沙盒机制（SandBox）是一种安全体系。每个iOS 应用程序都有一个单独的文件系统（存储空间），而且只能在对应的文件系统中进行操作，此区域被称为沙盒。所有的非代码文件都要保存在此，例如属性文件 plist、文本文件、图像、图标、媒体资源等。
-    
-    </summary>
-    
-    
-      <category term="Sandbox" scheme="http://offbye.com/tags/Sandbox/"/>
-    
-      <category term="swift" scheme="http://offbye.com/tags/swift/"/>
     
   </entry>
   
