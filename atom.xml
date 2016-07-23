@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://offbye.com/"/>
-  <updated>2016-07-09T02:38:53.000Z</updated>
+  <updated>2016-07-23T02:21:32.000Z</updated>
   <id>http://offbye.com/</id>
   
   <author>
@@ -16,11 +16,75 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>安卓旧项目使用Small框架插件化改造踩坑记</title>
+    <link href="http://offbye.com/2016/07/22/%E5%AE%89%E5%8D%93%E6%97%A7%E9%A1%B9%E7%9B%AE%E4%BD%BF%E7%94%A8Small%E6%A1%86%E6%9E%B6%E8%BF%9B%E8%A1%8C%E6%8F%92%E4%BB%B6%E5%8C%96%E6%94%B9%E9%80%A0%E7%9A%84%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/"/>
+    <id>http://offbye.com/2016/07/22/安卓旧项目使用Small框架进行插件化改造的问题汇总/</id>
+    <published>2016-07-22T13:28:18.000Z</published>
+    <updated>2016-07-23T02:21:32.000Z</updated>
+    
+    <content type="html">&lt;p&gt;我们团队把一个10万行安卓代码的旧项目（电商系统管理台App），使用Small框架做了插件化改造。把项目分成了10多个插件模块，解除了业务模块之间的代码耦合，为业务功能的快速迭代和多团队并行开发做好基础架构。迁移期间遇到了一些坑，但最后在大家的努力下基本得到了解决，也感谢Small的作者光亮对我们提出的issue的快速响应。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h2 id=&quot;Small的应用场景&quot;&gt;&lt;a href=&quot;#Small的应用场景&quot; class=&quot;headerlink&quot; title=&quot;Small的应用场景&quot;&gt;&lt;/a&gt;Small的应用场景&lt;/h2&gt;&lt;p&gt;开发时：让你完全透明的像开发普通工程一样完成插件开发&lt;br&gt;编译时：自动化的帮助你分离各个公共库、业务模块插件（插件仅保留自身的代码跟资源，达到最小化）&lt;br&gt;运行时：运用最少量的Hook无缝的将各个插件并入宿主，让代码跟资源完全融合，自由调用&lt;br&gt;所以撇开开发者不用关注的(2)来说，Small的目的就是要做到保证开发者「畅快开发」的体验，以及App使用者「顺畅使用」的体验。&lt;/p&gt;
+&lt;p&gt;插件化方案有很多，很难有统一的形态，各有各的适用场景。如果你需要分发你的插件给别人使用，Small无法满足；如果你想利用插件化拆分、重组自己的应用，我认为Small在这方面已经走在了前面，并且将不断完善，做到极致。&lt;/p&gt;
+&lt;h2 id=&quot;插件化的工程（开发）结构&quot;&gt;&lt;a href=&quot;#插件化的工程（开发）结构&quot; class=&quot;headerlink&quot; title=&quot;插件化的工程（开发）结构&quot;&gt;&lt;/a&gt;插件化的工程（开发）结构&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/wequick/Small/issues/118&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;关于工程（开发）结构的讨论&lt;/a&gt;&lt;br&gt;1.依赖管理：Small使用同一个ClassLoader加载不同的插件，因此不同插件中的依赖在运行时对其他插件和宿主都是可见的，所以依赖的管理一定要收敛，统一管理，避免各自引入。&lt;br&gt;2.插件之间的通信：插件的开发一般都是多team并行的，插件之间应避免直接调用来减少耦合&lt;br&gt;3.资源的使用：由于small的特性，runtime各插件的资源也是可以相互访问的，但在开发上需要组织和统一管理好，包括命名和安全的使用资源。&lt;/p&gt;
+&lt;h2 id=&quot;老项目集成Small插件的官方建议&quot;&gt;&lt;a href=&quot;#老项目集成Small插件的官方建议&quot; class=&quot;headerlink&quot; title=&quot;老项目集成Small插件的官方建议&quot;&gt;&lt;/a&gt;老项目集成Small插件的官方建议&lt;/h2&gt;&lt;h3 id=&quot;基本原则&quot;&gt;&lt;a href=&quot;#基本原则&quot; class=&quot;headerlink&quot; title=&quot;基本原则&quot;&gt;&lt;/a&gt;基本原则&lt;/h3&gt;&lt;p&gt;宿主中不要放业务逻辑。只做加载插件以及调起主插件的操作。&lt;/p&gt;
+&lt;h3 id=&quot;重构步骤&quot;&gt;&lt;a href=&quot;#重构步骤&quot; class=&quot;headerlink&quot; title=&quot;重构步骤&quot;&gt;&lt;/a&gt;重构步骤&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;拆lib.&lt;em&gt; - 公共模块插件&lt;br&gt;把各个第三方库拆出来做成一个个`lib.&lt;/em&gt;`插件模块，包括统计、地图、网络、图片等库。&lt;br&gt;把老项目积累的业务公共代码(utils)分离出来封装成一个lib.utils插件&lt;br&gt;把基础的样式、主题分离出来封装成一个lib.style插件&lt;/li&gt;
+&lt;li&gt;拆app.&lt;em&gt; - 业务模块插件&lt;br&gt;把业务模块拆成`app.&lt;/em&gt;&lt;code&gt;模块，他们可以依赖&lt;/code&gt;lib.&lt;em&gt;&lt;code&gt;模块，显示调用&lt;/code&gt;lib.&lt;/em&gt;`中的各个API&lt;br&gt;相对独立的业务模块先拆，比如“详情页”、“关于我们”，如果剩下的业务不好拆，先放一个插件里&lt;br&gt;如果都不好拆，先把全部业务做成一个app.main主插件&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;插件之间的通信&quot;&gt;&lt;a href=&quot;#插件之间的通信&quot; class=&quot;headerlink&quot; title=&quot;插件之间的通信&quot;&gt;&lt;/a&gt;插件之间的通信&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/wequick/Small/issues/120&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;插件之间的通信/互调&lt;/a&gt;&lt;br&gt;目前的插件之间的通信仅限于Small.openUri()，用来调起其它插件的页面。&lt;/p&gt;
+&lt;p&gt;但有些时候，我们还是需要操作一下其它插件。 比如说在跳转到另一个插件的页面之前，需要查询一下对方插件的一个状态。&lt;br&gt;我觉得应该借助v4包的LocalBroadcastManager来实现&lt;/p&gt;
+&lt;h2 id=&quot;老项目集成Small插件化遇到的坑&quot;&gt;&lt;a href=&quot;#老项目集成Small插件化遇到的坑&quot; class=&quot;headerlink&quot; title=&quot;老项目集成Small插件化遇到的坑&quot;&gt;&lt;/a&gt;老项目集成Small插件化遇到的坑&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;插件中通过startActivityForResult获取不到数据问题。如果启动的Activity是SingleTask启动模式，有这个问题。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;插件lib2依赖插件lib1，导致同时依赖lib1和lib2的插件app1编译时出现找不到类的情况。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;一个lib依赖另一个lib，buildLib时出现Duplicate package错误&lt;br&gt;一个lib依赖另一个lib，buildLib时出现下面的错误，目前还没有找到解决吧，clean工程和cleanLib都做了，但还不行，只好把依赖去掉了才行。原因未知&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;如果插件用到了百度地图等，需要把相关的功能放在一个插件下面，注意那些很大的.so是放在插件里面的&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Small插件中是支持aar引用的，实际使用过了&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Small的插件限制了包名，因此已有代码复制过来会有改变。特别要注意layout文件中自定义控件包名的改动，能够通过编译但运行时会找不到类。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;通过assembleRelease单独编译一个插件出现下面的错误，但有的电脑能正常单独编译插件，原因未知，已经提issue。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;下午2:30:54: Executing external task &amp;apos;assembleRelease&amp;apos;...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Configuration on demand is an incubating feature.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Incremental java compilation is an incubating feature.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;FAILURE: Build failed with an exception.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;* What went wrong:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;A problem occurred configuring project &amp;apos;:app.me&amp;apos;.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;gt; Could not find property &amp;apos;android&amp;apos; on project &amp;apos;:app&amp;apos;.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;* Try:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;BUILD FAILED&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;第三方SDK的meta，Service等需要在宿主App的manifest中声明，例如百度地图SDK的定位Service。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;lib.utils删除资源后出现编译错误，解决办法是删除public.txt，重新编译lib和bundle&lt;/li&gt;
+&lt;li&gt;老代码一些业务上耦合比较紧的页面不容易拆开，可以作为一个模块存在，我们最后拆成了6个大模块。&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;目前1.0版本不支持gradle并行编译，在gradle.properties中打开&lt;code&gt;org.gradle.parallel=true&lt;/code&gt; 编译会报错&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;  gradle  buildLib -q&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;[Small] [Small] building library 1 of 2 - app (0x7f)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;[Small] [Small] building library 1 of 2 - app (0x7f)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;building library 2 of 2 - lib.utils (0x73)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;FAILURE: Build failed with an exception.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;* What went wrong:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Execution failed for task &amp;apos;:lib.utils:preBuild&amp;apos;.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; ./build-small/intermediates/small-pre-link/aar/app-D.txt (No such file or directory)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;参考&lt;a href=&quot;http://www.gradle.org/docs/current/userguide/multi_project_builds.html#sec:decoupled_projects&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;gradle文档&lt;/a&gt;&lt;br&gt;这个不是Bug，有依赖的工程肯定是不能并行编译的&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;em&gt;后面遇到问题会持续更新&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id=&quot;参考文章&quot;&gt;&lt;a href=&quot;#参考文章&quot; class=&quot;headerlink&quot; title=&quot;参考文章&quot;&gt;&lt;/a&gt;参考文章&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/wequick/Small/issues&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/wequick/Small/issues&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.offbye.com&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;本文独立博客地址&lt;/a&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;我们团队把一个10万行安卓代码的旧项目（电商系统管理台App），使用Small框架做了插件化改造。把项目分成了10多个插件模块，解除了业务模块之间的代码耦合，为业务功能的快速迭代和多团队并行开发做好基础架构。迁移期间遇到了一些坑，但最后在大家的努力下基本得到了解决，也感谢Small的作者光亮对我们提出的issue的快速响应。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Android" scheme="http://offbye.com/tags/Android/"/>
+    
+      <category term="Small框架" scheme="http://offbye.com/tags/Small%E6%A1%86%E6%9E%B6/"/>
+    
+      <category term="插件化" scheme="http://offbye.com/tags/%E6%8F%92%E4%BB%B6%E5%8C%96/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Android OkHttp3使用http2问题记录</title>
     <link href="http://offbye.com/2016/07/09/Android-OkHttp3%E4%BD%BF%E7%94%A8http2%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/"/>
     <id>http://offbye.com/2016/07/09/Android-OkHttp3使用http2问题记录/</id>
     <published>2016-07-09T01:52:52.000Z</published>
-    <updated>2016-07-09T02:38:53.000Z</updated>
+    <updated>2016-07-18T02:01:24.000Z</updated>
     
     <content type="html">&lt;p&gt;Android Okhttp3使用http2.0协议的接口时，发现一个问题，打印错误Log &lt;code&gt;E/NativeCrypto: ssl=0xd25d4000 cert_verify_callback x509_store_ctx&lt;/code&gt;,Google上没有查到相关的信息，毕竟现在http2用的还很少。经查看Android源码，排查发现这只是个LOG，不是错误，可以放心的用http2了。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
@@ -38,6 +102,10 @@
     
     </summary>
     
+    
+      <category term="http2" scheme="http://offbye.com/tags/http2/"/>
+    
+      <category term="Android" scheme="http://offbye.com/tags/Android/"/>
     
   </entry>
   
@@ -70,65 +138,6 @@
     
     </summary>
     
-    
-  </entry>
-  
-  <entry>
-    <title>安卓旧项目使用Small框架进行插件化改造的问题汇总</title>
-    <link href="http://offbye.com/2016/07/05/%E5%AE%89%E5%8D%93%E6%97%A7%E9%A1%B9%E7%9B%AE%E4%BD%BF%E7%94%A8Small%E6%A1%86%E6%9E%B6%E8%BF%9B%E8%A1%8C%E6%8F%92%E4%BB%B6%E5%8C%96%E6%94%B9%E9%80%A0%E7%9A%84%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/"/>
-    <id>http://offbye.com/2016/07/05/安卓旧项目使用Small框架进行插件化改造的问题汇总/</id>
-    <published>2016-07-05T07:28:18.000Z</published>
-    <updated>2016-07-15T04:46:11.000Z</updated>
-    
-    <content type="html">&lt;p&gt;我们团队投入3个人用了接近2周的时间把一个10万行安卓代码的旧项目（电商系统管理台App），使用Small框架做了插件化改造，解除业务模块之间的耦合，以便为后面功能的快速迭代和多团队多技术栈并行开发做好基础架构，期间遇到了一些坑，但最后在大家的努力下基本都得到了解决，也感谢Small的作者光亮对我们提出的issue的快速响应。&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h2 id=&quot;Small的应用场景&quot;&gt;&lt;a href=&quot;#Small的应用场景&quot; class=&quot;headerlink&quot; title=&quot;Small的应用场景&quot;&gt;&lt;/a&gt;Small的应用场景&lt;/h2&gt;&lt;p&gt;开发时：让你完全透明的像开发普通工程一样完成插件开发&lt;br&gt;编译时：自动化的帮助你分离各个公共库、业务模块插件（插件仅保留自身的代码跟资源，达到最小化）&lt;br&gt;运行时：运用最少量的Hook无缝的将各个插件并入宿主，让代码跟资源完全融合，自由调用&lt;br&gt;所以撇开开发者不用关注的(2)来说，Small的目的就是要做到保证开发者「畅快开发」的体验，以及App使用者「顺畅使用」的体验。&lt;/p&gt;
-&lt;p&gt;插件化方案有很多，很难有统一的形态，各有各的适用场景。如果你需要分发你的插件给别人使用，Small无法满足；如果你想利用插件化拆分、重组自己的应用，我认为Small在这方面已经走在了前面，并且将不断完善，做到极致。&lt;/p&gt;
-&lt;h2 id=&quot;插件化的工程（开发）结构&quot;&gt;&lt;a href=&quot;#插件化的工程（开发）结构&quot; class=&quot;headerlink&quot; title=&quot;插件化的工程（开发）结构&quot;&gt;&lt;/a&gt;插件化的工程（开发）结构&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/wequick/Small/issues/118&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;关于工程（开发）结构的讨论&lt;/a&gt;&lt;br&gt;1.依赖管理：Small使用同一个ClassLoader加载不同的插件，因此不同插件中的依赖在运行时对其他插件和宿主都是可见的，所以依赖的管理一定要收敛，统一管理，避免各自引入。&lt;br&gt;2.插件之间的通信：插件的开发一般都是多team并行的，插件之间应避免直接调用来减少耦合&lt;br&gt;3.资源的使用：由于small的特性，runtime各插件的资源也是可以相互访问的，但在开发上需要组织和统一管理好，包括命名和安全的使用资源。&lt;/p&gt;
-&lt;h2 id=&quot;老项目集成Small插件的官方建议&quot;&gt;&lt;a href=&quot;#老项目集成Small插件的官方建议&quot; class=&quot;headerlink&quot; title=&quot;老项目集成Small插件的官方建议&quot;&gt;&lt;/a&gt;老项目集成Small插件的官方建议&lt;/h2&gt;&lt;h3 id=&quot;基本原则&quot;&gt;&lt;a href=&quot;#基本原则&quot; class=&quot;headerlink&quot; title=&quot;基本原则&quot;&gt;&lt;/a&gt;基本原则&lt;/h3&gt;&lt;p&gt;宿主中不要放业务逻辑。只做加载插件以及调起主插件的操作。&lt;/p&gt;
-&lt;h3 id=&quot;重构步骤&quot;&gt;&lt;a href=&quot;#重构步骤&quot; class=&quot;headerlink&quot; title=&quot;重构步骤&quot;&gt;&lt;/a&gt;重构步骤&lt;/h3&gt;&lt;ol&gt;
-&lt;li&gt;拆lib.&lt;em&gt; - 公共模块插件&lt;br&gt;把各个第三方库拆出来做成一个个`lib.&lt;/em&gt;`插件模块，包括统计、地图、网络、图片等库。&lt;br&gt;把老项目积累的业务公共代码(utils)分离出来封装成一个lib.utils插件&lt;br&gt;把基础的样式、主题分离出来封装成一个lib.style插件&lt;/li&gt;
-&lt;li&gt;拆app.&lt;em&gt; - 业务模块插件&lt;br&gt;把业务模块拆成`app.&lt;/em&gt;&lt;code&gt;模块，他们可以依赖&lt;/code&gt;lib.&lt;em&gt;&lt;code&gt;模块，显示调用&lt;/code&gt;lib.&lt;/em&gt;`中的各个API&lt;br&gt;相对独立的业务模块先拆，比如“详情页”、“关于我们”，如果剩下的业务不好拆，先放一个插件里&lt;br&gt;如果都不好拆，先把全部业务做成一个app.main主插件&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&quot;插件之间的通信&quot;&gt;&lt;a href=&quot;#插件之间的通信&quot; class=&quot;headerlink&quot; title=&quot;插件之间的通信&quot;&gt;&lt;/a&gt;插件之间的通信&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/wequick/Small/issues/120&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;插件之间的通信/互调&lt;/a&gt;&lt;br&gt;目前的插件之间的通信仅限于Small.openUri()，用来调起其它插件的页面。&lt;/p&gt;
-&lt;p&gt;但有些时候，我们还是需要操作一下其它插件。 比如说在跳转到另一个插件的页面之前，需要查询一下对方插件的一个状态。&lt;br&gt;我觉得应该借助v4包的LocalBroadcastManager来实现&lt;/p&gt;
-&lt;h2 id=&quot;老项目集成Small插件化遇到的坑&quot;&gt;&lt;a href=&quot;#老项目集成Small插件化遇到的坑&quot; class=&quot;headerlink&quot; title=&quot;老项目集成Small插件化遇到的坑&quot;&gt;&lt;/a&gt;老项目集成Small插件化遇到的坑&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;插件中通过startActivityForResult获取不到数据问题。如果启动的Activity是SingleTask启动模式，有这个问题。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;插件lib2依赖插件lib1，导致同时依赖lib1和lib2的插件app1编译时出现找不到类的情况。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;一个lib依赖另一个lib，buildLib时出现Duplicate package错误&lt;br&gt;一个lib依赖另一个lib，buildLib时出现下面的错误，目前还没有找到解决吧，clean工程和cleanLib都做了，但还不行，只好把依赖去掉了才行。原因未知&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;如果插件用到了百度地图等，需要把相关的功能放在一个插件下面，注意那些很大的.so是放在插件里面的&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Small插件中是支持aar引用的，实际使用过了&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Small的插件限制了包名，因此已有代码复制过来会有改变。特别要注意layout文件中自定义控件包名的改动，能够通过编译但运行时会找不到类。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;通过assembleRelease单独编译一个插件出现下面的错误，但有的电脑能正常单独编译插件，原因未知，已经提issue。&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;下午2:30:54: Executing external task &amp;apos;assembleRelease&amp;apos;...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Configuration on demand is an incubating feature.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Incremental java compilation is an incubating feature.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;FAILURE: Build failed with an exception.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;* What went wrong:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;A problem occurred configuring project &amp;apos;:app.me&amp;apos;.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;gt; Could not find property &amp;apos;android&amp;apos; on project &amp;apos;:app&amp;apos;.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;* Try:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;BUILD FAILED&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;第三方SDK的meta，Service等需要在宿主App的manifest中声明，例如百度地图SDK的定位Service。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;lib.utils删除资源后出现编译错误，解决办法是删除public.txt，重新编译lib和bundle&lt;/li&gt;
-&lt;li&gt;老代码一些业务上耦合比较紧的页面不容易拆开，可以作为一个模块存在，我们最后拆成了6个大模块。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&quot;参考文章&quot;&gt;&lt;a href=&quot;#参考文章&quot; class=&quot;headerlink&quot; title=&quot;参考文章&quot;&gt;&lt;/a&gt;参考文章&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/wequick/Small/issues/198&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/wequick/Small/issues/198&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;http://www.offbye.com&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;本文独立博客地址&lt;/a&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;我们团队投入3个人用了接近2周的时间把一个10万行安卓代码的旧项目（电商系统管理台App），使用Small框架做了插件化改造，解除业务模块之间的耦合，以便为后面功能的快速迭代和多团队多技术栈并行开发做好基础架构，期间遇到了一些坑，但最后在大家的努力下基本都得到了解决，也感谢Small的作者光亮对我们提出的issue的快速响应。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="Android" scheme="http://offbye.com/tags/Android/"/>
-    
-      <category term="Small框架" scheme="http://offbye.com/tags/Small%E6%A1%86%E6%9E%B6/"/>
-    
-      <category term="插件化" scheme="http://offbye.com/tags/%E6%8F%92%E4%BB%B6%E5%8C%96/"/>
     
   </entry>
   
