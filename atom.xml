@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://offbye.com/"/>
-  <updated>2016-08-26T08:45:28.000Z</updated>
+  <updated>2016-08-29T04:35:13.000Z</updated>
   <id>http://offbye.com/</id>
   
   <author>
@@ -20,12 +20,12 @@
     <link href="http://offbye.com/2016/08/26/Cordova%E6%94%AF%E4%BB%98%E5%AE%9D%E6%8F%92%E4%BB%B6%E7%9A%84%E9%82%A3%E4%BA%9B%E5%9D%91/"/>
     <id>http://offbye.com/2016/08/26/Cordova支付宝插件的那些坑/</id>
     <published>2016-08-26T07:53:14.000Z</published>
-    <updated>2016-08-26T08:45:28.000Z</updated>
+    <updated>2016-08-29T04:35:13.000Z</updated>
     
     <content type="html">&lt;p&gt;最近帮忙折腾Cordova App，因为是商城类App，需要接APP微信支付和支付宝支付，于是先到github上找相关的插件解决，微信支付很顺利的用插件解决了，支付宝插件就不那么顺利了，网上的几个插件要么过时了，要么实现不合理或不完整，最后还是自己改了个支付宝插件。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;首先我找了star最多的插件，&lt;a href=&quot;https://github.com/charleyw/cordova-plugin-alipay，&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/charleyw/cordova-plugin-alipay，&lt;/a&gt; 结果发现这个插件已经过时了，API和最新的&lt;a href=&quot;https://doc.open.alipay.com/doc2/detail.htm?treeId=54&amp;amp;articleId=104509&amp;amp;docType=1&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;支付宝SDK&lt;/a&gt;对不上， 然后签名竟然是在客户端计算，导致安全问题和iOS需要增加很大的静态库，于是放弃这个了，充分说明了star多的项目不一定就能用。&lt;/p&gt;
 &lt;p&gt;然后我找到了一个更新时间比较近的项目，&lt;a href=&quot;https://github.com/chenyuanchn/cordova-plugin-alipay，这个项目比较简单合理，服务器端负责生成payInfo字符串，客户端支付调用支付宝。问题是iOS上编译有错误，原因是有几个库没有加入到插件config.xml中，不熟悉iOS的人就郁闷了，我参考了[iOS接入支付宝](http://caoyudong.com/2016/01/03/iOS%E6%8E%A5%E5%85%A5%E6%94%AF%E4%BB%98%E5%AE%9D/)解决问题。&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/chenyuanchn/cordova-plugin-alipay，这个项目比较简单合理，服务器端负责生成payInfo字符串，客户端支付调用支付宝。问题是iOS上编译有错误，原因是有几个库没有加入到插件config.xml中，不熟悉iOS的人就郁闷了，我参考了[iOS接入支付宝](http://caoyudong.com/2016/01/03/iOS%E6%8E%A5%E5%85%A5%E6%94%AF%E4%BB%98%E5%AE%9D/)解决问题。&lt;/a&gt;&lt;br&gt;这个库还有个问题是没有实现callback回调。&lt;/p&gt;
-&lt;p&gt;然后我fork了这个插件，并完善了上面提到的几个问题，放在git上了。需要的可以拿去用。地址如下&lt;br&gt;&lt;a href=&quot;https://github.com/offbye/-offbye-cordova-plugin-alipay&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/offbye/-offbye-cordova-plugin-alipay&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;然后我fork了这个插件，并完善了上面提到的几个问题，放在git上了。需要的可以拿去用。地址如下&lt;br&gt;&lt;a href=&quot;https://github.com/offbye/cordova-plugin-alipay&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/offbye/cordova-plugin-alipay&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;最后强烈建议支付宝维护个官方的Cordova插件吧，毕竟这是涉及到支付安全的产品啊。&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;http://www.offbye.com&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;本文独立博客地址&lt;/a&gt;&lt;/p&gt;
 </content>
@@ -169,7 +169,7 @@
     <link href="http://offbye.com/2016/07/13/%E5%85%A5%E6%89%8B%E6%97%A0%E4%BA%BA%E6%9C%BA%E4%B9%8B%E5%89%8D%E4%BD%A0%E9%9C%80%E8%A6%81%E7%9F%A5%E9%81%93%E7%9A%84%E5%87%A0%E4%BB%B6%E4%BA%8B/"/>
     <id>http://offbye.com/2016/07/13/入手无人机之前你需要知道的几件事/</id>
     <published>2016-07-13T04:17:28.000Z</published>
-    <updated>2016-08-26T11:20:09.000Z</updated>
+    <updated>2016-08-26T11:27:48.000Z</updated>
     
     <content type="html">&lt;p&gt;随着近几年航拍机行业的火热，大疆等知名无人机厂商开始变得家喻户晓。近期小米无人机的上市，让越来越多的人想拥有自己的无人机。&lt;br&gt;航拍高大上，炸机很危险。在具备必要的知识和能力前，请不要把无人机作为炫耀的玩具。这几年小白玩大疆精灵在闹市区飞，在机场附近飞，炸机导致事故或影响公共安全的事情还少吗？&lt;br&gt;本文就谈下新手入手航拍机前需要知道的一些事情。作为一个在5iMX玩了很多年的资深模友，我首先以5iMX的56字航模箴言开头吧&lt;/p&gt;
 &lt;blockquote&gt;
@@ -179,7 +179,7 @@
 &lt;p&gt;首先说下无人机这个概念吧，无人机应该是指拥有自主飞行能力的飞行器，即可以不需要人干预的情况下自动飞行，大疆和零度无人机多数型号是可以设置航点自主飞行的。现在消费市场上所说的无人机很多都只能算是航拍机，本文的讨论对象也主要是航拍机。&lt;/p&gt;
 &lt;p&gt;玩无人机安全问题需要时刻放在第一位，不在闹市区和人群密集的地方，不在机场附近等禁飞区飞，不在高大建筑物附近飞，不在发生重大事件或灾害的现场飞，除非得到了相关部门的明确授权，否则可能会触发相关法律。个人精神状态不好的时候不能飞，无人机有故障隐患没排除时不能飞。&lt;/p&gt;
 &lt;p&gt;在了解了这些后你还想入手无人机的话请继续往下看。&lt;/p&gt;
-&lt;h2 id=&quot;你为什么想买无人机？&quot;&gt;&lt;a href=&quot;#你为什么想买无人机？&quot; class=&quot;headerlink&quot; title=&quot;你为什么想买无人机？&quot;&gt;&lt;/a&gt;你为什么想买无人机？&lt;/h2&gt;&lt;p&gt;每个人在入手无人机前都有自己的需求和动机，有人是为了在朋友圈发图和炫耀，有人是为了新奇，有人是为了学习和了解相关的技术。这些都是常见也是正常的需求，还有人是为了用无人机送给戒指什么的，这种需求还是交给专业团队负责做的，就不要自己买无人机了。&lt;br&gt;需要知道的是，自己组装无人机并不比买商业无人机便宜，一般用户就不要为了省钱自己组装无人机了。但组装无人机是一件很有乐趣和挑战的事情，需要投入大量的时间和金钱。&lt;/p&gt;
+&lt;h2 id=&quot;你为什么想买无人机？&quot;&gt;&lt;a href=&quot;#你为什么想买无人机？&quot; class=&quot;headerlink&quot; title=&quot;你为什么想买无人机？&quot;&gt;&lt;/a&gt;你为什么想买无人机？&lt;/h2&gt;&lt;p&gt;每个人在入手无人机前都有自己的需求和动机，有人是为了在朋友圈发图和炫耀，有人是为了新奇，有人是为了学习和了解相关的技术。这些都是常见也是正常的需求，还有人是为了用无人机送给戒指什么的，这种需求还是交给专业团队做吧，就不要自己买无人机了，太危险。&lt;br&gt;需要知道的是，自己组装无人机并不比买商业无人机便宜，一般用户就不要为了省钱自己组装无人机了。但组装无人机是一件很有乐趣和挑战的事情，需要投入大量的时间和金钱。&lt;/p&gt;
 &lt;h2 id=&quot;无人机相关的法规&quot;&gt;&lt;a href=&quot;#无人机相关的法规&quot; class=&quot;headerlink&quot; title=&quot;无人机相关的法规&quot;&gt;&lt;/a&gt;无人机相关的法规&lt;/h2&gt;&lt;p&gt;目前无人机方面的规定是怎样的情况呢？原则上，超过一定重量，在视距外飞行的无人机每次飞行前都需要申报飞行计划。尽管不少人有驾驶执照，申请计划的不便还是让多数无人机处于“黑飞”之中。中国航空器拥有者及驾驶员协会（以下简称AOPA）牵头，多家企业联合开发的针对轻小无人机的监管系统Ucloud已经上线。中国民用航空局飞行标准司已经正式批准轻小型无人机监管系统“优云（U-Cloud）”实施运行。批准文件有效期两年：自颁发日期2016年3月4日起至2018年3月3日。&lt;br&gt;但这个规定现在很多地方并没有认真执行过，倒是AOPA在通过发无人机执照赚钱，航模圈里业余玩的航模爱好者很少有人会去办这个执照，但商业无人机领域好像挺认这个证书的，会花1-2万考个证书。具体参考下知乎&lt;a href=&quot;https://www.zhihu.com/question/33263185&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;如何评价AOPA及ASFC颁发的相关无人机证件？&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&quot;玩无人机需要的技术技能&quot;&gt;&lt;a href=&quot;#玩无人机需要的技术技能&quot; class=&quot;headerlink&quot; title=&quot;玩无人机需要的技术技能&quot;&gt;&lt;/a&gt;玩无人机需要的技术技能&lt;/h2&gt;&lt;p&gt;玩商业无人机对于技能的要求比较低，只需要熟悉遥控器的操作和功能，较好的心理素质，了解无人机飞行的基本原理，熟悉手机和电脑操作。无人机经常会升级更新固件的，当然你也可以选择不升级。&lt;br&gt;如果是你打算自己组装无人机，需要知道的东西就很多了。需要有机械，电子，空气动力学，计算机等方面的知识，还需要有很强的动手能力和各种工具，熟悉飞控，电机，电调，动力锂电池，接收机，遥控器，图传，各种传感器等部件，还要熟悉APM，Pixhawk，CC3D等飞控和相关地面站软件，就不展开说了，总之门槛还是比较高的。&lt;/p&gt;
 &lt;h2 id=&quot;飞行场地问题&quot;&gt;&lt;a href=&quot;#飞行场地问题&quot; class=&quot;headerlink&quot; title=&quot;飞行场地问题&quot;&gt;&lt;/a&gt;飞行场地问题&lt;/h2&gt;&lt;p&gt;无人机特别是固定翼飞机对于飞行场地要求还是比较高的，需要较大面积的空旷场地，并且不能在机场等设施附近，我一般是在湖边的大草坪飞，并且不在周末人比较多的时候飞，一般早上人很少时晚会比较方便。大疆等无人机都有禁飞区的设定，GPS定位到在禁飞区内是无法起飞的，北京四环以内好像都是禁飞区。&lt;br&gt;如果你生活在城市中心，附近没有合适的场地，入手无人机就需要考虑了，使用的频率会非常低。&lt;/p&gt;
