@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://offbye.com/"/>
-  <updated>2016-10-19T01:50:33.000Z</updated>
+  <updated>2016-11-27T07:30:58.000Z</updated>
   <id>http://offbye.com/</id>
   
   <author>
@@ -14,6 +14,76 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>我眼中的全栈工程师</title>
+    <link href="http://offbye.com/2016/11/19/%E6%88%91%E7%90%86%E8%A7%A3%E7%9A%84%E5%85%A8%E6%A0%88%E5%B7%A5%E7%A8%8B%E5%B8%88%E6%98%AF%E6%80%8E%E6%A0%B7%E7%9A%84/"/>
+    <id>http://offbye.com/2016/11/19/我理解的全栈工程师是怎样的/</id>
+    <published>2016-11-19T15:02:37.000Z</published>
+    <updated>2016-11-27T07:30:58.000Z</updated>
+    
+    <content type="html">&lt;p&gt;现在越来越多的创业公司都想找全栈工程师，因此市场上就出现了很多伪全栈工程师，特别是学会了Node的前端工程师，前端工程师会Node就全栈了？这严重不符合我对全栈工程师的理解，这篇文章我主要是说下我对全栈工程师的个人看法。在我眼里，全栈工程师是下能玩硬件和驱动，上能写网页和js，中间能玩转服务器和数据库，没事还能自己做个安卓或iOS App， 对IT系统有着全面深刻的理解，熟悉所负责项目的整体技术栈。&lt;br&gt;我认为全栈工程师的特质应该有以下几个：强大的解决问题能力；广博的知识面，快速学习能力，不给自己设限，主动学习新技术；熟悉多种编程语言，熟悉整个系统从上到下的技术实现。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/1387855-d439d0d02fe0e923.gif?imageMogr2/auto-orient/strip&quot; alt=&quot;无人机之父拉菲罗·安德烈&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;强大的解决问题能力&quot;&gt;&lt;a href=&quot;#强大的解决问题能力&quot; class=&quot;headerlink&quot; title=&quot;强大的解决问题能力&quot;&gt;&lt;/a&gt;强大的解决问题能力&lt;/h2&gt;&lt;p&gt;我觉得强大的解决问题能力是全栈工程师最重要的素质，也是全栈工程师的核心能力。&lt;br&gt;全栈工程师的解决问题能力，应该不局限于软件研发中碰到的技术问题，范围可以扩展到工程和科学相关的问题。这一点我们要向国外的极客大神们学习，国外很多极客具备硬件，软件，网络和人工智能等领域的全方位能力，例如无人机领域的大神&lt;a href=&quot;http://www.jiemian.com/article/848201.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;拉菲罗·安德烈&lt;/a&gt;。亚马逊运营中心里酷炫的、数以万计的Kiva机器人，就出自他手。公司被亚马逊收购后，这位“疯狂”的科技极客把注意力投向了无人机领域，三年时间研制出全球首个全向无人机。2015年获得“电子工程领域的诺贝尔奖”的IEEE机器人和自动化国际会议大奖，被人称为无人机之父。&lt;/p&gt;
+&lt;p&gt;在软件开发过程中所遇到的问题，真正的技术问题只占一部分，很多问题可能是工程或管理方面的问题。全栈工程师善于用全领域的知识积累从更本质的层面上找到解决问题的办法，而不是局限于某一种技术上寻求解决方案。例如前段时间遇到的HTML5 Hybrid App在某些安卓手机上兼容问题，最终的解决方案就是修改js代码，而是直接把Cordova的webview内核换成了腾讯X5内核，这个如果没有全栈技术能力是不可能做到的。&lt;/p&gt;
+&lt;h2 id=&quot;快速学习能力，不给自己设限，主动学习新技术&quot;&gt;&lt;a href=&quot;#快速学习能力，不给自己设限，主动学习新技术&quot; class=&quot;headerlink&quot; title=&quot;快速学习能力，不给自己设限，主动学习新技术&quot;&gt;&lt;/a&gt;快速学习能力，不给自己设限，主动学习新技术&lt;/h2&gt;&lt;p&gt;全栈工程师应该时刻保持开放的心态，主动学习新技术，能够快速进入新技术领域。广博的知识面有助于通过类比和知识迁移的方式，提高学习掌握新技术的速度。&lt;br&gt;例如做Java Web后端可以去熟悉前端开发的技术。做安卓开发的可以去学习iOS开发。做iOS的可以去学习下HTML5移动开发，研究下js。&lt;br&gt;我们现在计算机体系其实都是相通的，不同的编程语言体系，不同的操作系统平台，同样的任务或技术架构的处理方式可能是类似的，因此全栈工程师&lt;br&gt;现在我们已经进入了移动互联网的下半场，未来的大趋势是人工智能，全栈工程师对于人工智能，机器学习，深度学习等领域也要尽早准备学习了。&lt;/p&gt;
+&lt;h2 id=&quot;熟悉多种编程语言，熟悉整个系统从上到下的技术实现&quot;&gt;&lt;a href=&quot;#熟悉多种编程语言，熟悉整个系统从上到下的技术实现&quot; class=&quot;headerlink&quot; title=&quot;熟悉多种编程语言，熟悉整个系统从上到下的技术实现&quot;&gt;&lt;/a&gt;熟悉多种编程语言，熟悉整个系统从上到下的技术实现&lt;/h2&gt;&lt;p&gt;我个人认为全栈工程师至少要熟悉5种编程语言，工作中不能只用一种特定编程语言。&lt;br&gt;现在TIOBE排行榜上主流的编程语言Java, C/C++, C#, Python, Javascript, PHP,Ruby,OC等都应该熟悉，Groovy,Scala,Go,Swift,Kotlin等相对比较新的编程语言也应该熟悉或了解几种。这样就可以根据具体情况（项目特质和团队情况）选择合适的技术栈，而不是整个系统只能用一种语言完成。当然了，大的项目具体的代码肯定应该由团队分工合作完成，但全栈工程师还是应该对项目整个技术栈具备一定的掌控力。&lt;br&gt;做Java Web应用的全栈工程师，应该熟悉Java,Javascipt,CSS,HTML,SQL,XML等常用语言，并且熟悉常用的前后端技术框架，例如Spring，JPA，Mybatis，Jquery，AngularJs，React等。用PHP，Python，Ruby，微软.net等技术栈做Web应用的应该也类似。&lt;br&gt;做移动互联网应用的全栈工程师，应该熟悉Android，iOS开发或微信开发，以及服务器端接口的开发，这样才能做到沟通无障碍。&lt;/p&gt;
+&lt;h2 id=&quot;全栈工程师的钱景和前景&quot;&gt;&lt;a href=&quot;#全栈工程师的钱景和前景&quot; class=&quot;headerlink&quot; title=&quot;全栈工程师的钱景和前景&quot;&gt;&lt;/a&gt;全栈工程师的钱景和前景&lt;/h2&gt;&lt;p&gt;成为一名真正的全栈工程师需要经过长期的持续学习和不断折腾，其中的甘苦只有自己知道。但和数年坚持一个领域的专家型人才相比，在薪酬方面全栈工程师可能并没有优势，这是可以理解的，因为在就业市场上，特别是像BAT这些比较大的公司，倾向于给行业顶级水平的人才很高的报酬，这符合赢者通吃的社会法则。而全栈工程师，由于关注和学习的领域太多，有限的精力必然被分散，导致在某个特定领域会比不上领域专家，因此在职业生涯早期和中期并不容易拿到足够高的收入。&lt;/p&gt;
+&lt;p&gt;从长期回报看，全栈工程师在架构师，CTO，技术合伙人等高端技术职务上会比领域技术专家更有优势，全面的技术背景有助于做出更加全面客观的技术架构和决策，从而对所在组织产生很大的正面影响。&lt;/p&gt;
+&lt;p&gt;对于创业公司，全栈工程师发挥空间会更大，多面手的特长可以帮助团队快速完成早期技术产品，成为公司创始人或技术合伙人，发展前景会很大。每一个全栈工程师，都有过一个创业梦。能否创业成功，在于是否有足够的勇气，综合能力和机遇。&lt;/p&gt;
+&lt;p&gt;真正的全栈工程师，对新技术有着强烈的好奇心，敢于不断地走出自己的舒适区，勇敢进入新的技术领域！&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.offbye.com&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;本文独立博客地址&lt;/a&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;现在越来越多的创业公司都想找全栈工程师，因此市场上就出现了很多伪全栈工程师，特别是学会了Node的前端工程师，前端工程师会Node就全栈了？这严重不符合我对全栈工程师的理解，这篇文章我主要是说下我对全栈工程师的个人看法。在我眼里，全栈工程师是下能玩硬件和驱动，上能写网页和js，中间能玩转服务器和数据库，没事还能自己做个安卓或iOS App， 对IT系统有着全面深刻的理解，熟悉所负责项目的整体技术栈。&lt;br&gt;我认为全栈工程师的特质应该有以下几个：强大的解决问题能力；广博的知识面，快速学习能力，不给自己设限，主动学习新技术；熟悉多种编程语言，熟悉整个系统从上到下的技术实现。&lt;br&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>如何使用repo下载部分Android源码</title>
+    <link href="http://offbye.com/2016/11/01/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8repo%E4%B8%8B%E8%BD%BD%E9%83%A8%E5%88%86Android%E6%BA%90%E7%A0%81/"/>
+    <id>http://offbye.com/2016/11/01/如何使用repo下载部分Android源码/</id>
+    <published>2016-11-01T14:19:34.000Z</published>
+    <updated>2016-11-01T14:52:19.000Z</updated>
+    
+    <content type="html">&lt;p&gt;最近打算重新折腾下Android源码，由于网速慢和Mac的SSD磁盘空间不太够的原因，打算只下载部分想研究的Android源码看看，但又想保留android源码本身的结构，因此不能直接clone github上的android源码项目。目前android 7.0源码完整下载估计在40G左右，如果翻墙下载网速比较慢，可能几天都下不好，也就不要折腾了。&lt;/p&gt;
+&lt;p&gt;在分析了.repo目录下面的文件之后，我找到一个简单的方法，可以只下载部分源码的git项目，现在安卓源码一共由500多个git项目组成，一个人想了解全部源码基本上是不可能的，只能研究下重要的或者是工作涉及的部分。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;由于是Mac上，需要按照官方的说明做些准备工作，具体参考&lt;a href=&quot;http://source.android.com/source/initializing.html#setting-up-a-mac-os-x-build-environment&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://source.android.com/source/initializing.html#setting-up-a-mac-os-x-build-environment&lt;/a&gt;&lt;br&gt;，具体做法如下：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;# 创建一个大小写敏感的磁盘镜像文件&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;hdiutil create -type SPARSE -fs &amp;apos;Case-sensitive Journaled HFS+&amp;apos; -size 40g ~/android.dmg&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;修改~/.bash_profile，加入2个函数&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;# mount the android file image&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;function mountAndroid &amp;#123; hdiutil attach ~/android.dmg -mountpoint /Volumes/android; &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;# unmount the android file image&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;function umountAndroid() &amp;#123; hdiutil detach /Volumes/android; &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;运行&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;source ~/.bash_profile&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; mountAndroid   #挂载磁盘镜像到/Volumes/android&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;cd  /Volumes/android&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;因为本文不涉及到编译源码，所以编译环境相关但步骤就不介绍了，官方文档挺详细的。&lt;br&gt;下面介绍下repo吧&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;repo是什么？&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;repo是一种代码版本管理工具，它是由一系列的Python脚本组成，封装了一系列的Git命令，用来统一管理多个Git仓库。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;为什么要用repo？&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;因为Android源码引用了很多开源项目，每一个子项目都是一个Git仓库，每个Git仓库都有很多分支版本，为了方便统一管理各个子项目的Git仓库，需要一个上层工具批量进行处理，因此repo诞生。&lt;/p&gt;
+&lt;p&gt;最后重点到了，看下.repo/manifests/default.xml文件，内容大概如下&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;manifest&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;lt;remote  name=&amp;quot;aosp&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;           fetch=&amp;quot;..&amp;quot; /&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;lt;default revision=&amp;quot;refs/tags/android-7.0.0_r14&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;           remote=&amp;quot;aosp&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;           sync-j=&amp;quot;4&amp;quot; /&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;lt;project path=&amp;quot;build&amp;quot; name=&amp;quot;platform/build&amp;quot; groups=&amp;quot;pdk,tradefed&amp;quot; &amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;lt;copyfile src=&amp;quot;core/root.mk&amp;quot; dest=&amp;quot;Makefile&amp;quot; /&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;lt;/project&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;lt;project path=&amp;quot;build/blueprint&amp;quot; name=&amp;quot;platform/build/blueprint&amp;quot; groups=&amp;quot;pdk,tradefed&amp;quot; /&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;lt;project path=&amp;quot;build/kati&amp;quot; name=&amp;quot;platform/build/kati&amp;quot; groups=&amp;quot;pdk,tradefed&amp;quot; /&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;lt;!-- &amp;lt;project path=&amp;quot;build/soong&amp;quot; name=&amp;quot;platform/build/soong&amp;quot; groups=&amp;quot;pdk,tradefed&amp;quot; &amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;lt;linkfile src=&amp;quot;root.bp&amp;quot; dest=&amp;quot;Android.bp&amp;quot; /&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;lt;linkfile src=&amp;quot;bootstrap.bash&amp;quot; dest=&amp;quot;bootstrap.bash&amp;quot; /&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;lt;/project&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;lt;project path=&amp;quot;abi/cpp&amp;quot; name=&amp;quot;platform/abi/cpp&amp;quot; groups=&amp;quot;pdk&amp;quot; /&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;lt;project path=&amp;quot;art&amp;quot; name=&amp;quot;platform/art&amp;quot; groups=&amp;quot;pdk&amp;quot; /&amp;gt; --&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  ......&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;lt;/manifest&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;看到了吧，只要把不需要下载的源码project注释掉，然后运行repo sync就可以只下载没有被注释掉的项目了。当然这种办法只能用了研究源码，如果要编译源码，只下载一部分肯定是不行的。&lt;br&gt;repo sync后的项目结构如下：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;tree -L 1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;├── CleanSpec.mk&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;├── blueprint&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;├── buildspec.mk.default&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;├── core&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;├── envsetup.sh&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;├── kati&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;├── libs&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;├── target&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;└── tools&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;cd kati&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;repo info .&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Manifest branch: refs/tags/android-7.0.0_r14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Manifest merge branch: refs/heads/android-7.0.0_r14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Manifest groups: all,-notdefault&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;----------------------------&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Project: platform/build/kati&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Mount path: /Volumes/android/N/build/kati&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Current revision: refs/tags/android-7.0.0_r14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Local Branches: 0&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;这样我们就实现了用repo sync只下载想要的安卓源码项目的目的。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.offbye.com&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;本文独立博客地址&lt;/a&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近打算重新折腾下Android源码，由于网速慢和Mac的SSD磁盘空间不太够的原因，打算只下载部分想研究的Android源码看看，但又想保留android源码本身的结构，因此不能直接clone github上的android源码项目。目前android 7.0源码完整下载估计在40G左右，如果翻墙下载网速比较慢，可能几天都下不好，也就不要折腾了。&lt;/p&gt;
+&lt;p&gt;在分析了.repo目录下面的文件之后，我找到一个简单的方法，可以只下载部分源码的git项目，现在安卓源码一共由500多个git项目组成，一个人想了解全部源码基本上是不可能的，只能研究下重要的或者是工作涉及的部分。&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="Android N" scheme="http://offbye.com/tags/Android-N/"/>
+    
+      <category term="源码" scheme="http://offbye.com/tags/%E6%BA%90%E7%A0%81/"/>
+    
+  </entry>
   
   <entry>
     <title>用Zepto代替Jquery提升移动Web用户体验</title>
@@ -682,86 +752,6 @@
       <category term="方法数" scheme="http://offbye.com/tags/%E6%96%B9%E6%B3%95%E6%95%B0/"/>
     
       <category term="统计" scheme="http://offbye.com/tags/%E7%BB%9F%E8%AE%A1/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>从共享经济的边界看专车市场的未来</title>
-    <link href="http://offbye.com/2016/06/10/%E4%BB%8E%E5%85%B1%E4%BA%AB%E7%BB%8F%E6%B5%8E%E7%9A%84%E8%BE%B9%E7%95%8C%E7%9C%8B%E4%B8%93%E8%BD%A6%E5%B8%82%E5%9C%BA%E7%9A%84%E6%9C%AA%E6%9D%A5/"/>
-    <id>http://offbye.com/2016/06/10/从共享经济的边界看专车市场的未来/</id>
-    <published>2016-06-10T01:57:51.000Z</published>
-    <updated>2016-06-13T09:28:47.000Z</updated>
-    
-    <content type="html">&lt;p&gt;作为一个懒散的业余顺风车司机，最近经常收到专车平台关于突发情况的短信提醒，听说南京出租车司机和专车司机最近有些冲突，原因当然是出租车司机认为专车司机抢了生意，而自己还需要承担每个月七千以上的份子钱，心里当然不爽了。但是，专车不是分享经济吗？只是顺路接单啊，怎么会对出租车的生意造成这么严重的影响呢？原因之一可能是大多数专车司机已经是职业化了，并且感觉司机平台的多单奖励制度也鼓励了专车的职业化行为，需要上班的顺风车肯定不可能在早高峰去接很多单啊，拼车等人，绕路都要花时间，上班迟到是要罚钱的，但职业司机就没有这个问题了。&lt;/p&gt;
-&lt;p&gt;专车市场到底会怎样发展呢？我认为后面专车的车辆产权会由租车公司和出行平台共同拥有；专车司机会职业化，和平台签劳动协议，并经过专业化培训；专车会在交通部门的严格监管下运营；做专车司机的门槛将逐步提高，私家车司机将逐步推出专车行列。对于传统出租车行业来说，未来可能在某些城市被出行平台收编，当然中间肯定需要经过各方的利益博弈。&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;p&gt;分享经济的核心是资源的按需分配，既合理调配又极大化利用闲置资源，毫无疑问，只有在移动互联网时代，供需信息借助技术手段实现透明，共享经济的模式才有可能真正运行起来。因此，在租房领域诞生了Airbnb,在出行领域出现了Uber和滴滴这些互联网独角兽公司。 这些平台的出现，确实给人们带来了极大的便利，解决了供需信息的不对称性和闲置资源的分配问题，但同时也带来了一些新问题，对传统行业的冲击，安全问题和监管问题等。&lt;/p&gt;
-&lt;p&gt;分享经济的优势是盘活闲置的社会资源，提供给更多需要的人，同时获取一定的报酬。但共享经济显然是存在边界的。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;知名 IT 评论人 Keso 在《分享经济的边界》一文中表达了其对分享经济的看法。他认为，“两方面的因素综合作用，将导致分享经济很快就抵达它的边界。其一是受益于分享经济，越来越多的人会更愿意购买资源的使用权，而不是购买资源的所有权，这将导致不再有可供分享的物质资源；其二是人的趋利性导致职业化服务提供将逐渐挤出业余化服务提供，谋生者挤出分享者，在此过程中不断降低成本以最大化收益。”&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;分享经济的边界看上去还是很有道理的。由分享经济的边界，我联想到了科斯的企业的边界。经济学家科斯提出了著名的科斯定理，我们也可以试着用它来分析一下拼车这种共享经济。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;科斯定理(Coase theorem)由罗纳德·科斯（Ronald Coase）提出的一种观点，认为在某些条件下，经济的外部性或曰非效率可以通过当事人的谈判而得到纠正，从而达到社会效益最大化。科斯本人从未将定理写成文字，而其他人如果试图将科斯定理写成文字，则无法避免表达偏差。关于科斯定理，比较流行的说法是：只要财产权是明确的，并且交易成本为零或者很小，那么，无论在开始时将财产权赋予谁，市场均衡的最终结果都是有效率的，实现资源配置的帕雷托最优。&lt;br&gt;科斯认为，企业规模的边界就在企业内部组织一项交易费用的成本等于通过市场开展这项交易的成本之处。所以，企业有扩张的倾向，直至达到这个边界。另一方面，科技和管理的的的提升，有助于降低交易费用，也就是扩大企业的边界。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;对于没有学习过经济学的人来说，上面这段话可能有些抽象，简单来说只要财产权是明确的，并且交易成本为零或者很小，那么，无论在开始时将财产权赋予谁，市场均衡的最终结果都是有效率的。如果我们从这个角度来看共享经济，如果打车的成本足够低，车辆由谁拥有，并不影响最终的出行效率。但是。实际情况不是这样的，对私家车司机来说，做顺风车交易成本还是比较高的，比较典型的是等待成本和绕路成本，还有可能的安全成本，由于拉客带来的负面情绪成本等。&lt;/p&gt;
-&lt;p&gt;先说下等待成本和绕路成本。目前滴滴司机端的推荐算法还只能做到基于附近位置的订单推荐，对于要上班的业余司机来说，这样是远远不够的，首先我不可能掉头去接后面的乘客，也不愿意绕路去接不怎么顺路的乘客，更不可能放着高速公路不走，走城市道路去接中途的乘客，这些事情都会导致上班迟到被罚钱，滴滴并没有给这些业余司机提供激励政策，而是对派单完成率进行考核和惩罚，对于职业专车司机，上面这些问题都不影响，因为他们不用担心上班迟到。并且，滴滴经常有连环奖励活动，早高峰联系完成5单以上，每单都有5元以上的额外奖励，这个奖励估计只有职业专车司机才能拿到。由于企业和个人追逐利润的动机，职业专车司机必然会把业余司机挤出市场，并影响到传统出租车司机的生意。最后留下的业余司机，可能已经不再是为了赚点油费做顺风车的普通司机，而是那些不为赚钱，有其他动机的司机，例如开着保时捷为了搭讪美女而做专车的司机，但各大公司门口拼车挖人的猎头司机等。这就出现了劣币驱逐良币的现象。&lt;/p&gt;
-&lt;p&gt;当专车平台上出现了这些有其它动机的司机后，乘客的安全和隐私方面就会出现问题，最近经常爆出的专车司机性骚扰事件也证明了这一点。当然我们可以把责任推给不良司机，毕竟平台只是提供了出行信息，并且对车辆和司机身份进行了还算完善的线上认证，但这个约束是相对于传统出租车行业是非常脆弱的，一些居心不良的司机可以有一万种方法绕过平台的监管。&lt;/p&gt;
-&lt;p&gt;从业余司机角度看，自己花钱买车主要是为了使用方便和面子，也就是出行的便利性和私密性。由于大量职业化专车司机的存在，必然会提高乘客对司机服务的期望。人性是自私的，在做过几次顺风车司机后尝鲜后，不太缺钱的业余司机很难再忍受一些挑剔的乘客，于是也就不再做顺风车了。很多人会说做顺风车是为了找人聊天，但拼车聊天实在是个弱需求，特别是在早高峰急着上班赶路的时候，司机在开车的时候聊天也会带来驾驶安全问题。&lt;/p&gt;
-&lt;p&gt;上面分析了为什么职业司机会占据打车平台，业余司机会从逐渐从打车平台退出。下面看下专车司机职业化的带来的问题。首先是专车司机的进入门槛太低，导致司机鱼龙混杂，出现各种安全，监管和与传统出租车司机的利益冲突问题。出租车其实是个入门门槛挺低的行业，这年头谁不会开车啊。份子钱就是出租车司机上缴给出租车公司的承包费用，既是前者的主要运营成本，又是后者的主要收入来源。份子钱的存在就是为了提供这个行业的准入门槛，避免非法营运车辆对城市道路的多度占用，同时对出租车司机提供一些服务和管理。由于出租车司机承担了每月6千以上份子钱，而职业化专车司机并不承担份子钱，却同样进行营运，必然严重影响出租车司机的收入，导致出租车司机不满，各地不断出现出租车司机和专车司机的社会冲突。&lt;/p&gt;
-&lt;p&gt;现在的问题是专车司机已经在事实上职业化了，但并没有真正职业化管理起来，打车平台对专车司机管理还停留在身份认证和平台规定约束层面，没有劳动协议，保证金，份子钱，准入培训等更加职业化的管理方法，导致很多问题出现。在职业化运营这点上，神州专车的重运营模式做的挺好，这应该是打车平台的未来发展趋势。&lt;/p&gt;
-&lt;p&gt;总结一下，由于经济上的原因，专车司机会逐渐职业化，业余司机会逐渐被挤出市场，为了解决专车司机职业化带来的一系列问题，由此发展到职业化管理阶段，也就是类似神州专车的B2C重运营模式。在分享经济层面，出行平台解决的是出行信息的不对称性问题，重点是通过移动互联网更有效率地达成出行交易，而不是对车辆资源的分享。在更远的未来，随着大数据和人工智能的发展，自动驾驶技术发展成熟，专车将不再需要司机，实现智能化共享交通网络。目前特斯拉电动车的Autopilot自动驾驶技术已经初步可用了。&lt;/p&gt;
-&lt;p&gt;参考文章&lt;br&gt;&lt;a href=&quot;http://36kr.com/p/5047748.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;如果说“共享经济”是伪命题，那么“专车模式”怎样才靠谱？&lt;/a&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;作为一个懒散的业余顺风车司机，最近经常收到专车平台关于突发情况的短信提醒，听说南京出租车司机和专车司机最近有些冲突，原因当然是出租车司机认为专车司机抢了生意，而自己还需要承担每个月七千以上的份子钱，心里当然不爽了。但是，专车不是分享经济吗？只是顺路接单啊，怎么会对出租车的生意造成这么严重的影响呢？原因之一可能是大多数专车司机已经是职业化了，并且感觉司机平台的多单奖励制度也鼓励了专车的职业化行为，需要上班的顺风车肯定不可能在早高峰去接很多单啊，拼车等人，绕路都要花时间，上班迟到是要罚钱的，但职业司机就没有这个问题了。&lt;/p&gt;
-&lt;p&gt;专车市场到底会怎样发展呢？我认为后面专车的车辆产权会由租车公司和出行平台共同拥有；专车司机会职业化，和平台签劳动协议，并经过专业化培训；专车会在交通部门的严格监管下运营；做专车司机的门槛将逐步提高，私家车司机将逐步推出专车行列。对于传统出租车行业来说，未来可能在某些城市被出行平台收编，当然中间肯定需要经过各方的利益博弈。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="分享经济" scheme="http://offbye.com/tags/%E5%88%86%E4%BA%AB%E7%BB%8F%E6%B5%8E/"/>
-    
-      <category term="专车" scheme="http://offbye.com/tags/%E4%B8%93%E8%BD%A6/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>读采铜的精进-如何成为一个很厉害的人有感</title>
-    <link href="http://offbye.com/2016/06/09/%E8%AF%BB%E9%87%87%E9%93%9C%E7%9A%84%E7%B2%BE%E8%BF%9B-%E5%A6%82%E4%BD%95%E6%88%90%E4%B8%BA%E4%B8%80%E4%B8%AA%E5%BE%88%E5%8E%89%E5%AE%B3%E7%9A%84%E4%BA%BA%E6%9C%89%E6%84%9F/"/>
-    <id>http://offbye.com/2016/06/09/读采铜的精进-如何成为一个很厉害的人有感/</id>
-    <published>2016-06-09T14:22:49.000Z</published>
-    <updated>2016-06-11T03:12:01.000Z</updated>
-    
-    <content type="html">&lt;p&gt;采铜的《精进-如何成为一个很厉害的人》确实是一本很好的书，我这个一般情况只在kindle上买书看书的人，在简书上看到这本书的介绍后，感觉非常不错，内容和观点比较适合我现在的状态，于是马上在亚马逊上下单买了一本。现在过去快2周了，大概看完一大半了，好书要慢慢读啊，先写篇读后感总结一下吧，免得后面忘记了。看书是一种输入，写出读书笔记是输出，要把时间放在输出型兴趣上，这是书中的一个观点。以后我每读完一本书都会写篇读书笔记，喜欢大家监督啊。&lt;br&gt;写读书笔记时才发现自己看书的一个严重问题，看完后不记得书的目录结构，只记得一些感兴趣的观点，很多没有共鸣的观点，因为没有掌握书的结构，以后肯定也不会有印象。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;在这本书中，作者采铜提出了一种更有效的提升自我的方法：用持续精确的努力，撬动更大的可能，这便是精进。&lt;br&gt;这本书为大家提供了时间、选择、行动、学习、思维、才能、成功七个方面的精进路径，只要依循书中的方法反复磨练，便可以日益精进，成为一个很厉害的人，找到实现自我的那条成功之道。&lt;br&gt;看上去挺美的啊，但是为什么厉害的人还是很少呢？ 其实道理非常简单，知道不等于能够做到。有了方法，真正达成目标还是需要持续地努力和付出。希望这本书能够让我们的努力更有效果。下面书的目录：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;目录  · · · · · ·&lt;br&gt;第一章    时间之尺&lt;br&gt;——我们应该怎样对待时间&lt;br&gt;一、    活在“全部的现在”&lt;br&gt;（从当下出发，联结过去与未来）&lt;br&gt;二、    对五年后的自己提问&lt;br&gt;（如何解决远期与近期未来的冲突？）&lt;br&gt;三、    我们总是在重复地抓起沙子&lt;br&gt;（把时间花在值得做的事情上）&lt;br&gt;四、    “快”与“慢”的自由切换&lt;br&gt;（为什么我们的时间永远不够用？）&lt;br&gt;第二章    寻找心中的“巴拿马”&lt;br&gt;——如何做出比好更好的选择&lt;br&gt;一、    从终极问题出发&lt;br&gt;（以人生终极目标作为首要原则）&lt;br&gt;二、    逃离隐含假设的牢笼&lt;br&gt;（发现人生中的更多可能选项）&lt;br&gt;三、    克服天性中的选择弱势&lt;br&gt;（选择太多怎么办？）&lt;br&gt;四、    人生是持续而反复的构造&lt;br&gt;（校正选择，做出建设性的改变）&lt;br&gt;第三章    即刻行动&lt;br&gt;——改变一切的核心力量&lt;br&gt;一、    “现在”就是恰当的时机&lt;br&gt;（不管怎样，只要开始就好）&lt;br&gt;二、    精益创业的行动启示&lt;br&gt;（把“未完成”变成“已完成” ）&lt;br&gt;三、    像Photoshop一样分解任务&lt;br&gt;（从工作的核心区开始）&lt;br&gt;四 、 三行而后思&lt;br&gt;（在实践中，通过复盘积累智慧）&lt;br&gt;第四章    怎样的学习，才能够直面现实？&lt;br&gt;——如何成为一个高段位的学习者？&lt;br&gt;一、    找到一切学习的向导&lt;br&gt;（好的学习者，首先要向自己提问）&lt;br&gt;二、    不要只做信息的搬运工&lt;br&gt;（通过解码，深入事物的深层）&lt;br&gt;三、    技能，才是学习的终点&lt;br&gt;（你能够调用的知识有多少？）&lt;br&gt;四、    分离的知识，难以解答真正的现实&lt;br&gt;（让不同的知识发生化学作用）&lt;br&gt;第五章    向未知的无限逼近&lt;br&gt;——修炼思维，成为真正的利器&lt;br&gt;一、    大脑需要“断舍离”&lt;br&gt;（ 简化，是清晰思考的前提 ）&lt;br&gt;二、    迎接“灵光乍现”的时刻&lt;br&gt;（让潜意识为你工作）&lt;br&gt;三、    思考可以有自己的形状&lt;br&gt;（将思维转化为图像 ）&lt;br&gt;四、    世界上没有轻而易举的答案&lt;br&gt;（只有极少数的人能做到周密思考）&lt;br&gt;第六章 努力，是一种需要学习的才能&lt;br&gt;——不断优化你的“努力”方式&lt;br&gt;一、    努力本身就是一种才能&lt;br&gt;（努力需要有效的策略）&lt;br&gt;二、    没有突出的长板就是危险&lt;br&gt;（专注发展自己的优势才能）&lt;br&gt;三、    你是“差不多先生”吗？&lt;br&gt;（绝不苟且，才能做到极致 ）&lt;br&gt;四、    挑战是设计出来的&lt;br&gt;（不断为自己设计“必要的难度”挑战 ）&lt;br&gt;五、    不痛苦地坚持到底&lt;br&gt;（只有深入下去，才能培养起真正的兴趣）&lt;br&gt;第七章 每一个成功者，都是唯一的&lt;br&gt;——创造成功，而不是复制成功&lt;br&gt;一、    “学渣”与“学霸”都不是好选择&lt;br&gt;（做一个主动探索的学习者）&lt;br&gt;二、    从“游乐场”到“荒野求生”&lt;br&gt;（怎样从大学走向社会？）&lt;br&gt;三、    独特性，就是你的核心竞争力&lt;br&gt;（ 请坚持你的与众不同！ ）&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&quot;第一章是时间之尺-我们应该怎样对待时间&quot;&gt;&lt;a href=&quot;#第一章是时间之尺-我们应该怎样对待时间&quot; class=&quot;headerlink&quot; title=&quot;第一章是时间之尺 我们应该怎样对待时间&quot;&gt;&lt;/a&gt;第一章是时间之尺 我们应该怎样对待时间&lt;/h2&gt;&lt;p&gt;一个人如何对待他的时间，决定了他可以成为什么样的人。首先讲了要活在当下，要专注做好当前的事情，不要过去追悔，为未来焦虑。这是我们应该有的人生态度，用曾国藩的话说就是“当读书，则读书，心无着于见客也；当见客，则见客，心无着于读书也。一有着，则私也。灵明无着，物来顺应，未来不迎，当时不杂，既过不恋。”&lt;/p&gt;
-&lt;p&gt;向孩子学习“郑重“的态度，我有一个5岁的女儿，她每天晚上9点左右都画画，其实就是随便涂鸦了，但她真的是很专注，画画的时候从来不三心二意，被打扰了她会不开心，画完后你问她画了什么，她会很认真地讲给你听，尽管画看上去一点都不像。我发现很多大人在专注当下这方面还真的应该想孩子学习，总是自以外高效率，同时做几件事情。记起一个关于活在当下的小故事：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;一个小和尚问得道的师傅：“您得道前后有没有什么变化？”老和尚说：“变化很大。”那到底有什么变化呢，老和尚告诉小和尚：“在得道之前，我每天砍柴、挑水、做饭。得道之后，我每天砍柴、挑水、做饭。”小和尚不理解：“师傅，这不是一样吗？”老和尚说：“不一样，在得道之前，我每天砍柴的时候想着挑水，挑水的时候想着做饭，做饭的时候又想着砍柴。得道之后，我每天砍柴的时候只想着砍柴，挑水的时候只想着挑水，做饭的时候只想着做饭。”&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;专注当下确实能让我在生活中保持平和的心态，保持客观的态度，不把自己的节奏弄乱。&lt;/p&gt;
-&lt;p&gt;然后介绍了时间的视角： 积极过去视角，消极过去视角，享乐主义视角，宿命论视角和未来视角。我用这套方法检讨了一下自己，发现我这几年总是在消极过去视角和未来视角之间切换：有时会后悔自己错失了太多机会，导致情绪很低落；有时又一直想着未来的事情，对未来报太多希望，以至于影响到现在的状态。斯坦福大学心理学家津巴多的建议是不要维持单一的时间视角，我以后要注意采用享乐主义视角和积极过去视角调整状态。&lt;/p&gt;
-&lt;p&gt;对五年后的自己提问，如何解决远期未来和近期未来的冲突？&lt;/p&gt;
-&lt;p&gt;对于人生计划而言，五年确实是一个合适的时间，读完大学需要四年，多数工作从新手到熟手甚至专家五年时间也够了。在我从事的互联网行业，五年时间足够诞生一个互联网巨头公司了，也足够淘汰或兴起一种编程语言或技术平台。发现五年前的自己，确实没有想清楚五年后要做什么，对未来的期望太高了，这是应该是现在没有达到应有的高度的一个重要原因，所幸随着年龄的增长，对自己的认识越来越清楚了，五年后的人生状态也基本上有头绪了。&lt;br&gt;五年设想可以让我们用情景化，具象化的方式来构想远期未来，使未来鲜活生动起来，这样就有利于去实施。由于五年的时间跨度足够长，我们就不会把可行性，便利性作为主要判断依据，而是从长期价值出发。&lt;br&gt;解决远期未来和近期未来的冲突可以采用两个策略：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;使远期未来的目标更加具体化、情境化和可实施&lt;/li&gt;
-&lt;li&gt;降低近期未来中的“非期望行为“的便利性，主动增加挑战的难度&lt;br&gt;比如如果总是想玩游戏，就把游戏删除掉，虽然你后面还会下载回来玩，但由于玩游戏的成本提高了，玩的次数是能够显著减少的。我在大学里曾经这样做过，记得当时为了考研，反复删除了很多次魔兽冰封王座游戏，还是很有效果的。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;我们总是在重复地抓起沙子，把时间花在值得做的事情上。&lt;br&gt;什么是值得做的事情？作者提供了2个角度：一个是当下给我带来的收益大小，二是收益随时间衰减的程度，作者称为“收益半衰期“。收益半衰期是让我的印象深刻的一个词。要多做收益半衰期长的事情，而不要太在意当前收益的大小。对我来说，写技术博客，写文章，参加开源项目，做技术演讲这些事情的收益半衰期都是比较长的，要坚持去做好。&lt;br&gt;作者给出一个长半衰期事件指南。收益半衰期是一个有效的思维工具，就像一把时间之尺，可以丈量出有长远价值的事物。&lt;br&gt;第一章最后作者提到了为什么要多读经典和互联网时代的信息碎片化问题，用时间之尺的方法，可以有效的过滤掉噪音信息。&lt;/p&gt;
-&lt;h2 id=&quot;第二章-寻找心中的“巴拿马“-如何做出比好更好的选择&quot;&gt;&lt;a href=&quot;#第二章-寻找心中的“巴拿马“-如何做出比好更好的选择&quot; class=&quot;headerlink&quot; title=&quot;第二章 寻找心中的“巴拿马“ 如何做出比好更好的选择&quot;&gt;&lt;/a&gt;第二章 寻找心中的“巴拿马“ 如何做出比好更好的选择&lt;/h2&gt;&lt;p&gt;[本文独立博客地址](）&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;采铜的《精进-如何成为一个很厉害的人》确实是一本很好的书，我这个一般情况只在kindle上买书看书的人，在简书上看到这本书的介绍后，感觉非常不错，内容和观点比较适合我现在的状态，于是马上在亚马逊上下单买了一本。现在过去快2周了，大概看完一大半了，好书要慢慢读啊，先写篇读后感总结一下吧，免得后面忘记了。看书是一种输入，写出读书笔记是输出，要把时间放在输出型兴趣上，这是书中的一个观点。以后我每读完一本书都会写篇读书笔记，喜欢大家监督啊。&lt;br&gt;写读书笔记时才发现自己看书的一个严重问题，看完后不记得书的目录结构，只记得一些感兴趣的观点，很多没有共鸣的观点，因为没有掌握书的结构，以后肯定也不会有印象。&lt;br&gt;
-    
-    </summary>
-    
     
   </entry>
   
